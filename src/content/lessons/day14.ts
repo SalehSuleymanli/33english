@@ -1,0 +1,115 @@
+import type { Lesson } from "../types";
+
+const day14: Lesson = {
+  day: 14,
+  stage: "expansion",
+  frame: "actions",
+  title: "I want you to come",
+  objective: "Use verb + person + to + verb: want, ask, tell, would like someone to.",
+  builds_on: "This is structure 6 from your original notes. It's Frame 3 with a second action attached: the first verb is about you, the second about another person.",
+  outcome: "Make requests and give instructions politely.",
+  minutes: 20,
+  explanation: [
+    "Some verbs can be followed by **a person + to + verb**: I want **you to come**. She asked **me to wait**. They told **us to leave**.",
+    "The person is an object pronoun: **me, you, him, her, it, us, them** — never I, he, she, we, they.",
+    "**Would like someone to** is the polite version of want: I**'d like you to meet** my sister.",
+    "Negative instruction: put **not** before to: He told me **not to worry**. (Not: He told me to not worry — though this is common in speech.)",
+    "Other verbs with this pattern: **ask, tell, need, expect, help, allow, invite, remind, advise, encourage**.",
+  ],
+  patterns: [
+    {
+      name: "Verb + person + to + verb",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "verb", role: "verb", text: "want" },
+        { label: "person (object)", role: "object", text: "Tofig" },
+        { label: "to + verb", role: "verb", text: "to come" },
+        { label: "rest", role: "object", text: "with me", optional: true },
+      ],
+    },
+    {
+      name: "Negative instruction",
+      slots: [
+        { label: "Subject", role: "subject", text: "She" },
+        { label: "verb", role: "verb", text: "told" },
+        { label: "person", role: "object", text: "me" },
+        { label: "not to + verb", role: "negation", text: "not to worry" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "I want Tofig to come with me.", note: "Example from the original method notes." },
+    { en: "I'd like you to meet my colleague, Anna.", note: "**Would like** = polite want." },
+    { en: "My boss asked me to stay late.", note: "**Ask** someone to do something = request." },
+    { en: "The doctor told him to rest for a week.", note: "**Tell** someone to = instruction." },
+    { en: "Can you help me to carry this?", note: "With help, to is optional: help me carry." },
+    { en: "Please remind me to buy milk.", note: "**Remind** someone to = help them remember." },
+    { en: "She told us not to be late.", note: "**not to** for negative instructions." },
+    { en: "Do you want me to call a taxi?", note: "An offer: Do you want me to…?" },
+  ],
+  forms: [
+    { label: "Want", positive: "I want you to stay.", negative: "I don't want you to go.", question: "Do you want me to help?" },
+    { label: "Ask / tell", positive: "She asked me to help.", negative: "She told me not to touch it.", question: "Did he ask you to call?" },
+  ],
+  mistakes: [
+    { wrong: "I want that you come.", right: "I want you to come.", why: "English uses **person + to + verb**, not 'that you…'." },
+    { wrong: "She asked to me to wait.", right: "She asked me to wait.", why: "No **to** before the person." },
+    { wrong: "He told I to sit down.", right: "He told me to sit down.", why: "Object pronoun: **me**." },
+    { wrong: "I'd like you meet my wife.", right: "I'd like you to meet my wife.", why: "Don't forget **to**." },
+    { wrong: "They told us don't park here.", right: "They told us not to park here.", why: "Reported instruction: **not to** + verb." },
+  ],
+  guided: {
+    goal: "Build: My manager asked me to send the report.",
+    steps: [
+      { label: "Subject", role: "subject", options: ["My manager", "Me manager", "My manager she"], answer: 0, why: "One subject only." },
+      { label: "Verb (past)", role: "verb", options: ["asked", "asked to", "ask"], answer: 0, why: "Ask + person (no to before the person)." },
+      { label: "Person", role: "object", options: ["I", "me", "my"], answer: 1, why: "Object pronoun → **me**." },
+      { label: "to + verb", role: "verb", options: ["send", "to send", "sending"], answer: 1, why: "**to** + base verb." },
+      { label: "Object", role: "object", options: ["the report.", "to the report.", "report the."], answer: 0, why: "Send something." },
+    ],
+    result: "My manager asked me to send the report.",
+  },
+  practice: [
+    { id: "d14-p01", type: "choice", prompt: "Choose the correct sentence.", options: ["I want that you help me.", "I want you to help me.", "I want you help me."], answer: 1, explanation: "**want + person + to + verb**.", frame: "actions", skill: "form" },
+    { id: "d14-p02", type: "fill", prompt: "Complete with a pronoun.", sentence: "We're having a party. We'd like ___ to come. (you and your wife)", accept: ["you", "you both", "you two"], explanation: "Object pronoun: **you**.", frame: "actions", skill: "form" },
+    { id: "d14-p03", type: "fill", prompt: "Complete with the right form.", sentence: "The teacher told us ___ our phones off.", accept: ["to turn", "to switch"], traps: [{ text: "turn", feedback: "Tell + person + TO + verb." }], explanation: "**to** + verb.", frame: "actions", skill: "form" },
+    { id: "d14-p04", type: "transform", prompt: "Report the request.", source: "Ali: 'Can you wait for me?' (to Sara)", instruction: "Start with: Ali asked Sara", accept: ["Ali asked Sara to wait for him."], explanation: "**asked** + person + **to** + verb. Me → him (Ali).", frame: "actions", skill: "form" },
+    { id: "d14-p05", type: "transform", prompt: "Report the instruction.", source: "Doctor: 'Don't eat too much salt.' (to my dad)", instruction: "Start with: The doctor told my dad", accept: ["The doctor told my dad not to eat too much salt."], traps: [{ text: "The doctor told my dad don't eat too much salt.", feedback: "Use not to + verb." }], explanation: "Negative → **not to**.", frame: "actions", skill: "negatives" },
+    { id: "d14-p06", type: "order", prompt: "Make an offer.", tiles: ["Do", "you", "want", "me", "to", "drive?"], explanation: "Offer: **Do you want me to…?**", frame: "actions", skill: "questions" },
+    { id: "d14-p07", type: "correct", prompt: "Fix the mistake.", wrong: "She asked to me to call her.", accept: ["She asked me to call her."], explanation: "No **to** before the person.", frame: "actions", skill: "form" },
+    { id: "d14-p08", type: "correct", prompt: "Fix the mistake.", wrong: "I'd like you meet my parents.", accept: ["I'd like you to meet my parents.", "I would like you to meet my parents."], explanation: "Add **to**.", frame: "actions", skill: "form" },
+    { id: "d14-p09", type: "listen", prompt: "Listen and type.", audioText: "Please remind me to call the bank tomorrow.", accept: ["Please remind me to call the bank tomorrow."], explanation: "remind + me + **to** + verb.", frame: "actions", skill: "listening" },
+    { id: "d14-p10", type: "speak", prompt: "Introduce someone.", target: "I'd like you to meet my colleague, Tofig.", explanation: "Polite introduction.", frame: "actions", skill: "speaking" },
+    { id: "d14-p11", type: "translate", from: "az", prompt: "Translate into English.", source: "Mən istəyirəm ki, sən mənimlə gələsən.", accept: ["I want you to come with me."], traps: [{ text: "I want that you come with me.", feedback: "English: want + you + to + come." }], explanation: "'istəyirəm ki, sən…' → **I want you to…**", frame: "actions", skill: "writing" },
+  ],
+  vocabulary: [
+    { term: "Do you want me to…?", meaning: "an offer of help", example: "Do you want me to carry that?" },
+    { term: "I'd like you to…", meaning: "polite request / introduction", example: "I'd like you to check this report." },
+    { term: "remind someone to", meaning: "help someone remember", example: "Remind me to send the email." },
+    { term: "expect someone to", meaning: "think someone will / should do something", example: "They expect us to finish today." },
+    { term: "allow someone to", meaning: "give permission", example: "My parents didn't allow me to stay out late." },
+    { term: "Would you mind…?", meaning: "very polite request (+ -ing)", example: "Would you mind closing the door?" },
+  ],
+  dialogue: {
+    title: "First day in the office",
+    setting: "Elena's manager welcomes her on her first day.",
+    lines: [
+      { speaker: "Manager", line: "Welcome, Elena! I'd like you to meet Kamal. He'll help you this week." },
+      { speaker: "Elena", line: "Nice to meet you, Kamal." },
+      { speaker: "Manager", line: "Today I want you to read the guidelines and set up your email." },
+      { speaker: "Kamal", line: "And IT asked me to remind you to change your password." },
+      { speaker: "Elena", line: "Of course. Do you want me to join the team meeting at three?" },
+      { speaker: "Manager", line: "Yes, please. But don't worry — nobody expects you to speak today!" },
+    ],
+    focus: ["I'd like you to meet", "I want you to read", "asked me to remind you to", "Do you want me to join", "nobody expects you to speak"],
+  },
+  review: [
+    { id: "d14-r01", type: "choice", prompt: "Which is an offer?", options: ["I want you to help me.", "Do you want me to help you?", "She told me to help."], answer: 1, explanation: "**Do you want me to…?** = an offer.", frame: "actions", skill: "meaning" },
+    { id: "d14-r02", type: "fill", prompt: "Complete with a pronoun.", sentence: "My parents want ___ to study medicine. (I)", accept: ["me"], traps: [{ text: "I", feedback: "After want, use the object pronoun: me." }], explanation: "I → **me**.", frame: "actions", skill: "form" },
+    { id: "d14-r03", type: "transform", prompt: "Report the instruction.", source: "Teacher: 'Close your books.' (to the students)", instruction: "Start with: The teacher told the students", accept: ["The teacher told the students to close their books."], explanation: "told + students + **to close** + **their** books.", frame: "actions", skill: "form" },
+    { id: "d14-r04", type: "order", prompt: "Put the words in order.", tiles: ["She", "told", "me", "not", "to", "worry."], explanation: "**not to** + verb.", frame: "actions", skill: "word-order" },
+    { id: "d14-r05", type: "correct", prompt: "Fix the mistake.", wrong: "I want that he calls me.", accept: ["I want him to call me."], explanation: "**want him to call**.", frame: "actions", skill: "form" },
+  ],
+};
+
+export default day14;
