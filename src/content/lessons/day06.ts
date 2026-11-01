@@ -1,0 +1,125 @@
+import type { Lesson } from "../types";
+
+const day06: Lesson = {
+  day: 6,
+  stage: "foundation",
+  frame: "actions",
+  title: "I worked, I will work",
+  objective: "Use the past simple (regular and irregular) and the future with will.",
+  builds_on: "On Day 5 do / does carried the present. Today did carries the past and will carries the future — the structure stays the same.",
+  outcome: "Tell a short story about a trip and make plans.",
+  minutes: 25,
+  explanation: [
+    "**Past simple** for finished actions: I **worked**, she **visited**, they **played**. Regular verbs add **-ed**.",
+    "Many common verbs are **irregular**: go → **went**, eat → **ate**, see → **saw**, buy → **bought**, have → **had**. These must be learned.",
+    "Questions and negatives use **did** for every subject. Did carries the past, so the main verb goes back to base form: **Did** you **go**? I **didn't go**.",
+    "**Future with will**: will + base verb, the same for everyone. I **will call** you. Negative: **won't**. Question: **Will** you **call**?",
+    "Use will for decisions you make now, promises and predictions: I'll help you. It will rain later.",
+  ],
+  patterns: [
+    {
+      name: "Past positive",
+      slots: [
+        { label: "Subject", role: "subject", text: "We" },
+        { label: "past verb", role: "verb", text: "visited" },
+        { label: "object", role: "object", text: "Rome" },
+        { label: "time", role: "time", text: "last year" },
+      ],
+    },
+    {
+      name: "Past question",
+      slots: [
+        { label: "Did", role: "aux", text: "Did" },
+        { label: "Subject", role: "subject", text: "you" },
+        { label: "base verb", role: "verb", text: "see" },
+        { label: "object", role: "object", text: "the match?" },
+      ],
+    },
+    {
+      name: "Future",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "will", role: "aux", text: "will" },
+        { label: "base verb", role: "verb", text: "call" },
+        { label: "object", role: "object", text: "you later" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "I visited my grandparents last weekend.", note: "Regular: visit → visit**ed**." },
+    { en: "We went to Italy in June.", note: "Irregular: go → **went**." },
+    { en: "She didn't buy anything.", note: "**Didn't** + base verb (buy, not bought)." },
+    { en: "Did you have a good time?", note: "**Did** + subject + base verb." },
+    { en: "I'll text you when I arrive.", note: "**I'll** = I will. A promise." },
+    { en: "Don't worry, I won't forget.", note: "**Won't** = will not." },
+    { en: "Will you be at the airport?", note: "Will + be works for Frame 2 too." },
+    { en: "We stopped for lunch and then drove to the coast.", note: "Stop → stop**ped**: double the consonant after a short vowel." },
+  ],
+  forms: [
+    { label: "Past (all subjects)", positive: "He called me.", negative: "He didn't call me.", question: "Did he call you?", shortAnswers: "Yes, he did. / No, he didn't." },
+    { label: "Future (all subjects)", positive: "They'll arrive at six.", negative: "They won't arrive at six.", question: "Will they arrive at six?", shortAnswers: "Yes, they will. / No, they won't." },
+  ],
+  mistakes: [
+    { wrong: "I goed to the cinema.", right: "I went to the cinema.", why: "Go is irregular: **went**." },
+    { wrong: "Did you saw the film?", right: "Did you see the film?", why: "**Did** already shows the past, so use the base verb." },
+    { wrong: "She didn't came.", right: "She didn't come.", why: "After didn't → base verb." },
+    { wrong: "I will to call you.", right: "I will call you.", why: "No **to** after will." },
+    { wrong: "Yesterday I buy a new phone.", right: "Yesterday I bought a new phone.", why: "Finished past time → past simple: **bought**." },
+  ],
+  guided: {
+    goal: "Build: Where did you go last summer?",
+    steps: [
+      { label: "Start with the question word", role: "question", options: ["Where", "Who", "When"], answer: 0, why: "We're asking about a place → **Where**." },
+      { label: "Add the past helper", role: "aux", options: ["do", "did", "were"], answer: 1, why: "Past action → **did**." },
+      { label: "Add the subject", role: "subject", options: ["you", "your", "you're"], answer: 0, why: "Subject after the helper." },
+      { label: "Add the verb", role: "verb", options: ["went", "go", "going"], answer: 1, why: "After did → base form: **go**." },
+      { label: "Add the time", role: "time", options: ["next summer?", "last summer?", "every summer?"], answer: 1, why: "Did + finished time → **last summer**." },
+    ],
+    result: "Where did you go last summer?",
+  },
+  practice: [
+    { id: "d06-p01", type: "choice", prompt: "Choose the past form of buy.", options: ["buyed", "bought", "brought"], answer: 1, optionFeedback: { 2: "Brought is the past of bring." }, explanation: "buy → **bought**.", frame: "actions", skill: "tense" },
+    { id: "d06-p02", type: "fill", prompt: "Complete with the past of eat.", sentence: "We ___ fish by the sea.", accept: ["ate"], traps: [{ text: "eated", feedback: "Eat is irregular: ate." }], explanation: "eat → **ate**.", frame: "actions", skill: "tense" },
+    { id: "d06-p03", type: "fill", prompt: "Complete with the correct form of see.", sentence: "Did you ___ the sunset?", accept: ["see"], traps: [{ text: "saw", feedback: "After did, use the base verb: see." }], explanation: "After **did** → base form.", frame: "actions", skill: "questions" },
+    { id: "d06-p04", type: "transform", prompt: "Put it in the past.", source: "I take a lot of photos.", instruction: "Use yesterday.", accept: ["I took a lot of photos yesterday.", "Yesterday I took a lot of photos."], explanation: "take → **took**.", frame: "actions", skill: "tense" },
+    { id: "d06-p05", type: "transform", prompt: "Make it negative.", source: "They stayed at a hotel.", instruction: "Use didn't.", accept: ["They didn't stay at a hotel.", "They did not stay at a hotel."], traps: [{ text: "They didn't stayed at a hotel.", feedback: "After didn't, use the base form: stay." }], explanation: "**didn't** + base verb.", frame: "actions", skill: "negatives" },
+    { id: "d06-p06", type: "transform", prompt: "Put it in the future.", source: "I help you with your bags.", instruction: "Use will (a promise).", accept: ["I will help you with your bags.", "I'll help you with your bags."], explanation: "**will** + base verb.", frame: "actions", skill: "tense" },
+    { id: "d06-p07", type: "order", prompt: "Make a question.", tiles: ["Did", "you", "enjoy", "the", "trip?"], explanation: "**Did** + subject + base verb…?", frame: "actions", skill: "questions" },
+    { id: "d06-p08", type: "correct", prompt: "Fix the mistake.", wrong: "We goed to the beach every day.", accept: ["We went to the beach every day."], explanation: "go → **went**.", frame: "actions", skill: "tense" },
+    { id: "d06-p09", type: "correct", prompt: "Fix the mistake.", wrong: "I will to visit you next month.", accept: ["I will visit you next month.", "I'll visit you next month."], explanation: "No **to** after will.", frame: "actions", skill: "form" },
+    { id: "d06-p10", type: "listen", prompt: "Listen and type.", audioText: "We didn't have time to visit the museum.", accept: ["We didn't have time to visit the museum.", "We did not have time to visit the museum."], explanation: "Didn't + **have** (base form).", frame: "actions", skill: "listening" },
+    { id: "d06-p11", type: "speak", prompt: "Talk about your last trip.", target: "Last year I went to Georgia, and I loved the food.", explanation: "Past simple for finished trips.", frame: "actions", skill: "speaking" },
+  ],
+  vocabulary: [
+    { term: "go on holiday / vacation", meaning: "travel for fun", example: "We went on holiday in August." },
+    { term: "stay at a hotel / with friends", meaning: "sleep there during a trip", example: "We stayed with friends in Tbilisi." },
+    { term: "have a good time", meaning: "enjoy yourself", example: "Did you have a good time?" },
+    { term: "take photos", meaning: "use a camera", example: "I took hundreds of photos." },
+    { term: "on the way back", meaning: "while returning", example: "On the way back, we stopped in a village." },
+    { term: "I'll…", meaning: "a decision or promise made now", example: "I'll call you tomorrow." },
+  ],
+  dialogue: {
+    title: "Back from Georgia",
+    setting: "Elif tells her friend about her trip.",
+    lines: [
+      { speaker: "Max", line: "Welcome back! Did you have a good time?" },
+      { speaker: "Elif", line: "It was amazing. We spent four days in Tbilisi and two in the mountains." },
+      { speaker: "Max", line: "What did you eat? I heard the food is incredible." },
+      { speaker: "Elif", line: "Everything! We ate khachapuri every day. I didn't want to come home." },
+      { speaker: "Max", line: "Did you take any photos?" },
+      { speaker: "Elif", line: "Hundreds. I'll send you the best ones tonight." },
+      { speaker: "Max", line: "Great. Maybe I'll go next year." },
+    ],
+    focus: ["Did you have a good time?", "We spent", "What did you eat?", "I didn't want", "I'll send you"],
+  },
+  review: [
+    { id: "d06-r01", type: "choice", prompt: "Choose the correct sentence.", options: ["Did she called you?", "Did she call you?", "Does she called you?"], answer: 1, explanation: "**Did** + base verb.", frame: "actions", skill: "questions" },
+    { id: "d06-r02", type: "fill", prompt: "Complete with the past of see.", sentence: "I ___ an old friend at the station.", accept: ["saw"], traps: [{ text: "seed", feedback: "See is irregular: saw." }, { text: "seen", feedback: "Seen is the past participle (Day 15). Past simple: saw." }], explanation: "see → **saw**.", frame: "actions", skill: "tense" },
+    { id: "d06-r03", type: "transform", prompt: "Make it a question.", source: "He will come tomorrow.", instruction: "Ask about it.", accept: ["Will he come tomorrow?"], explanation: "**Will** + subject + base verb?", frame: "actions", skill: "questions" },
+    { id: "d06-r04", type: "order", prompt: "Put the words in order.", tiles: ["I", "won't", "forget", "your", "birthday."], explanation: "Subject + **won't** + verb.", frame: "actions", skill: "word-order" },
+    { id: "d06-r05", type: "correct", prompt: "Fix the mistake.", wrong: "She didn't went to work.", accept: ["She didn't go to work.", "She did not go to work."], explanation: "After didn't → **go**.", frame: "actions", skill: "negatives" },
+  ],
+  labSeeds: ["ac-write", "ac-travel"],
+};
+
+export default day06;

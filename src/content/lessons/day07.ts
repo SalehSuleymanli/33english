@@ -1,0 +1,126 @@
+import type { Lesson } from "../types";
+
+const day07: Lesson = {
+  day: 7,
+  stage: "foundation",
+  frame: "actions",
+  title: "Actions in progress",
+  objective: "Use be + -ing for actions happening now, then, or at a future moment.",
+  builds_on: "This joins Frame 2 and Frame 3: the be you learned on Days 3–4 becomes a helper for an action verb + -ing.",
+  outcome: "Say what you and others are doing on the phone.",
+  minutes: 25,
+  explanation: [
+    "The **continuous** shows an action **in progress** — not finished, happening around a certain time.",
+    "Present: **am / is / are + verb-ing** (I'm working now). Past: **was / were + verb-ing** (I was working at 8 p.m.). Future: **will be + verb-ing** (I'll be working at this time tomorrow).",
+    "Questions and negatives work exactly like Frame 2: move or add **not** to be. **Are** you **working**? She **isn't sleeping**.",
+    "Past continuous + past simple tells a story: I **was cooking** when the phone **rang**. The long action is continuous; the short one interrupts it.",
+    "**State verbs** — know, like, love, want, need, understand, believe — are not normally used in continuous forms. Say I **know**, not I'm knowing.",
+  ],
+  patterns: [
+    {
+      name: "Present continuous",
+      slots: [
+        { label: "Subject", role: "subject", text: "She" },
+        { label: "am / is / are", role: "aux", text: "is" },
+        { label: "verb-ing", role: "verb", text: "talking" },
+        { label: "rest", role: "object", text: "on the phone" },
+      ],
+    },
+    {
+      name: "Past continuous",
+      slots: [
+        { label: "Subject", role: "subject", text: "We" },
+        { label: "was / were", role: "aux", text: "were" },
+        { label: "verb-ing", role: "verb", text: "watching" },
+        { label: "rest", role: "object", text: "a film" },
+      ],
+    },
+    {
+      name: "Future continuous",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "will be", role: "aux", text: "will be" },
+        { label: "verb-ing", role: "verb", text: "flying" },
+        { label: "time", role: "time", text: "at noon" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "I'm working from home today.", note: "Now / around now → **am + -ing**." },
+    { en: "What are you doing? — I'm cooking.", note: "Question: **are** + subject + -ing." },
+    { en: "It's raining, so take an umbrella.", note: "Weather in progress." },
+    { en: "He isn't listening to me.", note: "**isn't** + -ing." },
+    { en: "I was sleeping when you called.", note: "Long action (was sleeping) + short action (called)." },
+    { en: "What were you doing at ten last night?", note: "In progress at a past moment → **were + -ing**." },
+    { en: "This time tomorrow, I'll be lying on a beach.", note: "In progress at a future moment → **will be + -ing**." },
+    { en: "I know the answer. (Not: I'm knowing.)", note: "Know is a state verb → simple form only." },
+  ],
+  forms: [
+    { label: "Present", positive: "They're waiting outside.", negative: "They aren't waiting outside.", question: "Are they waiting outside?", shortAnswers: "Yes, they are. / No, they aren't." },
+    { label: "Past", positive: "She was driving.", negative: "She wasn't driving.", question: "Was she driving?", shortAnswers: "Yes, she was. / No, she wasn't." },
+    { label: "Future", positive: "I'll be working late.", negative: "I won't be working late.", question: "Will you be working late?", shortAnswers: "Yes, I will. / No, I won't." },
+  ],
+  mistakes: [
+    { wrong: "I working now.", right: "I'm working now.", why: "The continuous needs **be**: I **am** working." },
+    { wrong: "She is understanding the problem.", right: "She understands the problem.", why: "Understand is a state verb → present simple." },
+    { wrong: "Are you work today?", right: "Are you working today?", why: "Be + verb **-ing**." },
+    { wrong: "When you called, I cooked dinner.", right: "When you called, I was cooking dinner.", why: "For an action already in progress, use the past continuous." },
+    { wrong: "He is swiming.", right: "He is swimming.", why: "Short vowel + one consonant → double it: swi**mm**ing, ru**nn**ing, si**tt**ing." },
+  ],
+  guided: {
+    goal: "Build: What were you doing at eight?",
+    steps: [
+      { label: "Question word", role: "question", options: ["What", "Where", "Why"], answer: 0, why: "We ask about the activity → **What**." },
+      { label: "Past helper", role: "aux", options: ["did", "were", "was"], answer: 1, why: "Continuous past with you → **were**." },
+      { label: "Subject", role: "subject", options: ["you", "your", "yours"], answer: 0, why: "Subject after the helper." },
+      { label: "Verb", role: "verb", options: ["do", "did", "doing"], answer: 2, why: "Continuous → **-ing**." },
+      { label: "Time", role: "time", options: ["at eight?", "in eight?", "on eight?"], answer: 0, why: "Clock times take **at**." },
+    ],
+    result: "What were you doing at eight?",
+  },
+  practice: [
+    { id: "d07-p01", type: "choice", prompt: "It's 9 p.m. What's happening?", options: ["The children sleep.", "The children are sleeping.", "The children sleeping."], answer: 1, explanation: "In progress now → **are sleeping**.", frame: "actions", skill: "tense" },
+    { id: "d07-p02", type: "fill", prompt: "Complete with the present continuous of wait.", sentence: "Hurry up! Everyone ___ for you.", accept: ["is waiting", "'s waiting"], traps: [{ text: "are waiting", feedback: "Everyone is singular → is waiting." }], explanation: "Everyone → **is** waiting.", frame: "actions", skill: "tense" },
+    { id: "d07-p03", type: "fill", prompt: "Complete with was or were + -ing (walk).", sentence: "I ___ home when it started to rain.", accept: ["was walking"], explanation: "Long past action → **was walking**.", frame: "actions", skill: "tense" },
+    { id: "d07-p04", type: "transform", prompt: "Make it a question.", source: "You are listening to music.", instruction: "Ask about it.", accept: ["Are you listening to music?"], explanation: "**Are** + subject + -ing?", frame: "actions", skill: "questions" },
+    { id: "d07-p05", type: "transform", prompt: "Put it in the past continuous.", source: "She is driving to work.", instruction: "Start with: At 8 a.m. yesterday,", accept: ["At 8 a.m. yesterday, she was driving to work.", "At 8 a.m. yesterday she was driving to work."], explanation: "is → **was**.", frame: "actions", skill: "tense" },
+    { id: "d07-p06", type: "order", prompt: "Put the words in order.", tiles: ["I", "was", "cooking", "when", "you", "called."], explanation: "Long action + **when** + short action.", frame: "actions", skill: "word-order" },
+    { id: "d07-p07", type: "correct", prompt: "Fix the mistake.", wrong: "I am wanting a coffee.", accept: ["I want a coffee."], alternatives: [{ text: "I'd like a coffee.", note: "Also correct — and more polite when you're ordering." }, { text: "I would like a coffee.", note: "Also correct — and more polite when you're ordering." }], explanation: "Want is a state verb → simple form: I **want**.", frame: "actions", skill: "form" },
+    { id: "d07-p08", type: "correct", prompt: "Fix the mistake.", wrong: "Look! The bus come.", accept: ["Look! The bus is coming."], explanation: "Happening right now → **is coming**.", frame: "actions", skill: "tense" },
+    { id: "d07-p09", type: "listen", prompt: "Listen and type.", audioText: "We're having dinner right now.", accept: ["We're having dinner right now.", "We are having dinner right now."], explanation: "Have dinner = eat, so it can be continuous.", frame: "actions", skill: "listening" },
+    { id: "d07-p10", type: "speak", prompt: "Answer the phone.", target: "Sorry, I can't talk now. I'm driving.", explanation: "Present continuous for what's happening now.", frame: "actions", skill: "speaking" },
+    { id: "d07-p11", type: "translate", from: "az", prompt: "Translate into English.", source: "Sən zəng edəndə mən yatırdım.", accept: ["I was sleeping when you called.", "When you called, I was sleeping.", "When you called I was sleeping."], explanation: "Long action → **was sleeping**; short → **called**.", frame: "actions", skill: "writing" },
+  ],
+  vocabulary: [
+    { term: "right now / at the moment", meaning: "at this exact time", example: "I'm busy at the moment." },
+    { term: "Can I call you back?", meaning: "I'll phone you later", example: "I'm driving. Can I call you back?" },
+    { term: "this time tomorrow", meaning: "at the same time, one day later", example: "This time tomorrow, I'll be flying to Dubai." },
+    { term: "be on your way", meaning: "be travelling to a place", example: "I'm on my way!" },
+    { term: "while", meaning: "during the time that", example: "While I was waiting, I read a book." },
+    { term: "What's going on?", meaning: "What's happening?", example: "Why is everyone outside? What's going on?" },
+  ],
+  dialogue: {
+    title: "Where are you?",
+    setting: "Javid calls his friend Mina. They planned to meet at seven.",
+    lines: [
+      { speaker: "Javid", line: "Hi Mina! Where are you? I'm standing outside the cinema." },
+      { speaker: "Mina", line: "Sorry! I'm on my way. I'm sitting on the bus right now." },
+      { speaker: "Javid", line: "What happened?" },
+      { speaker: "Mina", line: "I was leaving the office when my boss called me back. We were talking for twenty minutes!" },
+      { speaker: "Javid", line: "No problem. The film isn't starting until 7:30." },
+      { speaker: "Mina", line: "Great. I'll be there in ten minutes. Are you buying the tickets?" },
+      { speaker: "Javid", line: "Yes, I'm doing it now." },
+    ],
+    focus: ["I'm standing", "I'm on my way", "I was leaving the office when", "Are you buying"],
+  },
+  review: [
+    { id: "d07-r01", type: "choice", prompt: "Choose the correct sentence.", options: ["I'm liking this song.", "I like this song.", "I liking this song."], answer: 1, explanation: "Like is a state verb → **I like**.", frame: "actions", skill: "tense" },
+    { id: "d07-r02", type: "fill", prompt: "Complete (not / listen).", sentence: "Sorry, I ___. What did you say?", accept: ["wasn't listening", "was not listening"], explanation: "In progress in the past, negative → **wasn't listening**.", frame: "actions", skill: "negatives" },
+    { id: "d07-r03", type: "transform", prompt: "Make it negative.", source: "They are building a new hospital.", instruction: "Use not.", accept: ["They aren't building a new hospital.", "They are not building a new hospital.", "They're not building a new hospital."], explanation: "**aren't** + -ing.", frame: "actions", skill: "negatives" },
+    { id: "d07-r04", type: "order", prompt: "Make a question.", tiles: ["What", "are", "you", "doing?"], explanation: "Question word + **are** + subject + -ing.", frame: "actions", skill: "questions" },
+    { id: "d07-r05", type: "correct", prompt: "Fix the mistake.", wrong: "She is runing in the park.", accept: ["She is running in the park.", "She's running in the park."], explanation: "run → ru**nn**ing.", frame: "actions", skill: "form" },
+  ],
+  labSeeds: ["ac-wait", "ac-rain"],
+};
+
+export default day07;
