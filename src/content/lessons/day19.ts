@@ -1,0 +1,116 @@
+import type { Lesson } from "../types";
+
+const day19: Lesson = {
+  day: 19,
+  stage: "combination",
+  frame: "modals",
+  title: "I should have called",
+  objective: "Use modal + have + past participle for regret, criticism and deduction.",
+  builds_on: "Frame 4 (Days 8–9) + the perfect (Day 15): modal + have + V3 lets modals talk about the past. Section 28 of your notes.",
+  outcome: "Reflect on past decisions, e.g. after an interview.",
+  minutes: 25,
+  explanation: [
+    "Modals can't take -ed, so to talk about the past they use **have + past participle**: modal + **have** + V3. The have never changes (not has, not had).",
+    "**Should have** = it was the right thing, but it didn't happen (regret or criticism): I **should have called** you. You **shouldn't have said** that.",
+    "**Could have** = it was possible, but it didn't happen: We **could have won**. Also a guess about the past: She **could have taken** the bus.",
+    "**Must have** = I'm almost sure it happened (deduction): You **must have been** tired. **Can't have** = I'm almost sure it didn't: He **can't have finished** already — he only started at nine.",
+    "**Might / may have** = maybe it happened: I **might have left** my phone in the taxi. In speech, have sounds like 'uv': should've, could've, must've.",
+  ],
+  patterns: [
+    {
+      name: "Modal perfect",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "modal", role: "modal", text: "should" },
+        { label: "have", role: "aux", text: "have" },
+        { label: "V3", role: "verb", text: "called" },
+        { label: "object", role: "object", text: "you" },
+      ],
+    },
+    {
+      name: "Negative",
+      slots: [
+        { label: "Subject", role: "subject", text: "You" },
+        { label: "modal + not", role: "modal", text: "shouldn't" },
+        { label: "have", role: "aux", text: "have" },
+        { label: "V3", role: "verb", text: "said" },
+        { label: "object", role: "object", text: "that" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "I should have studied more for the test.", note: "Regret: I didn't study enough." },
+    { en: "You shouldn't have bought me a gift!", note: "Polite surprise — also common when thanking someone." },
+    { en: "We could have taken a taxi, but we walked.", note: "Possible, but it didn't happen." },
+    { en: "The streets are wet. It must have rained.", note: "Deduction: almost certain." },
+    { en: "She can't have seen us — she didn't say hello.", note: "Almost certainly not." },
+    { en: "I might have left my keys at the office.", note: "Maybe." },
+    { en: "You must have been exhausted after the flight.", note: "Must have **been** + adjective." },
+    { en: "I should've listened to you.", note: "Spoken contraction: should've (never 'should of').", register: "informal" },
+  ],
+  forms: [
+    { label: "Should have", positive: "She should have asked.", negative: "She shouldn't have asked.", question: "Should I have asked?" },
+    { label: "Must have / can't have", positive: "He must have forgotten.", negative: "He can't have forgotten.", question: "Could he have forgotten?" },
+  ],
+  mistakes: [
+    { wrong: "I should called you.", right: "I should have called you.", why: "Past meaning needs **have + V3**." },
+    { wrong: "She must has left.", right: "She must have left.", why: "After a modal, always **have**." },
+    { wrong: "You should have came earlier.", right: "You should have come earlier.", why: "Use V3: come → came → **come**." },
+    { wrong: "I should of known.", right: "I should have known.", why: "'Should of' is a spelling mistake for should've." },
+    { wrong: "He mustn't have seen the message.", right: "He can't have seen the message.", why: "For 'almost sure it didn't happen', use **can't have**." },
+  ],
+  guided: {
+    goal: "Build: You must have been very tired.",
+    steps: [
+      { label: "Subject", role: "subject", options: ["You", "Your", "You're"], answer: 0, why: "Start with the person." },
+      { label: "Deduction (almost sure)", role: "modal", options: ["should", "must", "might"], answer: 1, why: "Almost sure → **must**." },
+      { label: "Past form", role: "aux", options: ["have been", "had been", "has been"], answer: 0, why: "Modal + **have** + V3 (be → been)." },
+      { label: "Description", role: "complement", options: ["very tired.", "very tiredly.", "very tire."], answer: 0, why: "Be + adjective." },
+    ],
+    result: "You must have been very tired.",
+  },
+  practice: [
+    { id: "d19-p01", type: "choice", prompt: "You didn't bring an umbrella, and now you're wet.", options: ["I must have brought an umbrella.", "I should have brought an umbrella.", "I can't have brought an umbrella."], answer: 1, explanation: "Regret → **should have**.", frame: "modals", skill: "meaning" },
+    { id: "d19-p02", type: "choice", prompt: "The lights are off and nobody answers. They…", options: ["must have gone out.", "should have gone out.", "can have gone out."], answer: 0, explanation: "Deduction → **must have**.", frame: "modals", skill: "meaning" },
+    { id: "d19-p03", type: "fill", prompt: "Complete with the V3 of forget.", sentence: "I'm sorry, I must have ___ your name.", accept: ["forgotten"], traps: [{ text: "forgot", feedback: "Use the past participle: forgotten." }], explanation: "forget → **forgotten**.", frame: "modals", skill: "form" },
+    { id: "d19-p04", type: "fill", prompt: "Complete.", sentence: "He ___ have finished the whole book in one hour. It's 500 pages!", accept: ["can't", "couldn't"], traps: [{ text: "mustn't", feedback: "For 'almost sure it didn't happen', use can't have." }], explanation: "Impossible → **can't / couldn't have**.", frame: "modals", skill: "meaning" },
+    { id: "d19-p05", type: "transform", prompt: "Express regret.", source: "I didn't save the file.", instruction: "Use should have.", accept: ["I should have saved the file.", "I should've saved the file."], explanation: "Regret → **should have** + V3.", frame: "modals", skill: "form" },
+    { id: "d19-p06", type: "transform", prompt: "Criticize politely.", source: "You told everyone my secret.", instruction: "Use shouldn't have.", accept: ["You shouldn't have told everyone my secret.", "You should not have told everyone my secret."], explanation: "**shouldn't have** + V3.", frame: "modals", skill: "negatives" },
+    { id: "d19-p07", type: "order", prompt: "Put the words in order.", tiles: ["We", "could", "have", "won", "the", "game."], explanation: "**could have** + V3.", frame: "modals", skill: "word-order" },
+    { id: "d19-p08", type: "correct", prompt: "Fix the mistake.", wrong: "You should have came to the party.", accept: ["You should have come to the party.", "You should've come to the party."], explanation: "V3 of come = **come**.", frame: "modals", skill: "form" },
+    { id: "d19-p09", type: "correct", prompt: "Fix the mistake.", wrong: "She must has missed the bus.", accept: ["She must have missed the bus."], explanation: "Modal + **have**.", frame: "modals", skill: "form" },
+    { id: "d19-p10", type: "listen", prompt: "Listen and type.", audioText: "I should have asked more questions in the interview.", accept: ["I should have asked more questions in the interview.", "I should've asked more questions in the interview."], explanation: "Should have sounds like 'should-uv'.", frame: "modals", skill: "listening" },
+    { id: "d19-p11", type: "speak", prompt: "Make a deduction.", target: "You must have been really nervous.", explanation: "Must have been = I'm almost sure you were.", frame: "modals", skill: "speaking" },
+  ],
+  vocabulary: [
+    { term: "in hindsight", meaning: "looking back now", example: "In hindsight, I should have said no." },
+    { term: "It's not your fault.", meaning: "You aren't to blame.", example: "Don't worry — it's not your fault." },
+    { term: "What a pity!", meaning: "That's sad / unlucky.", example: "We could have won. What a pity!" },
+    { term: "I wish I had…", meaning: "regret (like should have)", example: "I wish I had studied harder." },
+    { term: "learn from your mistakes", meaning: "do better next time", example: "Everyone makes mistakes — learn from them." },
+    { term: "No wonder!", meaning: "That explains it.", example: "You didn't sleep? No wonder you're tired!" },
+  ],
+  dialogue: {
+    title: "After the interview",
+    setting: "Sabina just had a job interview. She calls her brother.",
+    lines: [
+      { speaker: "Elnur", line: "How did it go?" },
+      { speaker: "Sabina", line: "Not great. I should have prepared more examples." },
+      { speaker: "Elnur", line: "You must have been nervous." },
+      { speaker: "Sabina", line: "Very. And I couldn't answer the salary question. I should've checked the average before." },
+      { speaker: "Elnur", line: "Well, they can't have thought it was bad — they asked you to come back!" },
+      { speaker: "Sabina", line: "Really? Oh, you're right. They might have liked my portfolio." },
+    ],
+    focus: ["I should have prepared", "You must have been nervous", "I should've checked", "they can't have thought", "They might have liked"],
+  },
+  review: [
+    { id: "d19-r01", type: "choice", prompt: "Which means 'maybe it happened'?", options: ["She must have called.", "She might have called.", "She should have called."], answer: 1, explanation: "**might have** = maybe.", frame: "modals", skill: "meaning" },
+    { id: "d19-r02", type: "fill", prompt: "Complete with have + V3 (go).", sentence: "We should ___ to the doctor earlier.", accept: ["have gone"], traps: [{ text: "have went", feedback: "V3 of go = gone." }], explanation: "**have gone**.", frame: "modals", skill: "form" },
+    { id: "d19-r03", type: "transform", prompt: "Make a deduction.", source: "I'm sure he forgot about the meeting.", instruction: "Use must have.", accept: ["He must have forgotten about the meeting.", "He must've forgotten about the meeting."], explanation: "**must have forgotten**.", frame: "modals", skill: "form" },
+    { id: "d19-r04", type: "order", prompt: "Put the words in order.", tiles: ["You", "shouldn't", "have", "worried."], explanation: "**shouldn't have** + V3.", frame: "modals", skill: "word-order" },
+    { id: "d19-r05", type: "correct", prompt: "Fix the mistake.", wrong: "I should of known.", accept: ["I should have known.", "I should've known."], explanation: "Should **have** (should've).", frame: "modals", skill: "form" },
+  ],
+  labSeeds: ["ac-finish", "ac-fix"],
+};
+
+export default day19;
