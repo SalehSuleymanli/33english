@@ -1,0 +1,117 @@
+import type { Lesson } from "../types";
+
+const day26: Lesson = {
+  day: 26,
+  stage: "communication",
+  frame: "states",
+  title: "How does it feel?",
+  objective: "Describe feelings with feel, it feels … to, and precise emotion words.",
+  builds_on: "Feelings mostly use Frame 2 (I am excited) and its cousin feel + adjective. Section 15 of your notes plus your emotions vocabulary list, cleaned up.",
+  outcome: "Share how you feel and respond to others' feelings.",
+  minutes: 20,
+  explanation: [
+    "**feel + adjective** works like be: I **feel tired**. She **felt nervous**. It's Frame 2 with a different verb. Don't add -ly: I feel **good** (not well-ly), I feel **bad**.",
+    "**What does it feel like to + verb?** asks about an experience: **What does it feel like to be** a champion? Answer: **It feels amazing to be** a champion.",
+    "**-ed vs -ing adjectives**: -ed describes how a person feels (I'm **bored**, **excited**, **surprised**). -ing describes what causes the feeling (The film is **boring**, **exciting**, **surprising**).",
+    "Many feeling words take a specific preposition: afraid **of**, angry **with** someone, angry **about** something, pleased **with**, excited **about**, upset **about**.",
+    "Choose strength carefully: pleased → happy → delighted → overwhelmed with joy. Sad → upset → depressed. Surprised → astonished → speechless. Some phrases are informal (feel blue, scared stiff) and some are literary (die of grief).",
+  ],
+  patterns: [
+    {
+      name: "Feel + adjective",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "feel", role: "verb", text: "feel" },
+        { label: "adjective", role: "complement", text: "nervous" },
+        { label: "about …", role: "object", text: "about the exam", optional: true },
+      ],
+    },
+    {
+      name: "It feels … to",
+      slots: [
+        { label: "It", role: "subject", text: "It" },
+        { label: "feels", role: "verb", text: "feels" },
+        { label: "adjective", role: "complement", text: "amazing" },
+        { label: "to + verb", role: "verb", text: "to be a champion" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "What does it feel like to be a champion?", note: "Original notes." },
+    { en: "It feels amazing to be a champion.", note: "Original notes: **It feels** + adjective + **to**." },
+    { en: "I feel a bit nervous about tomorrow.", note: "**nervous about** + thing." },
+    { en: "She was delighted with the results.", note: "**delighted** = very pleased." },
+    { en: "He's afraid of dogs.", note: "**afraid of**." },
+    { en: "The ending was really surprising — we were all surprised.", note: "-ing = the cause; -ed = the person." },
+    { en: "I'm feeling a bit blue today.", note: "Informal: feel blue = feel sad.", register: "informal" },
+    { en: "We burst out laughing when we saw the photo.", note: "**burst out laughing** = suddenly laugh a lot." },
+  ],
+  forms: [
+    { label: "Feel", positive: "I feel better.", negative: "I don't feel well.", question: "How do you feel?" },
+    { label: "Be + emotion", positive: "She's excited about the trip.", negative: "She isn't worried about it.", question: "Are you angry with me?" },
+  ],
+  mistakes: [
+    { wrong: "I am boring in this class.", right: "I am bored in this class.", why: "How you feel → **-ed**. (I am boring = I make others bored!)" },
+    { wrong: "I feel very well about it.", right: "I feel very good about it.", why: "Feel + **adjective** (well = healthy)." },
+    { wrong: "She is afraid from spiders.", right: "She is afraid of spiders.", why: "**afraid of**." },
+    { wrong: "How does it feel like?", right: "What does it feel like? / How does it feel?", why: "**What** … like, or **How** … (without like)." },
+    { wrong: "I'm angry on you.", right: "I'm angry with you.", why: "angry **with** a person, **about** a thing." },
+  ],
+  guided: {
+    goal: "Build: It feels amazing to be back home.",
+    steps: [
+      { label: "Subject", role: "subject", options: ["It", "I", "This is"], answer: 0, why: "**It** feels … to = the experience." },
+      { label: "Verb", role: "verb", options: ["feels", "is feeling like", "feel"], answer: 0, why: "It → **feels**." },
+      { label: "Adjective", role: "complement", options: ["amazing", "amazingly", "amazed"], answer: 0, why: "The experience causes the feeling → **-ing** adjective." },
+      { label: "to + rest", role: "verb", options: ["to be back home.", "be back home.", "being back home."], answer: 0, why: "It feels + adjective + **to**." },
+    ],
+    result: "It feels amazing to be back home.",
+  },
+  practice: [
+    { id: "d26-p01", type: "choice", prompt: "Choose the correct sentence.", options: ["The lesson was very bored.", "The lesson was very boring.", "I was very boring in the lesson."], answer: 1, explanation: "The lesson causes the feeling → **boring**.", frame: "states", skill: "vocabulary" },
+    { id: "d26-p02", type: "choice", prompt: "Your friend got the job she wanted. She is…", options: ["dejected", "delighted", "dumbfounded"], answer: 1, optionFeedback: { 0: "Dejected = sad and disappointed.", 2: "Dumbfounded = so surprised you can't speak." }, explanation: "**delighted** = very happy.", frame: "states", skill: "vocabulary" },
+    { id: "d26-p03", type: "fill", prompt: "Complete with a preposition.", sentence: "My little brother is scared ___ the dark.", accept: ["of"], explanation: "scared / afraid **of**.", frame: "states", skill: "vocabulary" },
+    { id: "d26-p04", type: "fill", prompt: "Complete with the right form (excite).", sentence: "We're really ___ about the trip!", accept: ["excited"], traps: [{ text: "exciting", feedback: "How we feel → excited." }], explanation: "Person's feeling → **-ed**.", frame: "states", skill: "vocabulary" },
+    { id: "d26-p05", type: "transform", prompt: "Ask about the experience.", source: "You became a parent.", instruction: "Use: What does it feel like to…?", accept: ["What does it feel like to be a parent?", "What does it feel like to become a parent?"], explanation: "**What does it feel like to** + verb?", frame: "states", skill: "questions" },
+    { id: "d26-p06", type: "transform", prompt: "Answer with It feels.", source: "Finishing a marathon is incredible.", instruction: "Start with: It feels", accept: ["It feels incredible to finish a marathon."], explanation: "**It feels** + adjective + **to** + verb.", frame: "states", skill: "form" },
+    { id: "d26-p07", type: "order", prompt: "Put the words in order.", tiles: ["I'm", "a", "bit", "worried", "about", "my", "exam."], explanation: "worried **about** + thing.", frame: "states", skill: "word-order" },
+    { id: "d26-p08", type: "correct", prompt: "Fix the mistake.", wrong: "I was very interesting in the museum.", accept: ["I was very interested in the museum."], explanation: "How you felt → **interested**.", frame: "states", skill: "vocabulary" },
+    { id: "d26-p09", type: "correct", prompt: "Fix the mistake.", wrong: "How does it feel like to win?", accept: ["What does it feel like to win?", "How does it feel to win?"], explanation: "**What** … like, or **How** … (no like).", frame: "states", skill: "questions" },
+    { id: "d26-p10", type: "listen", prompt: "Listen and type.", audioText: "I was so surprised that I burst out laughing.", accept: ["I was so surprised that I burst out laughing.", "I was so surprised I burst out laughing."], explanation: "**burst out laughing**.", frame: "states", skill: "listening" },
+    { id: "d26-p11", type: "speak", prompt: "Respond to good news.", target: "That's wonderful news! You must be delighted.", explanation: "must be + feeling = a friendly guess.", frame: "states", skill: "speaking" },
+  ],
+  vocabulary: [
+    { term: "delighted", meaning: "very pleased", example: "I'm delighted to meet you." },
+    { term: "dejected / depressed", meaning: "sad and without hope (depressed can also be a medical condition)", example: "He felt dejected after the game." },
+    { term: "astonished / dumbfounded", meaning: "extremely surprised", example: "We were astonished by the view." },
+    { term: "flabbergasted (informal)", meaning: "so surprised you can't speak", example: "I was flabbergasted when she said yes." },
+    { term: "to be on the verge of tears", meaning: "almost crying", example: "She was on the verge of tears." },
+    { term: "to lose your temper", meaning: "suddenly become very angry", example: "He lost his temper in the meeting." },
+    { term: "to beam with joy", meaning: "smile widely because you're happy", example: "The parents beamed with joy." },
+    { term: "to be scared stiff (informal)", meaning: "be extremely frightened", example: "I was scared stiff on the plane." },
+    { term: "to dread + -ing", meaning: "be very worried about something in the future", example: "I dread going to the dentist." },
+    { term: "to take offence at", meaning: "feel insulted by", example: "Don't take offence at his jokes." },
+  ],
+  dialogue: {
+    title: "After the final",
+    setting: "A reporter interviews a young tennis player who has just won her first big title.",
+    lines: [
+      { speaker: "Reporter", line: "Congratulations! What does it feel like to be a champion?" },
+      { speaker: "Aysel", line: "It feels amazing to be a champion. I'm still a bit shocked, to be honest." },
+      { speaker: "Reporter", line: "You looked nervous in the first set." },
+      { speaker: "Aysel", line: "I was scared stiff! But my coach told me to stay calm." },
+      { speaker: "Reporter", line: "Your family is here today. They must be delighted." },
+      { speaker: "Aysel", line: "My mom was on the verge of tears. My brother just burst out laughing!" },
+    ],
+    focus: ["What does it feel like to be a champion?", "It feels amazing to be a champion", "I was scared stiff", "They must be delighted", "on the verge of tears", "burst out laughing"],
+  },
+  review: [
+    { id: "d26-r01", type: "choice", prompt: "Choose the correct sentence.", options: ["I'm boring. Let's go out.", "I'm bored. Let's go out.", "I'm boredom. Let's go out."], answer: 1, explanation: "How you feel → **bored**.", frame: "states", skill: "vocabulary" },
+    { id: "d26-r02", type: "fill", prompt: "Complete with a preposition.", sentence: "Are you still angry ___ me?", accept: ["with", "at"], explanation: "angry **with** (or at) a person.", frame: "states", skill: "vocabulary" },
+    { id: "d26-r03", type: "transform", prompt: "Rewrite with It feels.", source: "Being free is wonderful.", instruction: "Start with: It feels", accept: ["It feels wonderful to be free."], explanation: "It feels + adjective + **to**.", frame: "states", skill: "form" },
+    { id: "d26-r04", type: "order", prompt: "Make a question.", tiles: ["What", "does", "it", "feel", "like", "to", "fly?"], explanation: "What does it feel like **to** + verb?", frame: "states", skill: "questions" },
+    { id: "d26-r05", type: "correct", prompt: "Fix the mistake.", wrong: "She is afraid from heights.", accept: ["She is afraid of heights.", "She's afraid of heights."], explanation: "**afraid of**.", frame: "states", skill: "vocabulary" },
+  ],
+};
+
+export default day26;
