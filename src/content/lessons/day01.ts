@@ -201,7 +201,7 @@ const day01: Lesson = {
       type: "translate",
       from: "az",
       prompt: "Translate into English.",
-      source: "Masɑnın üstündə telefon var.",
+      source: "Masanın üstündə telefon var.",
       accept: ["There is a phone on the table.", "There's a phone on the table."],
       explanation: "'…var' sentences often become There is / There are in English.",
       frame: "existence",
