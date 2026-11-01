@@ -1,0 +1,9 @@
+const P = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
+export const IconToday = () => (<svg {...P}><path d="M3 11.5 12 4l9 7.5" /><path d="M5.5 10v9.5h13V10" /></svg>);
+export const IconCourse = () => (<svg {...P}><rect x="3.5" y="4" width="7" height="7" rx="2" /><rect x="13.5" y="4" width="7" height="7" rx="2" /><rect x="3.5" y="14" width="7" height="6" rx="2" /><rect x="13.5" y="14" width="7" height="6" rx="2" /></svg>);
+export const IconPractice = () => (<svg {...P}><path d="M20 12a8 8 0 1 1-2.3-5.6" /><path d="M20 4v5h-5" /></svg>);
+export const IconLab = () => (<svg {...P}><rect x="3" y="5" width="8" height="5" rx="2.5" /><rect x="13" y="5" width="8" height="5" rx="2.5" /><rect x="3" y="14" width="12" height="5" rx="2.5" /><rect x="17" y="14" width="4" height="5" rx="2" /></svg>);
+export const IconWords = () => (<svg {...P}><path d="M5 4.5h11a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3v-12Z" /><path d="M5 16.5a3 3 0 0 1 3-3h11" /></svg>);
+export const IconProgress = () => (<svg {...P}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>);
+export const IconChat = () => (<svg {...P}><path d="M4 5h16v11H9l-5 4V5Z" /></svg>);
+export const IconSettings = () => (<svg {...P}><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" /></svg>);
