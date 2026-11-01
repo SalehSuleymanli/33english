@@ -1,0 +1,138 @@
+import type { Lesson } from "../types";
+
+const day02: Lesson = {
+  day: 2,
+  stage: "foundation",
+  frame: "existence",
+  title: "There was, there will be",
+  objective: "Talk about what existed in the past and what will exist, using some, any and no.",
+  builds_on: "Day 1 gave you there is / there are for now. Today the same frame moves through time — only the form of be changes.",
+  outcome: "Ask for and give simple directions.",
+  minutes: 20,
+  explanation: [
+    "The existence frame works in every time. You keep **There** at the start and change only the verb **be**.",
+    "Past: **there was** (one thing) and **there were** (two or more). Future: **there will be** — the same for one thing or many.",
+    "Negatives: **there wasn't / there weren't / there won't be**. Questions: **Was there…? Were there…? Will there be…?**",
+    "Use **some** in positive sentences with plural or uncountable things, **any** in most negatives and questions, and **no** when you want a strong negative: There was **no** time.",
+  ],
+  patterns: [
+    {
+      name: "Past",
+      slots: [
+        { label: "There", role: "there", text: "There" },
+        { label: "was / were", role: "be", text: "were" },
+        { label: "thing", role: "object", text: "some problems" },
+        { label: "time / place", role: "time", text: "yesterday" },
+      ],
+    },
+    {
+      name: "Future",
+      slots: [
+        { label: "There", role: "there", text: "There" },
+        { label: "will be", role: "be", text: "will be" },
+        { label: "thing", role: "object", text: "a meeting" },
+        { label: "time", role: "time", text: "at ten" },
+      ],
+    },
+    {
+      name: "Future question",
+      slots: [
+        { label: "Will", role: "aux", text: "Will" },
+        { label: "there", role: "there", text: "there" },
+        { label: "be", role: "be", text: "be" },
+        { label: "thing", role: "object", text: "any food?" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "There was a lot of traffic this morning.", note: "Traffic is uncountable → **was**." },
+    { en: "There were three people in the meeting.", note: "Three people → **were**." },
+    { en: "There will be a test on Friday.", note: "**Will be** never changes: one test or ten tests." },
+    { en: "There weren't any taxis at the station.", note: "Negative + plural → **weren't any**." },
+    { en: "Was there a problem with your order?", note: "Past question: **Was there…?**" },
+    { en: "Will there be food at the party?", note: "Future question: **Will there be…?**" },
+    { en: "There was no reason to wait.", note: "**There was no** + noun = a strong negative." },
+    { en: "One day, there will be flying cars in every city.", note: "Flying cars: a verb + -ing can describe a noun." },
+  ],
+  forms: [
+    { label: "Past · one thing", positive: "There was a bank on this corner.", negative: "There wasn't a bank on this corner.", question: "Was there a bank on this corner?", shortAnswers: "Yes, there was. / No, there wasn't." },
+    { label: "Past · two or more", positive: "There were some shops here.", negative: "There weren't any shops here.", question: "Were there any shops here?", shortAnswers: "Yes, there were. / No, there weren't." },
+    { label: "Future", positive: "There will be a meeting tomorrow.", negative: "There won't be a meeting tomorrow.", question: "Will there be a meeting tomorrow?", shortAnswers: "Yes, there will. / No, there won't." },
+  ],
+  mistakes: [
+    { wrong: "There was many people at the concert.", right: "There were a lot of people at the concert.", why: "People is plural → **were**. In positive sentences, **a lot of** sounds more natural than many." },
+    { wrong: "There will have a party on Saturday.", right: "There will be a party on Saturday.", why: "The future of existence is **will be**, never will have." },
+    { wrong: "Will be there a meeting?", right: "Will there be a meeting?", why: "Question order: **Will + there + be**." },
+    { wrong: "There weren't some chairs.", right: "There weren't any chairs.", why: "In negatives, use **any** (or say: There were **no** chairs)." },
+    { wrong: "There wasn't no time.", right: "There wasn't any time. / There was no time.", why: "Use one negative only: **not any** or **no**." },
+  ],
+  guided: {
+    goal: "Build: Will there be any food at the party?",
+    steps: [
+      { label: "Start a future question", role: "aux", options: ["Is", "Will", "Does"], answer: 1, why: "Future questions start with **Will**." },
+      { label: "Add the existence word", role: "there", options: ["there", "it", "they"], answer: 0, why: "Frame 1 always uses **there**." },
+      { label: "Add the verb", role: "be", options: ["have", "be", "being"], answer: 1, why: "After will, the base form: **be**." },
+      { label: "Add the thing", role: "object", options: ["some food", "any food", "a food"], answer: 1, why: "Questions usually take **any**. Food is uncountable, so no a." },
+      { label: "Add the place", role: "place", options: ["at the party", "the party at", "in party"], answer: 0, why: "Events take **at**: at the party, at the meeting." },
+    ],
+    result: "Will there be any food at the party?",
+  },
+  practice: [
+    { id: "d02-p01", type: "choice", prompt: "Choose the correct form.", options: ["There was two cafés here.", "There were two cafés here.", "There will two cafés here."], answer: 1, optionFeedback: { 0: "Two cafés is plural → were.", 2: "Future needs will be." }, explanation: "Plural past → **there were**.", frame: "existence", skill: "tense" },
+    { id: "d02-p02", type: "fill", prompt: "Complete with was or were.", sentence: "There ___ a strange noise last night.", accept: ["was"], traps: [{ text: "were", feedback: "A noise is one thing → was." }], explanation: "One thing in the past → **was**.", frame: "existence", skill: "tense" },
+    { id: "d02-p03", type: "fill", prompt: "Complete with some, any or no.", sentence: "Were there ___ messages for me?", accept: ["any"], traps: [{ text: "some", feedback: "In most questions, use any." }], explanation: "Questions usually take **any**.", frame: "existence", skill: "questions" },
+    { id: "d02-p04", type: "transform", prompt: "Put it in the future.", source: "There is a concert in the park.", instruction: "Use will.", accept: ["There will be a concert in the park."], alternatives: [{ text: "There's going to be a concert in the park.", note: "Also correct. Going to is common for plans you already know about." }], traps: [{ text: "There will have a concert in the park.", feedback: "Existence in the future is will be, not will have." }], explanation: "Future existence: **There will be**.", frame: "existence", skill: "tense" },
+    { id: "d02-p05", type: "transform", prompt: "Make it a question.", source: "There were many tourists in the city.", instruction: "Ask about the past.", accept: ["Were there many tourists in the city?"], alternatives: [{ text: "Were there a lot of tourists in the city?", note: "Also correct." }], explanation: "Past question: **Were there…?**", frame: "existence", skill: "questions" },
+    { id: "d02-p06", type: "order", prompt: "Make a sentence.", tiles: ["There", "won't", "be", "any", "trains", "tomorrow."], explanation: "**There won't be** + thing + time.", frame: "existence", skill: "word-order" },
+    { id: "d02-p07", type: "correct", prompt: "Fix the mistake.", wrong: "Will be there a test next week?", accept: ["Will there be a test next week?"], explanation: "Question order: **Will there be…?**", frame: "existence", skill: "questions" },
+    { id: "d02-p08", type: "correct", prompt: "Fix the mistake.", wrong: "There wasn't no milk in the fridge.", accept: ["There wasn't any milk in the fridge.", "There was no milk in the fridge."], explanation: "English uses one negative: **wasn't any** or **was no**.", frame: "existence", skill: "negatives" },
+    { id: "d02-p09", type: "listen", prompt: "Listen and type.", audioText: "There were a lot of people at the station.", accept: ["There were a lot of people at the station."], explanation: "Listen for **were** — it's weak and short: 'there-wer'.", frame: "existence", skill: "listening" },
+    {
+      id: "d02-p10",
+      type: "reading",
+      prompt: "Read the directions and answer.",
+      passage: "Go straight for two hundred meters. There will be a big supermarket on your right. Turn left after it. There are two cafés on that street. The pharmacy is between them. There was a bank there too, but it closed last year.",
+      questions: [
+        { q: "Where is the supermarket?", options: ["On the left", "On the right", "Next to the pharmacy"], answer: 1, why: "There will be a big supermarket on your right." },
+        { q: "Is there a bank on the street now?", options: ["Yes", "No"], answer: 1, why: "There was a bank, but it closed — was = not now." },
+      ],
+      explanation: "Directions often use **there will be** for what you are going to see.",
+      frame: "existence",
+      skill: "reading",
+    },
+    { id: "d02-p11", type: "speak", prompt: "Say it aloud.", target: "Was there a pharmacy on this street?", explanation: "Stress the important words: pharmacy, street.", frame: "existence", skill: "speaking" },
+    { id: "d02-p12", type: "translate", from: "az", prompt: "Translate into English.", source: "Dünən parkda çoxlu adam var idi.", accept: ["There were a lot of people in the park yesterday.", "Yesterday there were a lot of people in the park.", "There were many people in the park yesterday."], explanation: "'…var idi' (past) → **there was / there were**.", frame: "existence", skill: "writing" },
+  ],
+  vocabulary: [
+    { term: "go straight", meaning: "continue in the same direction", example: "Go straight until the traffic lights." },
+    { term: "turn left / right", meaning: "change direction", example: "Turn right after the bank." },
+    { term: "on your left / right", meaning: "on that side of you", example: "There will be a café on your left." },
+    { term: "between", meaning: "in the middle of two things", example: "The pharmacy is between the two cafés." },
+    { term: "opposite", meaning: "on the other side, facing", example: "There's a bus stop opposite the school." },
+    { term: "a lot of", meaning: "many / much (positive sentences)", example: "There were a lot of tourists." },
+  ],
+  dialogue: {
+    title: "Is there still a post office?",
+    setting: "Mehmet hasn't been to his old neighborhood for years. He asks a shopkeeper for help.",
+    lines: [
+      { speaker: "Mehmet", line: "Excuse me. There was a post office on this street. Is it still here?" },
+      { speaker: "Shopkeeper", line: "No, it closed. But there's a new one near the station." },
+      { speaker: "Mehmet", line: "How do I get there?" },
+      { speaker: "Shopkeeper", line: "Go straight and turn left at the lights. There will be a big park on your right." },
+      { speaker: "Mehmet", line: "Were there any changes to the buses too?" },
+      { speaker: "Shopkeeper", line: "Yes. There weren't any night buses before, but now there are." },
+      { speaker: "Mehmet", line: "Great. Thank you!" },
+    ],
+    focus: ["There was a post office", "Go straight", "turn left at the lights", "There will be", "Were there any changes"],
+  },
+  review: [
+    { id: "d02-r01", type: "choice", prompt: "Which sentence talks about the future?", options: ["There was a meeting.", "There will be a meeting.", "There is a meeting."], answer: 1, explanation: "**There will be** = future.", frame: "existence", skill: "tense" },
+    { id: "d02-r02", type: "fill", prompt: "Complete.", sentence: "There ___ any buses after midnight last night.", accept: ["weren't", "were not"], traps: [{ text: "wasn't", feedback: "Buses is plural → weren't." }], explanation: "Plural, past, negative → **weren't**.", frame: "existence", skill: "negatives" },
+    { id: "d02-r03", type: "transform", prompt: "Make it negative.", source: "There will be a lot of traffic tomorrow.", instruction: "Use won't.", accept: ["There won't be a lot of traffic tomorrow.", "There will not be a lot of traffic tomorrow."], alternatives: [{ text: "There won't be much traffic tomorrow.", note: "Also correct — much is common in negatives with uncountable nouns." }], explanation: "Future negative: **There won't be**.", frame: "existence", skill: "negatives" },
+    { id: "d02-r04", type: "order", prompt: "Make a question.", tiles: ["Was", "there", "a", "problem", "with", "the", "car?"], explanation: "**Was there** + thing + rest?", frame: "existence", skill: "questions" },
+    { id: "d02-r05", type: "correct", prompt: "Fix the mistake.", wrong: "There will have a party at my house.", accept: ["There will be a party at my house.", "There'll be a party at my house."], explanation: "Future existence is **will be**.", frame: "existence", skill: "form" },
+  ],
+  labSeeds: ["ex-traffic", "ex-chairs"],
+};
+
+export default day02;
