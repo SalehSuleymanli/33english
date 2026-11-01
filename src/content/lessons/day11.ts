@@ -1,0 +1,137 @@
+import type { Lesson } from "../types";
+
+const day11: Lesson = {
+  day: 11,
+  stage: "foundation",
+  frame: "passive",
+  title: "It was built in 1990",
+  objective: "Build passive sentences and know when the passive is the better choice.",
+  builds_on: "The passive is the last of the six frames. It reuses be from Days 3–4 and the forms of verbs from Day 6 — together, in a new order.",
+  outcome: "Describe a city, a product or a process.",
+  minutes: 25,
+  explanation: [
+    "In an active sentence, the subject **does** the action: Someone stole my bike. In a passive sentence, the subject **receives** the action: My bike **was stolen**.",
+    "**Frame 6: passive** = thing + **be** + **past participle (V3)**. The tense lives in be: is built, was built, will be built.",
+    "Use the passive when the doer is unknown, obvious or not important — or when the thing is your topic: The bridge **was built** in 1890.",
+    "Add **by** + doer only when it's important: This song **was written by** my grandfather. Phrases like 'by me' or 'by someone' are usually unnatural.",
+    "Past participles: regular verbs = **-ed** (cleaned, opened). Irregular ones must be learned: build → **built**, make → **made**, write → **written**, speak → **spoken**, steal → **stolen**.",
+  ],
+  patterns: [
+    {
+      name: "Present passive",
+      slots: [
+        { label: "Thing", role: "subject", text: "English" },
+        { label: "is / are", role: "be", text: "is" },
+        { label: "past participle", role: "verb", text: "spoken" },
+        { label: "place", role: "place", text: "here" },
+      ],
+    },
+    {
+      name: "Past passive",
+      slots: [
+        { label: "Thing", role: "subject", text: "The house" },
+        { label: "was / were", role: "be", text: "was" },
+        { label: "past participle", role: "verb", text: "built" },
+        { label: "time", role: "time", text: "in 1990" },
+      ],
+    },
+    {
+      name: "Question",
+      slots: [
+        { label: "Was / Were", role: "be", text: "Were" },
+        { label: "Thing", role: "subject", text: "the tickets" },
+        { label: "past participle", role: "verb", text: "sold?" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "My bike was stolen last night.", note: "We don't know who did it → passive." },
+    { en: "These phones are made in Korea.", note: "Present passive for facts about products." },
+    { en: "The museum is closed on Mondays.", note: "Closed here works like an adjective (Frame 2) — and that's fine." },
+    { en: "The report will be sent tomorrow.", note: "Future passive: **will be** + V3." },
+    { en: "Were you invited to the wedding?", note: "Question: **Were** + subject + V3?" },
+    { en: "The window wasn't broken by the children — it was the wind.", note: "**By** + doer when the doer matters." },
+    { en: "Breakfast is served from seven to ten.", note: "Typical hotel and service language." },
+    { en: "Romeo and Juliet was written by Shakespeare.", note: "The work is the topic, the writer is important → by." },
+  ],
+  forms: [
+    { label: "Present", positive: "The rooms are cleaned every day.", negative: "The rooms aren't cleaned every day.", question: "Are the rooms cleaned every day?", shortAnswers: "Yes, they are. / No, they aren't." },
+    { label: "Past", positive: "The letter was sent.", negative: "The letter wasn't sent.", question: "Was the letter sent?", shortAnswers: "Yes, it was. / No, it wasn't." },
+    { label: "Future", positive: "The results will be announced.", negative: "The results won't be announced.", question: "Will the results be announced?", shortAnswers: "Yes, they will. / No, they won't." },
+  ],
+  mistakes: [
+    { wrong: "The house built in 1990.", right: "The house was built in 1990.", why: "The house didn't build anything. Passive needs **be**: was built." },
+    { wrong: "The phone is taken by me.", right: "I took the phone.", why: "Passive with 'by me' is unnatural. When you're the doer, use the active." },
+    { wrong: "The letter was wrote yesterday.", right: "The letter was written yesterday.", why: "Passive uses the **past participle** (V3): written, not wrote." },
+    { wrong: "English is speak in many countries.", right: "English is spoken in many countries.", why: "Be + **V3**: spoken." },
+    { wrong: "My car was repair yesterday.", right: "My car was repaired yesterday.", why: "Regular V3 = **-ed**: repaired." },
+  ],
+  guided: {
+    goal: "Build: The bridge was built in 1890.",
+    steps: [
+      { label: "Thing (topic)", role: "subject", options: ["The bridge", "They", "Somebody"], answer: 0, why: "The passive starts with the thing that receives the action." },
+      { label: "Be (past)", role: "be", options: ["is", "was", "did"], answer: 1, why: "1890 is the past; one bridge → **was**." },
+      { label: "Past participle", role: "verb", options: ["build", "builded", "built"], answer: 2, why: "build → **built** (irregular)." },
+      { label: "Time", role: "time", options: ["in 1890.", "on 1890.", "at 1890."], answer: 0, why: "Years take **in**." },
+    ],
+    result: "The bridge was built in 1890.",
+  },
+  practice: [
+    { id: "d11-p01", type: "choice", prompt: "Which sentence is passive?", options: ["They clean the office every day.", "The office is cleaned every day.", "The office cleans every day."], answer: 1, explanation: "Thing + **is** + **cleaned** = passive.", frame: "passive", skill: "form" },
+    { id: "d11-p02", type: "fill", prompt: "Complete with the past participle of write.", sentence: "This book was ___ in 1950.", accept: ["written"], traps: [{ text: "wrote", feedback: "Passive needs the past participle: written." }, { text: "writed", feedback: "Write is irregular: written." }], explanation: "write → **written**.", frame: "passive", skill: "form" },
+    { id: "d11-p03", type: "fill", prompt: "Complete with is or are.", sentence: "Coffee beans ___ grown in Brazil and Colombia.", accept: ["are"], traps: [{ text: "is", feedback: "Beans is plural → are." }], explanation: "Plural thing → **are** + V3.", frame: "passive", skill: "form" },
+    { id: "d11-p04", type: "transform", prompt: "Make it passive.", source: "Someone stole my wallet.", instruction: "Start with: My wallet", accept: ["My wallet was stolen."], alternatives: [{ text: "My wallet was stolen by someone.", note: "Grammatical, but 'by someone' adds nothing — leave it out." }], explanation: "Past → **was** + **stolen**. Unknown doer → no 'by'.", frame: "passive", skill: "form" },
+    { id: "d11-p05", type: "transform", prompt: "Make it passive.", source: "They will finish the road next year.", instruction: "Start with: The road", accept: ["The road will be finished next year."], explanation: "Future passive: **will be** + V3.", frame: "passive", skill: "tense" },
+    { id: "d11-p06", type: "transform", prompt: "Make it a question.", source: "The package was delivered.", instruction: "Ask about it.", accept: ["Was the package delivered?"], explanation: "**Was** + thing + V3?", frame: "passive", skill: "questions" },
+    { id: "d11-p07", type: "order", prompt: "Put the words in order.", tiles: ["Breakfast", "is", "served", "from", "seven."], explanation: "Thing + **is** + V3 + time.", frame: "passive", skill: "word-order" },
+    { id: "d11-p08", type: "correct", prompt: "Fix the mistake.", wrong: "The museum built in 1870.", accept: ["The museum was built in 1870."], explanation: "Add **was**.", frame: "passive", skill: "form" },
+    { id: "d11-p09", type: "correct", prompt: "Fix the mistake.", wrong: "The emails was sent yesterday.", accept: ["The emails were sent yesterday."], explanation: "Emails is plural → **were**.", frame: "passive", skill: "form" },
+    { id: "d11-p10", type: "listen", prompt: "Listen and type.", audioText: "The meeting was cancelled because of the snow.", accept: ["The meeting was cancelled because of the snow.", "The meeting was canceled because of the snow."], explanation: "Both spellings are fine: cancelled (UK) / canceled (US).", frame: "passive", skill: "listening" },
+    {
+      id: "d11-p11",
+      type: "reading",
+      prompt: "Read about the city and answer.",
+      passage: "Baku is the capital of Azerbaijan. The Old City was built many centuries ago and is protected by UNESCO. Today, new buildings are being built along the sea, and the city is visited by millions of tourists every year. The famous Flame Towers were completed in 2012.",
+      questions: [
+        { q: "What protects the Old City?", options: ["UNESCO", "The tourists", "The sea"], answer: 0, why: "It is protected by UNESCO." },
+        { q: "When were the Flame Towers completed?", options: ["Many centuries ago", "In 2012", "They aren't finished yet."], answer: 1, why: "They were completed in 2012." },
+      ],
+      explanation: "Descriptions of places often use the passive, because the place — not the people — is the topic.",
+      frame: "passive",
+      skill: "reading",
+    },
+    { id: "d11-p12", type: "speak", prompt: "Describe something you own.", target: "My watch was made in Switzerland.", explanation: "Was made = past passive.", frame: "passive", skill: "speaking" },
+  ],
+  vocabulary: [
+    { term: "be made in / of", meaning: "where / what material", example: "It's made of glass." },
+    { term: "be located", meaning: "be in a place", example: "The hotel is located near the airport." },
+    { term: "be cancelled / delayed", meaning: "not happen / happen later", example: "Our flight was delayed." },
+    { term: "be served", meaning: "food or drink is given", example: "Dinner is served at eight." },
+    { term: "be founded", meaning: "be started (a company, city…)", example: "The company was founded in 1998." },
+    { term: "be invited", meaning: "be asked to come", example: "Were you invited to the party?" },
+  ],
+  dialogue: {
+    title: "A tour of the factory",
+    setting: "A guide shows visitors around a chocolate factory.",
+    lines: [
+      { speaker: "Guide", line: "Welcome! This factory was founded in 1952." },
+      { speaker: "Visitor", line: "Where are the cocoa beans grown?" },
+      { speaker: "Guide", line: "They're grown in Ghana and Ecuador, and they're shipped here every month." },
+      { speaker: "Visitor", line: "Is everything made by machines?" },
+      { speaker: "Guide", line: "Most of it. But the special boxes are still made by hand." },
+      { speaker: "Visitor", line: "And will we be given free samples?" },
+      { speaker: "Guide", line: "Of course! They're served at the end of the tour." },
+    ],
+    focus: ["was founded", "are the cocoa beans grown", "made by hand", "will we be given", "They're served"],
+  },
+  review: [
+    { id: "d11-r01", type: "choice", prompt: "Choose the correct passive.", options: ["The car was repair.", "The car was repaired.", "The car repaired."], answer: 1, explanation: "**was** + **repaired**.", frame: "passive", skill: "form" },
+    { id: "d11-r02", type: "fill", prompt: "Complete with the past participle of speak.", sentence: "Spanish is ___ in most of South America.", accept: ["spoken"], traps: [{ text: "spoke", feedback: "Spoke is the past simple. Passive needs spoken." }], explanation: "speak → **spoken**.", frame: "passive", skill: "form" },
+    { id: "d11-r03", type: "transform", prompt: "Make it passive.", source: "They make these shoes in Italy.", instruction: "Start with: These shoes", accept: ["These shoes are made in Italy."], explanation: "**are made**.", frame: "passive", skill: "form" },
+    { id: "d11-r04", type: "order", prompt: "Make a question.", tiles: ["When", "was", "the", "bridge", "built?"], explanation: "Question word + **was** + thing + V3?", frame: "passive", skill: "questions" },
+    { id: "d11-r05", type: "correct", prompt: "Fix the mistake.", wrong: "The rooms are clean every morning.", accept: ["The rooms are cleaned every morning."], explanation: "Action → **cleaned** (V3). (The rooms are clean = a state, a different meaning.)", frame: "passive", skill: "form" },
+  ],
+  labSeeds: ["ac-build", "ac-steal"],
+};
+
+export default day11;
