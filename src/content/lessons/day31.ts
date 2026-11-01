@@ -1,0 +1,122 @@
+import type { Lesson } from "../types";
+
+const day31: Lesson = {
+  day: 31,
+  stage: "application",
+  title: "Telling a story",
+  objective: "Sequence events with first, then, after that, meanwhile, eventually and narrative tenses.",
+  builds_on: "Stories combine the past simple (Day 6), past continuous (Day 7), past perfect (Day 15's had form) and linking words. Section 32 of your notes (heading only; content authored for this course).",
+  outcome: "Tell a clear, engaging story about something that happened.",
+  minutes: 25,
+  explanation: [
+    "Good stories use three past forms. **Past continuous** sets the scene (I **was walking** home…). **Past simple** moves the story forward (…when I **saw** a dog). **Past perfect** (**had** + V3) goes back to something earlier (I **had left** my keys at work).",
+    "**Sequence words** show order: **First**, … **Then** / **After that**, … **Later**, … **Finally** / **In the end**, …",
+    "**Time links**: **when** (a moment), **while** (during a longer action), **as soon as** (immediately after), **meanwhile** (at the same time, elsewhere), **suddenly** (unexpected), **eventually** (after a long time).",
+    "**Cause and result links**: **because** + sentence, **because of** + noun, **so** (result), **that's why**, **as a result**.",
+    "A natural story shape: **set the scene → the problem → what you did → the result → how you felt**. Start with a hook: You won't believe what happened…",
+  ],
+  patterns: [
+    {
+      name: "Scene + event",
+      slots: [
+        { label: "Scene (past continuous)", role: "aux", text: "I was waiting for the bus" },
+        { label: "when", role: "connector", text: "when" },
+        { label: "event (past simple)", role: "verb", text: "it started to rain" },
+      ],
+    },
+    {
+      name: "Going back (past perfect)",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "realized", role: "verb", text: "realized" },
+        { label: "had + V3", role: "aux", text: "I had left" },
+        { label: "object", role: "object", text: "my umbrella at home" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "You won't believe what happened this morning.", note: "A hook to start." },
+    { en: "I was waiting for the bus when it started to rain.", note: "Scene (continuous) + event (simple)." },
+    { en: "Then I realized I had left my umbrella at home.", note: "**had left** = earlier than realizing." },
+    { en: "While I was looking for a taxi, my phone died.", note: "**while** + longer action." },
+    { en: "As soon as I got to the office, my boss called me.", note: "**as soon as** = immediately after." },
+    { en: "Meanwhile, my colleagues had started the meeting without me.", note: "**meanwhile** = at the same time, elsewhere." },
+    { en: "Because of the rain, the roads were blocked, so I was late.", note: "**because of** + noun; **so** = result." },
+    { en: "In the end, it was a funny story — but I bought a new umbrella!", note: "**In the end** = finally, after everything." },
+  ],
+  forms: [],
+  mistakes: [
+    { wrong: "I walked home when I saw an accident.", right: "I was walking home when I saw an accident.", why: "The background action → **past continuous**." },
+    { wrong: "When I arrived, the film already started.", right: "When I arrived, the film had already started.", why: "Earlier action → **past perfect**." },
+    { wrong: "Because the rain, we stayed inside.", right: "Because of the rain, we stayed inside.", why: "**because of** + noun." },
+    { wrong: "At the end, we found the hotel.", right: "In the end, we found the hotel.", why: "Finally → **in the end**. (At the end of + something: at the end of the day.)" },
+    { wrong: "Eventually it was a short trip.", right: "Actually, it was a short trip.", why: "**Eventually** = after a long time (not actually). A common false friend." },
+  ],
+  guided: {
+    goal: "Build: While I was cooking, someone knocked on the door.",
+    steps: [
+      { label: "Time link (longer action)", role: "connector", options: ["While", "Suddenly", "After"], answer: 0, why: "**While** + the longer background action." },
+      { label: "Background", role: "aux", options: ["I was cooking,", "I cooked,", "I had cooked,"], answer: 0, why: "In progress → **was cooking**." },
+      { label: "Event", role: "verb", options: ["someone knocked", "someone was knocking", "someone had knocked"], answer: 0, why: "The short event → **past simple**." },
+      { label: "Rest", role: "place", options: ["on the door.", "the door.", "at door."], answer: 0, why: "knock **on** the door." },
+    ],
+    result: "While I was cooking, someone knocked on the door.",
+  },
+  practice: [
+    { id: "d31-p01", type: "choice", prompt: "Choose the best sentence.", options: ["I read when the lights went out.", "I was reading when the lights went out.", "I had read when the lights were going out."], answer: 1, explanation: "Background → **was reading**; event → **went out**.", skill: "tense" },
+    { id: "d31-p02", type: "choice", prompt: "Choose the correct linker.", options: ["We missed the train because of the traffic.", "We missed the train because the traffic.", "We missed the train so the traffic."], answer: 0, explanation: "**because of** + noun.", skill: "vocabulary" },
+    { id: "d31-p03", type: "fill", prompt: "Complete with the past perfect of leave.", sentence: "When we got to the station, the train ___.", accept: ["had left", "had already left", "'d left"], traps: [{ text: "left", feedback: "It left before we arrived → had left." }], explanation: "Earlier → **had left**.", skill: "tense" },
+    { id: "d31-p04", type: "fill", prompt: "Complete with when or while.", sentence: "___ we were having dinner, the phone rang.", accept: ["While", "When"], explanation: "**While** + longer action (when is also possible).", skill: "vocabulary" },
+    { id: "d31-p05", type: "transform", prompt: "Combine with when.", source: "I was driving. A deer ran onto the road.", instruction: "Start with: I was driving", accept: ["I was driving when a deer ran onto the road."], explanation: "Background + **when** + event.", skill: "form" },
+    { id: "d31-p06", type: "transform", prompt: "Combine with as soon as.", source: "I got home. I took a shower immediately.", instruction: "Start with: As soon as", accept: ["As soon as I got home, I took a shower.", "As soon as I got home I took a shower."], explanation: "**As soon as** + first action, second action.", skill: "form" },
+    { id: "d31-p07", type: "order", prompt: "Put the story in order (first word given).", tiles: ["First,", "we", "checked", "in.", "Then", "we", "went", "to", "the", "beach."], explanation: "**First**… **Then**…", skill: "word-order" },
+    { id: "d31-p08", type: "correct", prompt: "Fix the mistake.", wrong: "When I arrived, everyone already left.", accept: ["When I arrived, everyone had already left.", "When I arrived everyone had already left."], explanation: "Earlier → **had already left**.", skill: "tense" },
+    { id: "d31-p09", type: "correct", prompt: "Fix the mistake.", wrong: "At the end, we found our hotel.", accept: ["In the end, we found our hotel.", "Eventually, we found our hotel.", "Finally, we found our hotel."], explanation: "**In the end** / eventually / finally.", skill: "vocabulary" },
+    {
+      id: "d31-p10",
+      type: "reading",
+      prompt: "Read the story and answer.",
+      passage: "Last summer, I was hiking in the mountains with two friends when the weather suddenly changed. We had checked the forecast that morning, and it had said 'sunny'. Within minutes, it was raining heavily. We found a small shelter and waited. Meanwhile, my friend's phone was ringing — it was her mother, who had seen the storm on the news. After two hours, the rain stopped and we walked back. In the end, we were wet and tired, but it's now one of our favorite stories.",
+      questions: [
+        { q: "What had the forecast said?", options: ["Rain", "Sunny", "A storm"], answer: 1, why: "It had said 'sunny'." },
+        { q: "Why did the friend's mother call?", options: ["She was worried about the storm.", "She wanted to join them.", "She forgot something."], answer: 0, why: "She had seen the storm on the news." },
+        { q: "How long did they wait?", options: ["Two hours", "Ten minutes", "All day"], answer: 0, why: "After two hours, the rain stopped." },
+      ],
+      explanation: "Notice how was hiking (scene), changed (event) and had checked (earlier) work together.",
+      skill: "reading",
+    },
+    { id: "d31-p11", type: "listen", prompt: "Listen and type.", audioText: "I was walking to work when I saw an old friend from school.", accept: ["I was walking to work when I saw an old friend from school."], explanation: "Scene + when + event.", skill: "listening" },
+    { id: "d31-p12", type: "speak", prompt: "Start a story.", target: "You won't believe what happened to me yesterday. I was waiting for a taxi when…", explanation: "Hook + scene.", skill: "speaking" },
+  ],
+  vocabulary: [
+    { term: "You won't believe…", meaning: "a hook to start a story", example: "You won't believe who I met!" },
+    { term: "all of a sudden", meaning: "suddenly", example: "All of a sudden, the lights went out." },
+    { term: "it turned out that", meaning: "we later discovered that", example: "It turned out that he was her brother." },
+    { term: "eventually", meaning: "after a long time", example: "We eventually found the hotel." },
+    { term: "luckily / unfortunately", meaning: "good / bad luck", example: "Luckily, nobody was hurt." },
+    { term: "Anyway,…", meaning: "returning to the main story", example: "Anyway, so I called the police." },
+  ],
+  dialogue: {
+    title: "The lost passport",
+    setting: "Rustam tells his friend about a stressful travel day.",
+    lines: [
+      { speaker: "Rustam", line: "You won't believe what happened at the airport." },
+      { speaker: "Ella", line: "What happened?" },
+      { speaker: "Rustam", line: "I was standing in the queue when I realized I had left my passport in the taxi." },
+      { speaker: "Ella", line: "No! What did you do?" },
+      { speaker: "Rustam", line: "First, I called the taxi company. Meanwhile, my wife was running to the information desk." },
+      { speaker: "Ella", line: "And?" },
+      { speaker: "Rustam", line: "It turned out that the driver had already noticed it. As soon as he heard, he came back. In the end, we caught the flight!" },
+    ],
+    focus: ["You won't believe what happened", "I was standing in the queue when", "I had left", "First", "Meanwhile", "It turned out that", "As soon as", "In the end"],
+  },
+  review: [
+    { id: "d31-r01", type: "choice", prompt: "Choose the correct sentence.", options: ["While I slept, the phone rang.", "While I was sleeping, the phone rang.", "While I had slept, the phone was ringing."], answer: 1, explanation: "**while** + past continuous; event → past simple.", skill: "tense" },
+    { id: "d31-r02", type: "fill", prompt: "Complete.", sentence: "___ the end, everything was fine.", accept: ["In"], traps: [{ text: "At", feedback: "Finally → in the end." }], explanation: "**In** the end.", skill: "vocabulary" },
+    { id: "d31-r03", type: "transform", prompt: "Use the past perfect.", source: "I finished my homework. Then my friends arrived.", instruction: "Start with: When my friends arrived,", accept: ["When my friends arrived, I had finished my homework.", "When my friends arrived, I had already finished my homework."], explanation: "Earlier action → **had finished**.", skill: "tense" },
+    { id: "d31-r04", type: "order", prompt: "Put the words in order.", tiles: ["It", "turned", "out", "that", "he", "was", "right."], explanation: "**It turned out that** + sentence.", skill: "word-order" },
+    { id: "d31-r05", type: "correct", prompt: "Fix the mistake.", wrong: "Because the snow, the school was closed.", accept: ["Because of the snow, the school was closed.", "Because of the snow the school was closed."], explanation: "**because of** + noun.", skill: "vocabulary" },
+  ],
+};
+
+export default day31;
