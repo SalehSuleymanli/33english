@@ -1,0 +1,116 @@
+import type { Lesson } from "../types";
+
+const day16: Lesson = {
+  day: 16,
+  stage: "combination",
+  frame: "actions",
+  title: "I've been waiting for an hour",
+  objective: "Use the perfect continuous for activities that have lasted, and going to for plans.",
+  builds_on: "This combines Day 7 (be + -ing) with Day 15 (have + V3): have + been + -ing. Then going to — another use of be + -ing — for plans.",
+  outcome: "Explain what you've been doing and what you're going to do.",
+  minutes: 25,
+  explanation: [
+    "**Present perfect continuous** = **have / has + been + verb-ing**. It describes an activity that started in the past and has been going on until now: I**'ve been waiting** for an hour.",
+    "It focuses on the **activity and its duration** (how long?). The simple perfect focuses on the **result** (how much / how many?): I've been writing emails all morning (activity). I've written ten emails (result).",
+    "Like other continuous forms, it isn't used with state verbs: I've **known** her for years (not I've been knowing).",
+    "**Going to** + base verb = a plan or intention you've already decided: I**'m going to** visit my parents this weekend. It's also used for predictions based on what you can see: Look at those clouds — it**'s going to** rain.",
+    "In casual speech: **gonna** = going to, **wanna** = want to. Use them only in informal speaking or messages — never in formal writing.",
+  ],
+  patterns: [
+    {
+      name: "Perfect continuous",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "have / has been", role: "aux", text: "have been" },
+        { label: "verb-ing", role: "verb", text: "waiting" },
+        { label: "for / since", role: "time", text: "for an hour" },
+      ],
+    },
+    {
+      name: "Going to (plan)",
+      slots: [
+        { label: "Subject", role: "subject", text: "We" },
+        { label: "am / is / are going to", role: "aux", text: "are going to" },
+        { label: "base verb", role: "verb", text: "move" },
+        { label: "time", role: "time", text: "next year" },
+      ],
+    },
+  ],
+  examples: [
+    { en: "I've been waiting for you since six o'clock!", note: "Duration until now → **have been + -ing**." },
+    { en: "How long have you been learning English?", note: "**How long** + perfect continuous." },
+    { en: "She's been working here since 2020.", note: "She's = she **has**." },
+    { en: "You look tired. — I've been running.", note: "A recent activity explains a present result." },
+    { en: "I have been doing this since my childhood.", note: "From the original method notes." },
+    { en: "We're going to buy a new car next month.", note: "A plan → **going to**." },
+    { en: "Watch out! That glass is going to fall.", note: "Prediction from evidence → **going to**." },
+    { en: "I'm gonna grab a coffee. Wanna come?", note: "Informal speech: gonna / wanna.", register: "informal" },
+  ],
+  forms: [
+    { label: "Perfect continuous", positive: "He's been studying all day.", negative: "He hasn't been studying.", question: "Has he been studying?", shortAnswers: "Yes, he has. / No, he hasn't." },
+    { label: "Going to", positive: "They're going to travel.", negative: "They aren't going to travel.", question: "Are they going to travel?", shortAnswers: "Yes, they are. / No, they aren't." },
+  ],
+  mistakes: [
+    { wrong: "I am waiting here for two hours.", right: "I've been waiting here for two hours.", why: "Duration up to now → **have been + -ing**." },
+    { wrong: "I've been knowing him for years.", right: "I've known him for years.", why: "Know is a state verb → simple perfect." },
+    { wrong: "She has been work all day.", right: "She has been working all day.", why: "Been + **-ing**." },
+    { wrong: "I going to call him.", right: "I'm going to call him.", why: "Going to needs **be**: I'm going to." },
+    { wrong: "I'm gonna to call him.", right: "I'm gonna call him.", why: "Gonna already includes to." },
+  ],
+  guided: {
+    goal: "Build: How long have you been living here?",
+    steps: [
+      { label: "Question words", role: "question", options: ["How long", "How much", "When"], answer: 0, why: "Duration → **How long**." },
+      { label: "Helper", role: "aux", options: ["are", "have", "did"], answer: 1, why: "Perfect → **have**." },
+      { label: "Subject", role: "subject", options: ["you", "your", "you're"], answer: 0, why: "Subject after the helper." },
+      { label: "been + -ing", role: "verb", options: ["been living", "being living", "been live"], answer: 0, why: "**been** + verb**-ing**." },
+      { label: "Place", role: "place", options: ["here?", "in here since?", "here for?"], answer: 0, why: "Simple place." },
+    ],
+    result: "How long have you been living here?",
+  },
+  practice: [
+    { id: "d16-p01", type: "choice", prompt: "Your friend is 40 minutes late. You say:", options: ["I wait for 40 minutes.", "I've been waiting for 40 minutes.", "I'm waiting since 40 minutes."], answer: 1, explanation: "Duration until now → **have been waiting**.", frame: "actions", skill: "tense" },
+    { id: "d16-p02", type: "choice", prompt: "Choose the best sentence.", options: ["I've been reading three books this month.", "I've read three books this month."], answer: 1, explanation: "A number of results (three books) → **simple perfect**.", frame: "actions", skill: "meaning" },
+    { id: "d16-p03", type: "fill", prompt: "Complete with have / has been + -ing (rain).", sentence: "It ___ all day.", accept: ["has been raining", "'s been raining"], traps: [{ text: "have been raining", feedback: "It → has." }], explanation: "It → **has been raining**.", frame: "actions", skill: "tense" },
+    { id: "d16-p04", type: "fill", prompt: "Complete with going to.", sentence: "We ___ visit my grandmother on Sunday.", accept: ["are going to", "'re going to"], traps: [{ text: "going to", feedback: "Add be: we are going to." }], explanation: "We → **are going to**.", frame: "actions", skill: "form" },
+    { id: "d16-p05", type: "transform", prompt: "Make it a question with How long.", source: "You have been learning the guitar.", instruction: "Ask about the duration.", accept: ["How long have you been learning the guitar?"], explanation: "**How long have** + subject + **been -ing**?", frame: "actions", skill: "questions" },
+    { id: "d16-p06", type: "transform", prompt: "Rewrite in formal English.", source: "I'm gonna apply for the job.", instruction: "Replace gonna.", accept: ["I'm going to apply for the job.", "I am going to apply for the job."], explanation: "Formal: **going to**.", frame: "actions", skill: "writing" },
+    { id: "d16-p07", type: "order", prompt: "Put the words in order.", tiles: ["She's", "been", "working", "here", "since", "May."], explanation: "has been + -ing + since.", frame: "actions", skill: "word-order" },
+    { id: "d16-p08", type: "correct", prompt: "Fix the mistake.", wrong: "I'm studying English for three years.", accept: ["I've been studying English for three years.", "I have been studying English for three years.", "I've studied English for three years.", "I have studied English for three years."], explanation: "Duration until now → **have been studying**.", frame: "actions", skill: "tense" },
+    { id: "d16-p09", type: "correct", prompt: "Fix the mistake.", wrong: "He has been knowing her since college.", accept: ["He has known her since college.", "He's known her since college."], explanation: "State verb → **has known**.", frame: "actions", skill: "tense" },
+    { id: "d16-p10", type: "listen", prompt: "Listen and type.", audioText: "We've been planning this trip for months.", accept: ["We've been planning this trip for months.", "We have been planning this trip for months."], explanation: "We've been = 'weev bin'.", frame: "actions", skill: "listening" },
+    { id: "d16-p11", type: "speak", prompt: "Talk about your plans.", target: "I'm going to start a new course next month.", explanation: "Plans → going to.", frame: "actions", skill: "speaking" },
+  ],
+  vocabulary: [
+    { term: "all day / all morning", meaning: "for the whole day / morning", example: "I've been cleaning all morning." },
+    { term: "for ages", meaning: "for a very long time (informal)", example: "I've been waiting for ages!" },
+    { term: "lately", meaning: "recently", example: "What have you been doing lately?" },
+    { term: "be about to", meaning: "be going to very soon (Day 29)", example: "I'm about to leave." },
+    { term: "gonna / wanna (informal)", meaning: "going to / want to — speech only", example: "I'm gonna be late." },
+    { term: "make plans", meaning: "decide what to do", example: "Have you made any plans for the summer?" },
+  ],
+  dialogue: {
+    title: "Catching up",
+    setting: "Two old friends meet after a long time.",
+    lines: [
+      { speaker: "Lara", line: "Kamran! What have you been doing? I haven't seen you for months." },
+      { speaker: "Kamran", line: "I've been working on a new project. It's been crazy!" },
+      { speaker: "Lara", line: "Sounds busy. What are you going to do when it's finished?" },
+      { speaker: "Kamran", line: "I'm going to take a long holiday. What about you?" },
+      { speaker: "Lara", line: "I've been learning Spanish. I'm going to move to Valencia next year." },
+      { speaker: "Kamran", line: "Wow! How long have you been planning that?" },
+      { speaker: "Lara", line: "For about a year. I'm gonna miss this city, though." },
+    ],
+    focus: ["What have you been doing?", "I've been working", "What are you going to do", "How long have you been planning", "I'm gonna miss"],
+  },
+  review: [
+    { id: "d16-r01", type: "choice", prompt: "Which is informal speech?", options: ["I'm going to leave.", "I'm gonna leave.", "I will leave."], answer: 1, explanation: "**Gonna** = informal speech only.", frame: "actions", skill: "meaning" },
+    { id: "d16-r02", type: "fill", prompt: "Complete (study).", sentence: "She's tired because she ___ all night.", accept: ["has been studying", "'s been studying"], explanation: "Recent activity → **has been studying**.", frame: "actions", skill: "tense" },
+    { id: "d16-r03", type: "transform", prompt: "Make it negative.", source: "They are going to sell the house.", instruction: "Use not.", accept: ["They aren't going to sell the house.", "They are not going to sell the house.", "They're not going to sell the house."], explanation: "**aren't going to**.", frame: "actions", skill: "negatives" },
+    { id: "d16-r04", type: "order", prompt: "Make a question.", tiles: ["How", "long", "has", "it", "been", "raining?"], explanation: "How long + **has** + it + **been -ing**?", frame: "actions", skill: "questions" },
+    { id: "d16-r05", type: "correct", prompt: "Fix the mistake.", wrong: "I going to call you tonight.", accept: ["I'm going to call you tonight.", "I am going to call you tonight."], explanation: "Add **am**.", frame: "actions", skill: "form" },
+  ],
+  labSeeds: ["ac-wait", "ac-learn"],
+};
+
+export default day16;
