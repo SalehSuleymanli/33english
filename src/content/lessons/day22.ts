@@ -1,0 +1,115 @@
+import type { Lesson } from "../types";
+
+const day22: Lesson = {
+  day: 22,
+  stage: "communication",
+  frame: "states",
+  title: "Bigger, better, the best",
+  objective: "Compare with -er / more … than and the -est / the most.",
+  builds_on: "Comparisons are Frame 2 (subject + be + adjective) with the adjective changed. Section 7 of your notes — with the two pattern labels corrected.",
+  outcome: "Compare options and explain your choice.",
+  minutes: 25,
+  explanation: [
+    "**Comparative** (two things): short adjectives add **-er** + **than**: I am small**er than** Tofig. Long adjectives use **more** + **than**: I am **more** handsome **than** Tofig.",
+    "**Superlative** (one of a group): **the** + **-est**: the small**est** student. Long adjectives: **the most** + adjective: the **most** beautiful student.",
+    "Spelling: big → bi**gg**er (short vowel + consonant: double it); happy → happ**ier** (y → ier); nice → nic**er** (add -r). Two-syllable adjectives ending in -y take -er: easier, busier.",
+    "Irregular: good → **better** → **the best**; bad → **worse** → **the worst**; far → **further** → **the furthest**.",
+    "Make comparisons stronger with **much / far / a lot** (much bigger) or exact amounts (**three times** bigger). After than, you can use a whole clause: I am smarter **than he thinks**. Superlative + perfect: the best phone **I've ever seen**.",
+  ],
+  patterns: [
+    {
+      name: "Comparative",
+      slots: [
+        { label: "Subject", role: "subject", text: "I" },
+        { label: "be", role: "be", text: "am" },
+        { label: "-er / more + adjective", role: "complement", text: "smarter" },
+        { label: "than", role: "connector", text: "than" },
+        { label: "other", role: "object", text: "Tofig" },
+      ],
+    },
+    {
+      name: "Superlative",
+      slots: [
+        { label: "Subject", role: "subject", text: "He" },
+        { label: "be", role: "be", text: "is" },
+        { label: "the -est / the most", role: "complement", text: "the smartest" },
+        { label: "noun", role: "object", text: "student" },
+        { label: "group / clause", role: "other", text: "I have ever seen", optional: true },
+      ],
+    },
+  ],
+  examples: [
+    { en: "I am smarter than Tofig.", note: "Short adjective → **-er than** (original notes, corrected)." },
+    { en: "This hotel is more expensive than the other one.", note: "Long adjective → **more … than**." },
+    { en: "She's the smartest student in the class.", note: "**the -est** + group." },
+    { en: "It's the most beautiful place I've ever seen.", note: "**the most** + superlative + I've ever (Day 15)." },
+    { en: "The train is much faster than the bus.", note: "**much** makes the difference bigger." },
+    { en: "This room is three times bigger than mine.", note: "Exact comparison: **three times** + comparative." },
+    { en: "The weather today is worse than yesterday.", note: "Irregular: bad → **worse**." },
+    { en: "I'm smarter than he thinks.", note: "After than, a full clause is possible (original notes)." },
+  ],
+  forms: [
+    { label: "Comparative", positive: "Baku is bigger than Ganja.", negative: "Ganja isn't bigger than Baku.", question: "Is Baku bigger than Ganja?" },
+    { label: "Superlative", positive: "It's the best café in town.", negative: "It isn't the best café in town.", question: "Which is the best café in town?" },
+  ],
+  mistakes: [
+    { wrong: "She is more tall than me.", right: "She is taller than me.", why: "Short adjectives → **-er**." },
+    { wrong: "This is more better.", right: "This is better. / This is much better.", why: "Better is already comparative. Use **much** to make it stronger." },
+    { wrong: "He is the most smart person.", right: "He is the smartest person.", why: "Short adjective → **the -est**." },
+    { wrong: "My car is faster then yours.", right: "My car is faster than yours.", why: "Comparisons use **than** (then = after that)." },
+    { wrong: "It's the most good restaurant.", right: "It's the best restaurant.", why: "good → better → **the best**." },
+  ],
+  guided: {
+    goal: "Build: This is the best phone I've ever had.",
+    steps: [
+      { label: "Subject + be", role: "subject", options: ["This is", "This", "It has"], answer: 0, why: "Frame 2: subject + **be**." },
+      { label: "Superlative of good", role: "complement", options: ["the goodest", "the best", "the most good"], answer: 1, why: "good → better → **the best**." },
+      { label: "Noun", role: "object", options: ["phone", "phones", "a phone"], answer: 0, why: "the best + singular noun." },
+      { label: "Experience clause", role: "other", options: ["I've ever had.", "I ever had.", "I've had ever."], answer: 0, why: "Superlative + **I've ever** + V3." },
+    ],
+    result: "This is the best phone I've ever had.",
+  },
+  practice: [
+    { id: "d22-p01", type: "choice", prompt: "Choose the correct sentence.", options: ["Russia is more big than Turkey.", "Russia is bigger than Turkey.", "Russia is biger than Turkey."], answer: 1, explanation: "big → bi**gg**er.", frame: "states", skill: "form" },
+    { id: "d22-p02", type: "fill", prompt: "Complete with the comparative of easy.", sentence: "Spanish is ___ than Chinese for me.", accept: ["easier"], traps: [{ text: "more easy", feedback: "Adjectives ending in -y → -ier: easier." }, { text: "easyer", feedback: "y → ier: easier." }], explanation: "easy → **easier**.", frame: "states", skill: "form" },
+    { id: "d22-p03", type: "fill", prompt: "Complete with the superlative of interesting.", sentence: "That was the ___ lecture of the year.", accept: ["most interesting"], traps: [{ text: "interestingest", feedback: "Long adjectives → the most + adjective." }], explanation: "**the most** interesting.", frame: "states", skill: "form" },
+    { id: "d22-p04", type: "fill", prompt: "Complete with the comparative of bad.", sentence: "The traffic is ___ today than yesterday.", accept: ["worse"], traps: [{ text: "badder", feedback: "bad is irregular: worse." }, { text: "more bad", feedback: "bad is irregular: worse." }], explanation: "bad → **worse**.", frame: "states", skill: "form" },
+    { id: "d22-p05", type: "transform", prompt: "Compare.", source: "The red dress costs $80. The blue dress costs $50.", instruction: "Use: The red dress … expensive …", accept: ["The red dress is more expensive than the blue dress.", "The red dress is more expensive than the blue one."], explanation: "**more expensive than**.", frame: "states", skill: "form" },
+    { id: "d22-p06", type: "order", prompt: "Put the words in order.", tiles: ["It's", "the", "most", "beautiful", "city", "I've", "ever", "seen."], explanation: "the most + adjective + noun + I've ever + V3.", frame: "states", skill: "word-order" },
+    { id: "d22-p07", type: "correct", prompt: "Fix the mistake.", wrong: "My sister is more young than me.", accept: ["My sister is younger than me.", "My sister is younger than I am."], explanation: "young → **younger**.", frame: "states", skill: "form" },
+    { id: "d22-p08", type: "correct", prompt: "Fix the mistake.", wrong: "This coffee is more better than that one.", accept: ["This coffee is better than that one.", "This coffee is much better than that one."], explanation: "No **more** with better.", frame: "states", skill: "form" },
+    { id: "d22-p09", type: "listen", prompt: "Listen and type.", audioText: "The new phone is much lighter than the old one.", accept: ["The new phone is much lighter than the old one."], explanation: "**much** + comparative.", frame: "states", skill: "listening" },
+    { id: "d22-p10", type: "speak", prompt: "Compare two options.", target: "The train is slower than the plane, but it's much cheaper.", explanation: "Two comparisons with but.", frame: "states", skill: "speaking" },
+    { id: "d22-p11", type: "translate", from: "az", prompt: "Translate into English.", source: "O, sinifdə ən ağıllı tələbədir.", accept: ["She is the smartest student in the class.", "He is the smartest student in the class.", "She's the smartest student in the class.", "He's the smartest student in the class.", "She is the cleverest student in the class.", "He is the cleverest student in the class."], explanation: "'ən …' → **the -est**.", frame: "states", skill: "writing" },
+  ],
+  vocabulary: [
+    { term: "much / far / a lot + comparative", meaning: "makes the difference bigger", example: "It's much cheaper online." },
+    { term: "a bit / slightly + comparative", meaning: "a small difference", example: "This one is slightly bigger." },
+    { term: "the … of all", meaning: "the top in the whole group", example: "This is the cheapest of all." },
+    { term: "value for money", meaning: "good quality for the price", example: "The small hotel is better value for money." },
+    { term: "by far", meaning: "with a big difference (superlative)", example: "It's by far the best option." },
+    { term: "the same as", meaning: "not different", example: "My phone is the same as yours." },
+  ],
+  dialogue: {
+    title: "Choosing a laptop",
+    setting: "Ali is buying a laptop and asks a shop assistant for advice.",
+    lines: [
+      { speaker: "Ali", line: "What's the difference between these two laptops?" },
+      { speaker: "Assistant", line: "This one is lighter and faster. That one is cheaper, but it's heavier." },
+      { speaker: "Ali", line: "Which one has the best battery?" },
+      { speaker: "Assistant", line: "This one. It's the most popular model this year — the battery lasts much longer." },
+      { speaker: "Ali", line: "Is it much more expensive?" },
+      { speaker: "Assistant", line: "About a hundred dollars more. But for a student, it's better value for money." },
+    ],
+    focus: ["lighter and faster", "it's heavier", "the best battery", "the most popular model", "much more expensive", "better value for money"],
+  },
+  review: [
+    { id: "d22-r01", type: "choice", prompt: "Choose the correct superlative.", options: ["the goodest", "the best", "the most good"], answer: 1, explanation: "good → **the best**.", frame: "states", skill: "form" },
+    { id: "d22-r02", type: "fill", prompt: "Complete with the comparative of happy.", sentence: "She seems ___ in her new job.", accept: ["happier"], traps: [{ text: "more happy", feedback: "happy → happier." }], explanation: "y → **ier**.", frame: "states", skill: "form" },
+    { id: "d22-r03", type: "transform", prompt: "Make a superlative sentence.", source: "Everest is high. No mountain is higher.", instruction: "Start with: Everest is", accept: ["Everest is the highest mountain in the world.", "Everest is the highest mountain."], explanation: "**the highest**.", frame: "states", skill: "form" },
+    { id: "d22-r04", type: "order", prompt: "Put the words in order.", tiles: ["I", "am", "smarter", "than", "he", "thinks."], explanation: "than + clause (original notes).", frame: "states", skill: "word-order" },
+    { id: "d22-r05", type: "correct", prompt: "Fix the mistake.", wrong: "He is more tall then his father.", accept: ["He is taller than his father.", "He's taller than his father."], explanation: "**taller than**.", frame: "states", skill: "form" },
+  ],
+};
+
+export default day22;
