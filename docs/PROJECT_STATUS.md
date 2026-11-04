@@ -1,5 +1,17 @@
 # Project status
 
+## November 2026 upgrade — games, rewards, speaking
+- **Brand:** 33English (storage keys still use `structa:` so nobody loses progress).
+- **Auth:** sign-up with email confirmation, sign-in, sign-out, password reset (`/forgot-password` → email → `/reset-password`), `token_hash` email links.
+- **Rewards (server-verified):** `supabase/migrations/20261104000000_gamification.sql` adds `xp_events`, `user_progress`, `user_badges`, `game_records`, `speaking_progress` (read-own RLS, no client writes) and server-only functions `grant_xp`, `record_game`, `record_speaking`, `reward_facts`. All XP goes through `POST /api/rewards`, which re-grades lesson reviews, re-checks crossword grids and replays Word Quest battles before granting. Needs `SUPABASE_SERVICE_ROLE_KEY` on the server.
+- **XP rules** (`src/lib/game/rewards.ts`): lesson 100 (+25 for ≥80%, +50 first perfect), level tests 150, stage 250, crossword 40/60/90 (+20 speed, −5 per hint), battles 50–140 first clear / 15 replay, speaking 40 / 10, word 5, daily challenge 30 (+50 for all three), weekly 150, streak milestones. Daily caps: games 400, words 50. Level curve in `levels.ts` = `level_for_xp` in SQL.
+- **Games:** `/play/crossword` (deterministic generator, 3 levels), `/play/quest` (4 worlds × 5 stages, 5 heroes, 5 question types, potions, shields, Power Strike, bosses). `/games` hub.
+- **Speaking:** `/speaking` — 20 topics with speaking card, natural answer, grammar-rich answer with frame highlighting and breakdown, vocabulary, timed practice with optional local recording.
+- **Dashboard:** Today shows level/XP/streak, daily + weekly challenges, play tiles with a recommended next step, course stage and frames learned, badges. `/profile` has stats, weekly XP chart, hero choice and all 27 badges.
+- **Tests:** 222 unit tests (incl. server reward logic with forged-claim cases), SQL tests for gamification security, 50 browser tests.
+- **Decision open:** games and speaking are currently free for everyone. Gating them behind Premium is a product decision.
+
+
 _Last updated: 27 October 2026._ This file is the hand-over point between work sessions: read it first, then continue from the code.
 
 ## Summary
