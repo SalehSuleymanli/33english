@@ -7,3 +7,15 @@ export const IconWords = () => (<svg {...P}><path d="M5 4.5h11a3 3 0 0 1 3 3v12H
 export const IconProgress = () => (<svg {...P}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>);
 export const IconChat = () => (<svg {...P}><path d="M4 5h16v11H9l-5 4V5Z" /></svg>);
 export const IconSettings = () => (<svg {...P}><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.6 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" /></svg>);
+export const IconGames = () => (<svg {...P}><path d="M7 9h10a4 4 0 0 1 4 4v1a3 3 0 0 1-5.4 1.8L14 14h-4l-1.6 1.8A3 3 0 0 1 3 14v-1a4 4 0 0 1 4-4Z" /><path d="M8 11.5v3M6.5 13h3" /><circle cx="16" cy="12.5" r=".6" fill="currentColor" /><circle cx="17.8" cy="14.2" r=".6" fill="currentColor" /></svg>);
+export const IconMic = () => (<svg {...P}><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" /></svg>);
+export const IconUser = () => (<svg {...P}><circle cx="12" cy="8" r="4" /><path d="M4 20a8 8 0 0 1 16 0" /></svg>);
+export const IconSword = () => (<svg {...P}><path d="M14.5 3.5H20v5.5L9.5 19.5l-5-5Z" /><path d="m7 17-3 3M5 13l6 6" /></svg>);
+export const IconGrid = () => (<svg {...P}><rect x="3.5" y="3.5" width="17" height="17" rx="2.5" /><path d="M3.5 9.2h17M3.5 14.8h17M9.2 3.5v17M14.8 3.5v17" /></svg>);
+export const IconFlame = () => (<svg {...P}><path d="M12 3c1.2 3.5 5 5.2 5 10a5 5 0 1 1-10 0c0-2.2 1-3.6 2.2-4.8.3 1.7 1.1 2.8 2.2 3.2C11 8.6 11.2 5.6 12 3Z" /></svg>);
+export const IconStar = () => (<svg {...P}><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9Z" /></svg>);
+export const IconBook = () => (<svg {...P}><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" /><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5" /></svg>);
+export const IconCheck = () => (<svg {...P}><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>);
+export const IconLock = () => (<svg {...P}><rect x="5" y="10.5" width="14" height="10" rx="2.5" /><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" /></svg>);
+
+export const CHALLENGE_ICON: Record<string, () => React.JSX.Element> = { book: IconBook, grid: IconGrid, sword: IconSword, mic: IconMic, star: IconStar, flame: IconFlame };

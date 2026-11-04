@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { SUPABASE_PUBLIC_KEY, SUPABASE_URL, isSupabaseConfigured } from "@/lib/env";
-import { SCENARIO_IDS, TOTAL_LESSON_DAYS } from "@/content/ids";
+import { SCENARIO_IDS, SPEAKING_TOPIC_IDS, TOTAL_LESSON_DAYS } from "@/content/ids";
 
 /** Unknown lesson / scenario ids get a real 404 status (not a streamed "soft" 404). */
 function isUnknownContent(pathname: string): boolean {
@@ -12,6 +12,8 @@ function isUnknownContent(pathname: string): boolean {
   }
   const sc = pathname.match(/^\/scenarios\/([^/]+)\/?$/);
   if (sc) return !(SCENARIO_IDS as readonly string[]).includes(sc[1]);
+  const sp = pathname.match(/^\/speaking\/([^/]+)\/?$/);
+  if (sp) return !(SPEAKING_TOPIC_IDS as readonly string[]).includes(sp[1]);
   return false;
 }
 

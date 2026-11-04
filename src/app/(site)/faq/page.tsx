@@ -5,8 +5,8 @@ import { FREE_DAYS } from "@/content/curriculum";
 export const metadata: Metadata = { title: "FAQ" };
 
 const FAQ: [string, string][] = [
-  ["Will I be fluent after 33 days?", "No — and be careful with anyone who promises that. After 33 days you will be able to build and change sentences in all six frames, ask and answer questions, connect ideas and handle common conversations. Fluency comes from using English over time; Structa gives you the structure to do that."],
-  ["What level do I need?", "Structa is for adults from beginner to intermediate. If you can read simple English, you can start. Beginners usually start at Day 1. If you already know the basics, the placement check suggests a later starting day."],
+  ["Will I be fluent after 33 days?", "No — and be careful with anyone who promises that. After 33 days you will be able to build and change sentences in all six frames, ask and answer questions, connect ideas and handle common conversations. Fluency comes from using English over time; 33English gives you the structure to do that."],
+  ["What level do I need?", "33English is for adults from beginner to intermediate. If you can read simple English, you can start. Beginners usually start at Day 1. If you already know the basics, the placement check suggests a later starting day."],
   ["Is the placement check an official level test?", "No. It's a quick estimate to suggest where to start. It is not a CEFR or IELTS assessment."],
   ["Do I need an account?", `No. You can start immediately and your progress is saved on this device. Create a free account to keep your progress safe and use it on other devices.`],
   ["What happens if I miss a day?", "Nothing bad. Your progress never resets, and the course waits for you. Streaks are optional — you can turn them off in settings."],

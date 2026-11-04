@@ -24,7 +24,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
-        <Link href="/" aria-label="Structa home" className="shrink-0">
+        <Link href="/" aria-label="33English home" className="shrink-0">
           <Logo />
         </Link>
         <nav aria-label="Main" className="ml-6 hidden items-center gap-1 lg:flex">
