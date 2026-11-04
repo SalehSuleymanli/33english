@@ -13,3 +13,4 @@ PSQL=(psql -h "$DATA" -p "$PORT" -U postgres -v ON_ERROR_STOP=1 -q)
 "${PSQL[@]}" -d structa_test -f "$HERE/local_auth_emulation.sql"
 for f in "$HERE"/../migrations/*.sql; do "${PSQL[@]}" -d structa_test -f "$f"; done
 "${PSQL[@]}" -d structa_test -f "$HERE/rls_test.sql"
+"${PSQL[@]}" -d structa_test -f "$HERE/gamification_test.sql"

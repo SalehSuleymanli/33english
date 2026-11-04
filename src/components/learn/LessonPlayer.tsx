@@ -6,6 +6,7 @@ import type { Exercise, Lesson } from "@/content/types";
 import { frameById, frameClass } from "@/content/frames";
 import { TOTAL_DAYS, isFreeDay } from "@/content/curriculum";
 import { useLearner } from "@/lib/learner/store";
+import { useRewards } from "@/lib/rewards/client";
 import { completeLesson, recordAnswer, saveVocab, startLesson, toggleBookmark } from "@/lib/learner/state";
 import { ExercisePlayer, type ExerciseOutcome } from "./ExercisePlayer";
 import { GuidedBuilder } from "./GuidedBuilder";
@@ -69,6 +70,8 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
   const [i, setI] = useState(0);
   const [resumeOffer, setResumeOffer] = useState<number | null>(null);
   const [reviewResults, setReviewResults] = useState<boolean[]>([]);
+  const [reviewAnswers, setReviewAnswers] = useState<Record<string, string>>({});
+  const { claim } = useRewards();
   const [practiceResults, setPracticeResults] = useState<boolean[]>([]);
   const [finalScore, setFinalScore] = useState<number | null>(null);
   const topRef = useRef<HTMLDivElement>(null);
@@ -101,6 +104,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
   const onAnswered = (ex: Exercise, kind: "practice" | "review") => (o: ExerciseOutcome) => {
     if (!o.graded) return;
     (kind === "review" ? setReviewResults : setPracticeResults)((r) => [...r, o.correct]);
+    if (kind === "review") setReviewAnswers((a) => ({ ...a, [ex.id]: o.answer }));
     dispatch((s) =>
       recordAnswer(s, {
         exerciseId: ex.id,
@@ -120,6 +124,8 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
     const score = r.length ? Math.round((r.filter(Boolean).length / r.length) * 100) : 100;
     setFinalScore(score);
     dispatch((s) => completeLesson(s, lesson.day, score));
+    // the server re-grades these answers before giving XP
+    void claim({ type: "lesson", day: lesson.day, answers: reviewAnswers });
     go(steps.length - 1);
   };
 
@@ -347,7 +353,10 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
                       <button
                         type="button"
                         disabled={saved}
-                        onClick={() => dispatch((s) => saveVocab(s, { term: v.term, meaning: v.meaning, example: v.example, day: lesson.day }))}
+                        onClick={() => {
+                          dispatch((s) => saveVocab(s, { term: v.term, meaning: v.meaning, example: v.example, day: lesson.day }));
+                          void claim({ type: "word", term: v.term }, undefined, { quiet: true });
+                        }}
                         className={`h-9 shrink-0 rounded-full px-3 text-sm font-bold ${saved ? "text-good" : "border border-line-strong hover:border-ink"}`}
                         aria-label={saved ? `${v.term} saved` : `Save ${v.term}`}
                       >

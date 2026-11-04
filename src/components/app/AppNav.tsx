@@ -4,16 +4,19 @@ import { usePathname } from "next/navigation";
 import { Logo, LogoMark } from "@/components/ui/Logo";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useLearner } from "@/lib/learner/store";
-import { IconChat, IconCourse, IconLab, IconPractice, IconProgress, IconSettings, IconToday, IconWords } from "./icons";
+import { IconChat, IconCourse, IconGames, IconLab, IconMic, IconPractice, IconProgress, IconSettings, IconToday, IconUser, IconWords } from "./icons";
 
 const ITEMS = [
   { href: "/today", label: "Today", Icon: IconToday, mobile: true },
   { href: "/course", label: "Course", Icon: IconCourse, mobile: true },
+  { href: "/games", label: "Games", Icon: IconGames, mobile: true },
+  { href: "/speaking", label: "Speaking", Icon: IconMic, mobile: true },
   { href: "/practice", label: "Practice", Icon: IconPractice, mobile: true },
-  { href: "/lab", label: "Lab", Icon: IconLab, mobile: true },
+  { href: "/lab", label: "Lab", Icon: IconLab, mobile: false },
   { href: "/scenarios", label: "Conversations", Icon: IconChat, mobile: false },
-  { href: "/words", label: "Words", Icon: IconWords, mobile: true },
+  { href: "/words", label: "Words", Icon: IconWords, mobile: false },
   { href: "/progress", label: "Progress", Icon: IconProgress, mobile: false },
+  { href: "/profile", label: "Profile", Icon: IconUser, mobile: false },
 ];
 
 const SYNC_LABEL = { local: "Saved on this device", syncing: "Saving…", synced: "Synced", offline: "Offline — will sync later", error: "Sync paused — retrying" } as const;
@@ -26,10 +29,10 @@ export function AppNav() {
     <>
       {/* desktop rail */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-line bg-paper px-3 py-5 md:flex">
-        <Link href="/" className="px-3" aria-label="Structa home">
+        <Link href="/" className="px-3" aria-label="33English home">
           <Logo />
         </Link>
-        <nav aria-label="App" className="mt-8 flex flex-col gap-0.5">
+        <nav aria-label="App" className="mt-6 flex min-h-0 flex-col gap-0.5 overflow-y-auto">
           {ITEMS.map(({ href, label, Icon }) => (
             <Link
               key={href}
@@ -58,13 +61,19 @@ export function AppNav() {
 
       {/* mobile top bar */}
       <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-line bg-paper/90 px-4 backdrop-blur md:hidden">
-        <Link href="/" aria-label="Structa home">
+        <Link href="/" aria-label="33English home">
           <LogoMark />
         </Link>
         <span className="ml-1 text-xs text-muted">{hydrated ? (user ? SYNC_LABEL[sync] : "Saved on this device") : ""}</span>
         <div className="ml-auto flex items-center">
-          <Link href="/progress" aria-label="Progress" className="grid size-10 place-items-center rounded-full text-muted hover:text-ink">
-            <IconProgress />
+          <Link href="/lab" aria-label="Sentence Lab" className="grid size-10 place-items-center rounded-full text-muted hover:text-ink">
+            <IconLab />
+          </Link>
+          <Link href="/words" aria-label="Words" className="grid size-10 place-items-center rounded-full text-muted hover:text-ink">
+            <IconWords />
+          </Link>
+          <Link href="/profile" aria-label="Profile" className="grid size-10 place-items-center rounded-full text-muted hover:text-ink">
+            <IconUser />
           </Link>
           <Link href="/settings" aria-label="Settings" className="grid size-10 place-items-center rounded-full text-muted hover:text-ink">
             <IconSettings />

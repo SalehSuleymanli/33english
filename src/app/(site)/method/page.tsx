@@ -20,7 +20,7 @@ export default function MethodPage() {
     <>
       <PageIntro title="Learn the frame, then change it">
         <p>
-          Most courses teach English as a long list of tenses and rules. Structa starts from a different idea: almost every English sentence is
+          Most courses teach English as a long list of tenses and rules. 33English starts from a different idea: almost every English sentence is
           built on one of six frames. Once you can build a frame, you can change it in a small number of predictable ways.
         </p>
       </PageIntro>

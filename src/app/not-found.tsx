@@ -5,7 +5,7 @@ import { button } from "@/components/ui/styles";
 export default function NotFound() {
   return (
     <main id="main" className="mx-auto flex min-h-dvh max-w-xl flex-col justify-center px-4 py-16">
-      <Link href="/" aria-label="Structa home">
+      <Link href="/" aria-label="33English home">
         <Logo />
       </Link>
       <p className="specimen mt-10 text-[2rem] leading-tight">

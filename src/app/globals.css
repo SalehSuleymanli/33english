@@ -167,3 +167,95 @@ body {
 }
 .anim-rise { animation: rise 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .anim-pop { animation: pop 260ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+/* ------------------------------------------------------------------ rewards & games */
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-14px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes zoom {
+  0% { opacity: 0; transform: scale(0.8); }
+  70% { opacity: 1; transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0.9; }
+}
+@keyframes shine {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.15); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes lunge {
+  0% { transform: translateX(0); }
+  40% { transform: translateX(46%) scale(1.06); }
+  100% { transform: translateX(0); }
+}
+@keyframes lunge-back {
+  0% { transform: translateX(0); }
+  40% { transform: translateX(-46%) scale(1.06); }
+  100% { transform: translateX(0); }
+}
+@keyframes hurt {
+  0%, 100% { transform: translateX(0); filter: none; }
+  20% { transform: translateX(-8px); filter: brightness(1.6) saturate(0.4); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-5px); filter: brightness(1.4) saturate(0.6); }
+  80% { transform: translateX(3px); }
+}
+@keyframes float-dmg {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(0.7); }
+  15% { opacity: 1; transform: translate(-50%, -10px) scale(1.15); }
+  100% { opacity: 0; transform: translate(-50%, -64px) scale(1); }
+}
+@keyframes faint {
+  to { opacity: 0; transform: translateY(18px) scale(0.6) rotate(-12deg); }
+}
+@keyframes cell-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+@keyframes drift {
+  from { transform: translateX(-10%); }
+  to { transform: translateX(110%); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--f-possession) 55%, transparent); }
+  100% { box-shadow: 0 0 0 14px transparent; }
+}
+
+.anim-drop { animation: drop 340ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.anim-zoom { animation: zoom 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.anim-bob { animation: bob 2.6s ease-in-out infinite; }
+.anim-lunge { animation: lunge 420ms cubic-bezier(0.3, 0.8, 0.3, 1); }
+.anim-lunge-back { animation: lunge-back 420ms cubic-bezier(0.3, 0.8, 0.3, 1); }
+.anim-hurt { animation: hurt 460ms ease-out; }
+.anim-faint { animation: faint 600ms ease-in forwards; }
+.anim-cell-pop { animation: cell-pop 320ms ease-out; }
+.anim-wiggle { animation: wiggle 260ms ease-in-out 2; }
+.anim-pulse-ring { animation: pulse-ring 1.4s ease-out infinite; }
+.confetti-bit { animation-name: confetti; animation-timing-function: cubic-bezier(0.3, 0.4, 0.6, 1); animation-fill-mode: both; }
+.float-dmg { animation: float-dmg 900ms ease-out forwards; }
+
+.xp-coin {
+  background: radial-gradient(circle at 35% 30%, #ffe9a3, #f5b82e 55%, #d48a0b);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15), 0 2px 6px -2px rgba(212, 138, 11, 0.6);
+  animation: shine 1.6s ease-in-out infinite;
+}
+.level-burst {
+  background: conic-gradient(from 0deg, var(--f-existence), var(--f-states), var(--f-modals), var(--f-actions), var(--f-possession), var(--f-passive), var(--f-existence));
+  box-shadow: 0 0 0 6px var(--surface), 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+}
+.game-surface {
+  background: radial-gradient(120% 90% at 50% 0%, color-mix(in oklab, var(--f-states) 12%, var(--paper)), var(--paper));
+}

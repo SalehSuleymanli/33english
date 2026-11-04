@@ -4,7 +4,7 @@ import { PageIntro } from "@/components/site/PageIntro";
 import { CURRICULUM, STAGES, isFreeDay } from "@/content/curriculum";
 import { frameById, frameClass } from "@/content/frames";
 
-export const metadata: Metadata = { title: "Curriculum", description: "All 33 days of the Structa course." };
+export const metadata: Metadata = { title: "Curriculum", description: "All 33 days of the 33English course." };
 
 export default function CurriculumPage() {
   return (

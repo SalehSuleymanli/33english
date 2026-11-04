@@ -16,14 +16,15 @@ export default function PrivacyPage() {
           <li>Account details: your email address and, if you add one, a display name.</li>
           <li>Learning data: lessons started and completed, your answers to exercises, review schedule, saved words and bookmarks, and settings such as your daily goal.</li>
           <li>Subscription data: your plan and its status, received from our payment provider. We never see or store your full card details.</li>
+          <li>Rewards and games: your XP, level, streak, badges, completed speaking topics, and game results (puzzles solved, battle stages cleared and stars).</li>
         </ul>
         <h2>Without an account</h2>
         <p>If you use {BRAND.name} without signing in, your progress is stored only in your browser on this device. It is not sent to us.</p>
         <h2>Speech features</h2>
         <p>
           Listening uses your device&apos;s built-in voices. Speaking practice uses your browser&apos;s speech recognition; depending on your browser,
-          the audio may be processed by the browser maker (for example Google or Apple) under their privacy terms. {BRAND.name} does not record
-          or store your voice.
+          the audio may be processed by the browser maker (for example Google or Apple) under their privacy terms. {BRAND.name} does not upload
+          or store your voice. If you record yourself in Speaking practice, the recording stays in your browser and disappears when you leave the page.
         </p>
         <h2>How we use your data</h2>
         <p>To run the course, save and sync your progress, schedule reviews, show your progress, manage your subscription, and respond to support requests. We do not sell your data.</p>

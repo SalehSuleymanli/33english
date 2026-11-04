@@ -2,9 +2,10 @@ import { expect, test } from "@playwright/test";
 import day01 from "../../src/content/lessons/day01";
 import day02 from "../../src/content/lessons/day02";
 import { answer, collectErrors } from "./helpers";
+import { generatePuzzle } from "../../src/lib/game/crossword";
 
-const PUBLIC = ["/", "/method", "/journey", "/curriculum", "/pricing", "/faq", "/privacy", "/terms", "/login", "/signup"];
-const APP = ["/today", "/course", "/practice", "/lab", "/words", "/progress", "/scenarios", "/settings", "/billing", "/onboarding", "/scenarios/first-meeting", "/learn/1"];
+const PUBLIC = ["/", "/method", "/journey", "/curriculum", "/pricing", "/faq", "/privacy", "/terms", "/login", "/signup", "/forgot-password", "/reset-password"];
+const APP = ["/today", "/course", "/practice", "/lab", "/words", "/progress", "/scenarios", "/settings", "/billing", "/onboarding", "/scenarios/first-meeting", "/learn/1", "/games", "/speaking", "/speaking/dream-house", "/profile", "/play/crossword", "/play/quest"];
 
 test.describe("routes", () => {
   for (const path of [...PUBLIC, ...APP]) {
@@ -19,7 +20,7 @@ test.describe("routes", () => {
   }
 
   test("unknown lesson days and scenarios are real 404s", async ({ page }) => {
-    for (const p of ["/learn/99", "/learn/0", "/learn/abc", "/scenarios/nope", "/no-such-page"]) {
+    for (const p of ["/learn/99", "/learn/0", "/learn/abc", "/scenarios/nope", "/speaking/nope", "/no-such-page"]) {
       const res = await page.goto(p);
       expect(res?.status(), p).toBe(404);
     }
@@ -224,5 +225,64 @@ test.describe("mobile @mobile", () => {
     }
     await page.goto("/today");
     await expect(page.getByRole("navigation", { name: "App" }).last()).toBeVisible();
+  });
+});
+
+test.describe("games and speaking", () => {
+  test("solve a crossword end to end", async ({ page }) => {
+    const errors = collectErrors(page);
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/play/crossword");
+    await page.getByRole("button", { name: /Play/ }).first().click();
+    const p = generatePuzzle("easy-1")!;
+    const acrossCount = p.entries.filter((e) => e.dir === "across").length;
+    const clues = page.locator("aside li button");
+    const n = await clues.count();
+    expect(n).toBe(p.entries.length);
+    for (let i = 0; i < n; i++) {
+      const num = parseInt(await clues.nth(i).innerText());
+      const e = p.entries.find((x) => x.num === num && x.dir === (i < acrossCount ? "across" : "down"))!;
+      await clues.nth(i).click();
+      for (const ch of e.answer) await page.keyboard.press(ch);
+    }
+    await expect(page.getByText("Brilliant!")).toBeVisible();
+    await expect(page.getByText(p.entries[0].example)).toBeVisible();
+    expect(errors).toEqual([]);
+  });
+
+  test("Word Quest: start a battle, answer, see feedback and a tip", async ({ page }) => {
+    const errors = collectErrors(page);
+    await page.goto("/play/quest");
+    await page.getByRole("button", { name: "Stage 1", exact: true }).click();
+    await expect(page.getByRole("progressbar", { name: /Pip health/ })).toBeVisible();
+    const attack = page.getByRole("button", { name: /Attack!/ });
+    if (await attack.isVisible()) {
+      const tiles = page.locator("section[aria-live] button.border-line-strong:not([disabled])");
+      while (await tiles.count()) await tiles.first().click();
+      await attack.click();
+    } else {
+      await page.locator("section[aria-live] .grid button").first().click();
+    }
+    await expect(page.getByText("💡").first()).toBeVisible();
+    expect(errors).toEqual([]);
+  });
+
+  test("speaking topic: grammar-rich answer highlights the frames", async ({ page }) => {
+    await page.goto("/speaking/dream-house");
+    await page.getByRole("tab", { name: "Grammar-rich answer" }).click();
+    await expect(page.getByRole("heading", { name: "Grammar breakdown" })).toBeVisible();
+    await expect(page.locator("mark").first()).toBeVisible();
+    await page.getByRole("tab", { name: "Speaking card" }).click();
+    await page.getByRole("button", { name: "Start practice" }).click();
+    await page.getByRole("button", { name: /ready to speak/ }).click();
+    await page.getByRole("button", { name: /finished/ }).click();
+    await expect(page.getByRole("button", { name: /Mark as completed/ })).toBeVisible();
+  });
+
+  test("rewards API refuses guests and bad claims", async ({ request }) => {
+    const get = await request.get("/api/rewards");
+    expect([401, 503]).toContain(get.status());
+    const post = await request.post("/api/rewards", { data: { type: "quest", stageId: "w1-s1" } });
+    expect([400, 503]).toContain(post.status());
   });
 });

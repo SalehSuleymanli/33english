@@ -26,7 +26,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
       <div className="rounded-[var(--radius-card)] border border-line bg-surface p-6">
         <h2 className="font-bold">Accounts aren&apos;t switched on yet</h2>
         <p className="mt-2 text-ink-2">
-          This copy of Structa isn&apos;t connected to an account service yet. You can still learn: your progress is saved on this device.
+          This copy of 33English isn&apos;t connected to an account service yet. You can still learn: your progress is saved on this device.
         </p>
         <Link href="/today" className={`${button("primary")} mt-5`}>
           Continue without an account
@@ -111,9 +111,16 @@ export function AuthForm({ mode }: { mode: Mode }) {
       <button type="submit" disabled={busy} className={button("primary", "lg")}>
         {busy ? "Please wait…" : useLink ? "Email me a sign-in link" : mode === "signup" ? "Create account" : "Sign in"}
       </button>
-      <button type="button" onClick={() => setUseLink((v) => !v)} className="text-sm font-bold text-muted underline-offset-4 hover:text-ink hover:underline">
-        {useLink ? "Use a password instead" : "Use an email link instead"}
-      </button>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <button type="button" onClick={() => setUseLink((v) => !v)} className="text-sm font-bold text-muted underline-offset-4 hover:text-ink hover:underline">
+          {useLink ? "Use a password instead" : "Use an email link instead"}
+        </button>
+        {mode === "login" && !useLink && (
+          <Link href="/forgot-password" className="text-sm font-bold text-muted underline-offset-4 hover:text-ink hover:underline">
+            Forgot password?
+          </Link>
+        )}
+      </div>
     </form>
   );
 }
@@ -122,5 +129,7 @@ function friendly(msg: string) {
   if (/invalid login/i.test(msg)) return "That email and password don't match. Check them, or use an email link instead.";
   if (/already registered/i.test(msg)) return "An account with this email already exists. Sign in instead.";
   if (/rate limit/i.test(msg)) return "Too many attempts. Wait a minute and try again.";
+  if (/email not confirmed/i.test(msg)) return "Please confirm your email first — check your inbox (and spam folder) for our message.";
+  if (/password should be|at least/i.test(msg)) return "Please choose a stronger password (at least 8 characters).";
   return msg;
 }

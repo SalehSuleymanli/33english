@@ -31,7 +31,7 @@ export default function Home() {
             Six frames build almost every English sentence.
           </h1>
           <p className="mt-5 max-w-xl text-lg text-ink-2">
-            Structa teaches you to construct sentences instead of memorizing rules. Learn six core frames, then change them — negative, question,
+            33English teaches you to construct sentences instead of memorizing rules. Learn six core frames, then change them — negative, question,
             past, future, perfect — in 33 short daily lessons.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
