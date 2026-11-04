@@ -20,7 +20,7 @@ export default function TermsPage() {
         <h2>Acceptable use</h2>
         <p>Don&apos;t copy or resell the course content, interfere with the service, or try to access other people&apos;s data.</p>
         <h2>Content</h2>
-        <p>The course content and the Structa method belong to {BRAND.name} and its founder. You may use them for your own learning.</p>
+        <p>The course content and the 33English method belong to {BRAND.name} and its founder. You may use them for your own learning.</p>
         <h2>Changes</h2>
         <p>We may update these terms. If changes are significant, we will tell you before they take effect.</p>
         <h2>Contact</h2>
