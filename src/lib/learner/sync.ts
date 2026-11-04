@@ -89,6 +89,7 @@ export async function push(sb: SupabaseClient, uid: string, s: LearnerState, d: 
       sb.from("profiles").upsert({
         id: uid,
         display_name: p.displayName ?? null,
+        avatar: p.avatar ?? "fox",
         native_language: p.nativeLanguage ?? null,
         daily_goal: p.dailyGoal,
         streaks_enabled: p.streaksEnabled,
@@ -248,6 +249,7 @@ export function fromRows(r: {
     const p = r.profile;
     s.profile = {
       displayName: (p.display_name as string) || undefined,
+      avatar: (p.avatar as string) || undefined,
       nativeLanguage: (p.native_language as string) || undefined,
       dailyGoal: (p.daily_goal as number) ?? 20,
       streaksEnabled: (p.streaks_enabled as boolean) ?? true,
