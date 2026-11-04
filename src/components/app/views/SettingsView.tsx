@@ -52,7 +52,7 @@ export function SettingsView() {
     const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `structa-progress-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `33english-progress-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(a.href);
   };
@@ -182,7 +182,7 @@ export function SettingsView() {
           Your data
         </h2>
         <div className="divide-y divide-line">
-          <Row title="Download your data" hint="Everything Structa stores about your learning, as a JSON file.">
+          <Row title="Download your data" hint="Everything 33English stores about your learning, as a JSON file.">
             <button type="button" onClick={exportData} className={button("secondary", "sm")}>
               Download
             </button>
