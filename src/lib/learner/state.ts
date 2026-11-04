@@ -18,6 +18,7 @@ export type PlacementResult = {
 
 export type Profile = {
   displayName?: string;
+  avatar?: string; // Word Quest hero shown on the profile
   nativeLanguage?: string; // ISO code, e.g. "az"
   dailyGoal: number; // items per day
   streaksEnabled: boolean;
