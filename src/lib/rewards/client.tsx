@@ -17,7 +17,8 @@ export type ClaimInput =
   | { type: "crossword"; puzzleId: string; answers: Record<string, string>; hints: number; seconds: number }
   | { type: "quest"; stageId: string; seed: number; hero: string; power: number; log: unknown[] }
   | { type: "speaking"; topicId: string }
-  | { type: "word"; term: string };
+  | { type: "word"; term: string }
+  | { type: "arena"; matchId: string };
 
 export type Celebration =
   | { id: number; type: "xp"; grants: Grant[]; total: number }
