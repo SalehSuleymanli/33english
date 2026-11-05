@@ -18,7 +18,7 @@ export type ClaimInput =
   | { type: "quest"; stageId: string; seed: number; hero: string; power: number; log: unknown[] }
   | { type: "speaking"; topicId: string }
   | { type: "word"; term: string }
-  | { type: "arena"; matchId: string };
+  | { type: "conquest"; matchId: string };
 
 export type Celebration =
   | { id: number; type: "xp"; grants: Grant[]; total: number }
