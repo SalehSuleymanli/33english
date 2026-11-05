@@ -6,6 +6,10 @@ import { CAPS } from "@/lib/game/rewards";
 import { EnemyArt, HeroArt } from "@/components/game/Creatures";
 import { useLearner } from "@/lib/learner/store";
 import type { HeroId } from "@/content/quest";
+import { WorldMap } from "@/components/game/WorldMap";
+
+// a mid-war snapshot for the card: each region's owner (-1 = free)
+const WAR_PREVIEW = [0, 0, 0, -1, 2, 1, 1, 1, 2, 2, 2, 1, 3, -1, 3, 3];
 
 export function GamesView() {
   const gp = useGameProgress();
@@ -22,17 +26,15 @@ export function GamesView() {
         <p className="mt-1 text-ink-2">Play to practise. Every game uses the same six frames and real everyday vocabulary.</p>
       </div>
 
-      <Link href="/play/arena" className="group relative block overflow-hidden rounded-[1.75rem] border border-line p-6 text-white shadow-lift transition-transform hover:-translate-y-1 sm:p-8" style={{ background: "linear-gradient(150deg, #3b2a8c, #7a3fc4 55%, #e84a5f)" }}>
-        <div aria-hidden className="pointer-events-none absolute -bottom-3 right-2 flex items-end">
-          {(["fox", "owl", "bear", "bunny", "turtle"] as const).map((h, i) => (
-            <HeroArt key={h} id={h} size={i === 2 ? 92 : 64} className={`-ml-4 ${i === 2 ? "anim-bob" : ""}`} mood="happy" />
-          ))}
+      <Link href="/play/conquest" className="group relative block overflow-hidden rounded-[1.75rem] border border-line text-white shadow-lift transition-transform hover:-translate-y-1" style={{ background: "linear-gradient(160deg, #0f1d3d, #2a1a4a 60%, #5a1e3a)" }}>
+        <div className="relative p-6 pb-2 sm:p-8 sm:pb-2">
+          <p className="text-xs font-black uppercase tracking-[0.16em] opacity-80">Live · 4 players · World conquest</p>
+          <h2 className="mt-1 text-[2rem] font-black leading-tight">Word Empires</h2>
+          <p className="mt-1 max-w-md opacity-90">Win English questions to claim land, attack your rivals and storm their capitals.</p>
+          <span className="mt-4 inline-flex rounded-full bg-[#e84a5f] px-6 py-3 font-black text-white shadow-[0_5px_0_#9c2438] transition group-hover:-translate-y-0.5">⚔️ Go to war</span>
         </div>
-        <div className="relative max-w-sm pb-16 sm:pb-0">
-          <p className="text-xs font-black uppercase tracking-[0.16em] opacity-80">Live · 5 players</p>
-          <h2 className="mt-1 text-[2rem] font-black leading-tight">English Arena</h2>
-          <p className="mt-1 opacity-90">Quick 2-minute trivia matches against other learners. Fast, right answers win.</p>
-          <span className="mt-4 inline-flex rounded-full bg-white px-6 py-3 font-black text-[#3b2a8c] transition group-hover:scale-[1.03]">Play Arena</span>
+        <div aria-hidden className="px-3 pb-3 opacity-90 sm:px-5 sm:pb-5">
+          <WorldMap owner={WAR_PREVIEW} towers={[3, 3, 3, 3]} />
         </div>
       </Link>
 
