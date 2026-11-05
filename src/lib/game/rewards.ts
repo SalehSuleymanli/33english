@@ -13,6 +13,7 @@ export type EventKind =
   | "crossword"
   | "quest_clear"
   | "quest_win"
+  | "arena"
   | "speaking"
   | "speaking_repeat"
   | "word_saved"

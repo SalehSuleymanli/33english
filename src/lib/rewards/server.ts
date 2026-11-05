@@ -1,4 +1,6 @@
 import "server-only";
+import { arenaResult } from "@/lib/arena/server";
+import { arenaXp, ordinal } from "@/lib/game/arena";
 /**
  * The only place XP is created. Every claim is re-checked here (lesson answers,
  * crossword grids, full battle replays) before public.grant_xp is called with
@@ -62,6 +64,7 @@ export const ClaimBody = z.discriminatedUnion("type", [
   }),
   z.object({ type: z.literal("speaking"), localDate: z.string(), topicId: z.string().max(60) }),
   z.object({ type: z.literal("word"), localDate: z.string(), term: z.string().max(120) }),
+  z.object({ type: z.literal("arena"), localDate: z.string(), matchId: z.string().uuid() }),
 ]);
 export type Claim = z.infer<typeof ClaimBody>;
 
@@ -344,6 +347,16 @@ export async function processClaim(admin: SupabaseClient, uid: string, premium: 
       if (!r.granted) await g.give("speaking_repeat", `${topic.id}@${date}`, XP.speakingRepeat, `Speaking practice: ${topic.title}`, { cap: CAPS.speaking_repeat, group: "speaking_repeat" });
       const { error } = await admin.rpc("record_speaking", { p_user: uid, p_topic: topic.id });
       if (error) throw new Error(error.message);
+      break;
+    }
+    case "arena": {
+      const res = await arenaResult(admin, uid, claim.matchId);
+      if (!res.finished) throw new ClaimError("The match isn't over yet", 409);
+      detail.rank = res.rank;
+      detail.correct = res.correct;
+      const xp = arenaXp(res.rank, res.correct);
+      const r = await g.give("arena", claim.matchId, xp, `Arena: ${ordinal(res.rank)} place`, { cap: CAPS.games, group: "games", meta: { rank: res.rank, correct: res.correct } });
+      if (r.granted && r.xp < xp) message = "You've reached today's game XP limit. Lessons and speaking still earn XP!";
       break;
     }
     case "word": {

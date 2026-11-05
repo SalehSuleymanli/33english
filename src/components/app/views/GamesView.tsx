@@ -22,6 +22,20 @@ export function GamesView() {
         <p className="mt-1 text-ink-2">Play to practise. Every game uses the same six frames and real everyday vocabulary.</p>
       </div>
 
+      <Link href="/play/arena" className="group relative block overflow-hidden rounded-[1.75rem] border border-line p-6 text-white shadow-lift transition-transform hover:-translate-y-1 sm:p-8" style={{ background: "linear-gradient(150deg, #3b2a8c, #7a3fc4 55%, #e84a5f)" }}>
+        <div aria-hidden className="pointer-events-none absolute -bottom-3 right-2 flex items-end">
+          {(["fox", "owl", "bear", "bunny", "turtle"] as const).map((h, i) => (
+            <HeroArt key={h} id={h} size={i === 2 ? 92 : 64} className={`-ml-4 ${i === 2 ? "anim-bob" : ""}`} mood="happy" />
+          ))}
+        </div>
+        <div className="relative max-w-sm pb-16 sm:pb-0">
+          <p className="text-xs font-black uppercase tracking-[0.16em] opacity-80">Live · 5 players</p>
+          <h2 className="mt-1 text-[2rem] font-black leading-tight">English Arena</h2>
+          <p className="mt-1 opacity-90">Quick 2-minute trivia matches against other learners. Fast, right answers win.</p>
+          <span className="mt-4 inline-flex rounded-full bg-white px-6 py-3 font-black text-[#3b2a8c] transition group-hover:scale-[1.03]">Play Arena</span>
+        </div>
+      </Link>
+
       <Link href="/play/quest" className="group relative block overflow-hidden rounded-[1.75rem] border border-line p-6 shadow-lift transition-transform hover:-translate-y-1 sm:p-8" style={{ background: `linear-gradient(160deg, ${worldNow.sky[0]}, ${worldNow.sky[1]})` }}>
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-20" style={{ background: worldNow.ground, borderRadius: "50% 50% 0 0 / 30px 30px 0 0" }} />
         <div className={`relative z-10 max-w-sm ${worldNow.id === 4 ? "text-white" : "text-[#1d2340]"}`}>
