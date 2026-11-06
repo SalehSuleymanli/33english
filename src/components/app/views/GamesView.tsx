@@ -9,7 +9,7 @@ import type { HeroId } from "@/content/quest";
 import { WorldMap } from "@/components/game/WorldMap";
 
 // a mid-war snapshot for the card: each region's owner (-1 = free)
-const WAR_PREVIEW = [0, 0, 0, -1, 2, 1, 1, 1, 2, 2, 2, 1, 3, -1, 3, 3];
+const WAR_PREVIEW = [0, 0, -1, 1, 1, 2, 2, 2, 2, 1, -1, 3, 3, 3, 3, -1];
 
 export function GamesView() {
   const gp = useGameProgress();
