@@ -10,12 +10,16 @@ import {
   REGIONS,
   STEPS,
   STEP_MS,
+  ESCALATION_ROUND,
+  FINAL_WAR_ROUND,
   conquestXp,
   initialBoard,
   legalTargets,
   matchQuestions,
+  matchSteps,
   replay,
   scoreOf,
+  standings,
   type Action,
 } from "@/lib/game/conquest";
 import { conquestAnswer, conquestPick, conquestResult, conquestState } from "@/lib/conquest/server";
@@ -52,24 +56,41 @@ describe("map and rules", () => {
 });
 
 describe("replay", () => {
-  test("bot-only matches always finish with every region accounted for", () => {
-    for (let seed = 1; seed <= 200; seed++) {
+  test("every war ends with ONE empire owning the whole world; the rest are ranked by survival", () => {
+    for (let seed = 1; seed <= 300; seed++) {
       const r = replay({ seed, names: NAMES, humanSeats: [], actions: [], start: 0, now: 10 ** 9 });
       expect(r.live.phase).toBe("done");
-      const total = [0, 1, 2, 3].reduce((n, s) => n + scoreOf(r.board, s), 0);
-      expect(total).toBeGreaterThan(0);
-      for (let s = 0; s < 4; s++) if (!r.board.alive[s]) expect(r.board.owner.filter((o) => o === s)).toHaveLength(0);
+      const alive = [0, 1, 2, 3].filter((s) => r.board.alive[s]);
+      expect(alive, `seed ${seed}`).toHaveLength(1);
+      expect(r.board.owner.every((o) => o === alive[0])).toBe(true);
+      const ranks = standings(r.board);
+      expect(ranks[0].seat).toBe(alive[0]);
+      // later eliminations rank higher
+      const outs = ranks.slice(1).map((x) => r.board.outAt[x.seat]!);
+      for (let i = 1; i < outs.length; i++) expect(outs[i - 1]).toBeGreaterThan(outs[i]);
     }
   });
-  test("a perfect human beats average bots most of the time", () => {
+  test("the war escalates: capitals weaken from round 4, any region can be hit from round 6", () => {
+    for (let seed = 1; seed <= 100; seed++) {
+      const r = replay({ seed, names: NAMES, humanSeats: [], actions: [], start: 0, now: 10 ** 9 });
+      for (const h of r.history) {
+        const step = matchSteps(seed).find((s) => s.index === h.step)!;
+        if (h.towerHit && step.round >= ESCALATION_ROUND && step.round < FINAL_WAR_ROUND) expect(h.towerHit.broken === 2 || h.towerHit.left === 0).toBe(true);
+        if (h.towerHit && step.round >= FINAL_WAR_ROUND) expect(h.towerHit.left).toBe(0);
+        if (h.kind === "final") expect(h.eliminated).not.toBeNull();
+      }
+    }
+    const b = initialBoard();
+    expect(legalTargets(b, 0, "duel", true).length).toBeGreaterThan(legalTargets(b, 0, "duel").length);
+  });
+  test("a perfect human usually rules the world", () => {
     let wins = 0;
     for (let seed = 1; seed <= 60; seed++) {
       const actions: Action[] = [];
       const qs = matchQuestions(seed);
       for (const s of STEPS) actions.push({ seat: 0, step: s.index, kind: "answer", value: qs[s.index].answer, ms: 900 });
       const r = replay({ seed, names: NAMES, humanSeats: [0], actions, start: 0, now: 10 ** 9 });
-      const best = Math.max(...[1, 2, 3].map((s) => scoreOf(r.board, s)));
-      if (scoreOf(r.board, 0) > best) wins++;
+      if (standings(r.board)[0].seat === 0) wins++;
     }
     expect(wins).toBeGreaterThan(40);
   });
@@ -157,7 +178,7 @@ describe("conquest server", () => {
   test("you can't answer someone else's duel", async () => {
     const admin = setup();
     // find a battle turn where seat 0 neither attacks nor defends
-    const firstDuel = STEPS.find((x) => x.kind === "duel" && x.attacker !== 0)!;
+    const firstDuel = matchSteps(4242).find((x) => x.kind === "duel" && x.attacker !== 0)!;
     const st = await conquestState(admin, ME, MATCH, at(firstDuel.index, PICK_MS + 100));
     if (st.step?.defender !== 0) await expect(conquestAnswer(admin, ME, MATCH, firstDuel.index, 0, at(firstDuel.index, PICK_MS + 200))).rejects.toMatchObject({ status: 403 });
   });
@@ -173,6 +194,28 @@ describe("conquest server", () => {
     vi.setSystemTime(at(1, 0));
     await expect(processClaim(admin, ME, false, { type: "conquest", localDate: "2026-11-07", matchId: MATCH }, "2026-11-07")).rejects.toMatchObject({ status: 409 });
     vi.useRealTimers();
+  });
+  test("an eliminated player can collect XP before the war ends; their place is final", async () => {
+    // find a seed where seat 0 (a slow, always-wrong human) is knocked out before the end
+    for (let seed = 1; seed <= 200; seed++) {
+      const r = replay({ seed, names: NAMES, humanSeats: [0], actions: [], start: 0, now: 10 ** 9 });
+      const out = r.board.outAt[0];
+      if (out === null) continue;
+      const fallStep = r.history.findIndex((h) => h.step === out);
+      if (fallStep >= r.history.length - 1) continue;
+      const admin = fakeAdmin({
+        conquest_matches: [{ id: MATCH, seed, fill_at: new Date(T0 + LOBBY_MS).toISOString(), start_at: null }],
+        conquest_players: [{ match_id: MATCH, user_id: ME, seat: 0, name: "Me", avatar: "fox" }],
+        conquest_actions: [],
+      });
+      const justAfter = START + (fallStep + 1) * STEP_MS + 100; // the turn after the fall
+      const res = await conquestResult(admin, ME, MATCH, justAfter);
+      expect(res.finished).toBe(true);
+      const final = standings(r.board).find((x) => x.seat === 0)!.rank;
+      expect(res.finished && res.rank).toBe(final);
+      return;
+    }
+    throw new Error("no early elimination found");
   });
   test("strangers can't see a match", async () => {
     await expect(conquestState(setup(), "someone-else", MATCH, T0)).rejects.toMatchObject({ status: 403 });

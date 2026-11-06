@@ -9,10 +9,12 @@ import {
   SEAT_COLORS,
   STEPS,
   matchBots,
-  rankPlayers,
   replay,
+  roundOfStep,
   safeAvatar,
   scoreOf,
+  stageOf,
+  standings,
   type Action,
   type ConquestState,
   type PlayerView,
@@ -84,13 +86,14 @@ export async function conquestState(admin: SupabaseClient, uid: string, matchId:
 
   if (L.lobby && now < L.fillAt) {
     const players: PlayerView[] = L.players
-      .map((p) => ({ seat: p.seat, name: p.name, avatar: safeAvatar(p.avatar), bot: false, me: p.user_id === uid, score: 0, regions: 1, towers: 3, alive: true, correct: 0, color: SEAT_COLORS[p.seat] }))
+      .map((p) => ({ seat: p.seat, name: p.name, avatar: safeAvatar(p.avatar), bot: false, me: p.user_id === uid, score: 0, regions: 1, towers: 3, alive: true, correct: 0, color: SEAT_COLORS[p.seat], rank: p.seat + 1, outRound: null }))
       .sort((a, b) => a.seat - b.seat);
     return { ...base, phase: "lobby", endsAt: L.fillAt, step: null, owner: [], towers: [], players, legal: [], myPick: null, canAnswer: false, myChoice: null, question: null, reveal: null, lastEvent: null, review: null };
   }
 
   const r = replay({ seed: L.match.seed, names: L.names, humanSeats: L.players.map((p) => p.seat), actions: L.actions, start: L.startAt, now });
   const b = r.board;
+  const ranks = standings(b);
   const players: PlayerView[] = Array.from({ length: SEATS }, (_, s) => {
     const human = L.players.find((p) => p.seat === s);
     const bot = L.bots.find((x) => x.seat === s);
@@ -106,6 +109,8 @@ export async function conquestState(admin: SupabaseClient, uid: string, matchId:
       alive: b.alive[s],
       correct: b.correct[s],
       color: SEAT_COLORS[s],
+      rank: ranks.find((x) => x.seat === s)!.rank,
+      outRound: roundOfStep(b.outAt[s]),
     };
   });
   const lastEvent = r.history.length ? r.history[r.history.length - 1].text : null;
@@ -133,7 +138,7 @@ export async function conquestState(admin: SupabaseClient, uid: string, matchId:
     ...common,
     phase: live.phase,
     endsAt: live.endsAt,
-    step: { index: live.step.index, total: STEPS.length, kind: live.step.kind, round: live.step.round, attacker: live.step.attacker, target: live.target, defender: live.defender },
+    step: { index: live.step.index, total: STEPS.length, kind: live.step.kind, stage: stageOf(live.step), round: live.step.round, attacker: live.attacker, target: live.target, defender: live.defender },
     legal: live.phase === "pick" && live.pickers.includes(mySeat) ? (live.legal[mySeat] ?? []) : [],
     myPick: myPickAct?.value ?? (live.step.kind === "duel" && live.step.attacker === mySeat ? live.target : null),
     canAnswer: live.phase === "question" && live.participants.includes(mySeat) && !myAnswer,
@@ -179,12 +184,17 @@ export async function conquestAnswer(admin: SupabaseClient, uid: string, matchId
   return { ok: true as const, step, choice };
 }
 
-/** Final placing for XP — only once the match is over. */
+/**
+ * Final placing for XP — once the war is over, or as soon as you are
+ * eliminated (your place can no longer change: everyone still standing will
+ * finish above you).
+ */
 export async function conquestResult(admin: SupabaseClient, uid: string, matchId: string, now = Date.now()) {
   const L = await load(admin, matchId, uid);
   const r = replay({ seed: L.match.seed, names: L.names, humanSeats: L.players.map((p) => p.seat), actions: L.actions, start: L.startAt, now });
-  if (r.live.phase !== "done") return { finished: false as const };
-  const ranked = rankPlayers(Array.from({ length: SEATS }, (_, s) => ({ seat: s, score: scoreOf(r.board, s), correct: r.board.correct[s] })));
-  const rank = ranked.findIndex((p) => p.seat === L.me.seat) + 1;
-  return { finished: true as const, rank, correct: r.board.correct[L.me.seat], score: scoreOf(r.board, L.me.seat) };
+  const me = L.me.seat;
+  const out = r.board.outAt[me] !== null && r.history.some((h) => h.eliminated === me);
+  if (r.live.phase !== "done" && !out) return { finished: false as const };
+  const rank = standings(r.board).find((x) => x.seat === me)!.rank;
+  return { finished: true as const, rank, correct: r.board.correct[me], score: scoreOf(r.board, me) };
 }
