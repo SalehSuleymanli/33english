@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BATTLE_ROUNDS, EXPAND_ROUNDS, PICK_MS, QUESTION_MS, Q_LABEL, REGIONS, SEATS, SEAT_COLORS, conquestXp, initialBoard, ordinal, rankPlayers, type ConquestState, type PlayerView } from "@/lib/game/conquest";
+import { BATTLE_ROUNDS, EXPAND_ROUNDS, PICK_MS, QUESTION_MS, Q_LABEL, REGIONS, SEATS, SEAT_COLORS, conquestXp, initialBoard, ordinal, type ConquestState, type PlayerView, type Stage } from "@/lib/game/conquest";
 import { useRewards } from "@/lib/rewards/client";
 import { HeroArt } from "./Creatures";
 import { GameBar } from "./GameBar";
@@ -11,6 +11,15 @@ import { button } from "@/components/ui/styles";
 
 type Claimed = { xp: number | null; message?: string };
 const WAR_BG = "linear-gradient(160deg, #0f1d3d, #2a1a4a 60%, #5a1e3a)";
+
+const STAGE: Record<Stage, { title: (round: number) => string; rule: string | null }> = {
+  expansion: { title: (r) => `Expansion · Round ${r} of ${EXPAND_ROUNDS}`, rule: null },
+  battle: { title: (r) => `Battle · Round ${r}`, rule: null },
+  escalation: { title: (r) => `⚠️ War escalation · Round ${r}`, rule: "War escalation: capitals now have at most 2 towers, and every won attack on a capital breaks 2." },
+  "final-war": { title: (r) => `🔥 Final war · Round ${r}`, rule: "Final war: attack any region on the map. Win an attack on a capital and you take the whole empire." },
+  "final-invasion": { title: () => "👑 Final invasion", rule: "Final invasion: the biggest empire marches on the smallest. The winner of the duel takes everything." },
+};
+const outLabel = (round: number | null) => (round === null ? "" : round > BATTLE_ROUNDS ? "fell in the final invasion" : `fell in round ${round}`);
 
 async function post(body: unknown) {
   const res = await fetch("/api/conquest", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -71,10 +80,10 @@ export function ConquestGame() {
         </section>
         <ol className="mt-6 grid gap-3 text-sm text-ink-2 sm:grid-cols-3">
           <Rule n={1} title="Expand" body={`${EXPAND_ROUNDS} rounds: pick empty land next to your empire, then answer. Right answers claim it — the fastest wins a clash.`} />
-          <Rule n={2} title="Attack" body={`${BATTLE_ROUNDS} battle rounds: on your turn, attack a neighbour. You and the defender answer the same question; the better answer wins the region.`} />
-          <Rule n={3} title="Storm capitals" body="Each capital has 3 towers. Knock them all down to take the whole empire. The biggest empire wins." />
+          <Rule n={2} title="Attack" body="On your turn, attack a neighbour. You and the defender answer the same question; the better answer wins the region." />
+          <Rule n={3} title="Conquer the world" body="Knock down a capital's 3 towers to take the whole empire. The war escalates until only one empire is left: the last one standing rules the world." />
         </ol>
-        <p className="mt-4 text-sm text-muted">If fewer than 4 people are online, friendly bots join so every match is full.</p>
+        <p className="mt-4 text-sm text-muted">A war lasts about 8–12 minutes. If fewer than 4 people are online, friendly bots join so every match is full.</p>
       </main>
     </>
   );
@@ -154,14 +163,16 @@ function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => vo
   }, [endsAt, serverNow >= (endsAt ?? Infinity) + 50, poll]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const claimedOnce = useRef(false);
+  const meNow = st?.players.find((p) => p.me);
+  const fallen = !!meNow && !meNow.alive && st?.phase !== "reveal";
   useEffect(() => {
-    if (st?.phase !== "done" || claimedOnce.current) return;
+    if ((st?.phase !== "done" && !fallen) || claimedOnce.current) return;
     claimedOnce.current = true;
     void claim({ type: "conquest", matchId }).then((r) => {
       const xp = r ? r.granted.filter((g) => g.kind === "conquest").reduce((n, g) => n + g.xp, 0) : 0;
       setClaimed({ xp, message: r?.message });
     });
-  }, [st?.phase, matchId, claim]);
+  }, [st?.phase, fallen, matchId, claim]);
 
   const act = async (body: Record<string, unknown>, patch: Partial<ConquestState>) => {
     if (busy || !st?.step) return;
@@ -198,11 +209,13 @@ function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => vo
   const attacker = by(step?.attacker);
   const defender = by(step?.defender);
   const arrow =
-    step?.kind === "duel" && step.target !== null && step.attacker !== null && st.phase !== "pick"
+    step && step.kind !== "expand" && step.target !== null && step.attacker !== null && (st.phase !== "pick" || step.kind === "final")
       ? { from: attackFrom(st.owner, step.attacker, step.target), to: step.target, color: SEAT_COLORS[step.attacker] }
       : null;
   const pins = st.reveal && step?.kind === "expand" ? Object.entries(st.reveal.picks).map(([seat, region]) => ({ seat: Number(seat), region })) : [];
-  const title = !step ? "Word Empires" : step.kind === "expand" ? `Expansion · Round ${step.round} of ${EXPAND_ROUNDS}` : `Battle · Round ${step.round} of ${BATTLE_ROUNDS}`;
+  const title = !step ? "Word Empires" : STAGE[step.stage].title(step.round);
+  const rule = step ? STAGE[step.stage].rule : null;
+  const me = st.players.find((p) => p.me);
 
   if (st.phase === "lobby") return <Lobby st={st} secs={secs} onCancel={leave} />;
 
@@ -212,6 +225,7 @@ function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => vo
       <main className="mx-auto grid w-full max-w-6xl flex-1 gap-3 px-3 pb-8 pt-3 lg:grid-cols-[1fr_22rem] lg:gap-5 lg:px-5">
         <div className="flex flex-col gap-3">
           <Players players={st.players} active={[step?.attacker ?? -1, step?.defender ?? -1]} />
+          {rule && <p className={`rounded-2xl px-4 py-2 text-center text-sm font-bold text-white ${step?.stage === "escalation" ? "bg-[#f0a020]/30" : "bg-[#e84a5f]/35"}`}>{rule}</p>}
           <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10">
             <WorldMap owner={st.owner} towers={st.towers} legal={st.myPick === null ? st.legal : []} picked={st.phase === "pick" ? st.myPick : null} onPick={pick} arrow={arrow} flash={st.reveal?.captured ?? []} pins={pins} />
             {st.phase === "countdown" && (
@@ -229,6 +243,16 @@ function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => vo
         </div>
 
         <aside className="lg:self-start">
+          {me && !me.alive && (
+            <div className="mb-3 rounded-[1.5rem] border border-white/10 bg-black/40 p-4 text-center text-white">
+              <p className="text-3xl">💀</p>
+              <p className="font-black">Your empire has fallen. You finished {ordinal(me.rank)}.</p>
+              <p className="mt-1 text-sm opacity-80">{claimed === null ? "Saving your XP…" : claimed.xp ? `+${claimed.xp} XP saved.` : "XP not saved."} Watch who rules the world, or leave.</p>
+              <button onClick={onExit} className="mt-3 rounded-full bg-white px-5 py-2 text-sm font-black text-[#2a1a4a]">
+                Leave the war
+              </button>
+            </div>
+          )}
           <div className="rounded-[1.5rem] border border-white/10 bg-surface p-4 shadow-lift sm:p-5">
             {st.phase === "countdown" && <p className="text-center font-bold">Get ready — your capital is the castle in your colour.</p>}
 
@@ -281,7 +305,7 @@ function Players({ players, active }: { players: PlayerView[]; active: number[] 
                 <span aria-label={`${p.towers} towers`}>{"♜".repeat(p.towers)}</span>
               </p>
             ) : (
-              <p className="text-xs font-bold opacity-90">💀 defeated</p>
+              <p className="text-xs font-bold opacity-90">💀 {outLabel(p.outRound)}</p>
             )}
           </div>
         </li>
@@ -303,6 +327,19 @@ function PickPanel({ st, secs, remaining, attacker, onPick }: { st: ConquestStat
   const step = st.step!;
   const mine = st.legal.length > 0;
   const verb = step.kind === "expand" ? "claim" : "attack";
+  if (step.kind === "final") {
+    const def = st.players.find((p) => p.seat === step.defender);
+    return (
+      <div className="text-center">
+        <p className="text-xs font-black uppercase tracking-[0.16em] text-[#e84a5f]">Final invasion</p>
+        <p className="mt-2 text-lg font-black">
+          👑 {attacker?.me ? "You march" : `${attacker?.name ?? "The biggest empire"} marches`} on {def?.me ? "your" : `${def?.name ?? "the smallest empire"}'s`} capital!
+        </p>
+        <p className="mt-1 text-sm text-muted">One duel. The winner takes the whole empire. {secs}s</p>
+        <Bar remaining={remaining} total={PICK_MS} />
+      </div>
+    );
+  }
   if (!mine) {
     return (
       <div className="text-center">
@@ -345,7 +382,7 @@ function DuelHeader({ st, attacker, defender }: { st: ConquestState; attacker: P
   const step = st.step!;
   if (step.kind === "expand")
     return <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.16em] text-muted">Everyone answers · right answers claim their land</p>;
-  const target = step.target !== null ? REGIONS[step.target].name : "";
+  const target = step.kind === "final" ? "Winner takes all" : step.target !== null ? REGIONS[step.target].name : "";
   return (
     <div className="mb-3 flex items-center justify-center gap-3 text-center">
       {attacker && (
@@ -481,9 +518,10 @@ function Lobby({ st, secs, onCancel }: { st: ConquestState; secs: number; onCanc
 }
 
 function Results({ st, claimed, onExit, onAgain }: { st: ConquestState; claimed: Claimed | null; onExit: () => void; onAgain: () => void }) {
-  const ranked = rankPlayers(st.players);
-  const rank = ranked.findIndex((p) => p.me) + 1;
-  const me = ranked[rank - 1];
+  const ranked = [...st.players].sort((a, b) => a.rank - b.rank);
+  const me = ranked.find((p) => p.me)!;
+  const rank = me.rank;
+  const emperor = ranked[0];
   return (
     <div className="min-h-dvh" style={{ background: WAR_BG }}>
       {rank === 1 && <Confetti />}
@@ -495,10 +533,8 @@ function Results({ st, claimed, onExit, onAgain }: { st: ConquestState; claimed:
           </div>
           <div className="p-6 sm:p-8">
             <p className="text-5xl">{rank === 1 ? "👑" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : "🛡️"}</p>
-            <h1 className="mt-2 text-[2rem] font-black leading-tight">{rank === 1 ? "Your empire rules the world!" : `You finished ${ordinal(rank)}`}</h1>
-            <p className="text-ink-2">
-              {me.regions} regions · {me.score} points · {me.correct} right answers
-            </p>
+            <h1 className="mt-2 text-[2rem] font-black leading-tight">{rank === 1 ? "You rule the world!" : `You finished ${ordinal(rank)}`}</h1>
+            <p className="text-ink-2">{rank === 1 ? `You conquered every empire with ${me.correct} right answers.` : `👑 ${emperor.name} rules the world. You ${outLabel(me.outRound)} with ${me.correct} right answers.`}</p>
             <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-surface-2 px-4 py-2 font-black">
               <span className="xp-coin grid size-7 place-items-center rounded-full text-[0.6rem] text-[#5b3a00]">XP</span>
               {claimed === null ? "Saving…" : claimed.xp ? `+${claimed.xp} XP` : `${conquestXp(rank, me.correct)} XP not saved`}
@@ -517,16 +553,15 @@ function Results({ st, claimed, onExit, onAgain }: { st: ConquestState; claimed:
         <section className="mt-6">
           <h2 className="mb-2 font-bold text-white">Final standings</h2>
           <ol className="flex flex-col gap-1 rounded-2xl border border-line bg-surface p-2">
-            {ranked.map((p, i) => (
+            {ranked.map((p) => (
               <li key={p.seat} className={`flex items-center gap-3 rounded-xl px-2 py-2 ${p.me ? "bg-[#7a3fc4]/10" : ""}`}>
-                <span className="w-5 text-center font-black text-muted">{i + 1}</span>
+                <span className="w-5 text-center font-black text-muted">{p.rank}</span>
                 <Avatar p={p} size={34} />
                 <span className="min-w-0 flex-1 truncate font-bold">
                   {p.me ? "You" : p.name}
                   {p.bot && <span className="ml-1.5 rounded-full bg-surface-2 px-1.5 text-[0.62rem] font-black uppercase text-muted">bot</span>}
                 </span>
-                <span className="text-sm text-muted">{p.alive ? `${p.regions} regions` : "💀"}</span>
-                <span className="w-14 text-right font-black tabular-nums">{p.score}</span>
+                <span className="text-right text-sm text-muted">{p.alive ? "👑 World emperor" : `💀 ${outLabel(p.outRound)}`}</span>
               </li>
             ))}
           </ol>
