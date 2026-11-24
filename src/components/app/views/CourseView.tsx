@@ -6,10 +6,12 @@ import { nextDay } from "@/lib/learner/state";
 import { CURRICULUM, STAGES, TOTAL_DAYS, isFreeDay, FREE_DAYS } from "@/content/curriculum";
 import { frameById, frameClass } from "@/content/frames";
 import { useEntitlement } from "@/components/app/useEntitlement";
+import { useT } from "@/lib/i18n/useLang";
 
 export function CourseView() {
   const { state, hydrated } = useLearner();
   const ent = useEntitlement();
+  const t = useT();
   const upNext = hydrated ? nextDay(state, TOTAL_DAYS) : 1;
   const doneCount = Object.values(state.lessons).filter((l) => l.status === "completed").length;
 
@@ -29,6 +31,17 @@ export function CourseView() {
         </p>
       )}
       {ent?.devUnlock && <p className="mt-3 rounded-lg bg-warn/10 p-2 text-sm text-warn">Development mode: all days unlocked (DEV_UNLOCK_ALL). This never applies in production.</p>}
+
+      <Link href="/intro" className="mt-6 flex items-start gap-3 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-line-strong">
+        <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-surface-2 text-sm font-bold" aria-hidden>
+          0
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-xs font-bold uppercase tracking-wide text-muted">{t("course.introDay")}</span>
+          <span className="block font-bold leading-snug">{t("course.introTitle")}</span>
+          <span className="mt-0.5 block text-sm text-ink-2">{t("intro.card")}</span>
+        </span>
+      </Link>
 
       <div className="mt-8 flex flex-col gap-10">
         {STAGES.map((st) => (

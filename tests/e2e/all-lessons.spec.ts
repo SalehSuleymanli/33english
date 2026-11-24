@@ -3,6 +3,7 @@
  * Needs all days unlocked: run against `DEV_UNLOCK_ALL=true next dev`
  * (see README → Testing). Skipped otherwise.
  */
+import { TEACH } from "../../src/content/teach/registry";
 import { expect, test } from "@playwright/test";
 import { LESSON_LIST } from "../../src/content/lessons/registry";
 import { answer } from "./helpers";
@@ -15,7 +16,7 @@ test.describe("every lesson can be completed with the authored answers", () => {
     test(`Day ${lesson.day}: ${lesson.title}`, async ({ page }) => {
       await page.goto(`/learn/${lesson.day}`);
       await page.getByRole("button", { name: "Start lesson" }).click();
-      const reading = lesson.forms.length ? 4 : 3;
+      const reading = (lesson.forms.length ? 4 : 3) + (TEACH[lesson.day] ? 1 : 0); // + the full explanation step
       for (let i = 0; i < reading; i++) await page.getByRole("button", { name: "Continue" }).click();
       for (const s of lesson.guided.steps) await page.getByRole("group", { name: s.label }).getByRole("button", { name: s.options[s.answer], exact: true }).click();
       await page.getByRole("button", { name: "Continue" }).click();

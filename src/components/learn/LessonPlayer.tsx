@@ -15,9 +15,11 @@ import { StructureDiagram } from "@/components/ui/StructureDiagram";
 import { SpeakButton } from "@/components/ui/Speak";
 import { button } from "@/components/ui/styles";
 import { Rich } from "@/components/ui/Rich";
+import { TeachView } from "./TeachView";
 
 type Step =
   | { kind: "intro" }
+  | { kind: "teach" }
   | { kind: "learn" }
   | { kind: "examples" }
   | { kind: "forms" }
@@ -31,6 +33,7 @@ type Step =
 
 const STEP_TITLE: Record<Step["kind"], string> = {
   intro: "Today",
+  teach: "Full explanation",
   learn: "The frame",
   examples: "Examples",
   forms: "Positive, negative, question",
@@ -54,6 +57,7 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
     const review = lesson.review.filter(show);
     return [
       { kind: "intro" },
+      ...(lesson.teach ? [{ kind: "teach" } as Step] : []),
       { kind: "learn" },
       { kind: "examples" },
       ...(lesson.forms.length ? [{ kind: "forms" } as Step] : []),
@@ -199,6 +203,12 @@ export function LessonPlayer({ lesson }: { lesson: Lesson }) {
                   </div>
                 </div>
               )}
+            </section>
+          )}
+
+          {step.kind === "teach" && lesson.teach && (
+            <section aria-labelledby="step-heading">
+              <TeachView teach={lesson.teach} />
             </section>
           )}
 

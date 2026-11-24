@@ -6,8 +6,9 @@ import "server-only";
  */
 import type { Exercise, Lesson } from "../types";
 import { LESSON_LIST } from "./registry";
+import { TEACH } from "../teach";
 
-const BY_DAY = new Map<number, Lesson>(LESSON_LIST.map((l) => [l.day, l]));
+const BY_DAY = new Map<number, Lesson>(LESSON_LIST.map((l) => [l.day, TEACH[l.day] ? { ...l, teach: TEACH[l.day] } : l]));
 const EXERCISES = new Map<string, { exercise: Exercise; day: number }>();
 for (const l of LESSON_LIST) for (const e of [...l.practice, ...l.review]) EXERCISES.set(e.id, { exercise: e, day: l.day });
 

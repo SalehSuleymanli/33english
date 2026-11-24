@@ -240,6 +240,8 @@ export type Lesson = {
   /** Optional sentence-lab seed IDs to explore after the lesson. */
   labSeeds?: string[];
   l10n?: { explanation?: Record<string, string[]> };
+  /** Full explanation in Azerbaijani and Russian (attached on the server, see content/teach). */
+  teach?: import("./teach/types").Teach;
 };
 
 export type LessonSummary = Pick<
