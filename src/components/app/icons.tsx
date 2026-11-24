@@ -16,6 +16,7 @@ export const IconFlame = () => (<svg {...P}><path d="M12 3c1.2 3.5 5 5.2 5 10a5 
 export const IconStar = () => (<svg {...P}><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.9Z" /></svg>);
 export const IconBook = () => (<svg {...P}><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z" /><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5" /></svg>);
 export const IconCheck = () => (<svg {...P}><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>);
+export const IconFlag = () => (<svg {...P}><path d="M5 21V4" /><path d="M5 4h11l-2 4 2 4H5" /></svg>);
 export const IconLock = () => (<svg {...P}><rect x="5" y="10.5" width="14" height="10" rx="2.5" /><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" /></svg>);
 
 export const CHALLENGE_ICON: Record<string, () => React.JSX.Element> = { book: IconBook, grid: IconGrid, sword: IconSword, mic: IconMic, star: IconStar, flame: IconFlame };

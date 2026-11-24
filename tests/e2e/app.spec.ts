@@ -5,7 +5,7 @@ import { answer, collectErrors } from "./helpers";
 import { generatePuzzle } from "../../src/lib/game/crossword";
 
 const PUBLIC = ["/", "/method", "/journey", "/curriculum", "/pricing", "/faq", "/privacy", "/terms", "/login", "/signup", "/forgot-password", "/reset-password"];
-const APP = ["/today", "/course", "/practice", "/lab", "/words", "/progress", "/scenarios", "/settings", "/billing", "/onboarding", "/scenarios/first-meeting", "/learn/1", "/games", "/speaking", "/speaking/dream-house", "/profile", "/play/crossword", "/play/quest"];
+const APP = ["/today", "/course", "/practice", "/lab", "/words", "/progress", "/scenarios", "/settings", "/billing", "/onboarding", "/scenarios/first-meeting", "/learn/1", "/games", "/speaking", "/speaking/dream-house", "/profile", "/play/crossword", "/play/quest", "/play/conquest", "/intro"];
 
 test.describe("routes", () => {
   for (const path of [...PUBLIC, ...APP]) {
@@ -34,7 +34,7 @@ test.describe("learning flow", () => {
     await page.goto("/learn/1");
     await page.getByRole("button", { name: "Start lesson" }).click();
     // reading steps until the guided builder
-    for (let i = 0; i < 4; i++) await page.getByRole("button", { name: "Continue" }).click();
+    for (let i = 0; i < 5; i++) await page.getByRole("button", { name: "Continue" }).click(); // the full explanation is the first step
     for (const s of day01.guided.steps) await page.getByRole("button", { name: s.options[s.answer], exact: true }).click();
     await expect(page.getByText(day01.guided.result).first()).toBeVisible();
     await page.getByRole("button", { name: "Continue" }).click();
@@ -78,7 +78,7 @@ test.describe("learning flow", () => {
   test("mistakes go into review, and review reschedules them", async ({ page }) => {
     await page.goto("/learn/2");
     await page.getByRole("button", { name: "Start lesson" }).click();
-    for (let i = 0; i < 4; i++) await page.getByRole("button", { name: "Continue" }).click();
+    for (let i = 0; i < 5; i++) await page.getByRole("button", { name: "Continue" }).click(); // the full explanation is the first step
     for (const s of day02.guided.steps) await page.getByRole("button", { name: s.options[s.answer], exact: true }).click();
     await page.getByRole("button", { name: "Continue" }).click();
     // answer the first practice item wrong, the second right

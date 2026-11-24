@@ -5,24 +5,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLearner } from "@/lib/learner/store";
 import { setProfile } from "@/lib/learner/state";
+import { LangSwitch } from "@/components/app/LangSwitch";
+import { useT } from "@/lib/i18n/useLang";
 import { getBrowserSupabase } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/env";
 import { useThemePref } from "@/components/ui/ThemeToggle";
 import { speak, useTtsSupported } from "@/components/ui/Speak";
 import { button, card } from "@/components/ui/styles";
-
-const LANGS = [
-  ["", "Not set"],
-  ["az", "Azerbaijani"],
-  ["tr", "Turkish"],
-  ["ru", "Russian"],
-  ["ar", "Arabic"],
-  ["fa", "Persian"],
-  ["es", "Spanish"],
-  ["pt", "Portuguese"],
-  ["zh", "Chinese"],
-  ["other", "Another language"],
-] as const;
 
 function Row({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
   return (
@@ -45,6 +34,7 @@ export function SettingsView() {
   const [msg, setMsg] = useState<string | null>(null);
   const p = state.profile;
   const upd = (x: Partial<typeof p>) => dispatch((s) => setProfile(s, x));
+  const t = useT();
 
   if (!hydrated) return <div className="h-64 animate-pulse rounded-2xl bg-surface-2" aria-busy="true" />;
 
@@ -140,14 +130,8 @@ export function SettingsView() {
               ))}
             </select>
           </Row>
-          <Row title="Your first language" hint="Adds translation exercises where they're available (currently Azerbaijani).">
-            <select className={field} value={p.nativeLanguage ?? ""} onChange={(e) => upd({ nativeLanguage: e.target.value || undefined })} aria-label="First language">
-              {LANGS.map(([v, l]) => (
-                <option key={v} value={v}>
-                  {l}
-                </option>
-              ))}
-            </select>
+          <Row title={t("lang.title")} hint={t("lang.hint")}>
+            <LangSwitch size="sm" />
           </Row>
           <Row title="Streaks" hint="Count days in a row. Turn off if it adds pressure — your progress never resets either way.">
             <Toggle on={p.streaksEnabled} onChange={(v) => upd({ streaksEnabled: v })} label="Streaks" />

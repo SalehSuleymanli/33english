@@ -5,6 +5,8 @@ import { useState } from "react";
 import { PLACEMENT, scorePlacement } from "@/content/placement";
 import { useLearner } from "@/lib/learner/store";
 import { recordAnswer, setProfile } from "@/lib/learner/state";
+import { LangSwitch } from "@/components/app/LangSwitch";
+import { useT } from "@/lib/i18n/useLang";
 import { summaryByDay, isFreeDay } from "@/content/curriculum";
 import { FRAMES } from "@/content/frames";
 import { button, card } from "@/components/ui/styles";
@@ -17,6 +19,7 @@ const BAND_TEXT = {
 
 export function OnboardingView() {
   const { dispatch, state } = useLearner();
+  const t = useT();
   const [stage, setStage] = useState<"intro" | "quiz" | "result">("intro");
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -55,22 +58,29 @@ export function OnboardingView() {
   if (stage === "intro")
     return (
       <div className="mx-auto max-w-xl">
-        <h1 className="text-[2.2rem] font-bold leading-tight tracking-[-0.02em]">Find your starting point</h1>
-        <p className="mt-3 text-lg text-ink-2">18 quick questions, about 4 minutes. It&apos;s an estimate to suggest where to begin — not an official level test. Skip any question you don&apos;t know; guessing makes the result less useful.</p>
+        <p className="text-sm font-bold">{t("lang.choose")}</p>
+        <div className="mt-2">
+          <LangSwitch />
+        </div>
+        <h1 className="mt-8 text-[2.2rem] font-bold leading-tight tracking-[-0.02em]">{t("onb.title")}</h1>
+        <p className="mt-3 text-lg text-ink-2">{t("onb.body")}</p>
+        <Link href="/intro" className="mt-3 inline-block font-bold underline underline-offset-4">
+          {t("onb.intro")} →
+        </Link>
         <label className="mt-6 block">
-          <span className="text-sm font-bold">What should we call you? (optional)</span>
+          <span className="text-sm font-bold">{t("onb.name")}</span>
           <input value={name} onChange={(e) => setName(e.target.value)} maxLength={80} className="mt-1 h-12 w-full rounded-xl border border-line-strong bg-surface px-4" />
         </label>
         <div className="mt-6 flex flex-wrap gap-3">
           <button type="button" onClick={() => setStage("quiz")} className={button("primary", "lg")}>
-            Start the check
+            {t("onb.start")}
           </button>
           <Link
             href="/learn/1"
             onClick={() => dispatch((s) => setProfile(s, { onboarded: true, displayName: name.trim() || s.profile.displayName }))}
             className={button("secondary", "lg")}
           >
-            Skip — start Day 1
+            {t("onb.skip")}
           </Link>
         </div>
       </div>
@@ -97,7 +107,7 @@ export function OnboardingView() {
             </button>
           ))}
           <button type="button" onClick={() => answer(-1)} className="mt-2 self-start text-sm font-bold text-muted underline underline-offset-4">
-            I don&apos;t know
+            {t("onb.dontKnow")}
           </button>
         </div>
       </div>
