@@ -5,7 +5,7 @@ import { answer, collectErrors } from "./helpers";
 import { generatePuzzle } from "../../src/lib/game/crossword";
 
 const PUBLIC = ["/", "/method", "/journey", "/curriculum", "/pricing", "/faq", "/privacy", "/terms", "/login", "/signup", "/forgot-password", "/reset-password"];
-const APP = ["/today", "/course", "/practice", "/lab", "/words", "/progress", "/scenarios", "/settings", "/billing", "/onboarding", "/scenarios/first-meeting", "/learn/1", "/games", "/speaking", "/speaking/dream-house", "/profile", "/play/crossword", "/play/quest", "/play/conquest", "/intro", "/play/drill/builder", "/play/drill/vocab", "/exams", "/exams/exam-final", "/reading", "/reading/rd-a1-memory"];
+const APP = ["/today", "/course", "/practice", "/lab", "/words", "/progress", "/scenarios", "/settings", "/billing", "/onboarding", "/scenarios/first-meeting", "/learn/1", "/games", "/speaking", "/speaking/dream-house", "/profile", "/play/crossword", "/play/quest", "/play/conquest", "/intro", "/play/drill/builder", "/play/drill/vocab", "/exams", "/exams/exam-final", "/reading", "/reading/rd-a1-memory", "/ielts", "/ielts/listening", "/ielts/speaking", "/ielts/speaking/work-career", "/ielts/reading", "/ielts/reading/ielts-r1-tea"];
 
 test.describe("routes", () => {
   for (const path of [...PUBLIC, ...APP]) {

@@ -288,7 +288,24 @@ const tfLabels = (q: Extract<TestQ, { type: "tfng" }>, t: T) => [
 
 function Question({ q, n, value, onChange, lang, t }: { q: TestQ; n: number; value: TestAnswer; onChange: (v: TestAnswer) => void; lang: Lang; t: T }) {
   const num = <span className="mr-2 font-black text-muted">{n}.</span>;
-  if (q.type === "choice" || q.type === "match")
+  if (q.type === "match")
+    return (
+      <label className="block">
+        <span className="specimen font-bold" lang="en">
+          {num}
+          {q.prompt}
+        </span>
+        <select value={typeof value === "number" ? value : ""} onChange={(e) => onChange(e.target.value === "" ? null : Number(e.target.value))} lang="en" className="mt-2 h-12 w-full rounded-xl border border-line-strong bg-surface px-3 focus:border-ink focus:outline-none">
+          <option value="">—</option>
+          {q.options.map((o, k) => (
+            <option key={k} value={k}>
+              {o}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  if (q.type === "choice")
     return (
       <fieldset>
         <legend className="specimen font-bold" lang="en">

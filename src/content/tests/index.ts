@@ -9,10 +9,16 @@ import { READING_ELEMENTARY } from "./reading-elementary";
 import { READING_INTERMEDIATE } from "./reading-intermediate";
 import { READING_UPPER } from "./reading-upper";
 import { READING_ADVANCED } from "./reading-advanced";
+import { IELTS_READING_TEA } from "../ielts/reading-1-tea";
+import { IELTS_READING_GREEN } from "../ielts/reading-2-green";
+import { IELTS_READING_HABITS } from "../ielts/reading-3-habits";
+import { IELTS_READING_WATER } from "../ielts/reading-4-water";
+import { IELTS_READING_BILINGUAL } from "../ielts/reading-5-bilingual";
 
 export const EXAMS: Test[] = [EXAM_FOUNDATION, EXAM_EXPANSION, EXAM_COMMUNICATION, EXAM_FINAL];
 export const READINGS: Test[] = [...READING_BEGINNER, ...READING_ELEMENTARY, ...READING_INTERMEDIATE, ...READING_UPPER, ...READING_ADVANCED];
-export const ALL_TESTS: Test[] = [...EXAMS, ...READINGS];
+export const IELTS_READINGS: Test[] = [IELTS_READING_TEA, IELTS_READING_GREEN, IELTS_READING_HABITS, IELTS_READING_WATER, IELTS_READING_BILINGUAL];
+export const ALL_TESTS: Test[] = [...EXAMS, ...READINGS, ...IELTS_READINGS];
 
 const BY_ID = new Map(ALL_TESTS.map((t) => [t.id, t]));
 export const testById = (id: string) => BY_ID.get(id);
@@ -27,3 +33,4 @@ export const LEVELS: { id: TestLevel; en: string; az: string; ru: string }[] = [
 
 export const EXAMS_IDS = EXAMS.map((t) => t.id);
 export const READING_IDS = READINGS.map((t) => t.id);
+export const IELTS_READING_IDS = IELTS_READINGS.map((t) => t.id);

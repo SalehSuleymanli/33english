@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useLearner } from "@/lib/learner/store";
 import { useT } from "@/lib/i18n/useLang";
 import type { UIKey } from "@/lib/i18n/ui";
-import { IconBook, IconCheck, IconChat, IconCourse, IconFlag, IconGames, IconLab, IconMic, IconPractice, IconProgress, IconSettings, IconToday, IconUser, IconWords } from "./icons";
+import { IconBook, IconCheck, IconStar, IconChat, IconCourse, IconFlag, IconGames, IconLab, IconMic, IconPractice, IconProgress, IconSettings, IconToday, IconUser, IconWords } from "./icons";
 
 const ITEMS: { href: string; label: UIKey; Icon: () => React.JSX.Element; mobile: boolean }[] = [
   { href: "/today", label: "nav.today", Icon: IconToday, mobile: true },
@@ -16,6 +16,7 @@ const ITEMS: { href: string; label: UIKey; Icon: () => React.JSX.Element; mobile
   { href: "/speaking", label: "nav.speaking", Icon: IconMic, mobile: true },
   { href: "/reading", label: "nav.reading", Icon: IconBook, mobile: false },
   { href: "/exams", label: "nav.exams", Icon: IconCheck, mobile: false },
+  { href: "/ielts", label: "nav.ielts", Icon: IconStar, mobile: false },
   { href: "/practice", label: "nav.practice", Icon: IconPractice, mobile: true },
   { href: "/lab", label: "nav.lab", Icon: IconLab, mobile: false },
   { href: "/scenarios", label: "nav.scenarios", Icon: IconChat, mobile: false },

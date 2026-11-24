@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { ALL_TESTS, READINGS, EXAMS } from "@/content/tests";
+import { ALL_TESTS, READINGS, EXAMS, IELTS_READINGS } from "@/content/tests";
+import { IELTS_SPEAKING } from "@/content/ielts";
 import { allQuestions, gradeTest, type TestAnswer } from "@/lib/tests/grade";
 import type { TestQ } from "@/content/tests/types";
 
@@ -39,6 +40,37 @@ describe("exams and reading tests", () => {
       expect(r.reading!.grammar.length).toBeGreaterThanOrEqual(3);
       const kinds = new Set(allQuestions(r).map((q) => q.type));
       for (const k of ["choice", "tfng", "short"]) expect(kinds.has(k as TestQ["type"]), `${r.id} has ${k}`).toBe(true);
+    }
+  });
+  test("Pre-IELTS reading: 5 full tests, 13 questions each, labelled paragraphs, at least 3 question types, long passages", () => {
+    expect(IELTS_READINGS).toHaveLength(5);
+    const types = new Set<string>();
+    for (const t of IELTS_READINGS) {
+      const qs = allQuestions(t);
+      expect(qs.length, t.id).toBe(13);
+      const words = t.passage!.paragraphs.join(" ").split(/\s+/).length;
+      expect(words, `${t.id} words`).toBeGreaterThan(650);
+      const kinds = new Set(qs.map((q) => (q.type === "tfng" && q.yesNo ? "yn" : q.type)));
+      expect(kinds.size, t.id).toBeGreaterThanOrEqual(3);
+      kinds.forEach((k) => types.add(k));
+      if (qs.some((q) => q.type === "match")) expect(t.passage!.labels?.length).toBe(t.passage!.paragraphs.length);
+    }
+    for (const k of ["tfng", "yn", "match", "choice", "fill", "short"]) expect(types.has(k), k).toBe(true);
+  });
+  test("Pre-IELTS speaking: 5 complete topics with Parts 1–3 and translations", () => {
+    expect(IELTS_SPEAKING.map((t) => t.id)).toEqual(["work-career", "education-learning", "technology-social-media", "travel-places", "hobbies-sports-free-time"]);
+    for (const t of IELTS_SPEAKING) {
+      expect(t.part1.length, t.id).toBeGreaterThanOrEqual(5);
+      expect(t.part3.length, t.id).toBeGreaterThanOrEqual(5);
+      for (const qa of [...t.part1, ...t.part3]) expect(qa.a.split(" ").length, qa.q).toBeGreaterThan(20);
+      expect(t.part2.prompts.length).toBeGreaterThanOrEqual(3);
+      const words = t.part2.answer.join(" ").split(/\s+/).length;
+      expect(words, `${t.id} part 2 words`).toBeGreaterThan(230);
+      expect(t.part2.translation.az).toHaveLength(t.part2.answer.length);
+      expect(t.part2.translation.ru).toHaveLength(t.part2.answer.length);
+      expect(t.part2.vocab.length).toBeGreaterThanOrEqual(6);
+      expect(t.part2.expressions.length).toBeGreaterThanOrEqual(4);
+      expect(t.part2.grammar.length).toBeGreaterThanOrEqual(4);
     }
   });
 });
