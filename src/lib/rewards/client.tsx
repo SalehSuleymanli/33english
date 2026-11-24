@@ -20,7 +20,8 @@ export type ClaimInput =
   | { type: "speaking"; topicId: string }
   | { type: "word"; term: string }
   | { type: "conquest"; matchId: string }
-  | { type: "drill"; game: DrillId; seed: number; answers: DrillAnswer[] };
+  | { type: "drill"; game: DrillId; seed: number; answers: DrillAnswer[] }
+  | { type: "test"; testId: string; answers: Record<string, string | number | null>; seconds: number };
 
 export type Celebration =
   | { id: number; type: "xp"; grants: Grant[]; total: number }

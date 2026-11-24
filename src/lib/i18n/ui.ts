@@ -11,6 +11,8 @@ export const UI = {
   "nav.today": { en: "Today", az: "Bu gün", ru: "Сегодня" },
   "nav.course": { en: "Course", az: "Kurs", ru: "Курс" },
   "nav.intro": { en: "Start here", az: "Buradan başlayın", ru: "Начните здесь" },
+  "nav.exams": { en: "Exams & Tests", az: "İmtahanlar", ru: "Экзамены" },
+  "nav.reading": { en: "Reading", az: "Oxu", ru: "Чтение" },
   "nav.games": { en: "Games", az: "Oyunlar", ru: "Игры" },
   "nav.speaking": { en: "Speaking", az: "Danışıq", ru: "Говорение" },
   "nav.practice": { en: "Practice", az: "Təkrar", ru: "Практика" },
@@ -20,6 +22,7 @@ export const UI = {
   "nav.progress": { en: "Progress", az: "İrəliləyiş", ru: "Прогресс" },
   "nav.profile": { en: "Profile", az: "Profil", ru: "Профиль" },
   "nav.settings": { en: "Settings", az: "Parametrlər", ru: "Настройки" },
+  "nav.menu": { en: "Menu", az: "Menyu", ru: "Меню" },
   "nav.home": { en: "33English home", az: "33English ana səhifə", ru: "Главная 33English" },
 
   // sync status
