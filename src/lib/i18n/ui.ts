@@ -62,6 +62,13 @@ export const UI = {
     ru: "Как устроен 33-дневный метод и как получить от него максимум.",
   },
 
+  // games hub
+  "games.lead": {
+    en: "Play to practise. Every game uses the same six frames and real everyday vocabulary.",
+    az: "Oynayaraq məşq edin. Hər oyun eyni altı çərçivəyə və real gündəlik lüğətə əsaslanır.",
+    ru: "Тренируйтесь в игре. Все игры построены на тех же шести рамках и реальной повседневной лексике.",
+  },
+
   // course
   "course.title": { en: "Course", az: "Kurs", ru: "Курс" },
   "course.day": { en: "Day", az: "Gün", ru: "День" },

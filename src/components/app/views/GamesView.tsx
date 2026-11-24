@@ -7,6 +7,10 @@ import { EnemyArt, HeroArt } from "@/components/game/Creatures";
 import { useLearner } from "@/lib/learner/store";
 import type { HeroId } from "@/content/quest";
 import { WorldMap } from "@/components/game/WorldMap";
+import { DRILL_IDS } from "@/lib/game/drills";
+import { DRILL_TEXT, DRILL_UI } from "@/content/l10n/drills";
+import { useDrillStats } from "@/lib/game/drillStats";
+import { useLang, useT } from "@/lib/i18n/useLang";
 
 // a mid-war snapshot for the card: each region's owner (-1 = free)
 const WAR_PREVIEW = [0, 0, -1, 1, 1, 2, 2, 2, 2, 1, -1, 3, 3, 3, 3, -1];
@@ -15,6 +19,9 @@ export function GamesView() {
   const gp = useGameProgress();
   const { snapshot } = useRewards();
   const { state } = useLearner();
+  const lang = useLang();
+  const t = useT();
+  const { stats } = useDrillStats();
   const hero = (state.profile.avatar ?? "fox") as HeroId;
   const nextStage = STAGES.find((s) => !gp.cleared.has(s.id));
   const worldNow = WORLDS.find((w) => w.id === (nextStage?.world ?? 4))!;
@@ -22,9 +29,36 @@ export function GamesView() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[2rem] font-bold leading-tight tracking-[-0.02em]">Games</h1>
-        <p className="mt-1 text-ink-2">Play to practise. Every game uses the same six frames and real everyday vocabulary.</p>
+        <h1 className="text-[2rem] font-bold leading-tight tracking-[-0.02em]">{t("nav.games")}</h1>
+        <p className="mt-1 text-ink-2">{t("games.lead")}</p>
       </div>
+
+      <section aria-labelledby="practice-games">
+        <h2 id="practice-games" className="text-xl font-bold">
+          {DRILL_UI.practiceGames[lang]}
+        </h2>
+        <p className="mt-0.5 text-sm text-ink-2">{DRILL_UI.practiceGamesBody[lang]}</p>
+        <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+          {DRILL_IDS.map((id) => {
+            const d = DRILL_TEXT[id];
+            const st = stats[id];
+            return (
+              <li key={id}>
+                <Link href={`/play/drill/${id}`} className="flex h-full items-start gap-3 rounded-2xl border border-line bg-surface p-4 transition hover:-translate-y-0.5 hover:border-line-strong">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-surface-2 text-2xl" aria-hidden>
+                    {d.icon}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-bold">{d.name[lang]}</span>
+                    <span className="block text-sm text-ink-2">{d.short[lang]}</span>
+                    <span className="mt-1 block text-xs font-bold text-muted">{st ? `${DRILL_UI.best[lang]}: ${st.best}% · ${DRILL_UI.plays[lang]}: ${st.plays}` : DRILL_UI.never[lang]}</span>
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
 
       <Link href="/play/conquest" className="group relative block overflow-hidden rounded-[1.75rem] border border-line text-white shadow-lift transition-transform hover:-translate-y-1" style={{ background: "linear-gradient(160deg, #0f1d3d, #2a1a4a 60%, #5a1e3a)" }}>
         <div className="relative p-6 pb-2 sm:p-8 sm:pb-2">
