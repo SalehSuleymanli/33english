@@ -1,4 +1,6 @@
 import "server-only";
+import { testById } from "@/content/tests";
+import { gradeTest } from "@/lib/tests/grade";
 import { DRILL_IDS, drillStars, drillXp, gradeRound } from "@/lib/game/drills";
 import { conquestResult } from "@/lib/conquest/server";
 import { conquestXp, ordinal } from "@/lib/game/conquest";
@@ -66,6 +68,13 @@ export const ClaimBody = z.discriminatedUnion("type", [
   z.object({ type: z.literal("speaking"), localDate: z.string(), topicId: z.string().max(60) }),
   z.object({ type: z.literal("word"), localDate: z.string(), term: z.string().max(120) }),
   z.object({ type: z.literal("conquest"), localDate: z.string(), matchId: z.string().uuid() }),
+  z.object({
+    type: z.literal("test"),
+    localDate: z.string(),
+    testId: z.string().max(60),
+    answers: z.record(z.string().max(20), z.union([z.string().max(300), z.number().int().min(-1).max(20), z.null()])),
+    seconds: z.number().int().min(0).max(14_400),
+  }),
   z.object({
     type: z.literal("drill"),
     localDate: z.string(),
@@ -355,6 +364,26 @@ export async function processClaim(admin: SupabaseClient, uid: string, premium: 
       if (!r.granted) await g.give("speaking_repeat", `${topic.id}@${date}`, XP.speakingRepeat, `Speaking practice: ${topic.title}`, { cap: CAPS.speaking_repeat, group: "speaking_repeat" });
       const { error } = await admin.rpc("record_speaking", { p_user: uid, p_topic: topic.id });
       if (error) throw new Error(error.message);
+      break;
+    }
+    case "test": {
+      const test = testById(claim.testId);
+      if (!test) throw new ClaimError("Unknown test");
+      const { score, total, percent } = gradeTest(test, claim.answers);
+      detail.score = percent;
+      detail.correct = score;
+      detail.total = total;
+      // history; skipped quietly if the database hasn't been updated for tests yet
+      const { error } = await admin.from("test_attempts").insert({ user_id: uid, test_id: test.id, kind: test.kind, score, total, percent, seconds: claim.seconds });
+      if (error && !/does not exist|schema cache/i.test(error.message)) throw new Error(error.message);
+      const [kind, xp, need] = test.kind === "exam" ? (["exam", XP.exam, test.passMark ?? 70] as const) : test.kind === "ielts-reading" ? (["ielts_reading", XP.ieltsReading, 60] as const) : (["reading", XP.reading, 60] as const);
+      if (percent < need) {
+        verified = false;
+        message = `${percent}% — reach ${need}% to earn XP for this test.`;
+        break;
+      }
+      const r = await g.give(kind, test.id, xp, `${test.title.en}: ${percent}%`, { meta: { score, total } });
+      if (!r.granted) message = "Result saved. XP for this test was already earned.";
       break;
     }
     case "drill": {

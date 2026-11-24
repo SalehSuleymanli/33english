@@ -15,6 +15,9 @@ export type EventKind =
   | "quest_win"
   | "conquest"
   | "drill"
+  | "exam"
+  | "reading"
+  | "ielts_reading"
   | "speaking"
   | "speaking_repeat"
   | "word_saved"
@@ -36,6 +39,9 @@ export const XP = {
   daily: 30,
   dailySweep: 50,
   weekly: 150,
+  exam: 150, // first pass of an exam
+  reading: 30, // first reading test at 60%+
+  ieltsReading: 60,
 };
 
 /** Daily caps (per local day) — enough for a great session, not for endless grinding. */
