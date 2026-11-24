@@ -14,6 +14,7 @@ export type EventKind =
   | "quest_clear"
   | "quest_win"
   | "conquest"
+  | "drill"
   | "speaking"
   | "speaking_repeat"
   | "word_saved"

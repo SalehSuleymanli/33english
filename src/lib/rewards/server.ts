@@ -1,4 +1,5 @@
 import "server-only";
+import { DRILL_IDS, drillStars, drillXp, gradeRound } from "@/lib/game/drills";
 import { conquestResult } from "@/lib/conquest/server";
 import { conquestXp, ordinal } from "@/lib/game/conquest";
 /**
@@ -65,6 +66,13 @@ export const ClaimBody = z.discriminatedUnion("type", [
   z.object({ type: z.literal("speaking"), localDate: z.string(), topicId: z.string().max(60) }),
   z.object({ type: z.literal("word"), localDate: z.string(), term: z.string().max(120) }),
   z.object({ type: z.literal("conquest"), localDate: z.string(), matchId: z.string().uuid() }),
+  z.object({
+    type: z.literal("drill"),
+    localDate: z.string(),
+    game: z.enum(DRILL_IDS),
+    seed: z.number().int().min(1).max(2_147_483_647),
+    answers: z.array(z.union([z.number().int().min(-1).max(20), z.string().max(300), z.array(z.number().int().min(-1).max(20)).max(10), z.null()])).max(20),
+  }),
 ]);
 export type Claim = z.infer<typeof ClaimBody>;
 
@@ -347,6 +355,25 @@ export async function processClaim(admin: SupabaseClient, uid: string, premium: 
       if (!r.granted) await g.give("speaking_repeat", `${topic.id}@${date}`, XP.speakingRepeat, `Speaking practice: ${topic.title}`, { cap: CAPS.speaking_repeat, group: "speaking_repeat" });
       const { error } = await admin.rpc("record_speaking", { p_user: uid, p_topic: topic.id });
       if (error) throw new Error(error.message);
+      break;
+    }
+    case "drill": {
+      const { points, total, percent } = gradeRound(claim.game, claim.seed, claim.answers);
+      const xp = drillXp(points, total);
+      const stars = drillStars(percent);
+      detail.score = percent;
+      detail.stars = stars;
+      if (!xp) {
+        verified = false;
+        message = `${points} of ${total} — score at least 30% to earn XP.`;
+      } else {
+        const r = await g.give("drill", `${claim.game}:${claim.seed}`, xp, `Practice game: ${percent}%`, { cap: CAPS.games, group: "games", meta: { game: claim.game, points, total } });
+        if (!r.granted) message = "You've already played this round — no extra XP this time.";
+        else if (r.xp < xp) message = "You've reached today's game XP limit. Lessons and speaking still earn XP!";
+      }
+      // best score per game; skipped quietly if the database hasn't been updated for practice games yet
+      const { error } = await admin.rpc("record_game", { p_user: uid, p_game: "drill", p_ref: claim.game, p_score: percent, p_stars: stars, p_won: percent >= 50, p_time_ms: null });
+      if (error && !/check constraint|violates/i.test(error.message)) throw new Error(error.message);
       break;
     }
     case "conquest": {

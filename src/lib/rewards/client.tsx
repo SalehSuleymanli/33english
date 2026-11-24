@@ -10,6 +10,7 @@ import { useLearner } from "@/lib/learner/store";
 import { dayKey } from "@/lib/learner/state";
 import { isSupabaseConfigured } from "@/lib/env";
 import { badgeById } from "@/lib/game/rewards";
+import type { DrillAnswer, DrillId } from "@/lib/game/drills";
 import type { ClaimResponse, Grant, RewardsSnapshot } from "./types";
 
 export type ClaimInput =
@@ -18,7 +19,8 @@ export type ClaimInput =
   | { type: "quest"; stageId: string; seed: number; hero: string; power: number; log: unknown[] }
   | { type: "speaking"; topicId: string }
   | { type: "word"; term: string }
-  | { type: "conquest"; matchId: string };
+  | { type: "conquest"; matchId: string }
+  | { type: "drill"; game: DrillId; seed: number; answers: DrillAnswer[] };
 
 export type Celebration =
   | { id: number; type: "xp"; grants: Grant[]; total: number }
