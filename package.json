@@ -12,7 +12,8 @@
     "test:lessons": "E2E_ALL_LESSONS=1 E2E_PORT=3300 playwright test tests/e2e/all-lessons.spec.ts --project=desktop",
     "test:rls": "bash supabase/tests/run-local.sh",
     "typecheck": "tsc --noEmit",
-    "gen:registry": "python3 scripts/gen-registry.py"
+    "gen:registry": "python3 scripts/gen-registry.py",
+    "gen:teach": "python3 scripts/gen-teach.py"
   },
   "dependencies": {
     "@fontsource-variable/atkinson-hyperlegible-next": "5.3.0",
