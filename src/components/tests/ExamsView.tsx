@@ -73,6 +73,11 @@ export function ExamsView() {
           <span className="mt-1 block text-sm text-ink-2">{TXT.comprehensionBody[lang]}</span>
           <span className="mt-2 block text-sm font-bold underline underline-offset-4">{TXT.openReading[lang]} →</span>
         </Link>
+        <Link href="/ielts" className={`${card} p-4 hover:border-line-strong`}>
+          <span className="block font-bold">🎓 {TXT.ielts[lang]}</span>
+          <span className="mt-1 block text-sm text-ink-2">{TXT.ieltsBody[lang]}</span>
+          <span className="mt-2 block text-sm font-bold underline underline-offset-4">{TXT.open[lang]} →</span>
+        </Link>
       </section>
 
       <section>

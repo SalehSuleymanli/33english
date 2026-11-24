@@ -13,6 +13,7 @@ export const UI = {
   "nav.intro": { en: "Start here", az: "Buradan başlayın", ru: "Начните здесь" },
   "nav.exams": { en: "Exams & Tests", az: "İmtahanlar", ru: "Экзамены" },
   "nav.reading": { en: "Reading", az: "Oxu", ru: "Чтение" },
+  "nav.ielts": { en: "Pre-IELTS", az: "Pre-IELTS", ru: "Pre-IELTS" },
   "nav.games": { en: "Games", az: "Oyunlar", ru: "Игры" },
   "nav.speaking": { en: "Speaking", az: "Danışıq", ru: "Говорение" },
   "nav.practice": { en: "Practice", az: "Təkrar", ru: "Практика" },
