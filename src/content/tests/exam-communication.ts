@@ -5,9 +5,9 @@ export const EXAM_COMMUNICATION: Test = {
   kind: "exam",
   title: { en: "Communication grammar exam", az: "Ünsiyyət qrammatika imtahanı", ru: "Экзамен «Общение»" },
   description: {
-    en: "Days 22–33: comparisons, relative clauses, conditionals, feelings, connectors, preferences, reported speech and storytelling.",
-    az: "22–33-cü günlər: müqayisə, nisbi cümlələr, şərt cümlələri, hisslər, bağlayıcılar, üstünlük, dolayı nitq və hekayə.",
-    ru: "Дни 22–33: сравнения, относительные придаточные, условные предложения, чувства, связки, предпочтения, косвенная речь и рассказ.",
+    en: "Days 20–33: feelings, conditionals, used to, preferences, connectors, -ing or to, modal + have + V3, complex passives, reported speech and storytelling.",
+    az: "20–33-cü günlər: hisslər, şərt cümlələri, used to, üstünlük, bağlayıcılar, -ing və ya to, modal + have + V3, mürəkkəb passive, dolayı nitq və hekayə.",
+    ru: "Дни 20–33: чувства, условные предложения, used to, предпочтения, связки, -ing или to, модальный + have + V3, сложный пассив, косвенная речь и рассказ.",
   },
   minutes: 20,
   timed: true,
@@ -16,10 +16,6 @@ export const EXAM_COMMUNICATION: Test = {
     {
       title: "Part 1 — Choose the correct answer",
       questions: [
-        { id: "c01", type: "choice", skill: "comparatives", prompt: "This is ___ film I've ever seen.", options: ["the worse", "the worst", "worst", "the most bad"], answer: 1, why: { az: "Üstünlük dərəcəsi + ever seen → the worst.", ru: "Превосходная степень + ever seen → the worst." } },
-        { id: "c02", type: "choice", skill: "comparatives", prompt: "The train is ___ faster than the bus.", options: ["very", "much", "more", "most"], answer: 1, why: { az: "Müqayisə dərəcəsindən əvvəl much (very yox).", ru: "Перед сравнительной степенью — much (не very)." } },
-        { id: "c03", type: "choice", skill: "as-as", prompt: "My new phone isn't ___ my old one.", options: ["as good as", "as better as", "so good like", "good as"], answer: 0, why: { az: "not as + sifət + as.", ru: "not as + прилагательное + as." } },
-        { id: "c04", type: "choice", skill: "relative", prompt: "That's the woman ___ son plays for the national team.", options: ["who", "which", "whose", "that"], answer: 2, why: { az: "Sahiblik → whose (kimin oğlu).", ru: "Принадлежность → whose (чей сын)." } },
         { id: "c05", type: "choice", skill: "conditionals", prompt: "If it ___ tomorrow, we'll cancel the picnic.", options: ["will rain", "rains", "rained", "would rain"], answer: 1, why: { az: "If hissəsində will yox → Present Simple.", ru: "В части с if нет will → Present Simple." } },
         { id: "c06", type: "choice", skill: "conditionals", prompt: "If I ___ you, I'd take the job.", options: ["am", "was being", "were", "will be"], answer: 2, why: { az: "Xəyali vəziyyət → If I were you.", ru: "Нереальная ситуация → If I were you." } },
         { id: "c07", type: "choice", skill: "conditionals", prompt: "If we had left earlier, we ___ the train.", options: ["wouldn't miss", "won't miss", "wouldn't have missed", "didn't miss"], answer: 2, why: { az: "Keçmiş xəyali şərt → would have + V3.", ru: "Нереальное прошлое → would have + V3." } },
@@ -28,21 +24,25 @@ export const EXAM_COMMUNICATION: Test = {
         { id: "c10", type: "choice", skill: "preferences", prompt: "I'd rather ___ at home tonight.", options: ["stay", "to stay", "staying", "stayed"], answer: 0, why: { az: "Would rather + V1 (to yoxdur).", ru: "Would rather + V1 (без to)." } },
         { id: "c11", type: "choice", skill: "reported", prompt: "She asked me where ___.", options: ["did I live", "I lived", "do I live", "I did live"], answer: 1, why: { az: "Dolayı sualda düz söz sırası, did yoxdur.", ru: "В косвенном вопросе прямой порядок, без did." } },
         { id: "c12", type: "choice", skill: "story", prompt: "When we got to the cinema, the film ___.", options: ["already started", "has already started", "had already started", "was already start"], answer: 2, why: { az: "Daha əvvəl olmuş hadisə → Past Perfect.", ru: "Событие, случившееся раньше → Past Perfect." } },
+        { id: "x09", type: "choice", skill: "used-to", prompt: "After a year in London, she ___ driving on the left.", options: ["used to", "is used to", "use to", "was use to"], answer: 1, why: { az: "Öyrəşmiş olmaq → be used to + -ing.", ru: "Быть привыкшим → be used to + -ing." } },
+        { id: "x10", type: "choice", skill: "modal-past", prompt: "The lights are off. They ___ gone to bed.", options: ["should have", "must have", "can't have", "would"], answer: 1, why: { az: "Əlamətə əsasən əminlik → must have + V3.", ru: "Уверенность по признакам → must have + V3." } },
+        { id: "x11", type: "choice", skill: "modal-past", prompt: "I failed the test. I ___ studied harder.", options: ["must have", "should have", "could", "might"], answer: 1, why: { az: "Peşmanlıq → should have + V3.", ru: "Сожаление → should have + V3." } },
+        { id: "x12", type: "choice", skill: "passive", prompt: "The new hospital ___ at the moment.", options: ["is building", "is being built", "has built", "builds"], answer: 1, why: { az: "Prosesdə olan passive → is being + V3.", ru: "Пассив в процессе → is being + V3." } },
       ],
     },
     {
       title: "Part 2 — Complete the sentence",
       questions: [
-        { id: "c13", type: "fill", skill: "comparatives", prompt: "Baku is ___ (big) city in the Caucasus.", accept: ["the biggest", "the largest"], why: { az: "Üstünlük dərəcəsi: the biggest.", ru: "Превосходная степень: the biggest." } },
         { id: "c14", type: "fill", skill: "connectors", prompt: "I'm not sure ___ I should accept the offer. (whether / despite)", accept: ["whether", "if"], why: { az: "İki variant arasında şübhə → whether.", ru: "Сомнение между вариантами → whether." } },
         { id: "c15", type: "fill", skill: "ing-to", prompt: "Would you mind ___ (close) the window?", accept: ["closing"], why: { az: "Mind + -ing.", ru: "Mind + -ing." } },
         { id: "c16", type: "fill", skill: "reported", prompt: "\"I will call you.\" → He said he ___ call me.", accept: ["would"], why: { az: "Said-dən sonra will → would.", ru: "После said: will → would." } },
+        { id: "x14", type: "fill", skill: "used-to", prompt: "I ___ (use) to have long hair when I was a student.", accept: ["used"], why: { az: "Keçmiş vərdiş → used to.", ru: "Привычка в прошлом → used to." } },
+        { id: "x15", type: "fill", skill: "passive", prompt: "Your parcel ___ (deliver) yet. It's still at the warehouse.", accept: ["hasn't been delivered", "has not been delivered"], why: { az: "Yet + inkar + passive → hasn't been + V3.", ru: "Yet + отрицание + пассив → hasn't been + V3." } },
       ],
     },
     {
       title: "Part 3 — Find and correct the mistake",
       questions: [
-        { id: "c17", type: "correct", skill: "relative", prompt: "The book that I bought it was very expensive.", accept: ["The book that I bought was very expensive.", "The book I bought was very expensive.", "The book which I bought was very expensive."], why: { az: "That artıq it-in yerini tutur; it təkrar olunmur.", ru: "That уже заменяет it; it не повторяется." } },
         { id: "c18", type: "correct", skill: "preferences", prompt: "Neither of my friends didn't come.", accept: ["Neither of my friends came."], why: { az: "Neither özü inkardır.", ru: "Neither — уже отрицание." } },
         { id: "c19", type: "correct", skill: "feelings", prompt: "I'm interesting in history.", accept: ["I'm interested in history.", "I am interested in history."], why: { az: "Hiss → interested.", ru: "Чувство → interested." } },
       ],
@@ -51,8 +51,8 @@ export const EXAM_COMMUNICATION: Test = {
       title: "Part 4 — Rewrite the sentence",
       questions: [
         { id: "c20", type: "transform", skill: "reported", prompt: "\"Please don't be late,\" my boss said to me.", instruction: { en: "Report it: My boss told me…", az: "Dolayı nitqə çevirin: My boss told me…", ru: "Передайте косвенно: My boss told me…" }, accept: ["My boss told me not to be late."], why: { az: "told + şəxs + not to + V1.", ru: "told + человек + not to + V1." } },
-        { id: "c21", type: "transform", skill: "relative", prompt: "I met a man. He works at NASA.", instruction: { en: "Join with who.", az: "Who ilə birləşdirin.", ru: "Соедините с помощью who." }, accept: ["I met a man who works at NASA."], why: { az: "İsim + who + feil.", ru: "Существительное + who + глагол." } },
-        { id: "c22", type: "transform", skill: "as-as", prompt: "Tea is cheaper than coffee.", instruction: { en: "Use: not as … as (start with Coffee)", az: "İşlədin: not as … as (Coffee ilə başlayın)", ru: "Используйте: not as … as (начните с Coffee)" }, accept: ["Coffee isn't as cheap as tea.", "Coffee is not as cheap as tea."], why: { az: "Qəhvə çay qədər ucuz deyil.", ru: "Кофе не такой дешёвый, как чай." } },
+        { id: "x20", type: "transform", skill: "modal-past", prompt: "It was a mistake not to bring an umbrella.", instruction: { en: "Start with: I should…", az: "Belə başlayın: I should…", ru: "Начните с: I should…" }, accept: ["I should have brought an umbrella."], why: { az: "Peşmanlıq → should have + V3 (brought).", ru: "Сожаление → should have + V3 (brought)." } },
+        { id: "x22", type: "transform", skill: "passive", prompt: "Someone has stolen my bike.", instruction: { en: "Make it passive.", az: "Passive edin.", ru: "Сделайте пассив." }, accept: ["My bike has been stolen."], why: { az: "has been + V3.", ru: "has been + V3." } },
       ],
     },
   ],

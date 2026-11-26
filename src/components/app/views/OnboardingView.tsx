@@ -13,8 +13,8 @@ import { button, card } from "@/components/ui/styles";
 
 const BAND_TEXT = {
   starter: "Start at Day 1. You'll build the six frames from the ground up — the foundation everything else rests on.",
-  builder: "You know the basic frames well. Day 12 checks all six together, then moves on to combinations. Feel free to revisit any earlier day.",
-  connector: "You handle the frames and combinations. Start with the communication stage at Day 22 — and use review to fill any gaps.",
+  builder: "You know the basic frames well. Start at Day 11, where verbs start linking together — comparisons, who / which, and then the perfect tenses. Feel free to revisit any earlier day.",
+  connector: "You handle the frames and combinations. Start with the communication stage at Day 20 — and use review to fill any gaps.",
 };
 
 export function OnboardingView() {

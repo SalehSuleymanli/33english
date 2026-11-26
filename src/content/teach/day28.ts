@@ -3,111 +3,101 @@ import type { Teach } from "./types";
 export const TEACH_28: Teach = {
   day: 28,
   summary: {
-    az: "Bu dərsdə seçim və qarşılıqlı münasibət ifadə edən strukturları öyrənirsiniz: each other / one another, either … or, neither … nor, both … and, prefer və would rather. Bunlar seçim etmək, qərar vermək və fikir bildirmək üçün lazımdır.",
-    ru: "В этом уроке вы изучите структуры для выбора и взаимных отношений: each other / one another, either … or, neither … nor, both … and, prefer и would rather. Они нужны, чтобы выбирать, принимать решения и выражать предпочтения.",
+    az: "Bu dərs gündəlik danışıqda çox lazım olan, amma tez-tez qarışdırılan kiçik sözləri bir yerə toplayır: zaman və yer ön sözləri (at, on, in), as və like, so və such, feildən sonra -ing yoxsa to. Bu, qeydlərinizdəki 27-ci (prepositions) və 30-cu (as, like, so, such, -ing or to) mövzulardır. Bunları bilmək danışığınızı \"kitab dilindən\" təbii dilə çevirir.",
+    ru: "Этот урок собирает мелкие, но очень нужные и часто путаемые слова: предлоги времени и места (at, on, in), as и like, so и such, -ing или to после глагола. Это темы 27 (prepositions) и 30 (as, like, so, such, -ing or to) из ваших заметок. Зная их, вы переходите от «книжного» английского к естественному.",
   },
   sections: [
     {
-      id: "each-other",
-      title: { az: "1. Each other / one another: bir-birini", ru: "1. Each other / one another: друг друга" },
+      id: "time-place",
+      title: { az: "1. At, on, in: zaman və yer", ru: "1. At, on, in: время и место" },
       blocks: [
-        {
-          kind: "p",
-          text: {
-            az: "\"Each other\" qarşılıqlı hərəkəti bildirir: \"They love each other\" — onlar bir-birini sevirlər. \"One another\" eyni mənadadır, bir az daha rəsmidir və adətən ikidən çox şəxs üçün işlənir. \"Themselves\" ilə qarışdırmayın: \"They looked at each other\" (bir-birinə baxdılar) ≠ \"They looked at themselves\" (hər biri özünə baxdı).",
-            ru: "«Each other» выражает взаимное действие: «They love each other» — они любят друг друга. «One another» значит то же, звучит чуть официальнее и обычно для более чем двух людей. Не путайте с «themselves»: «They looked at each other» (посмотрели друг на друга) ≠ «They looked at themselves» (каждый посмотрел на себя).",
-          },
-        },
-      ],
-    },
-    {
-      id: "either",
-      title: { az: "2. Both … and, either … or, neither … nor", ru: "2. Both … and, either … or, neither … nor" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Məna", ru: "Значение" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["both A and B", "həm A, həm B / и A, и B", "Both my brother and my sister live abroad."],
-            ["either A or B", "ya A, ya da B / либо A, либо B", "You can pay either by card or in cash."],
-            ["neither A nor B", "nə A, nə də B / ни A, ни B", "Neither my wife nor I like horror films."],
-            ["either (of them)", "hər hansı biri (ikidən) / любой из двух", "Either day is fine for me."],
-            ["neither (of them)", "heç biri (ikidən) / ни один из двух", "Neither answer is correct."],
-            ["not … either", "də … yox / тоже не", "I don't like it either."],
-            ["So do I / Neither do I", "mən də / я тоже (не)", "I love tea. — So do I. I don't smoke. — Neither do I."],
-          ],
-        },
-        {
-          kind: "p",
-          text: {
-            az: "\"Neither … nor\" özü inkardır, ona görə feil təsdiq formasında olur: \"Neither of them came\", \"Neither of them didn't come\" yox. Azərbaycan dilində \"nə ... nə də gəlmədi\" deyirik (iki inkar), ingilis dilində isə bu mümkün deyil. Rus dilində də «ни … ни … не пришёл» — eyni səhvin mənbəyi.",
-            ru: "«Neither … nor» само является отрицанием, поэтому глагол в утвердительной форме: «Neither of them came», а не «Neither of them didn't come». По-русски мы говорим «ни один из них не пришёл» — с двойным отрицанием, а в английском так нельзя.",
-          },
-        },
         {
           kind: "formula",
-          label: { az: "Neither … nor", ru: "Neither … nor" },
+          label: { az: "Zaman: at + saat, on + gün, in + ay / il", ru: "Время: at + час, on + день, in + месяц / год" },
           parts: [
-            { text: "Neither", role: "negation", note: { az: "Nə (inkar artıq buradadır).", ru: "Ни (отрицание уже здесь)." } },
-            { text: "Ali", role: "subject", note: { az: "Birinci.", ru: "Первый." } },
-            { text: "nor", role: "connector", note: { az: "nə də.", ru: "ни." } },
-            { text: "Murad", role: "subject", note: { az: "İkinci; feil ona uyğunlaşır.", ru: "Второй; глагол согласуется с ним." } },
-            { text: "was there", role: "verb", note: { az: "Feil təsdiqdə!", ru: "Глагол в утвердительной форме!" } },
+            { text: "My flight leaves", role: "subject", note: { az: "Subyekt + feil.", ru: "Подлежащее + глагол." } },
+            { text: "at 6:40", role: "time", note: { az: "Dəqiq saat → at.", ru: "Точное время → at." } },
+            { text: "on Friday", role: "time", note: { az: "Gün / tarix → on.", ru: "День / дата → on." } },
+            { text: "in May", role: "time", note: { az: "Ay, il, fəsil → in.", ru: "Месяц, год, сезон → in." } },
           ],
-          example: "Neither Ali nor Murad was there.",
+          example: "My flight leaves at 6:40 on Friday, 12 May.",
+        },
+        {
+          kind: "table",
+          head: [{ az: "Ön söz", ru: "Предлог" }, { az: "Zaman", ru: "Время" }, { az: "Yer", ru: "Место" }],
+          rows: [
+            ["at", "at 6, at noon, at night, at the weekend", "at the gate, at home, at work, at the station"],
+            ["on", "on Monday, on 5 May, on my birthday", "on the table, on the wall, on the train, on the 3rd floor"],
+            ["in", "in June, in 2024, in summer, in the morning", "in Baku, in the room, in the car, in the photo"],
+          ],
+        },
+        {
+          kind: "p",
+          text: {
+            az: "Qısa qayda: at — dəqiq nöqtə (saat, ünvan), on — gün və ya səth, in — daha böyük müddət və ya məkan (ay, il, şəhər, otaq). \"Arrive\"-dan sonra \"to\" işlənmir: \"arrive at the airport\" (bina), \"arrive in Baku\" (şəhər). Rus dilindəki «приехать в» və Azərbaycan dilindəki \"-a gəlmək\" bizi \"arrive to\" səhvinə aparır.",
+            ru: "Короткое правило: at — точная точка (время, адрес), on — день или поверхность, in — больший отрезок или пространство (месяц, год, город, комната). После «arrive» не бывает «to»: «arrive at the airport» (здание), «arrive in Baku» (город). Русское «приехать в» подталкивает к ошибке «arrive to».",
+          },
         },
       ],
     },
     {
-      id: "prefer",
-      title: { az: "3. Prefer: üstün tutmaq", ru: "3. Prefer: предпочитать" },
+      id: "as-like",
+      title: { az: "2. As və like", ru: "2. As и like" },
+      blocks: [
+        {
+          kind: "compare",
+          items: [
+            { en: "She works as a teacher.", text: { az: "\"As\" = rolunda, kimi (həqiqətən odur): o, müəllimdir.", ru: "«As» = в качестве (так и есть на самом деле): она работает учителем." } },
+            { en: "She talks like a teacher.", text: { az: "\"Like\" = oxşar, kimi (əslində deyil): müəllim kimi danışır, amma müəllim deyil.", ru: "«Like» = как, похоже (на самом деле нет): говорит как учитель, но учителем не является." } },
+            { en: "As I said, … / Like I said, …", text: { az: "Cümlədən əvvəl \"as\" (rəsmi); danışıqda \"like\" də işlənir.", ru: "Перед предложением — «as» (формально); в разговоре используют и «like»." } },
+          ],
+        },
+      ],
+    },
+    {
+      id: "so-such",
+      title: { az: "3. So və such", ru: "3. So и such" },
       blocks: [
         {
           kind: "table",
           head: [{ az: "Quruluş", ru: "Структура" }, { az: "Nümunə", ru: "Пример" }],
           rows: [
-            ["prefer A to B (general)", "I prefer tea to coffee."],
-            ["prefer -ing to -ing", "I prefer walking to driving."],
-            ["prefer to + V1", "I prefer to work in the morning."],
-            ["would prefer to + V1 (specific moment)", "I'd prefer to stay home tonight."],
-            ["would prefer + noun", "Would you prefer tea or coffee?"],
+            ["so + adjective / adverb", "The film was so good. He drives so fast."],
+            ["such + (a/an) + adjective + noun", "It was such a good film. They are such nice people."],
+            ["so … that / such … that", "It was so cold that we stayed in. It was such a cold day that we stayed in."],
+            ["so much / so many + noun", "There were so many people!"],
           ],
         },
         {
           kind: "p",
           text: {
-            az: "\"Prefer A to B\" quruluşunda \"than\" deyil, \"to\" işlənir: \"I prefer cats to dogs\". \"Would prefer\" isə konkret vəziyyət üçün nəzakətli seçimdir: \"Would you prefer to sit inside or outside?\"",
-            ru: "В «prefer A to B» используется «to», а не «than»: «I prefer cats to dogs». «Would prefer» — вежливый выбор в конкретной ситуации: «Would you prefer to sit inside or outside?»",
+            az: "Qısa qayda: isim varsa — such (a), isim yoxdursa — so. \"Such a nice day\", amma \"The day is so nice\". \"So nice day\" və \"such nice\" səhvdir.",
+            ru: "Короткое правило: есть существительное — such (a), нет существительного — so. «Such a nice day», но «The day is so nice». «So nice day» и «such nice» — ошибки.",
           },
         },
       ],
     },
     {
-      id: "rather",
-      title: { az: "4. Would rather: daha çox istərdim", ru: "4. Would rather: я бы лучше" },
+      id: "ing-to",
+      title: { az: "4. Feildən sonra: -ing yoxsa to + V1?", ru: "4. После глагола: -ing или to + V1?" },
       blocks: [
         {
-          kind: "formula",
-          label: { az: "Would rather + V1 (than + V1)", ru: "Would rather + V1 (than + V1)" },
-          parts: [
-            { text: "I", role: "subject", note: { az: "Mübtəda.", ru: "Подлежащее." } },
-            { text: "'d rather", role: "modal", note: { az: "would rather — modal kimi: \"to\" yoxdur.", ru: "would rather — как модальный: без «to»." } },
-            { text: "walk", role: "verb", note: { az: "Feilin sadə forması.", ru: "Начальная форма глагола." } },
-            { text: "than take a taxi", role: "other", note: { az: "Müqayisə: than + V1.", ru: "Сравнение: than + V1." } },
+          kind: "table",
+          head: [{ az: "Qrup", ru: "Группа" }, { az: "Feillər", ru: "Глаголы" }, { az: "Nümunə", ru: "Пример" }],
+          rows: [
+            ["+ -ing", "enjoy, finish, mind, avoid, keep, suggest, stop, consider, miss, practise", "I enjoy cooking. Would you mind waiting?"],
+            ["+ to + V1", "want, decide, hope, plan, need, promise, agree, refuse, learn, afford", "I decided to leave. We can't afford to buy it."],
+            ["both, same meaning", "like, love, hate, start, begin, continue", "I like swimming / to swim."],
+            ["both, different meaning", "stop, remember, forget, try", "see below"],
+            ["after prepositions: -ing", "interested in, good at, before, after, without", "I'm good at drawing. Think before speaking."],
           ],
-          example: "I'd rather walk than take a taxi.",
-        },
-        {
-          kind: "p",
-          text: {
-            az: "\"Would rather\" modal feil kimi davranır: ondan sonra \"to\" gəlmir. İnkar: \"I'd rather not\" (istəməzdim) — nəzakətlə imtina etməyin çox təbii yoludur. Başqasının hərəkəti üçün: \"I'd rather you didn't smoke here\" — burada siqaret çəkməməyinizi istərdim (Past Simple ilə!).",
-            ru: "«Would rather» ведёт себя как модальный глагол: после него «to» не ставится. Отрицание: «I'd rather not» (я бы не хотел) — очень естественный способ вежливо отказаться. О действии другого человека: «I'd rather you didn't smoke here» — я бы предпочёл, чтобы вы здесь не курили (с Past Simple!).",
-          },
         },
         {
           kind: "compare",
           items: [
-            { en: "I'd prefer to stay. / I'd rather stay.", text: { az: "Məna eynidir. Prefer-dən sonra \"to\" var, rather-dən sonra yoxdur.", ru: "Смысл одинаковый. После prefer есть «to», после rather — нет." } },
+            { en: "I stopped smoking. / I stopped to smoke.", text: { az: "Birinci: siqareti tərgitdim. İkinci: siqaret çəkmək üçün dayandım.", ru: "Первое: бросил курить. Второе: остановился, чтобы покурить." } },
+            { en: "Remember to lock the door. / I remember locking the door.", text: { az: "Remember to — etməyi unutma (gələcək). Remember -ing — etdiyimi xatırlayıram (keçmiş).", ru: "Remember to — не забудь сделать (будущее). Remember -ing — помню, что сделал (прошлое)." } },
+            { en: "Try to sleep. / Try drinking warm milk.", text: { az: "Try to — cəhd et (çətindir). Try -ing — sına, yoxla (bir üsul kimi).", ru: "Try to — постарайся (это трудно). Try -ing — попробуй (как способ)." } },
           ],
         },
       ],
@@ -119,17 +109,17 @@ export const TEACH_28: Teach = {
         {
           kind: "examples",
           items: [
-            { en: "We've known each other since childhood.", az: "Bir-birimizi uşaqlıqdan tanıyırıq.", ru: "Мы знаем друг друга с детства." },
-            { en: "The players congratulated one another.", az: "Oyunçular bir-birini təbrik etdilər.", ru: "Игроки поздравили друг друга." },
-            { en: "Both options are good.", az: "Hər iki variant yaxşıdır.", ru: "Оба варианта хорошие." },
-            { en: "We can either eat out or order food.", az: "Ya bayırda yeyə bilərik, ya da yemək sifariş edərik.", ru: "Мы можем либо поесть в ресторане, либо заказать еду." },
-            { en: "Neither of my parents speaks English.", az: "Valideynlərimin heç biri ingiliscə danışmır.", ru: "Ни один из моих родителей не говорит по-английски." },
-            { en: "I haven't seen it either.", az: "Mən də onu görməmişəm.", ru: "Я тоже этого не видел." },
-            { en: "I'm hungry. — So am I.", az: "Acmışam. — Mən də.", ru: "Я голоден. — Я тоже." },
-            { en: "I prefer summer to winter.", az: "Yayı qışdan üstün tuturam.", ru: "Я предпочитаю лето зиме." },
-            { en: "Would you prefer to meet on Monday or Tuesday?", az: "Bazar ertəsi görüşməyi üstün tutursunuz, yoxsa çərşənbə axşamı?", ru: "Вам удобнее встретиться в понедельник или во вторник?" },
-            { en: "I'd rather stay at home tonight.", az: "Bu axşam evdə qalmağı üstün tuturam.", ru: "Сегодня вечером я бы лучше остался дома." },
-            { en: "Do you want to come? — I'd rather not, thanks.", az: "Gəlmək istəyirsən? — Yox, sağ ol, istəməzdim.", ru: "Пойдёшь? — Пожалуй, нет, спасибо." },
+            { en: "See you on Friday at three.", az: "Cümə günü saat üçdə görüşərik.", ru: "Увидимся в пятницу в три." },
+            { en: "We arrived in Rome late at night.", az: "Romaya gecə gec çatdıq.", ru: "Мы приехали в Рим поздно ночью." },
+            { en: "Wait for me at the entrance.", az: "Məni girişdə gözlə.", ru: "Жди меня у входа." },
+            { en: "I worked as a waiter when I was a student.", az: "Tələbə olanda ofisiant işləmişəm.", ru: "Когда я был студентом, я работал официантом." },
+            { en: "It smells like fresh bread in here.", az: "Burada təzə çörək iyi gəlir.", ru: "Здесь пахнет свежим хлебом." },
+            { en: "The exam was so difficult!", az: "İmtahan o qədər çətin idi ki!", ru: "Экзамен был таким трудным!" },
+            { en: "She's such a talented singer.", az: "O, çox istedadlı müğənnidir.", ru: "Она такая талантливая певица." },
+            { en: "Would you mind closing the window?", az: "Pəncərəni bağlamağınız mümkündürmü?", ru: "Не могли бы вы закрыть окно?" },
+            { en: "I've decided to learn to drive.", az: "Sürücülük öyrənməyə qərar vermişəm.", ru: "Я решил научиться водить." },
+            { en: "Don't forget to buy bread.", az: "Çörək almağı unutma.", ru: "Не забудь купить хлеб." },
+            { en: "I'll never forget meeting you for the first time.", az: "Səninlə ilk dəfə görüşdüyümü heç vaxt unutmaram.", ru: "Я никогда не забуду нашу первую встречу." },
           ],
         },
       ],
@@ -141,21 +131,22 @@ export const TEACH_28: Teach = {
         {
           kind: "mistakes",
           items: [
-            { wrong: "Neither of them didn't come.", right: "Neither of them came.", why: { az: "Neither özü inkardır; ikinci inkar olmaz.", ru: "Neither уже отрицание; второго не нужно." } },
-            { wrong: "I don't like it too.", right: "I don't like it either.", why: { az: "İnkarda \"too\" yox, \"either\".", ru: "В отрицании не «too», а «either»." } },
-            { wrong: "I prefer tea than coffee.", right: "I prefer tea to coffee.", why: { az: "Prefer A TO B.", ru: "Prefer A TO B." } },
-            { wrong: "I'd rather to stay.", right: "I'd rather stay.", why: { az: "Would rather-dən sonra \"to\" yoxdur.", ru: "После would rather нет «to»." } },
-            { wrong: "They helped each others.", right: "They helped each other.", why: { az: "Each other dəyişmir.", ru: "Each other не меняется." } },
-            { wrong: "Either you or me are wrong.", right: "Either you or I am wrong.", why: { az: "Feil ikinci hissəyə uyğunlaşır; mübtəda formasında I.", ru: "Глагол согласуется со второй частью; в роли подлежащего — I." } },
+            { wrong: "The meeting is in Monday.", right: "The meeting is on Monday.", why: { az: "Günlər — on.", ru: "Дни недели — on." } },
+            { wrong: "We arrived to Baku.", right: "We arrived in Baku.", why: { az: "Arrive in (şəhər), arrive at (bina). To yox.", ru: "Arrive in (город), arrive at (здание). Не to." } },
+            { wrong: "He works like a doctor.", right: "He works as a doctor.", why: { az: "Real peşə — as.", ru: "Реальная профессия — as." } },
+            { wrong: "It was so nice day.", right: "It was such a nice day.", why: { az: "İsim varsa — such a.", ru: "Есть существительное — such a." } },
+            { wrong: "I enjoy to swim.", right: "I enjoy swimming.", why: { az: "Enjoy + -ing.", ru: "Enjoy + -ing." } },
+            { wrong: "I decided going.", right: "I decided to go.", why: { az: "Decide + to + V1.", ru: "Decide + to + V1." } },
+            { wrong: "I'm interested in learn Spanish.", right: "I'm interested in learning Spanish.", why: { az: "Ön sözdən sonra -ing.", ru: "После предлога — -ing." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Each other / one another = bir-birini.", ru: "Each other / one another = друг друга." },
-    { az: "Both … and, either … or, neither … nor (feil təsdiqdə).", ru: "Both … and, either … or, neither … nor (глагол утвердительный)." },
-    { az: "Prefer A to B; would prefer to + V1.", ru: "Prefer A to B; would prefer to + V1." },
-    { az: "Would rather + V1 (than + V1); I'd rather not.", ru: "Would rather + V1 (than + V1); I'd rather not." },
+    { az: "At — saat və nöqtə, on — gün və səth, in — ay, il, şəhər, otaq.", ru: "At — время и точка, on — день и поверхность, in — месяц, год, город, комната." },
+    { az: "As — həqiqətən odur; like — ona oxşayır.", ru: "As — так и есть; like — похоже на." },
+    { az: "So + sifət; such (a) + sifət + isim.", ru: "So + прилагательное; such (a) + прилагательное + существительное." },
+    { az: "Enjoy/finish/mind + -ing; want/decide/hope + to; ön sözdən sonra -ing.", ru: "Enjoy/finish/mind + -ing; want/decide/hope + to; после предлога — -ing." },
   ],
 };

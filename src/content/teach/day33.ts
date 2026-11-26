@@ -3,140 +3,158 @@ import type { Teach } from "./types";
 export const TEACH_33: Teach = {
   day: 33,
   summary: {
-    az: "Təbrik edirik — son gündəsiniz! Bu dərs bütün kursu bir yerə toplayır: altı çərçivə, onların zamanları və birləşmələri. Yekun sınaqdan əvvəl bu xülasəni oxuyun, sonra kursdan sonra necə davam edəcəyinizi planlaşdırın.",
-    ru: "Поздравляем — это последний день! Этот урок собирает весь курс воедино: шесть рамок, их времена и сочетания. Прочитайте этот обзор перед итоговым испытанием, а затем спланируйте, как продолжать после курса.",
+    az: "Bu dərsdə altı çərçivəni imtahan formatına tətbiq edirsiniz: IELTS tipli danışıq cavablarının quruluşu (Part 1, 2, 3), fikir bildirmək üçün ifadələr, cavabı genişləndirmək texnikası və qısa esse planı. Məqsəd: bildiyiniz strukturları sistemli və inamlı cavaba çevirmək.",
+    ru: "В этом уроке вы применяете шесть рамок к экзаменационному формату: структура устных ответов в стиле IELTS (Part 1, 2, 3), фразы для выражения мнения, техника расширения ответа и план короткого эссе. Цель — превратить знакомые структуры в системный и уверенный ответ.",
   },
   sections: [
     {
-      id: "frames",
-      title: { az: "1. Altı çərçivə: son xülasə", ru: "1. Шесть рамок: итоговый обзор" },
+      id: "speaking",
+      title: { az: "1. IELTS danışıq imtahanının quruluşu", ru: "1. Структура устной части IELTS" },
       blocks: [
         {
           kind: "table",
-          head: [{ az: "Çərçivə", ru: "Рамка" }, { az: "Formula", ru: "Формула" }, { az: "Sual / inkar", ru: "Вопрос / отрицание" }],
+          head: [{ az: "Hissə", ru: "Часть" }, { az: "Nə olur", ru: "Что происходит" }, { az: "Cavab uzunluğu", ru: "Длина ответа" }],
           rows: [
-            ["1 Existence", "There + be + thing + place", "Is there…? / There isn't…"],
-            ["2 States", "Subject + be + description", "Is she…? / She isn't…"],
-            ["3 Actions", "Subject + verb (+ object)", "Do you…? Did he…? / I don't… He didn't…"],
-            ["4 Modals", "Subject + modal + V1", "Can you…? / You shouldn't…"],
-            ["5 Possession", "Subject + have/has + thing", "Do you have…? / She doesn't have…"],
-            ["6 Passive", "Object + be + V3", "Was it built…? / It wasn't made…"],
+            ["Part 1 (4–5 min)", "simple questions about you: work, study, home, hobbies", "2–3 sentences"],
+            ["Part 2 (3–4 min)", "a cue card; 1 minute to prepare, 1–2 minutes to speak", "a short talk / story"],
+            ["Part 3 (4–5 min)", "abstract discussion linked to Part 2", "4–6 sentences with reasons and examples"],
           ],
         },
+        {
+          kind: "p",
+          text: {
+            az: "İmtahançı dörd şeyi qiymətləndirir: səlislik və ardıcıllıq, lüğət, qrammatika müxtəlifliyi və dəqiqliyi, tələffüz. \"Qrammatika müxtəlifliyi\" tam olaraq bu kursda öyrəndikləriniz deməkdir: müxtəlif çərçivələr, zamanlar, şərt cümlələri, nisbi budaq cümlələri, passive. Bunları təbii şəkildə işlətmək balınızı birbaşa artırır.",
+            ru: "Экзаменатор оценивает четыре вещи: беглость и связность, лексику, разнообразие и точность грамматики, произношение. «Разнообразие грамматики» — это именно то, что вы изучили в курсе: разные рамки, времена, условные предложения, относительные придаточные, пассив. Естественное их использование напрямую повышает балл.",
+          },
+        },
+      ],
+    },
+    {
+      id: "extend",
+      title: { az: "2. Cavabı genişləndirmək: A-R-E texnikası", ru: "2. Как расширить ответ: техника A-R-E" },
+      blocks: [
         {
           kind: "formula",
-          label: { az: "Hər ingilis cümləsinin skeleti", ru: "Скелет любого английского предложения" },
+          label: { az: "Answer – Reason – Example", ru: "Answer – Reason – Example" },
           parts: [
-            { text: "Subject", role: "subject", note: { az: "Həmişə var (lazım gəlsə: there, it).", ru: "Есть всегда (если нужно — there, it)." } },
-            { text: "(helper)", role: "aux", note: { az: "Zamanı və sualı daşıyır: be, do, have, will, modal.", ru: "Несёт время и вопрос: be, do, have, will, модальный." } },
-            { text: "verb", role: "verb", note: { az: "Əsas feil düzgün formada: V1, V2, V3, -ing.", ru: "Основной глагол в нужной форме: V1, V2, V3, -ing." } },
-            { text: "the rest", role: "object", note: { az: "Obyekt, yer, zaman — adətən bu sırada.", ru: "Дополнение, место, время — обычно в таком порядке." } },
+            { text: "Answer", role: "subject", note: { az: "Birbaşa cavab: Yes, I do. / I really enjoy…", ru: "Прямой ответ: Yes, I do. / I really enjoy…" } },
+            { text: "Reason", role: "connector", note: { az: "Səbəb: because…, The main reason is…", ru: "Причина: because…, The main reason is…" } },
+            { text: "Example", role: "other", note: { az: "Nümunə və ya şəxsi təcrübə: For example, last week…", ru: "Пример или личный опыт: For example, last week…" } },
           ],
-          example: "My sister has been living in London since 2020.",
+          example: "Yes, I love cooking, mainly because it helps me relax. For example, last weekend I made dolma for the whole family.",
+        },
+        {
+          kind: "p",
+          text: {
+            az: "Part 1-də \"Yes\" və ya \"No\" ilə qısa cavab vermək ən böyük səhvdir. A-R-E ilə hər cavab 2–3 cümlə olur və avtomatik olaraq müxtəlif zamanlar işlənir: indiki (cavab), keçmiş (nümunə), hətta gələcək (plan).",
+            ru: "Самая большая ошибка в Part 1 — ответить коротко «Yes» или «No». С A-R-E каждый ответ — 2–3 предложения, и в нём естественно появляются разные времена: настоящее (ответ), прошедшее (пример), даже будущее (план).",
+          },
         },
       ],
     },
     {
-      id: "tenses",
-      title: { az: "2. Zamanlar xəritəsi", ru: "2. Карта времён" },
+      id: "phrases",
+      title: { az: "3. Faydalı ifadələr", ru: "3. Полезные фразы" },
       blocks: [
         {
           kind: "table",
-          head: [{ az: "Növ", ru: "Вид" }, { az: "Keçmiş", ru: "Прошлое" }, { az: "İndi", ru: "Настоящее" }, { az: "Gələcək", ru: "Будущее" }],
+          head: [{ az: "Məqsəd", ru: "Цель" }, { az: "İfadələr", ru: "Фразы" }],
           rows: [
-            ["Simple", "I worked", "I work", "I will work"],
-            ["Continuous", "I was working", "I am working", "I will be working"],
-            ["Perfect", "I had worked", "I have worked", "I will have worked"],
-            ["Perfect Continuous", "I had been working", "I have been working", "—"],
-            ["Passive", "It was done", "It is done", "It will be done"],
+            ["opinion", "In my opinion, … / I'd say that … / Personally, I think …"],
+            ["thinking time", "That's an interesting question. / Let me think about that for a second."],
+            ["contrast", "On the one hand … on the other hand … / Although …, …"],
+            ["example", "For instance, … / A good example of this is …"],
+            ["speculation", "It might be because … / I suppose … / It's likely that …"],
+            ["future / change", "In the future, … will probably … / Things have changed a lot since …"],
+            ["conclusion", "So overall, … / That's why I believe …"],
           ],
         },
       ],
     },
     {
-      id: "combinations",
-      title: { az: "3. Ən vacib birləşmələr", ru: "3. Самые важные сочетания" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Struktur", ru: "Структура" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["questions (subject / object)", "Who called? / What did you do?"],
-            ["want someone to", "I want you to stay."],
-            ["it + adjective + to", "It's important to practise."],
-            ["used to / be used to", "I used to live there. I'm used to it."],
-            ["modal + have + V3", "I should have known."],
-            ["comparatives", "better than, the best, as good as"],
-            ["relative clauses", "the person who…, the place where…"],
-            ["conditionals", "If it rains, I'll stay. If I were you, I'd go."],
-            ["connectors", "although, despite, however, whether"],
-            ["reported speech", "She said she was tired. He asked where I lived."],
-          ],
-        },
-      ],
-    },
-    {
-      id: "next",
-      title: { az: "4. Kursdan sonra: necə davam etmək", ru: "4. После курса: как продолжать" },
+      id: "part2",
+      title: { az: "4. Part 2: kartla danışmaq", ru: "4. Part 2: монолог по карточке" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "33 gün ərzində möhkəm bir skelet qurdunuz. İndi sərbəstlik üçün üç şey lazımdır: hər gün ingilis dilini eşitmək və oxumaq (giriş məsləhətində danışdığımız kimi), \"Təkrar\" bölməsindəki səhvlərinizi müntəzəm təkrarlamaq və danışmaq — hətta özünüzlə də olsa. Saytdakı oyunlar, danışıq mövzuları və oxu mətnləri məhz bunun üçündür.",
-            ru: "За 33 дня вы построили прочный каркас. Теперь для свободы нужны три вещи: каждый день слушать и читать по-английски (как мы говорили во вводной консультации), регулярно повторять свои ошибки в разделе «Практика» и говорить — пусть даже с самим собой. Игры, разговорные темы и тексты для чтения на сайте созданы именно для этого.",
+            az: "Kartda mövzu və 3–4 sual olur (who, what, when, why). Hazırlıq dəqiqəsində cümlə yazmayın — açar sözlər yazın. Danışarkən 32-ci gündəki hekayə quruluşunu işlədin: səhnə, hadisələr, hiss. Kartdakı sualları ardıcıllıqla cavablandırın və sonda \"why\" sualına ən çox vaxt ayırın — orada fikir və qrammatika müxtəlifliyi göstərə bilərsiniz.",
+            ru: "На карточке есть тема и 3–4 вопроса (who, what, when, why). За минуту подготовки не пишите предложения — запишите ключевые слова. Говоря, используйте структуру истории из 32-го дня: обстановка, события, чувства. Отвечайте на вопросы карточки по порядку и больше всего времени уделите «why» — там можно показать мнение и разнообразие грамматики.",
           },
+        },
+        {
+          kind: "examples",
+          items: [
+            { en: "I'd like to talk about a trip I took to Shusha last year.", az: "Keçən il Şuşaya etdiyim səfər haqqında danışmaq istərdim.", ru: "Я хотел бы рассказать о поездке в Шушу в прошлом году." },
+            { en: "I had always wanted to visit it, so when my friends suggested it, I agreed immediately.", az: "Həmişə ora getmək istəmişdim, ona görə dostlarım təklif edəndə dərhal razılaşdım.", ru: "Я всегда мечтал там побывать, поэтому, когда друзья предложили, я сразу согласился." },
+            { en: "What made it special was the view from the mountains, which was absolutely breathtaking.", az: "Onu xüsusi edən dağlardan açılan mənzərə idi — nəfəs kəsən idi.", ru: "Особенной её сделал вид с гор — просто захватывающий." },
+            { en: "If I had the chance, I would definitely go back.", az: "İmkanım olsa, mütləq yenə gedərdim.", ru: "Будь у меня возможность, я бы обязательно вернулся." },
+          ],
+        },
+      ],
+    },
+    {
+      id: "essay",
+      title: { az: "5. Qısa esse planı", ru: "5. План короткого эссе" },
+      blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Abzas", ru: "Абзац" }, { az: "Məzmun", ru: "Содержание" }, { az: "Başlanğıc ifadə", ru: "Начальная фраза" }],
+          rows: [
+            ["Introduction", "paraphrase the question + your view", "It is often argued that … In my view, …"],
+            ["Body 1", "first main idea + example", "Firstly, … For example, …"],
+            ["Body 2", "second idea or the other side", "On the other hand, … / Furthermore, …"],
+            ["Conclusion", "summarise + final opinion", "In conclusion, … / Overall, I believe …"],
+          ],
         },
         {
           kind: "tip",
           text: {
-            az: "Səviyyənizi yoxlamaq üçün hər ay bir dəfə özünüzü səsə yazın: 2 dəqiqə ərzində özünüz, işiniz və planlarınız haqqında danışın. Bir neçə ay sonra fərqi özünüz eşidəcəksiniz.",
-            ru: "Чтобы отслеживать прогресс, раз в месяц записывайте себя на диктофон: 2 минуты о себе, работе и планах. Через несколько месяцев вы сами услышите разницу.",
+            az: "Yazıda ixtisarlar (don't, it's) və danışıq sözləri (gonna, wanna, stuff) işlətməyin. Passive (It is believed that…) və şərt cümlələri (If governments invested more…) esseni akademik edir.",
+            ru: "На письме не используйте сокращения (don't, it's) и разговорные слова (gonna, wanna, stuff). Пассив (It is believed that…) и условные предложения (If governments invested more…) делают эссе академичным.",
           },
         },
       ],
     },
     {
       id: "examples",
-      title: { az: "5. Bütün çərçivələr bir mətndə", ru: "5. Все рамки в одном тексте" },
+      title: { az: "6. Nümunə cavablar", ru: "6. Примеры ответов" },
       blocks: [
         {
           kind: "examples",
           items: [
-            { en: "My name is Leyla and I'm a nurse.", az: "Adım Leyladır, tibb bacısıyam.", ru: "Меня зовут Лейла, я медсестра." },
-            { en: "I have worked at the same hospital for six years.", az: "Altı ildir eyni xəstəxanada işləyirəm.", ru: "Я работаю в одной больнице шесть лет." },
-            { en: "There are about forty nurses in our department.", az: "Şöbəmizdə təxminən qırx tibb bacısı var.", ru: "В нашем отделении около сорока медсестёр." },
-            { en: "The hospital was opened in 2005 and it has a great team.", az: "Xəstəxana 2005-ci ildə açılıb və gözəl kollektivi var.", ru: "Больница открылась в 2005 году, и у неё отличная команда." },
-            { en: "I used to be very shy, but now I'm used to talking to strangers.", az: "Əvvəllər çox utancaq idim, amma indi tanımadığım adamlarla danışmağa öyrəşmişəm.", ru: "Раньше я была очень застенчивой, а теперь привыкла разговаривать с незнакомыми людьми." },
-            { en: "When I started this course, I couldn't build a simple question.", az: "Bu kursa başlayanda sadə sual qura bilmirdim.", ru: "Когда я начала этот курс, я не могла построить простой вопрос." },
-            { en: "I should have started learning English years ago.", az: "İngilis dilini illər əvvəl öyrənməyə başlamalı idim.", ru: "Мне следовало начать учить английский много лет назад." },
-            { en: "My dream is to work abroad, and if I keep practising, I think I'll be ready next year.", az: "Xəyalım xaricdə işləməkdir və məşq etməyə davam etsəm, məncə, gələn il hazır olacağam.", ru: "Моя мечта — работать за границей, и если я продолжу заниматься, думаю, через год буду готова." },
-            { en: "Although it's not always easy, it feels great to understand English.", az: "Həmişə asan olmasa da, ingilis dilini başa düşmək gözəl hissdir.", ru: "Хотя это не всегда легко, понимать английский — прекрасное чувство." },
-            { en: "My teacher told me to never stop practising.", az: "Müəllimim mənə heç vaxt məşqi dayandırmamağı dedi.", ru: "Мой учитель сказал мне никогда не прекращать практику." },
+            { en: "Do you work or study? — I work as an accountant at a bank. I've been there for about three years, and I really enjoy it because every day is different.", az: "İşləyirsiniz, yoxsa oxuyursunuz? — Bankda mühasib işləyirəm. Təxminən üç ildir oradayam və çox xoşuma gəlir, çünki hər gün fərqlidir.", ru: "Вы работаете или учитесь? — Я работаю бухгалтером в банке. Я там около трёх лет, и мне очень нравится, потому что каждый день разный." },
+            { en: "Do you like reading? — Yes, especially before bed. It helps me relax. At the moment I'm reading a novel that my sister recommended.", az: "Oxumağı sevirsiniz? — Bəli, xüsusilə yatmazdan əvvəl. Rahatlamağa kömək edir. Hazırda bacımın tövsiyə etdiyi bir romanı oxuyuram.", ru: "Вы любите читать? — Да, особенно перед сном. Это помогает расслабиться. Сейчас я читаю роман, который посоветовала сестра." },
+            { en: "Should children learn a second language at school? — I'd say yes. Children learn languages much more easily than adults, and it opens many doors for them in the future.", az: "Uşaqlar məktəbdə ikinci dil öyrənməlidirmi? — Məncə, bəli. Uşaqlar dilləri böyüklərdən daha asan öyrənir və bu, gələcəkdə onlar üçün çox qapılar açır.", ru: "Должны ли дети учить второй язык в школе? — Я бы сказал, да. Дети учат языки гораздо легче взрослых, и в будущем это открывает им много дверей." },
+            { en: "How has technology changed the way people communicate? — It has changed it completely. People used to write letters, but now we can talk to anyone instantly.", az: "Texnologiya ünsiyyəti necə dəyişib? — Tamamilə dəyişib. İnsanlar əvvəllər məktub yazırdılar, indi isə istənilən adamla dərhal danışa bilərik.", ru: "Как технологии изменили общение? — Полностью. Раньше люди писали письма, а теперь мы можем мгновенно поговорить с кем угодно." },
+            { en: "That's an interesting question. I've never really thought about it, but I suppose it depends on the person.", az: "Maraqlı sualdır. Bu barədə heç düşünməmişəm, amma məncə, insandan asılıdır.", ru: "Интересный вопрос. Я никогда об этом не задумывался, но, наверное, это зависит от человека." },
+            { en: "If I could change one thing about my city, I would build more parks.", az: "Şəhərimdə bir şeyi dəyişə bilsəydim, daha çox park salardım.", ru: "Если бы я мог изменить что-то в своём городе, я бы построил больше парков." },
+            { en: "It is often said that money cannot buy happiness.", az: "Tez-tez deyilir ki, pulla xoşbəxtlik almaq olmaz.", ru: "Часто говорят, что счастье не купишь за деньги." },
+            { en: "In conclusion, although technology has some disadvantages, its benefits are far greater.", az: "Nəticə olaraq, texnologiyanın bəzi çatışmazlıqları olsa da, faydaları qat-qat böyükdür.", ru: "В заключение: хотя у технологий есть недостатки, их польза гораздо больше." },
           ],
         },
       ],
     },
     {
       id: "mistakes",
-      title: { az: "6. Kurs boyu ən çox edilən 6 səhv", ru: "6. Шесть самых частых ошибок курса" },
+      title: { az: "7. İmtahanda tipik səhvlər", ru: "7. Типичные ошибки на экзамене" },
       blocks: [
         {
           kind: "mistakes",
           items: [
-            { wrong: "She work in a bank.", right: "She works in a bank.", why: { az: "Üçüncü şəxs -s.", ru: "-s в третьем лице." } },
-            { wrong: "I am agree.", right: "I agree.", why: { az: "Feillə \"am\" işlənmir.", ru: "С глаголом «am» не используется." } },
-            { wrong: "Have a café near here?", right: "Is there a café near here?", why: { az: "\"Var\" = there is, have yox.", ru: "«Есть» в месте = there is, а не have." } },
-            { wrong: "I live here since 2015.", right: "I have lived here since 2015.", why: { az: "Since / for → Present Perfect.", ru: "Since / for → Present Perfect." } },
-            { wrong: "If it will rain, …", right: "If it rains, …", why: { az: "If hissəsində will yoxdur.", ru: "В части с if нет will." } },
-            { wrong: "Where you work?", right: "Where do you work?", why: { az: "Sualda köməkçi feil.", ru: "В вопросе нужен вспомогательный глагол." } },
+            { wrong: "Do you like music? — Yes.", right: "Yes, I do. I listen to it almost every day, mostly when I'm driving…", why: { az: "Çox qısa cavab: səlislik və qrammatika göstərilmir.", ru: "Слишком короткий ответ: не видно ни беглости, ни грамматики." } },
+            { wrong: "According to me, …", right: "In my opinion, … / Personally, I think …", why: { az: "Öz fikriniz üçün \"according to\" işlənmir.", ru: "Для своего мнения «according to» не используется." } },
+            { wrong: "I am agree that…", right: "I agree that…", why: { az: "Agree feildir, \"am\" lazım deyil.", ru: "Agree — глагол, «am» не нужен." } },
+            { wrong: "Nowadays people are using technology very much.", right: "Nowadays people use technology a lot.", why: { az: "Ümumi fakt üçün Present Simple; \"very much\" yerinə \"a lot\".", ru: "Для общего факта — Present Simple; вместо «very much» — «a lot»." } },
+            { wrong: "In conclusion, I think it's gonna be better.", right: "In conclusion, I believe it will improve.", why: { az: "Yazıda danışıq formaları işlənmir.", ru: "На письме разговорные формы не используются." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Hər cümlə: mübtəda + (köməkçi) + feil + qalan hissə.", ru: "Каждое предложение: подлежащее + (вспомогательный) + глагол + остальное." },
-    { az: "Altı çərçivəni tanıyın, zamanı köməkçi ilə dəyişin.", ru: "Узнавайте шесть рамок, меняйте время через вспомогательный глагол." },
-    { az: "Davam edin: hər gün eşidin, oxuyun, təkrarlayın, danışın.", ru: "Продолжайте: каждый день слушайте, читайте, повторяйте, говорите." },
+    { az: "Part 1 — qısa, amma genişləndirilmiş cavablar (A-R-E); Part 2 — hekayə; Part 3 — fikir + səbəb + nümunə.", ru: "Part 1 — короткие, но развёрнутые ответы (A-R-E); Part 2 — история; Part 3 — мнение + причина + пример." },
+    { az: "Qrammatika müxtəlifliyi: Perfect, şərt cümlələri, nisbi cümlələr, passive təbii şəkildə.", ru: "Разнообразие грамматики: Perfect, условные, относительные придаточные, пассив — естественно." },
+    { az: "Esse: giriş → iki əsas abzas → nəticə; ixtisar və danışıq sözləri yoxdur.", ru: "Эссе: введение → два основных абзаца → заключение; без сокращений и разговорных слов." },
   ],
 };

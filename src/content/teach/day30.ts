@@ -3,124 +3,100 @@ import type { Teach } from "./types";
 export const TEACH_30: Teach = {
   day: 30,
   summary: {
-    az: "Bu dərsdə dolayı nitqi öyrənirsiniz: başqasının sözlərini, suallarını və xahişlərini çatdırmaq. \"She said that she was tired\", \"He asked where I lived\", \"They told us to wait\". Zamanların bir addım geri çəkilməsi, söz sırası və say / tell fərqi əsas mövzulardır.",
-    ru: "В этом уроке вы изучаете косвенную речь: как передать чужие слова, вопросы и просьбы. «She said that she was tired», «He asked where I lived», «They told us to wait». Главные темы — сдвиг времён на шаг назад, порядок слов и разница между say и tell.",
+    az: "Bu dərsdə məchul növü (6-cı çərçivə) mürəkkəb zamanlarla birləşdirirsiniz: has been done, is being done, had been done, will have been done və modal + be + V3. İş yazışmalarında, hesabatlarda və xəbərlərdə ən çox rast gəlinən formalardır.",
+    ru: "В этом уроке вы соединяете пассив (рамка 6) со сложными временами: has been done, is being done, had been done, will have been done и модальный + be + V3. Эти формы чаще всего встречаются в деловой переписке, отчётах и новостях.",
   },
   sections: [
     {
-      id: "statements",
-      title: { az: "1. Təsdiq cümlələri: said / told", ru: "1. Утверждения: said / told" },
+      id: "logic",
+      title: { az: "1. Məntiq: \"be\" zamanı daşıyır, V3 sabit qalır", ru: "1. Логика: «be» несёт время, V3 не меняется" },
       blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "19-cu gündə öyrəndiniz: passive = be + V3. İndi \"be\"-ni istənilən mürəkkəb zamana qoyuruq. Qayda belədir: active cümlədəki zamanı tapın, həmin zamanda \"be\" feilini qurun və arxasına V3 əlavə edin. Perfect-də \"be\" → been, continuous-da \"be\" → being olur.",
+            ru: "На 19-й день вы узнали: пассив = be + V3. Теперь ставим «be» в любое сложное время. Правило: найдите время в активном предложении, постройте в этом времени глагол «be» и добавьте V3. В Perfect «be» → been, в Continuous «be» → being.",
+          },
+        },
         {
           kind: "formula",
-          label: { az: "Dolayı nitq", ru: "Косвенная речь" },
+          label: { az: "Present Perfect Passive", ru: "Present Perfect Passive" },
           parts: [
-            { text: "She", role: "subject", note: { az: "Kim dedi.", ru: "Кто сказал." } },
-            { text: "said (that)", role: "verb", note: { az: "said (kimə olduğu deyilmir) və ya told + şəxs. \"That\" atıla bilər.", ru: "said (без указания кому) или told + человек. «That» можно опустить." } },
-            { text: "she was", role: "subject", note: { az: "Əvəzlik və zaman dəyişir: I am → she was.", ru: "Местоимение и время меняются: I am → she was." } },
-            { text: "tired", role: "complement", note: { az: "Məlumat.", ru: "Информация." } },
+            { text: "The report", role: "subject", note: { az: "Obyekt mübtəda olur.", ru: "Объект становится подлежащим." } },
+            { text: "has been", role: "be", note: { az: "have/has + been = Perfect-də \"be\".", ru: "have/has + been = «be» в Perfect." } },
+            { text: "sent", role: "verb", note: { az: "V3.", ru: "V3." } },
+            { text: "to the client", role: "object", note: { az: "Kimə / hara.", ru: "Кому / куда." } },
           ],
-          example: "\"I'm tired.\" → She said (that) she was tired.",
+          example: "The report has been sent to the client.",
         },
+      ],
+    },
+    {
+      id: "table",
+      title: { az: "2. Bütün passive zamanlar", ru: "2. Все времена пассива" },
+      blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Zaman", ru: "Время" }, { az: "Active", ru: "Active" }, { az: "Passive", ru: "Passive" }],
+          rows: [
+            ["Present Simple", "They clean the room.", "The room is cleaned."],
+            ["Present Continuous", "They are cleaning the room.", "The room is being cleaned."],
+            ["Past Simple", "They cleaned the room.", "The room was cleaned."],
+            ["Past Continuous", "They were cleaning the room.", "The room was being cleaned."],
+            ["Present Perfect", "They have cleaned the room.", "The room has been cleaned."],
+            ["Past Perfect", "They had cleaned the room.", "The room had been cleaned."],
+            ["Future Simple", "They will clean the room.", "The room will be cleaned."],
+            ["going to", "They are going to clean the room.", "The room is going to be cleaned."],
+            ["Future Perfect", "They will have cleaned the room by 5.", "The room will have been cleaned by 5."],
+            ["Modal", "They must clean the room.", "The room must be cleaned."],
+            ["Modal + have", "They should have cleaned the room.", "The room should have been cleaned."],
+          ],
+        },
+      ],
+    },
+    {
+      id: "perfect",
+      title: { az: "3. Perfect Passive: has / have / had been + V3", ru: "3. Perfect Passive: has / have / had been + V3" },
+      blocks: [
         {
           kind: "p",
           text: {
-            az: "Rus dilində dolayı nitqdə zaman dəyişmir: «Она сказала, что устала». İngilis dilində isə əsas feil keçmişdədirsə (said), deyilən sözlərin zamanı adətən bir addım geri çəkilir: am → was, will → would, can → could. Azərbaycan dilində də \"dedi ki, yorğundur\" deyirik, ona görə bu qayda ana dilimizə yaddır və diqqət tələb edir.",
-            ru: "В русском время в косвенной речи не меняется: «Она сказала, что устала». В английском же, если главный глагол в прошедшем (said), время передаваемых слов обычно сдвигается на шаг назад: am → was, will → would, can → could. Это правило непривычно для русскоговорящих и требует внимания.",
+            az: "Present Perfect Passive iş həyatında ən çox işlənən formadır, çünki görülən işin nəticəsini bildirir, kimin gördüyünü vurğulamadan: \"Your order has been shipped\" (sifarişiniz göndərilib), \"The meeting has been cancelled\" (iclas ləğv edilib), \"Mistakes have been made\" (səhvlər buraxılıb). Past Perfect Passive (had been done) keçmişdə başqa hadisədən əvvəl tamamlanmış işi bildirir: \"When I arrived, the food had already been eaten.\"",
+            ru: "Present Perfect Passive — самая частая форма в деловой жизни: она сообщает результат работы, не подчёркивая, кто её сделал: «Your order has been shipped» (ваш заказ отправлен), «The meeting has been cancelled» (совещание отменено), «Mistakes have been made» (были допущены ошибки). Past Perfect Passive (had been done) — работа, завершённая до другого события в прошлом: «When I arrived, the food had already been eaten.»",
           },
         },
       ],
     },
     {
-      id: "backshift",
-      title: { az: "2. Zamanların geri çəkilməsi", ru: "2. Сдвиг времён" },
+      id: "continuous",
+      title: { az: "4. Continuous Passive: being + V3", ru: "4. Continuous Passive: being + V3" },
       blocks: [
         {
-          kind: "table",
-          head: [{ az: "Birbaşa nitq", ru: "Прямая речь" }, { az: "Dolayı nitq", ru: "Косвенная речь" }],
-          rows: [
-            ["\"I work here.\" (Present Simple)", "He said he worked there. (Past Simple)"],
-            ["\"I'm working.\" (Present Continuous)", "He said he was working. (Past Continuous)"],
-            ["\"I worked.\" / \"I have worked.\"", "He said he had worked. (Past Perfect)"],
-            ["\"I will call.\"", "He said he would call."],
-            ["\"I can help.\"", "He said he could help."],
-            ["\"I must go.\"", "He said he had to go."],
-            ["\"I may come.\"", "He said he might come."],
-          ],
-        },
-        {
-          kind: "table",
-          head: [{ az: "Zaman və yer sözləri", ru: "Слова времени и места" }, { az: "Dəyişir", ru: "Меняются на" }],
-          rows: [
-            ["now", "then"], ["today", "that day"], ["tomorrow", "the next day / the following day"], ["yesterday", "the day before / the previous day"],
-            ["next week", "the following week"], ["here", "there"], ["this", "that"],
-          ],
-        },
-        {
-          kind: "tip",
+          kind: "p",
           text: {
-            az: "İstisna: əgər deyilən şey hələ də doğrudursa və ya \"says\" (indiki zaman) işlənirsə, zaman dəyişməyə bilər: \"He says he is busy\", \"She said Baku is beautiful\" (hələ də gözəldir).",
-            ru: "Исключение: если сказанное по-прежнему верно или используется «says» (настоящее), время можно не менять: «He says he is busy», «She said Baku is beautiful» (он и сейчас красивый).",
+            az: "Bir şey üzərində proses gedirsə və icraçı vacib deyilsə: \"The road is being repaired\" (yol təmir olunur), \"My car was being serviced when you called\" (zəng edəndə maşınıma servis göstərilirdi). Perfect Continuous passive (has been being done) çox ağır səsləndiyi üçün demək olar ki, işlənmir.",
+            ru: "Если с предметом идёт процесс, а исполнитель неважен: «The road is being repaired» (дорогу ремонтируют), «My car was being serviced when you called» (когда ты позвонил, мою машину обслуживали). Perfect Continuous в пассиве (has been being done) звучит тяжело и почти не используется.",
           },
         },
       ],
     },
     {
-      id: "say-tell",
-      title: { az: "3. Say və tell", ru: "3. Say и tell" },
-      blocks: [
-        {
-          kind: "compare",
-          items: [
-            { en: "She said (that) she was late. / She said to me that…", text: { az: "Say-dən sonra şəxs birbaşa gəlmir; lazım olsa \"to me\".", ru: "После say человек напрямую не ставится; если нужно — «to me»." } },
-            { en: "She told me (that) she was late.", text: { az: "Tell-dən sonra mütləq şəxs gəlir: told me, told him. \"She told that…\" səhvdir.", ru: "После tell обязательно человек: told me, told him. «She told that…» — ошибка." } },
-          ],
-        },
-      ],
-    },
-    {
-      id: "questions",
-      title: { az: "4. Sualları çatdırmaq", ru: "4. Передача вопросов" },
-      blocks: [
-        {
-          kind: "p",
-          text: {
-            az: "Dolayı sualda söz sırası təsdiq cümləsindəki kimidir və köməkçi do/does/did işlənmir. Sual sözü varsa, o qalır; yoxdursa (\"Yes/No\" sualı), \"if\" və ya \"whether\" əlavə olunur. Sonda sual işarəsi qoyulmur.",
-            ru: "В косвенном вопросе порядок слов как в утверждении, вспомогательные do/does/did не используются. Если есть вопросительное слово, оно остаётся; если нет (вопрос «да/нет»), добавляется «if» или «whether». Вопросительный знак в конце не ставится.",
-          },
-        },
-        {
-          kind: "table",
-          head: [{ az: "Birbaşa", ru: "Прямая" }, { az: "Dolayı", ru: "Косвенная" }],
-          rows: [
-            ["\"Where do you live?\"", "She asked me where I lived."],
-            ["\"What time is it?\"", "He asked what time it was."],
-            ["\"Are you married?\"", "She asked if / whether I was married."],
-            ["\"Did you see the film?\"", "He asked if I had seen the film."],
-            ["\"Can you help me?\"", "She asked if I could help her."],
-          ],
-        },
-      ],
-    },
-    {
-      id: "requests",
-      title: { az: "5. Xahiş və əmrləri çatdırmaq", ru: "5. Передача просьб и приказов" },
+      id: "modal",
+      title: { az: "5. Modal Passive", ru: "5. Пассив с модальными" },
       blocks: [
         {
           kind: "table",
-          head: [{ az: "Birbaşa", ru: "Прямая" }, { az: "Dolayı", ru: "Косвенная" }],
+          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Nümunə", ru: "Пример" }],
           rows: [
-            ["\"Please wait here.\"", "She asked me to wait there."],
-            ["\"Close the door.\"", "He told me to close the door."],
-            ["\"Don't be late.\"", "My boss told me not to be late."],
-            ["\"You should rest.\"", "The doctor advised me to rest."],
+            ["modal + be + V3 (present/future)", "This form must be signed. The problem can be solved. Phones should be switched off."],
+            ["modal + have been + V3 (past)", "The letter should have been sent yesterday. It must have been stolen. He might have been told."],
           ],
         },
         {
           kind: "p",
           text: {
-            az: "Bu, 14-cü gündəki modelin eynisidir: ask / tell / advise + şəxs + (not) to + V1. Zaman geri çəkilməsi burada lazım deyil, çünki \"to + V1\" dəyişmir.",
-            ru: "Это та же модель, что на 14-й день: ask / tell / advise + человек + (not) to + V1. Сдвиг времён здесь не нужен, потому что «to + V1» не меняется.",
+            az: "Qaydalar, təlimatlar və elanlar çox vaxt modal passive ilə yazılır: \"Seat belts must be worn\", \"Tickets can be bought online\". \"Should have been + V3\" isə görülməli olan, amma görülməyən işi bildirir: \"This should have been done last week\" — bu, keçən həftə edilməli idi.",
+            ru: "Правила, инструкции и объявления часто пишутся в модальном пассиве: «Seat belts must be worn», «Tickets can be bought online». «Should have been + V3» — работа, которую следовало сделать, но не сделали: «This should have been done last week» — это нужно было сделать на прошлой неделе.",
           },
         },
       ],
@@ -132,17 +108,17 @@ export const TEACH_30: Teach = {
         {
           kind: "examples",
           items: [
-            { en: "He said he was busy.", az: "Dedi ki, məşğuldur.", ru: "Он сказал, что занят." },
-            { en: "She told me she had finished the report.", az: "Mənə hesabatı bitirdiyini dedi.", ru: "Она сказала мне, что закончила отчёт." },
-            { en: "They said they would come at 7.", az: "Saat 7-də gələcəklərini dedilər.", ru: "Они сказали, что придут в 7." },
-            { en: "My mum said she couldn't find her glasses.", az: "Anam eynəyini tapa bilmədiyini dedi.", ru: "Мама сказала, что не может найти очки." },
-            { en: "He asked me where I worked.", az: "Məndən harada işlədiyimi soruşdu.", ru: "Он спросил, где я работаю." },
-            { en: "She asked if I wanted some tea.", az: "Çay istəyib-istəmədiyimi soruşdu.", ru: "Она спросила, хочу ли я чаю." },
-            { en: "The teacher told us to open our books.", az: "Müəllim kitablarımızı açmağı dedi.", ru: "Учитель велел нам открыть книги." },
-            { en: "He asked me not to tell anyone.", az: "Heç kimə deməməyimi xahiş etdi.", ru: "Он попросил меня никому не говорить." },
-            { en: "She said she would call me the next day.", az: "Ertəsi gün mənə zəng edəcəyini dedi.", ru: "Она сказала, что позвонит мне на следующий день." },
-            { en: "I asked him what time the shop opened.", az: "Ondan mağazanın saat neçədə açıldığını soruşdum.", ru: "Я спросил его, во сколько открывается магазин." },
-            { en: "The doctor advised me to drink more water.", az: "Həkim mənə daha çox su içməyi məsləhət gördü.", ru: "Врач посоветовал мне пить больше воды." },
+            { en: "Your application has been received.", az: "Müraciətiniz qəbul edilib.", ru: "Ваша заявка получена." },
+            { en: "The flight has been delayed by two hours.", az: "Uçuş iki saat gecikdirilib.", ru: "Рейс задержан на два часа." },
+            { en: "New rules have been introduced.", az: "Yeni qaydalar tətbiq edilib.", ru: "Введены новые правила." },
+            { en: "The building is being renovated.", az: "Bina təmir olunur.", ru: "Здание ремонтируется." },
+            { en: "I felt I was being watched.", az: "Kiminsə məni izlədiyini hiss edirdim.", ru: "Я чувствовал, что за мной наблюдают." },
+            { en: "By the time we arrived, all the tickets had been sold.", az: "Biz çatanda bütün biletlər satılmışdı.", ru: "Когда мы приехали, все билеты уже были проданы." },
+            { en: "The work will have been finished by Friday.", az: "İş cüməyə qədər bitirilmiş olacaq.", ru: "К пятнице работа будет завершена." },
+            { en: "This medicine must be kept in the fridge.", az: "Bu dərman soyuducuda saxlanılmalıdır.", ru: "Это лекарство нужно хранить в холодильнике." },
+            { en: "The problem can't be fixed today.", az: "Problemi bu gün həll etmək olmaz.", ru: "Проблему сегодня не решить." },
+            { en: "He should have been told earlier.", az: "Ona əvvəlcədən deyilməli idi.", ru: "Ему следовало сказать раньше." },
+            { en: "Has the invoice been paid yet?", az: "Hesab-faktura artıq ödənilib?", ru: "Счёт уже оплачен?" },
           ],
         },
       ],
@@ -154,21 +130,21 @@ export const TEACH_30: Teach = {
         {
           kind: "mistakes",
           items: [
-            { wrong: "She said me that she was tired.", right: "She told me that she was tired. / She said that…", why: { az: "Say-dən sonra şəxs gəlmir; tell + şəxs.", ru: "После say не ставится человек; tell + человек." } },
-            { wrong: "He told that he was busy.", right: "He said that he was busy. / He told me…", why: { az: "Tell-dən sonra şəxs mütləqdir.", ru: "После tell обязательно человек." } },
-            { wrong: "She asked me where do I live.", right: "She asked me where I lived.", why: { az: "Dolayı sualda düz söz sırası, do yoxdur.", ru: "В косвенном вопросе прямой порядок, без do." } },
-            { wrong: "He asked me are you hungry.", right: "He asked me if I was hungry.", why: { az: "Yes/No sualı → if / whether + düz sıra.", ru: "Вопрос да/нет → if / whether + прямой порядок." } },
-            { wrong: "She said she will come.", right: "She said she would come.", why: { az: "Said-dən sonra will → would.", ru: "После said: will → would." } },
-            { wrong: "He told me don't worry.", right: "He told me not to worry.", why: { az: "Əmrin inkarı: not to + V1.", ru: "Отрицательный приказ: not to + V1." } },
+            { wrong: "The report has sent.", right: "The report has been sent.", why: { az: "Hesabat özü göndərmir; passive üçün been lazımdır.", ru: "Отчёт сам ничего не отправляет; для пассива нужен been." } },
+            { wrong: "The road is repairing.", right: "The road is being repaired.", why: { az: "Prosesdə olan passive: being + V3.", ru: "Пассив в процессе: being + V3." } },
+            { wrong: "The form must signed.", right: "The form must be signed.", why: { az: "Modal passive: modal + be + V3.", ru: "Модальный пассив: модальный + be + V3." } },
+            { wrong: "It should have done yesterday.", right: "It should have been done yesterday.", why: { az: "Keçmiş modal passive: should have been + V3.", ru: "Модальный пассив в прошлом: should have been + V3." } },
+            { wrong: "The house has been build.", right: "The house has been built.", why: { az: "Build-in V3 forması built.", ru: "V3 от build — built." } },
+            { wrong: "The results will announce tomorrow.", right: "The results will be announced tomorrow.", why: { az: "Gələcək passive: will be + V3.", ru: "Пассив в будущем: will be + V3." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Said (kimə yox) / told + şəxs. Zaman bir addım geri: am→was, will→would, can→could.", ru: "Said (без кому) / told + человек. Время на шаг назад: am→was, will→would, can→could." },
-    { az: "Dolayı sual: asked + sual sözü / if + düz söz sırası.", ru: "Косвенный вопрос: asked + вопросительное слово / if + прямой порядок." },
-    { az: "Xahiş və əmr: asked / told + şəxs + (not) to + V1.", ru: "Просьба и приказ: asked / told + человек + (not) to + V1." },
-    { az: "Today → that day, tomorrow → the next day, here → there.", ru: "Today → that day, tomorrow → the next day, here → there." },
+    { az: "Passive-də V3 dəyişmir; zamanı \"be\" göstərir.", ru: "В пассиве V3 не меняется; время показывает «be»." },
+    { az: "Perfect: has/have/had been + V3. Continuous: is/was being + V3.", ru: "Perfect: has/have/had been + V3. Continuous: is/was being + V3." },
+    { az: "Modal: must/can/should be + V3; keçmişdə should/must have been + V3.", ru: "Модальный: must/can/should be + V3; в прошлом should/must have been + V3." },
+    { az: "İşdə ən çox: has been sent / done / cancelled / approved.", ru: "Чаще всего на работе: has been sent / done / cancelled / approved." },
   ],
 };

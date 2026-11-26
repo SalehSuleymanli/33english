@@ -3,132 +3,128 @@ import type { Teach } from "./types";
 export const TEACH_15: Teach = {
   day: 15,
   summary: {
-    az: "Bu dərsdə Present Perfect zamanını öyrənirsiniz: have / has + V3. Bu zaman keçmişi indiki anla bağlayır: həyat təcrübəsi, nəticəsi indi görünən hadisələr və indiyə qədər davam edən vəziyyətlər. Azərbaycan və rus dillərində dəqiq qarşılığı olmadığı üçün ən çətin mövzulardan biridir.",
-    ru: "В этом уроке вы изучаете Present Perfect: have / has + V3. Это время связывает прошлое с настоящим: жизненный опыт, события с результатом в настоящем и ситуации, длящиеся до сих пор. Точного аналога в русском нет, поэтому это одна из самых трудных тем.",
+    az: "Bu dərsdə fikir və məsləhət bildirmək üçün çox işlək strukturları öyrənirsiniz: It is + sifət + to + feil (It's important to listen), enough və too, know how / what / where to, və whatever, whenever kimi sözlər.",
+    ru: "В этом уроке вы изучите очень полезные структуры для выражения мнения и совета: It is + прилагательное + to + глагол (It's important to listen), enough и too, know how / what / where to, а также слова вроде whatever, whenever.",
   },
   sections: [
     {
-      id: "idea",
-      title: { az: "1. Əsas ideya: keçmiş + indi", ru: "1. Главная идея: прошлое + настоящее" },
+      id: "it-adj",
+      title: { az: "1. It is + sifət + to + feil", ru: "1. It is + прилагательное + to + глагол" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "Past Simple keçmişdə bitmiş hadisədən danışır və bizi o vaxta aparır: \"I lost my keys yesterday\" (dünən açarlarımı itirdim). Present Perfect isə keçmiş hadisənin indiki nəticəsinə baxır: \"I have lost my keys\" (açarlarımı itirmişəm — indi açarım yoxdur, evə girə bilmirəm). Nə vaxt olduğu vacib deyil; vacib olan indiki vəziyyətdir.",
-            ru: "Past Simple говорит о законченном событии в прошлом и переносит нас в то время: «I lost my keys yesterday» (вчера я потерял ключи). Present Perfect смотрит на результат прошлого события сейчас: «I have lost my keys» (я потерял ключи — сейчас их у меня нет, я не могу войти). Когда это произошло — неважно; важна ситуация сейчас.",
+            az: "Azərbaycan dilində \"Dinləmək vacibdir\" deyirik, rus dilində «Важно слушать». İngilis dilində \"To listen is important\" qrammatik cəhətdən mümkündür, amma çox ağır səslənir. Təbii yol: cümləni \"It\" ilə başlamaq, hərəkəti isə sona keçirmək: \"It's important to listen.\" Burada \"it\" heç nə demək deyil — sadəcə mübtəda yerini tutur, eynilə \"It's cold\" cümləsindəki kimi.",
+            ru: "По-русски мы говорим «Важно слушать». В английском «To listen is important» грамматически возможно, но звучит тяжело. Естественный способ — начать с «It», а действие перенести в конец: «It's important to listen.» Здесь «it» ничего не значит — он просто занимает место подлежащего, как в «It's cold».",
           },
         },
         {
           kind: "formula",
-          label: { az: "Present Perfect", ru: "Present Perfect" },
+          label: { az: "It + be + sifət + to + feil", ru: "It + be + прилагательное + to + глагол" },
           parts: [
-            { text: "She", role: "subject", note: { az: "Mübtəda.", ru: "Подлежащее." } },
-            { text: "has", role: "aux", note: { az: "Köməkçi have/has. Sahiblik mənası YOXDUR (10-cu gün).", ru: "Вспомогательный have/has. Значения обладания НЕТ (10-й день)." } },
-            { text: "finished", role: "verb", note: { az: "Feilin üçüncü forması (V3).", ru: "Третья форма глагола (V3)." } },
-            { text: "the report", role: "object", note: { az: "Tamamlıq.", ru: "Дополнение." } },
+            { text: "It", role: "subject", note: { az: "Formal mübtəda.", ru: "Формальное подлежащее." } },
+            { text: "is", role: "be", note: { az: "Zaman: is / was / will be.", ru: "Время: is / was / will be." } },
+            { text: "easy", role: "complement", note: { az: "Fikir bildirən sifət.", ru: "Оценочное прилагательное." } },
+            { text: "(for me)", role: "other", note: { az: "Kim üçün? (istəyə bağlı)", ru: "Для кого? (необязательно)" } },
+            { text: "to find", role: "verb", note: { az: "to + feil: nə etmək?", ru: "to + глагол: что делать?" } },
+            { text: "a job here", role: "object", note: { az: "Tamamlıq.", ru: "Дополнение." } },
           ],
-          example: "She has finished the report.",
-        },
-      ],
-    },
-    {
-      id: "uses",
-      title: { az: "2. Üç əsas istifadə", ru: "2. Три основных употребления" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "İstifadə", ru: "Употребление" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["1. life experience (ever / never)", "I have been to Turkey three times. Have you ever tried sushi?"],
-            ["2. recent action with a result now", "I've cut my finger. (it's bleeding) She has just left."],
-            ["3. state from the past until now (for / since)", "We have lived here for ten years. I've known him since 2015."],
-          ],
-        },
-        {
-          kind: "p",
-          text: {
-            az: "Birinci istifadədə \"həyatım boyu, indiyə qədər\" mənası var: dəqiq vaxt verilmir. \"I have been to London\" — Londonda olmuşam (nə vaxt olduğu vacib deyil). Dəqiq vaxt deyən kimi Past Simple-a keçirik: \"I went to London in 2019.\"",
-            ru: "В первом употреблении есть смысл «за всю жизнь, до сих пор»: точное время не называется. «I have been to London» — я бывал в Лондоне (когда — неважно). Как только называем точное время, переходим на Past Simple: «I went to London in 2019.»",
-          },
-        },
-        {
-          kind: "p",
-          text: {
-            az: "Üçüncü istifadə Azərbaycan və rus dilində indiki zamanla deyilir: \"On ildir burada yaşayırıq\" / «Мы живём здесь десять лет». İngilis dilində isə bu, Present Perfect-dir: \"We have lived here for ten years\". \"We live here for ten years\" səhvdir.",
-            ru: "Третье употребление в русском передаётся настоящим временем: «Мы живём здесь десять лет». В английском это Present Perfect: «We have lived here for ten years». «We live here for ten years» — ошибка.",
-          },
-        },
-      ],
-    },
-    {
-      id: "forms",
-      title: { az: "3. Formalar", ru: "3. Формы" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Forma", ru: "Форма" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["+", "I've (I have) seen it. She's (she has) gone."],
-            ["−", "I haven't seen it. She hasn't called."],
-            ["?", "Have you seen it? Has she called?"],
-            ["Short answers", "Yes, I have. / No, I haven't. Yes, she has. / No, she hasn't."],
-            ["Wh- ?", "Where have you been? How long have you worked here?"],
-          ],
-        },
-        {
-          kind: "compare",
-          items: [
-            { en: "She's gone to Paris. / She's been to Paris.", text: { az: "\"Gone to\" — Parisə gedib, hələ oradadır. \"Been to\" — Parisdə olub, artıq qayıdıb.", ru: "«Gone to» — уехала в Париж и всё ещё там. «Been to» — бывала в Париже и уже вернулась." } },
-          ],
-        },
-      ],
-    },
-    {
-      id: "signals",
-      title: { az: "4. Siqnal sözlər: ever, never, already, yet, just, for, since", ru: "4. Слова-сигналы: ever, never, already, yet, just, for, since" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Söz", ru: "Слово" }, { az: "Məna və yer", ru: "Значение и место" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["ever", "heç (sualda) / когда-либо — before V3", "Have you ever been to Japan?"],
-            ["never", "heç vaxt / никогда — before V3", "I've never seen snow."],
-            ["already", "artıq / уже — before V3", "I've already eaten."],
-            ["yet", "hələ (−) / artıq (?) / ещё, уже — end", "I haven't finished yet. Have you finished yet?"],
-            ["just", "indicə / только что — before V3", "He's just arrived."],
-            ["for", "müddət / в течение", "for two hours, for a long time, for years"],
-            ["since", "başlanğıc nöqtəsi / с (какого-то момента)", "since Monday, since 2010, since I was a child"],
-            ["so far / recently / lately / this week", "indiyə qədər / до сих пор, недавно", "I've read two books this month."],
-          ],
-        },
-        {
-          kind: "tip",
-          text: {
-            az: "\"For\" müddəti (nə qədər?), \"since\" başlanğıcı (nə vaxtdan?) bildirir: for three years = since 2022. Azərbaycan dilində hər ikisi \"-dır\" (üç ildir) və ya \"-dan bəri\" kimi deyilir, ona görə seçimə diqqət edin.",
-            ru: "«For» — длительность (сколько?), «since» — начальная точка (с какого времени?): for three years = since 2022. В русском оба часто передаются одинаково («уже три года», «с 2022»), поэтому будьте внимательны.",
-          },
-        },
-      ],
-    },
-    {
-      id: "vs-past",
-      title: { az: "5. Present Perfect yoxsa Past Simple?", ru: "5. Present Perfect или Past Simple?" },
-      blocks: [
-        {
-          kind: "compare",
-          items: [
-            { en: "I've lost my phone. / I lost my phone last week.", text: { az: "Vaxt göstərilmir, nəticə indi vacibdir → Perfect. Dəqiq keçmiş vaxt var (last week) → Past Simple.", ru: "Время не указано, важен результат сейчас → Perfect. Есть точное прошедшее время (last week) → Past Simple." } },
-            { en: "Have you ever been to Gabala? — Yes, I went there last summer.", text: { az: "Söhbət Perfect ilə başlayır (təcrübə), detallar Past Simple ilə davam edir. Bu, çox təbii nümunədir.", ru: "Разговор начинается с Perfect (опыт), а подробности продолжаются в Past Simple. Это очень естественная схема." } },
-            { en: "I've worked here for 5 years. / I worked there for 5 years.", text: { az: "Birincisi hələ də işləyirəm. İkincisi artıq orada işləmirəm.", ru: "В первом я до сих пор здесь работаю. Во втором — я там больше не работаю." } },
-          ],
+          example: "It's easy for me to find a job here.",
         },
         {
           kind: "signals",
-          words: ["yesterday", "last year", "in 2018", "two days ago", "when I was…", "What time…?"],
+          words: ["important", "necessary", "easy", "difficult", "hard", "possible", "impossible", "nice", "good", "dangerous", "expensive", "interesting", "useful", "better"],
           text: {
-            az: "Bu ifadələr Present Perfect ilə işlənmir, çünki keçmişdə bitmiş konkret vaxtı göstərir. \"I have seen him yesterday\" səhvdir.",
-            ru: "Эти выражения не используются с Present Perfect, потому что указывают на конкретное законченное время в прошлом. «I have seen him yesterday» — ошибка.",
+            az: "Bu sifətlər bu modellə ən çox işlənir. Kimin üçün olduğunu demək istəsəniz \"for + şəxs\" əlavə edin: \"It's hard for my parents to understand.\"",
+            ru: "Эти прилагательные чаще всего используются в этой модели. Чтобы сказать, для кого, добавьте «for + человек»: «It's hard for my parents to understand.»",
           },
+        },
+      ],
+    },
+    {
+      id: "too-enough",
+      title: { az: "2. Too və enough", ru: "2. Too и enough" },
+      blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Məna", ru: "Значение" }, { az: "Nümunə", ru: "Пример" }],
+          rows: [
+            ["too + adjective (+ to)", "həddindən çox / слишком (problem)", "It's too hot to work. The box is too heavy for me to lift."],
+            ["adjective + enough (+ to)", "kifayət qədər / достаточно", "She's old enough to drive."],
+            ["not + adjective + enough", "kifayət qədər deyil / недостаточно", "The room isn't big enough for six people."],
+            ["enough + noun", "kifayət qədər (isim) / достаточно (чего-то)", "We don't have enough time. Is there enough milk?"],
+            ["too much / too many + noun", "həddindən çox / слишком много", "There's too much sugar. There are too many cars."],
+          ],
+        },
+        {
+          kind: "p",
+          text: {
+            az: "Diqqət yerə: \"enough\" sifətdən SONRA (old enough, big enough), amma isimdən ƏVVƏL gəlir (enough money, enough time). \"Too\" həmişə mənfi mənadadır: nəsə problem yaradır. \"Very\" isə sadəcə \"çox\" deməkdir: \"It's very hot\" (çox istidir) ilə \"It's too hot to sleep\" (yatmaq üçün həddindən artıq istidir) fərqlidir.",
+            ru: "Обратите внимание на место: «enough» ставится ПОСЛЕ прилагательного (old enough, big enough), но ПЕРЕД существительным (enough money, enough time). «Too» всегда с отрицательным оттенком: что-то мешает. «Very» просто «очень»: «It's very hot» (очень жарко) и «It's too hot to sleep» (слишком жарко, чтобы спать) — разные вещи.",
+          },
+        },
+      ],
+    },
+    {
+      id: "know-how",
+      title: { az: "3. Know how / what / where + to", ru: "3. Know how / what / where + to" },
+      blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "Sual sözü + to + feil qısa və təbii quruluşdur: \"I don't know what to say\" (nə deyəcəyimi bilmirəm). \"Can you show me how to use it?\" (Bundan necə istifadə etməyi göstərə bilərsən?). Bu, uzun budaq cümlələri əvəz edir.",
+            ru: "Вопросительное слово + to + глагол — короткая и естественная структура: «I don't know what to say» (не знаю, что сказать). «Can you show me how to use it?» (Покажешь, как этим пользоваться?) Она заменяет длинные придаточные.",
+          },
+        },
+        {
+          kind: "table",
+          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Nümunə", ru: "Пример" }],
+          rows: [
+            ["know how to", "Do you know how to cook plov?"],
+            ["what to", "I don't know what to wear."],
+            ["where to", "Tell me where to put this."],
+            ["when to", "She knows when to stop."],
+            ["which … to", "I can't decide which phone to buy."],
+            ["whether to", "I'm not sure whether to go or not."],
+          ],
+        },
+      ],
+    },
+    {
+      id: "ever",
+      title: { az: "4. Whatever, whoever, wherever, whenever", ru: "4. Whatever, whoever, wherever, whenever" },
+      blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Söz", ru: "Слово" }, { az: "Məna", ru: "Значение" }, { az: "Nümunə", ru: "Пример" }],
+          rows: [
+            ["whatever", "nə olursa olsun, istənilən şey / что угодно, всё, что", "Do whatever you want."],
+            ["whoever", "kim olursa olsun / кто бы ни", "Whoever called, I'm not here."],
+            ["wherever", "harada olursa olsun / где бы ни, куда угодно", "Sit wherever you like."],
+            ["whenever", "nə vaxt olursa / когда угодно, всякий раз когда", "Call me whenever you need help."],
+            ["however", "necə olursa olsun / как бы ни", "However hard it is, don't give up."],
+          ],
+        },
+        {
+          kind: "p",
+          text: {
+            az: "Danışıqda tək \"Whatever.\" cavabı \"nə olursa olsun, fərqi yoxdur\" deməkdir və bəzən kobud, laqeyd səslənir. Ehtiyatla işlədin.",
+            ru: "В разговоре одиночное «Whatever.» значит «да всё равно» и иногда звучит грубо и пренебрежительно. Используйте осторожно.",
+          },
+        },
+      ],
+    },
+    {
+      id: "compare",
+      title: { az: "5. Müqayisə", ru: "5. Сравнение" },
+      blocks: [
+        {
+          kind: "compare",
+          items: [
+            { en: "It's important to sleep. / Sleep is important.", text: { az: "Hər ikisi düzgündür. Birincidə hərəkət (yatmaq), ikincidə isim (yuxu) vacibdir.", ru: "Оба верны. В первом важно действие (спать), во втором — существительное (сон)." } },
+            { en: "There is enough time. / It's early enough.", text: { az: "Enough isimdən əvvəl, sifətdən sonra.", ru: "Enough — перед существительным, после прилагательного." } },
+            { en: "I don't know what to do. / I don't know what I should do.", text: { az: "Məna eynidir; \"what to do\" qısa və daha təbiidir.", ru: "Смысл одинаковый; «what to do» короче и естественнее." } },
+          ],
         },
       ],
     },
@@ -139,18 +135,18 @@ export const TEACH_15: Teach = {
         {
           kind: "examples",
           items: [
-            { en: "Have you ever met a famous person?", az: "Heç məşhur birisi ilə tanış olmusan?", ru: "Ты когда-нибудь встречал знаменитость?" },
-            { en: "I've never been on a plane.", az: "Heç vaxt təyyarəyə minməmişəm.", ru: "Я никогда не летал на самолёте." },
-            { en: "We've already booked the hotel.", az: "Oteli artıq bron etmişik.", ru: "Мы уже забронировали отель." },
-            { en: "Has the bus left yet? — No, it hasn't.", az: "Avtobus artıq gedib? — Yox, hələ getməyib.", ru: "Автобус уже ушёл? — Нет, ещё нет." },
-            { en: "She has just called you.", az: "O, indicə sənə zəng etdi.", ru: "Она только что тебе звонила." },
-            { en: "I've known Rashad since school.", az: "Rəşadı məktəbdən tanıyıram.", ru: "Я знаю Рашада со школы." },
-            { en: "They've been married for twenty years.", az: "İyirmi ildir evlidirlər.", ru: "Они женаты двадцать лет." },
-            { en: "How long have you had this car?", az: "Bu maşın nə vaxtdan səndədir?", ru: "Сколько у тебя уже эта машина?" },
-            { en: "Prices have gone up a lot.", az: "Qiymətlər çox qalxıb.", ru: "Цены сильно выросли." },
-            { en: "I haven't seen her this week.", az: "Bu həftə onu görməmişəm.", ru: "На этой неделе я её не видел." },
-            { en: "Someone has taken my pen!", az: "Kimsə qələmimi götürüb!", ru: "Кто-то взял мою ручку!" },
-            { en: "Where have you been? I've been worried.", az: "Harada idin? Narahat olmuşdum.", ru: "Где ты был? Я волновался." },
+            { en: "It's important to drink enough water.", az: "Kifayət qədər su içmək vacibdir.", ru: "Важно пить достаточно воды." },
+            { en: "It was difficult to find a parking space.", az: "Park yeri tapmaq çətin idi.", ru: "Было трудно найти место для парковки." },
+            { en: "It's nice to meet you.", az: "Tanış olmağımıza şadam.", ru: "Приятно познакомиться." },
+            { en: "Is it possible to change the date?", az: "Tarixi dəyişmək mümkündür?", ru: "Можно ли изменить дату?" },
+            { en: "The coffee is too hot to drink.", az: "Qəhvə içmək üçün çox istidir.", ru: "Кофе слишком горячий, чтобы пить." },
+            { en: "He isn't tall enough to play basketball.", az: "Basketbol oynamaq üçün kifayət qədər uca deyil.", ru: "Он недостаточно высокий, чтобы играть в баскетбол." },
+            { en: "We don't have enough chairs.", az: "Kifayət qədər stulumuz yoxdur.", ru: "У нас не хватает стульев." },
+            { en: "There are too many people here.", az: "Burada həddindən artıq çox adam var.", ru: "Здесь слишком много людей." },
+            { en: "Could you tell me how to get to the station?", az: "Stansiyaya necə gedəcəyimi deyə bilərsiniz?", ru: "Не подскажете, как пройти к вокзалу?" },
+            { en: "I didn't know what to say.", az: "Nə deyəcəyimi bilmədim.", ru: "Я не знал, что сказать." },
+            { en: "You can come whenever you want.", az: "Nə vaxt istəsən gələ bilərsən.", ru: "Можешь приходить, когда захочешь." },
+            { en: "Whatever happens, I'll support you.", az: "Nə olursa olsun, sənə dəstək olacağam.", ru: "Что бы ни случилось, я тебя поддержу." },
           ],
         },
       ],
@@ -162,22 +158,21 @@ export const TEACH_15: Teach = {
         {
           kind: "mistakes",
           items: [
-            { wrong: "I live here since 2015.", right: "I have lived here since 2015.", why: { az: "Keçmişdən indiyə qədər davam edən vəziyyət → Present Perfect.", ru: "Ситуация из прошлого до сих пор → Present Perfect." } },
-            { wrong: "I have seen him yesterday.", right: "I saw him yesterday.", why: { az: "Dəqiq keçmiş vaxt (yesterday) → Past Simple.", ru: "Точное прошедшее время (yesterday) → Past Simple." } },
-            { wrong: "She has went home.", right: "She has gone home.", why: { az: "Have/has-dan sonra V3 (gone), V2 (went) yox.", ru: "После have/has — V3 (gone), а не V2 (went)." } },
-            { wrong: "Did you ever eat plov?", right: "Have you ever eaten plov?", why: { az: "Həyat təcrübəsi sualı adətən Present Perfect ilə.", ru: "Вопрос о жизненном опыте обычно в Present Perfect." } },
-            { wrong: "I know him for ten years.", right: "I have known him for ten years.", why: { az: "Know vəziyyət feilidir; davamlı vəziyyət üçün Present Perfect.", ru: "Know — глагол состояния; для длящегося состояния — Present Perfect." } },
-            { wrong: "I haven't finished already.", right: "I haven't finished yet.", why: { az: "İnkarda \"yet\" (hələ), təsdiqdə \"already\" (artıq).", ru: "В отрицании — «yet» (ещё), в утверждении — «already» (уже)." } },
-            { wrong: "since two years", right: "for two years", why: { az: "Müddət üçün for, başlanğıc üçün since.", ru: "Для длительности — for, для начальной точки — since." } },
+            { wrong: "Is important to listen.", right: "It's important to listen.", why: { az: "Mübtəda \"it\" mütləqdir.", ru: "Подлежащее «it» обязательно." } },
+            { wrong: "It's important listen.", right: "It's important to listen.", why: { az: "Sifətdən sonra to + feil.", ru: "После прилагательного — to + глагол." } },
+            { wrong: "She is enough old to drive.", right: "She is old enough to drive.", why: { az: "Enough sifətdən sonra gəlir.", ru: "Enough ставится после прилагательного." } },
+            { wrong: "I don't have money enough.", right: "I don't have enough money.", why: { az: "Enough isimdən əvvəl gəlir.", ru: "Enough ставится перед существительным." } },
+            { wrong: "This bag is too much heavy.", right: "This bag is too heavy.", why: { az: "Sifətlə \"too\", isimlə \"too much/many\".", ru: "С прилагательным — «too», с существительным — «too much/many»." } },
+            { wrong: "I don't know what should I do.", right: "I don't know what to do. / … what I should do.", why: { az: "Sual sözündən sonra düz söz sırası və ya \"to + feil\".", ru: "После вопросительного слова — прямой порядок или «to + глагол»." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Present Perfect: have/has + V3. Keçmişi indi ilə bağlayır.", ru: "Present Perfect: have/has + V3. Связывает прошлое с настоящим." },
-    { az: "Təcrübə (ever, never), indiki nəticə (just, already, yet), indiyə qədər davam (for, since).", ru: "Опыт (ever, never), результат сейчас (just, already, yet), длится до сих пор (for, since)." },
-    { az: "Dəqiq keçmiş vaxt varsa (yesterday, in 2019) → Past Simple.", ru: "Если есть точное прошедшее время (yesterday, in 2019) → Past Simple." },
-    { az: "\"On ildir yaşayıram\" = I have lived… (indiki zaman yox!).", ru: "«Живу десять лет» = I have lived… (не настоящее время!)." },
+    { az: "It's + sifət + (for someone) + to + feil: It's easy to learn.", ru: "It's + прилагательное + (for someone) + to + глагол: It's easy to learn." },
+    { az: "Too + sifət = həddindən çox (problem). Sifət + enough, enough + isim.", ru: "Too + прилагательное = слишком (проблема). Прилагательное + enough, enough + существительное." },
+    { az: "Sual sözü + to: how to, what to, where to.", ru: "Вопросительное слово + to: how to, what to, where to." },
+    { az: "Whatever, whenever, wherever = nə / nə vaxt / harada olursa olsun.", ru: "Whatever, whenever, wherever = что / когда / где угодно." },
   ],
 };

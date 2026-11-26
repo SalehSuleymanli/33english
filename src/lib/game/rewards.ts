@@ -52,15 +52,15 @@ export const CAPS: Record<string, number> = {
   words: 50,
 };
 
-export const LEVEL_TEST_DAYS = [12, 21, 33];
+export const LEVEL_TEST_DAYS = [10, 19, 33];
 
 /** Course stages ("grammar levels") and the days they contain. */
 export const COURSE_STAGES: { id: string; name: string; days: number[] }[] = [
-  { id: "foundation", name: "Foundation", days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { id: "expansion", name: "Expansion", days: [13, 14] },
-  { id: "combination", name: "Combination", days: [15, 16, 17, 18, 19, 20, 21] },
-  { id: "communication", name: "Communication", days: [22, 23, 24, 25, 26, 27, 28, 29, 30] },
-  { id: "application", name: "Application", days: [31, 32, 33] },
+  { id: "foundation", name: "Foundation", days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+  { id: "expansion", name: "Expansion", days: [11, 12, 13, 14, 15] },
+  { id: "combination", name: "Combination", days: [16, 17, 18, 19] },
+  { id: "communication", name: "Communication", days: [20, 21, 22, 23, 24, 25, 26, 27, 28] },
+  { id: "application", name: "Application", days: [29, 30, 31, 32, 33] },
 ];
 
 export const STREAK_MILESTONES: Record<number, number> = { 3: 30, 7: 70, 14: 150, 30: 300, 60: 500, 100: 800 };

@@ -4,7 +4,7 @@ const day07: Lesson = {
   day: 7,
   stage: "foundation",
   frame: "actions",
-  title: "Actions in progress",
+  title: "Continuous: actions in progress",
   objective: "Use be + -ing for actions happening now, then, or at a future moment.",
   builds_on: "This joins Frame 2 and Frame 3: the be you learned on Days 3–4 becomes a helper for an action verb + -ing.",
   outcome: "Say what you and others are doing on the phone.",

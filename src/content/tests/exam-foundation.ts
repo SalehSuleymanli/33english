@@ -5,9 +5,9 @@ export const EXAM_FOUNDATION: Test = {
   kind: "exam",
   title: { en: "Foundation grammar exam", az: "Təməl qrammatika imtahanı", ru: "Экзамен по базовой грамматике" },
   description: {
-    en: "Days 1–12: the six frames in the present, past and future. New sentences, not copied from the lessons.",
-    az: "1–12-ci günlər: altı çərçivə indiki, keçmiş və gələcək zamanda. Dərslərdən köçürülməmiş yeni cümlələr.",
-    ru: "Дни 1–12: шесть рамок в настоящем, прошедшем и будущем. Новые предложения, не скопированные из уроков.",
+    en: "Days 1–10: there is, to be, simple and continuous tenses, modals and have — in the present, past and future. New sentences, not copied from the lessons.",
+    az: "1–10-cu günlər: there is, to be, sadə və davamedici zamanlar, modal feillər və have — indiki, keçmiş və gələcək zamanda. Dərslərdən köçürülməmiş yeni cümlələr.",
+    ru: "Дни 1–10: there is, to be, простые и длительные времена, модальные глаголы и have — в настоящем, прошедшем и будущем. Новые предложения, не из уроков.",
   },
   minutes: 20,
   timed: true,
@@ -27,8 +27,6 @@ export const EXAM_FOUNDATION: Test = {
         { id: "f08", type: "choice", skill: "modals", prompt: "You ___ bring food. Lunch is included in the price.", options: ["mustn't", "don't have to", "can't", "shouldn't to"], answer: 1, why: { az: "Lazım deyil (məcburiyyət yoxdur) → don't have to. Mustn't qadağadır.", ru: "Не нужно (нет обязанности) → don't have to. Mustn't — запрет." } },
         { id: "f09", type: "choice", skill: "modals", prompt: "After the operation, she ___ walk for two months.", options: ["couldn't", "can't", "wasn't able", "mustn't"], answer: 0, why: { az: "Keçmişdə bacarmamaq → couldn't (wasn't able TO walk olardı).", ru: "Невозможность в прошлом → couldn't (было бы wasn't able TO walk)." } },
         { id: "f10", type: "choice", skill: "possession", prompt: "We ___ enough chairs for everyone. Can you bring two more?", options: ["haven't", "don't have", "hasn't", "aren't having"], answer: 1, why: { az: "Sahiblik inkarı → don't have.", ru: "Отрицание обладания → don't have." } },
-        { id: "f11", type: "choice", skill: "passive", prompt: "The winners ___ next Monday.", options: ["will announce", "will be announced", "are announcing", "announced"], answer: 1, why: { az: "Qaliblər elan EDİLƏCƏK (onları elan edirlər) → will be + V3.", ru: "Победителей объявят (они — объект) → will be + V3." } },
-        { id: "f12", type: "choice", skill: "passive", prompt: "Where ___ this photo taken?", options: ["did", "was", "were", "has"], answer: 1, why: { az: "Keçmiş passive sual: Was + mübtəda + V3?", ru: "Вопрос в прошедшем пассиве: Was + подлежащее + V3?" } },
       ],
     },
     {
@@ -39,7 +37,6 @@ export const EXAM_FOUNDATION: Test = {
         { id: "f14", type: "fill", skill: "actions", prompt: "She ___ (not / call) me yesterday.", accept: ["didn't call", "did not call"], why: { az: "Keçmiş inkar: didn't + V1.", ru: "Отрицание в прошлом: didn't + V1." } },
         { id: "f15", type: "fill", skill: "actions", prompt: "Listen! Somebody ___ (knock) at the door.", accept: ["is knocking", "'s knocking"], why: { az: "Listen! → indi baş verir → is + -ing.", ru: "Listen! → происходит сейчас → is + -ing." } },
         { id: "f16", type: "fill", skill: "modals", prompt: "I can't come today, but I ___ (be able to) come tomorrow.", accept: ["will be able to", "'ll be able to"], why: { az: "Gələcək bacarıq: will be able to.", ru: "Умение в будущем: will be able to." } },
-        { id: "f17", type: "fill", skill: "passive", prompt: "Coffee ___ (grow) in Brazil.", accept: ["is grown"], why: { az: "Qəhvəni yetişdirirlər → passive: is grown.", ru: "Кофе выращивают → пассив: is grown." } },
       ],
     },
     {
@@ -55,7 +52,6 @@ export const EXAM_FOUNDATION: Test = {
     {
       title: "Part 4 — Rewrite the sentence",
       questions: [
-        { id: "f22", type: "transform", skill: "passive", prompt: "Someone cleans the classrooms every evening.", instruction: { en: "Make it passive.", az: "Passive edin.", ru: "Сделайте пассив." }, accept: ["The classrooms are cleaned every evening."], why: { az: "Obyekt (the classrooms) mübtəda olur; cəm → are cleaned.", ru: "Объект (the classrooms) становится подлежащим; мн. число → are cleaned." } },
         { id: "f23", type: "transform", skill: "states", prompt: "The museum is open on Mondays.", instruction: { en: "Make it a question.", az: "Sual qurun.", ru: "Сделайте вопрос." }, accept: ["Is the museum open on Mondays?"], why: { az: "Be önə keçir.", ru: "Be выходит вперёд." } },
         { id: "f24", type: "transform", skill: "actions", prompt: "They take the bus to work.", instruction: { en: "Put it in the past and make it negative.", az: "Keçmiş zamanda inkar edin.", ru: "Поставьте в прошедшее время и сделайте отрицание." }, accept: ["They didn't take the bus to work.", "They did not take the bus to work."], why: { az: "didn't + V1 (take).", ru: "didn't + V1 (take)." } },
       ],

@@ -165,7 +165,7 @@ export const SCENARIOS: Scenario[] = [
     id: "experiences",
     title: "Have you ever…?",
     summary: "Share life experiences and ask follow-up questions.",
-    afterDay: 15,
+    afterDay: 16,
     frames: ["actions"],
     dialogue: {
       title: "Getting to know each other",
@@ -193,7 +193,7 @@ export const SCENARIOS: Scenario[] = [
     id: "plans",
     title: "Explaining your plans",
     summary: "Talk about what you're going to do and why.",
-    afterDay: 16,
+    afterDay: 18,
     frames: ["actions", "modals"],
     dialogue: {
       title: "Weekend plans",
@@ -221,7 +221,7 @@ export const SCENARIOS: Scenario[] = [
     id: "interview",
     title: "A job interview",
     summary: "Answer common interview questions about your experience and skills.",
-    afterDay: 19,
+    afterDay: 29,
     frames: ["actions", "modals", "states"],
     dialogue: {
       title: "Customer service interview",
@@ -251,7 +251,7 @@ export const SCENARIOS: Scenario[] = [
     id: "workplace",
     title: "Updates at work",
     summary: "Give and ask for updates on tasks — clearly and politely.",
-    afterDay: 20,
+    afterDay: 30,
     frames: ["passive", "actions"],
     dialogue: {
       title: "Monday stand-up",
@@ -279,7 +279,7 @@ export const SCENARIOS: Scenario[] = [
     id: "opinions",
     title: "Sharing an opinion",
     summary: "Give your opinion, compare options and explain why.",
-    afterDay: 23,
+    afterDay: 14,
     frames: ["states"],
     dialogue: {
       title: "City or countryside?",
@@ -335,7 +335,7 @@ export const SCENARIOS: Scenario[] = [
     id: "airport",
     title: "At the airport",
     summary: "Check in, ask about delays and find your gate.",
-    afterDay: 29,
+    afterDay: 21,
     frames: ["passive", "modals", "existence"],
     dialogue: {
       title: "A delayed flight",
@@ -364,7 +364,7 @@ export const SCENARIOS: Scenario[] = [
     id: "story",
     title: "Telling a story",
     summary: "Tell a short story with a clear order of events.",
-    afterDay: 31,
+    afterDay: 32,
     frames: ["actions"],
     dialogue: {
       title: "A strange morning",

@@ -111,9 +111,30 @@ describe("achievements and placement", () => {
   });
   it("placement suggests a start day", () => {
     const all = Object.fromEntries(PLACEMENT.map((q) => [q.id, q.answer]));
-    expect(scorePlacement(all)).toMatchObject({ score: 18, suggestedStartDay: 22, band: "connector" });
+    expect(scorePlacement(all)).toMatchObject({ score: 18, suggestedStartDay: 20, band: "connector" });
     expect(scorePlacement({}).suggestedStartDay).toBe(1);
     const foundationOnly = Object.fromEntries(PLACEMENT.filter((q) => !["combination", "communication"].includes(q.area)).map((q) => [q.id, q.answer]));
-    expect(scorePlacement(foundationOnly).suggestedStartDay).toBe(12);
+    expect(scorePlacement(foundationOnly).suggestedStartDay).toBe(11);
+  });
+});
+
+describe("course reorder (v2)", () => {
+  it("old progress moves to the new day numbers", async () => {
+    const { parseState } = await import("@/lib/learner/state");
+    const now = new Date().toISOString();
+    const old = {
+      version: 1,
+      lessons: { 11: { day: 11, status: "completed", startedAt: now, updatedAt: now }, 12: { day: 12, status: "completed", startedAt: now, updatedAt: now }, 5: { day: 5, status: "completed", startedAt: now, updatedAt: now } },
+      attempts: [{ id: "a", exerciseId: "d29-p01", day: 29, correct: true, answer: "x", source: "lesson", at: now }],
+      review: { "d11-p02": { itemId: "d11-p02", kind: "exercise", day: 11, box: 1, dueAt: now, lapses: 0, reviews: 0, updatedAt: now } },
+      vocab: {},
+      bookmarks: {},
+    };
+    const s = parseState(JSON.stringify(old));
+    expect(Object.keys(s.lessons).map(Number).sort((a, b) => a - b)).toEqual([5, 19]);
+    expect(s.attempts[0]).toMatchObject({ exerciseId: "d28-p01", day: 28 });
+    expect(s.review["d19-p02"]).toMatchObject({ day: 19 });
+    // a state already on v2 is left alone
+    expect(Object.keys(parseState(JSON.stringify(s)).lessons).map(Number).sort((a, b) => a - b)).toEqual([5, 19]);
   });
 });

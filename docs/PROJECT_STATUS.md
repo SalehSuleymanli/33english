@@ -1,5 +1,15 @@
 # Project status
 
+## November 2026 — course follows the syllabus order
+
+The 33 days now follow the order of the founder's original syllabus (STRUCTURES PDF, topics 1–33).
+
+- Days 1–10 unchanged. Then: 11 want you to · 12 comparatives · 13 who/whom/which/that · 14 as…as, the difference · 15 it's important to · 16 present perfect · 17 question words · 18 perfect continuous, gonna/wanna · 19 passive · 20 feelings · 21 about to, out of/off · 22 conditionals · 23 what if, my dream is · 24 used to · 25 be/get used to · 26 either/neither, would rather · 27 although, despite, whether · 28 prepositions, as/like, so/such, -ing/to · 29 perfect + modals · 30 perfect + passive · 31 reported speech · 32 linking words · 33 IELTS.
+- Three combined lessons were split into two full lessons each (21/28, 22/23, 24/25), with new Azerbaijani/Russian explanations. The two checkpoint reviews (old 12, 21) and the graduation day (old 33) were removed to make room.
+- Titles now name the tense where there is one (Present Perfect, Passive voice, Conditionals…).
+- Stages, exams (Foundation 1–10, Expansion 11–19, Communication 20–33), placement start days, scenarios and XP stage badges follow the new numbering.
+- Saved progress is moved automatically: in the browser (state version 2, `src/lib/learner/reorder.ts`) and in Supabase (`supabase/migrations/20261126000000_course_reorder.sql`, run once by the owner before this release goes live).
+
 ## November 2026 upgrade — games, rewards, speaking
 - **Brand:** 33English (storage keys still use `structa:` so nobody loses progress).
 - **Auth:** sign-up with email confirmation, sign-in, sign-out, password reset (`/forgot-password` → email → `/reset-password`), `token_hash` email links.
