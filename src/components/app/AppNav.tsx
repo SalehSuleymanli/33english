@@ -35,7 +35,7 @@ export function AppNav() {
   return (
     <>
       {/* desktop rail */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-line bg-paper px-3 py-5 md:flex">
+      <aside className="glass fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-line/70 px-3 py-6 md:flex">
         <Link href="/" className="px-3" aria-label={t("nav.home")}>
           <Logo />
         </Link>
@@ -45,7 +45,7 @@ export function AppNav() {
               key={href}
               href={href}
               aria-current={active(href) ? "page" : undefined}
-              className={`flex h-11 items-center gap-3 rounded-xl px-3 font-bold ${active(href) ? "bg-surface text-ink shadow-[inset_0_0_0_1px_var(--line)]" : "text-muted hover:bg-surface-2 hover:text-ink"}`}
+              className={`flex h-11 items-center gap-3 rounded-xl px-3 font-semibold transition-colors ${active(href) ? "bg-surface text-ink shadow-[0_1px_3px_rgba(0,0,0,0.08)] [&_svg]:text-accent" : "text-ink-2 hover:bg-surface/70 hover:text-ink"}`}
             >
               <Icon />
               {t(label)}
@@ -53,7 +53,7 @@ export function AppNav() {
           ))}
         </nav>
         <div className="mt-auto flex flex-col gap-1">
-          <Link href="/settings" aria-current={active("/settings") ? "page" : undefined} className={`flex h-11 items-center gap-3 rounded-xl px-3 font-bold ${active("/settings") ? "bg-surface text-ink" : "text-muted hover:bg-surface-2 hover:text-ink"}`}>
+          <Link href="/settings" aria-current={active("/settings") ? "page" : undefined} className={`flex h-11 items-center gap-3 rounded-xl px-3 font-semibold ${active("/settings") ? "bg-surface text-ink shadow-[0_1px_3px_rgba(0,0,0,0.08)]" : "text-ink-2 hover:bg-surface/70 hover:text-ink"}`}>
             <IconSettings />
             {t("nav.settings")}
           </Link>
@@ -67,7 +67,7 @@ export function AppNav() {
       </aside>
 
       {/* mobile top bar */}
-      <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-line bg-paper/90 px-4 backdrop-blur md:hidden">
+      <header className="glass sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-line/70 px-4 md:hidden">
         <Link href="/" aria-label={t("nav.home")}>
           <LogoMark />
         </Link>
@@ -82,14 +82,14 @@ export function AppNav() {
                 <path d="M4 7h16M4 12h16M4 17h16" />
               </svg>
             </summary>
-            <nav aria-label={t("nav.menu")} className="absolute right-0 top-12 z-40 max-h-[75dvh] w-64 overflow-y-auto rounded-2xl border border-line bg-paper p-2 shadow-lift">
+            <nav aria-label={t("nav.menu")} className="absolute right-0 top-12 z-40 max-h-[75dvh] w-64 overflow-y-auto rounded-2xl border border-line bg-surface p-2 shadow-lift">
               {[...ITEMS, { href: "/settings", label: "nav.settings" as UIKey, Icon: IconSettings, mobile: false }].map(({ href, label, Icon }) => (
                 <Link
                   key={href}
                   href={href}
                   aria-current={active(href) ? "page" : undefined}
                   onClick={(e) => (e.currentTarget.closest("details") as HTMLDetailsElement | null)?.removeAttribute("open")}
-                  className={`flex h-11 items-center gap-3 rounded-xl px-3 font-bold ${active(href) ? "bg-surface text-ink" : "text-muted hover:bg-surface-2 hover:text-ink"}`}
+                  className={`flex h-11 items-center gap-3 rounded-xl px-3 font-semibold ${active(href) ? "bg-surface-2 text-ink [&_svg]:text-accent" : "text-ink-2 hover:bg-surface-2 hover:text-ink"}`}
                 >
                   <Icon />
                   {t(label)}
@@ -101,11 +101,11 @@ export function AppNav() {
       </header>
 
       {/* mobile bottom bar */}
-      <nav aria-label="App" className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+      <nav aria-label="App" className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line/70 pb-[env(safe-area-inset-bottom)] md:hidden">
         <ul className="grid grid-cols-5">
           {ITEMS.filter((i) => i.mobile).map(({ href, label, Icon }) => (
             <li key={href}>
-              <Link href={href} aria-current={active(href) ? "page" : undefined} className={`flex h-16 flex-col items-center justify-center gap-1 text-[0.72rem] font-bold ${active(href) ? "text-ink" : "text-muted"}`}>
+              <Link href={href} aria-current={active(href) ? "page" : undefined} className={`flex h-16 flex-col items-center justify-center gap-1 text-[0.72rem] font-semibold ${active(href) ? "text-accent" : "text-muted"}`}>
                 <Icon />
                 {t(label)}
               </Link>

@@ -22,8 +22,8 @@ export function SiteHeader() {
   const { user, state, hydrated } = useLearner();
   const started = hydrated && (Object.keys(state.lessons).length > 0 || state.profile.onboarded);
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4 sm:px-6">
+    <header className="glass sticky top-0 z-40 border-b border-line/70">
+      <div className="mx-auto flex h-14 max-w-6xl items-center gap-4 px-4 sm:px-6">
         <Link href="/" aria-label="33English home" className="shrink-0">
           <Logo />
         </Link>
