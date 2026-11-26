@@ -46,10 +46,10 @@ export function scorePlacement(answers: Record<string, number>) {
   let suggestedStartDay = 1;
   if (f.c / f.t >= 0.85) {
     band = "builder";
-    suggestedStartDay = 12;
+    suggestedStartDay = 11;
     if (c.c / c.t >= 0.8) {
       band = "connector";
-      suggestedStartDay = 22;
+      suggestedStartDay = 20;
     }
   }
   return { score, total: PLACEMENT.length, byArea, band, suggestedStartDay };

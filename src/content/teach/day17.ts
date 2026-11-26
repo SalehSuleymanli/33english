@@ -3,128 +3,114 @@ import type { Teach } from "./types";
 export const TEACH_17: Teach = {
   day: 17,
   summary: {
-    az: "Bu dərsdə fikir və məsləhət bildirmək üçün çox işlək strukturları öyrənirsiniz: It is + sifət + to + feil (It's important to listen), enough və too, know how / what / where to, və whatever, whenever kimi sözlər.",
-    ru: "В этом уроке вы изучите очень полезные структуры для выражения мнения и совета: It is + прилагательное + to + глагол (It's important to listen), enough и too, know how / what / where to, а также слова вроде whatever, whenever.",
+    az: "Bu dərsdə sual sözləri ilə tam suallar qurmağı öyrənirsiniz: who, what, where, when, why, how və onların birləşmələri. Ən vacib mövzu: obyekt sualları (What did you do?) ilə mübtəda sualları (Who called?) arasındakı fərq.",
+    ru: "В этом уроке вы научитесь строить полные вопросы с вопросительными словами: who, what, where, when, why, how и их сочетаниями. Самая важная тема — разница между вопросами к дополнению (What did you do?) и вопросами к подлежащему (Who called?).",
   },
   sections: [
     {
-      id: "it-adj",
-      title: { az: "1. It is + sifət + to + feil", ru: "1. It is + прилагательное + to + глагол" },
+      id: "words",
+      title: { az: "1. Sual sözləri və mənaları", ru: "1. Вопросительные слова и их значения" },
+      blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Söz", ru: "Слово" }, { az: "Nə soruşur", ru: "О чём спрашивает" }, { az: "Nümunə", ru: "Пример" }],
+          rows: [
+            ["who", "person (kim / кто)", "Who is that man?"],
+            ["what", "thing, action (nə / что)", "What do you want?"],
+            ["which", "choice from a group (hansı / который)", "Which bus goes to the centre?"],
+            ["where", "place (harada / где, куда)", "Where do you live?"],
+            ["when", "time (nə vaxt / когда)", "When does the shop close?"],
+            ["why", "reason (niyə / почему)", "Why are you late?"],
+            ["how", "way, condition (necə / как)", "How do you get to work?"],
+            ["whose", "owner (kimin / чей)", "Whose bag is this?"],
+            ["how much / how many", "amount (nə qədər, neçə / сколько)", "How many children do you have?"],
+            ["how long / how often / how far / how old", "duration, frequency, distance, age", "How long does it take?"],
+            ["what time / what kind of", "exact time, type", "What kind of music do you like?"],
+          ],
+        },
+      ],
+    },
+    {
+      id: "object",
+      title: { az: "2. Obyekt sualları: köməkçi feil lazımdır", ru: "2. Вопросы к дополнению: нужен вспомогательный глагол" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "Azərbaycan dilində \"Dinləmək vacibdir\" deyirik, rus dilində «Важно слушать». İngilis dilində \"To listen is important\" qrammatik cəhətdən mümkündür, amma çox ağır səslənir. Təbii yol: cümləni \"It\" ilə başlamaq, hərəkəti isə sona keçirmək: \"It's important to listen.\" Burada \"it\" heç nə demək deyil — sadəcə mübtəda yerini tutur, eynilə \"It's cold\" cümləsindəki kimi.",
-            ru: "По-русски мы говорим «Важно слушать». В английском «To listen is important» грамматически возможно, но звучит тяжело. Естественный способ — начать с «It», а действие перенести в конец: «It's important to listen.» Здесь «it» ничего не значит — он просто занимает место подлежащего, как в «It's cold».",
+            az: "Əksər suallar obyekt, yer, zaman və ya səbəb haqqındadır. Onlarda sual sözündən sonra adi sual sırası gəlir: köməkçi feil + mübtəda + əsas feil. Yəni artıq bildiyiniz \"Did you see?\" sualının əvvəlinə sual sözü əlavə olunur: \"What did you see?\"",
+            ru: "Большинство вопросов — о дополнении, месте, времени или причине. В них после вопросительного слова идёт обычный порядок вопроса: вспомогательный глагол + подлежащее + основной глагол. То есть к уже знакомому «Did you see?» в начало добавляется вопросительное слово: «What did you see?»",
           },
         },
         {
           kind: "formula",
-          label: { az: "It + be + sifət + to + feil", ru: "It + be + прилагательное + to + глагол" },
+          label: { az: "Obyekt sualı", ru: "Вопрос к дополнению" },
           parts: [
-            { text: "It", role: "subject", note: { az: "Formal mübtəda.", ru: "Формальное подлежащее." } },
-            { text: "is", role: "be", note: { az: "Zaman: is / was / will be.", ru: "Время: is / was / will be." } },
-            { text: "easy", role: "complement", note: { az: "Fikir bildirən sifət.", ru: "Оценочное прилагательное." } },
-            { text: "(for me)", role: "other", note: { az: "Kim üçün? (istəyə bağlı)", ru: "Для кого? (необязательно)" } },
-            { text: "to find", role: "verb", note: { az: "to + feil: nə etmək?", ru: "to + глагол: что делать?" } },
-            { text: "a job here", role: "object", note: { az: "Tamamlıq.", ru: "Дополнение." } },
+            { text: "What", role: "question", note: { az: "Sual sözü.", ru: "Вопросительное слово." } },
+            { text: "did", role: "aux", note: { az: "Köməkçi: do/does/did, be, modal və ya have.", ru: "Вспомогательный: do/does/did, be, модальный или have." } },
+            { text: "you", role: "subject", note: { az: "Mübtəda.", ru: "Подлежащее." } },
+            { text: "buy", role: "verb", note: { az: "Əsas feil (did-dən sonra V1).", ru: "Основной глагол (после did — V1)." } },
           ],
-          example: "It's easy for me to find a job here.",
+          example: "What did you buy?",
         },
-        {
-          kind: "signals",
-          words: ["important", "necessary", "easy", "difficult", "hard", "possible", "impossible", "nice", "good", "dangerous", "expensive", "interesting", "useful", "better"],
-          text: {
-            az: "Bu sifətlər bu modellə ən çox işlənir. Kimin üçün olduğunu demək istəsəniz \"for + şəxs\" əlavə edin: \"It's hard for my parents to understand.\"",
-            ru: "Эти прилагательные чаще всего используются в этой модели. Чтобы сказать, для кого, добавьте «for + человек»: «It's hard for my parents to understand.»",
-          },
-        },
-      ],
-    },
-    {
-      id: "too-enough",
-      title: { az: "2. Too və enough", ru: "2. Too и enough" },
-      blocks: [
         {
           kind: "table",
-          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Məna", ru: "Значение" }, { az: "Nümunə", ru: "Пример" }],
+          head: [{ az: "Çərçivə / zaman", ru: "Рамка / время" }, { az: "Nümunə", ru: "Пример" }],
           rows: [
-            ["too + adjective (+ to)", "həddindən çox / слишком (problem)", "It's too hot to work. The box is too heavy for me to lift."],
-            ["adjective + enough (+ to)", "kifayət qədər / достаточно", "She's old enough to drive."],
-            ["not + adjective + enough", "kifayət qədər deyil / недостаточно", "The room isn't big enough for six people."],
-            ["enough + noun", "kifayət qədər (isim) / достаточно (чего-то)", "We don't have enough time. Is there enough milk?"],
-            ["too much / too many + noun", "həddindən çox / слишком много", "There's too much sugar. There are too many cars."],
+            ["be (Frame 2)", "Where is your office? Why were you angry?"],
+            ["Present Simple", "What time do you start work? Where does she live?"],
+            ["Past Simple", "When did you arrive? What did he say?"],
+            ["Continuous", "What are you doing? Who were you talking to?"],
+            ["Modal", "How can I help you? What should we do?"],
+            ["Future", "When will you be back?"],
+            ["Passive", "Where was this photo taken?"],
           ],
-        },
-        {
-          kind: "p",
-          text: {
-            az: "Diqqət yerə: \"enough\" sifətdən SONRA (old enough, big enough), amma isimdən ƏVVƏL gəlir (enough money, enough time). \"Too\" həmişə mənfi mənadadır: nəsə problem yaradır. \"Very\" isə sadəcə \"çox\" deməkdir: \"It's very hot\" (çox istidir) ilə \"It's too hot to sleep\" (yatmaq üçün həddindən artıq istidir) fərqlidir.",
-            ru: "Обратите внимание на место: «enough» ставится ПОСЛЕ прилагательного (old enough, big enough), но ПЕРЕД существительным (enough money, enough time). «Too» всегда с отрицательным оттенком: что-то мешает. «Very» просто «очень»: «It's very hot» (очень жарко) и «It's too hot to sleep» (слишком жарко, чтобы спать) — разные вещи.",
-          },
         },
       ],
     },
     {
-      id: "know-how",
-      title: { az: "3. Know how / what / where + to", ru: "3. Know how / what / where + to" },
+      id: "subject",
+      title: { az: "3. Mübtəda sualları: köməkçi YOXDUR", ru: "3. Вопросы к подлежащему: вспомогательного глагола НЕТ" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "Sual sözü + to + feil qısa və təbii quruluşdur: \"I don't know what to say\" (nə deyəcəyimi bilmirəm). \"Can you show me how to use it?\" (Bundan necə istifadə etməyi göstərə bilərsən?). Bu, uzun budaq cümlələri əvəz edir.",
-            ru: "Вопросительное слово + to + глагол — короткая и естественная структура: «I don't know what to say» (не знаю, что сказать). «Can you show me how to use it?» (Покажешь, как этим пользоваться?) Она заменяет длинные придаточные.",
+            az: "Əgər sual sözü (who və ya what) mübtədanın özünü soruşursa, yəni \"hərəkəti kim etdi?\", onda köməkçi feil işlənmir və söz sırası təsdiq cümləsindəki kimi qalır. \"Someone called\" → \"Who called?\" (Kim zəng etdi?). \"Did who call?\" və ya \"Who did call?\" deyilmir.",
+            ru: "Если вопросительное слово (who или what) спрашивает о самом подлежащем, то есть «кто совершил действие?», вспомогательный глагол не используется, а порядок слов остаётся как в утверждении. «Someone called» → «Who called?» (Кто звонил?). Не говорят «Did who call?» или «Who did call?».",
           },
         },
-        {
-          kind: "table",
-          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["know how to", "Do you know how to cook plov?"],
-            ["what to", "I don't know what to wear."],
-            ["where to", "Tell me where to put this."],
-            ["when to", "She knows when to stop."],
-            ["which … to", "I can't decide which phone to buy."],
-            ["whether to", "I'm not sure whether to go or not."],
-          ],
-        },
-      ],
-    },
-    {
-      id: "ever",
-      title: { az: "4. Whatever, whoever, wherever, whenever", ru: "4. Whatever, whoever, wherever, whenever" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Söz", ru: "Слово" }, { az: "Məna", ru: "Значение" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["whatever", "nə olursa olsun, istənilən şey / что угодно, всё, что", "Do whatever you want."],
-            ["whoever", "kim olursa olsun / кто бы ни", "Whoever called, I'm not here."],
-            ["wherever", "harada olursa olsun / где бы ни, куда угодно", "Sit wherever you like."],
-            ["whenever", "nə vaxt olursa / когда угодно, всякий раз когда", "Call me whenever you need help."],
-            ["however", "necə olursa olsun / как бы ни", "However hard it is, don't give up."],
-          ],
-        },
-        {
-          kind: "p",
-          text: {
-            az: "Danışıqda tək \"Whatever.\" cavabı \"nə olursa olsun, fərqi yoxdur\" deməkdir və bəzən kobud, laqeyd səslənir. Ehtiyatla işlədin.",
-            ru: "В разговоре одиночное «Whatever.» значит «да всё равно» и иногда звучит грубо и пренебрежительно. Используйте осторожно.",
-          },
-        },
-      ],
-    },
-    {
-      id: "compare",
-      title: { az: "5. Müqayisə", ru: "5. Сравнение" },
-      blocks: [
         {
           kind: "compare",
           items: [
-            { en: "It's important to sleep. / Sleep is important.", text: { az: "Hər ikisi düzgündür. Birincidə hərəkət (yatmaq), ikincidə isim (yuxu) vacibdir.", ru: "Оба верны. В первом важно действие (спать), во втором — существительное (сон)." } },
-            { en: "There is enough time. / It's early enough.", text: { az: "Enough isimdən əvvəl, sifətdən sonra.", ru: "Enough — перед существительным, после прилагательного." } },
-            { en: "I don't know what to do. / I don't know what I should do.", text: { az: "Məna eynidir; \"what to do\" qısa və daha təbiidir.", ru: "Смысл одинаковый; «what to do» короче и естественнее." } },
+            { en: "Who did you call? / Who called you?", text: { az: "Birinci: sən kimə zəng etdin? (sən zəng etdin, \"kim\" obyektdir → did). İkinci: sənə kim zəng etdi? (\"kim\" zəng edəndir, mübtədadır → did yoxdur, feil keçmiş zamanda).", ru: "Первый: кому ты звонил? («ты» звонил, «кто» — дополнение → did). Второй: кто тебе звонил? («кто» — тот, кто звонил, подлежащее → без did, глагол в прошедшем)." } },
+            { en: "What happened? / What did you do?", text: { az: "\"What happened\" — nə baş verdi (mübtəda sualı). \"Happen\" feili ilə həmişə belə: \"What did happen?\" səhvdir.", ru: "«What happened» — что случилось (вопрос к подлежащему). С «happen» всегда так: «What did happen?» — ошибка." } },
+            { en: "Who lives here? / Who do you live with?", text: { az: "Mübtəda sualında Present Simple-da üçüncü şəxs -s qalır: \"Who lives…\", \"Who knows…\".", ru: "В вопросе к подлежащему в Present Simple сохраняется -s третьего лица: «Who lives…», «Who knows…»." } },
           ],
+        },
+      ],
+    },
+    {
+      id: "prepositions",
+      title: { az: "4. Ön söz sonda", ru: "4. Предлог в конце" },
+      blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "Danışıq ingiliscəsində ön söz adətən sualın sonuna keçir: \"Who are you talking to?\" (kimlə danışırsan?), \"Where are you from?\" (haralısan?), \"What are you looking for?\" (nə axtarırsan?). Bu, Azərbaycan və rus dillərindən çox fərqlidir, amma tamamilə normaldır. Rəsmi dildə \"To whom…\" mümkündür, gündəlik danışıqda isə nadirdir.",
+            ru: "В разговорном английском предлог обычно уходит в конец вопроса: «Who are you talking to?» (с кем ты говоришь?), «Where are you from?» (откуда ты?), «What are you looking for?» (что ты ищешь?). Это сильно отличается от русского, но совершенно нормально. В официальном языке возможно «To whom…», в повседневной речи — редко.",
+          },
+        },
+      ],
+    },
+    {
+      id: "indirect",
+      title: { az: "5. Nəzakətli (dolayı) suallar", ru: "5. Вежливые (косвенные) вопросы" },
+      blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "Yad adama və ya rəsmi vəziyyətdə daha nəzakətli sual üçün \"Could you tell me…\", \"Do you know…\" ilə başlayırıq. Diqqət: bundan sonra söz sırası təsdiq cümləsindəki kimidir və köməkçi feil yoxdur: \"Where is the station?\" → \"Could you tell me where the station is?\" \"What time does it open?\" → \"Do you know what time it opens?\"",
+            ru: "Чтобы спросить вежливее у незнакомого человека или в официальной ситуации, начинаем с «Could you tell me…», «Do you know…». Внимание: после этого порядок слов как в утверждении, вспомогательного глагола нет: «Where is the station?» → «Could you tell me where the station is?» «What time does it open?» → «Do you know what time it opens?»",
+          },
         },
       ],
     },
@@ -135,18 +121,18 @@ export const TEACH_17: Teach = {
         {
           kind: "examples",
           items: [
-            { en: "It's important to drink enough water.", az: "Kifayət qədər su içmək vacibdir.", ru: "Важно пить достаточно воды." },
-            { en: "It was difficult to find a parking space.", az: "Park yeri tapmaq çətin idi.", ru: "Было трудно найти место для парковки." },
-            { en: "It's nice to meet you.", az: "Tanış olmağımıza şadam.", ru: "Приятно познакомиться." },
-            { en: "Is it possible to change the date?", az: "Tarixi dəyişmək mümkündür?", ru: "Можно ли изменить дату?" },
-            { en: "The coffee is too hot to drink.", az: "Qəhvə içmək üçün çox istidir.", ru: "Кофе слишком горячий, чтобы пить." },
-            { en: "He isn't tall enough to play basketball.", az: "Basketbol oynamaq üçün kifayət qədər uca deyil.", ru: "Он недостаточно высокий, чтобы играть в баскетбол." },
-            { en: "We don't have enough chairs.", az: "Kifayət qədər stulumuz yoxdur.", ru: "У нас не хватает стульев." },
-            { en: "There are too many people here.", az: "Burada həddindən artıq çox adam var.", ru: "Здесь слишком много людей." },
-            { en: "Could you tell me how to get to the station?", az: "Stansiyaya necə gedəcəyimi deyə bilərsiniz?", ru: "Не подскажете, как пройти к вокзалу?" },
-            { en: "I didn't know what to say.", az: "Nə deyəcəyimi bilmədim.", ru: "Я не знал, что сказать." },
-            { en: "You can come whenever you want.", az: "Nə vaxt istəsən gələ bilərsən.", ru: "Можешь приходить, когда захочешь." },
-            { en: "Whatever happens, I'll support you.", az: "Nə olursa olsun, sənə dəstək olacağam.", ru: "Что бы ни случилось, я тебя поддержу." },
+            { en: "Where did you go on holiday?", az: "Tətildə hara getdin?", ru: "Куда ты ездил в отпуск?" },
+            { en: "Who told you that?", az: "Bunu sənə kim dedi?", ru: "Кто тебе это сказал?" },
+            { en: "What does this word mean?", az: "Bu söz nə deməkdir?", ru: "Что значит это слово?" },
+            { en: "Which one do you prefer, tea or coffee?", az: "Hansını üstün tutursan, çay yoxsa qəhvə?", ru: "Что ты предпочитаешь — чай или кофе?" },
+            { en: "How long have you lived here?", az: "Neçə ildir burada yaşayırsan?", ru: "Как давно ты здесь живёшь?" },
+            { en: "Why didn't you call me?", az: "Niyə mənə zəng etmədin?", ru: "Почему ты мне не позвонил?" },
+            { en: "Whose turn is it?", az: "Növbə kimindir?", ru: "Чья очередь?" },
+            { en: "What happened to your car?", az: "Maşınına nə olub?", ru: "Что случилось с твоей машиной?" },
+            { en: "Who wants more tea?", az: "Kim daha çay istəyir?", ru: "Кто хочет ещё чаю?" },
+            { en: "How often do you go to the gym?", az: "İdman zalına nə qədər tez-tez gedirsən?", ru: "Как часто ты ходишь в спортзал?" },
+            { en: "Who are you waiting for?", az: "Kimi gözləyirsən?", ru: "Кого ты ждёшь?" },
+            { en: "Could you tell me where the toilets are?", az: "Tualetin harada olduğunu deyə bilərsiniz?", ru: "Не подскажете, где туалет?" },
           ],
         },
       ],
@@ -158,21 +144,22 @@ export const TEACH_17: Teach = {
         {
           kind: "mistakes",
           items: [
-            { wrong: "Is important to listen.", right: "It's important to listen.", why: { az: "Mübtəda \"it\" mütləqdir.", ru: "Подлежащее «it» обязательно." } },
-            { wrong: "It's important listen.", right: "It's important to listen.", why: { az: "Sifətdən sonra to + feil.", ru: "После прилагательного — to + глагол." } },
-            { wrong: "She is enough old to drive.", right: "She is old enough to drive.", why: { az: "Enough sifətdən sonra gəlir.", ru: "Enough ставится после прилагательного." } },
-            { wrong: "I don't have money enough.", right: "I don't have enough money.", why: { az: "Enough isimdən əvvəl gəlir.", ru: "Enough ставится перед существительным." } },
-            { wrong: "This bag is too much heavy.", right: "This bag is too heavy.", why: { az: "Sifətlə \"too\", isimlə \"too much/many\".", ru: "С прилагательным — «too», с существительным — «too much/many»." } },
-            { wrong: "I don't know what should I do.", right: "I don't know what to do. / … what I should do.", why: { az: "Sual sözündən sonra düz söz sırası və ya \"to + feil\".", ru: "После вопросительного слова — прямой порядок или «to + глагол»." } },
+            { wrong: "Where you live?", right: "Where do you live?", why: { az: "Obyekt sualında köməkçi feil mütləqdir.", ru: "В вопросе к дополнению вспомогательный глагол обязателен." } },
+            { wrong: "What you did yesterday?", right: "What did you do yesterday?", why: { az: "Sıra: sual sözü + did + mübtəda + V1.", ru: "Порядок: вопросительное слово + did + подлежащее + V1." } },
+            { wrong: "Who did call you?", right: "Who called you?", why: { az: "Mübtəda sualında köməkçi yoxdur.", ru: "В вопросе к подлежащему вспомогательного глагола нет." } },
+            { wrong: "What did happen?", right: "What happened?", why: { az: "\"Nə\" burada mübtədadır.", ru: "«Что» здесь — подлежащее." } },
+            { wrong: "With who you are talking?", right: "Who are you talking to?", why: { az: "Ön söz sona keçir; be mübtədadan əvvəl gəlir.", ru: "Предлог уходит в конец; be ставится перед подлежащим." } },
+            { wrong: "Can you tell me where is the bank?", right: "Can you tell me where the bank is?", why: { az: "Dolayı sualda düz söz sırası.", ru: "В косвенном вопросе прямой порядок слов." } },
+            { wrong: "How many money do you need?", right: "How much money do you need?", why: { az: "Money sayılmayandır → how much.", ru: "Money — неисчисляемое → how much." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "It's + sifət + (for someone) + to + feil: It's easy to learn.", ru: "It's + прилагательное + (for someone) + to + глагол: It's easy to learn." },
-    { az: "Too + sifət = həddindən çox (problem). Sifət + enough, enough + isim.", ru: "Too + прилагательное = слишком (проблема). Прилагательное + enough, enough + существительное." },
-    { az: "Sual sözü + to: how to, what to, where to.", ru: "Вопросительное слово + to: how to, what to, where to." },
-    { az: "Whatever, whenever, wherever = nə / nə vaxt / harada olursa olsun.", ru: "Whatever, whenever, wherever = что / когда / где угодно." },
+    { az: "Obyekt sualı: sual sözü + köməkçi + mübtəda + feil (What did you see?).", ru: "Вопрос к дополнению: вопросительное слово + вспомогательный + подлежащее + глагол (What did you see?)." },
+    { az: "Mübtəda sualı: who/what + feil, köməkçi yoxdur (Who called? What happened?).", ru: "Вопрос к подлежащему: who/what + глагол, без вспомогательного (Who called? What happened?)." },
+    { az: "Ön söz adətən sonda: Who are you talking to?", ru: "Предлог обычно в конце: Who are you talking to?" },
+    { az: "Nəzakətli sualda düz söz sırası: Could you tell me where the station is?", ru: "В вежливом вопросе прямой порядок: Could you tell me where the station is?" },
   ],
 };

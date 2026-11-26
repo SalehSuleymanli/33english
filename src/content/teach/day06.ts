@@ -132,8 +132,8 @@ export const TEACH_06: Teach = {
             {
               en: "I'll buy a car. / I'm going to buy a car.",
               text: {
-                az: "\"Will\" — qərar indi verilir və ya ümumi niyyətdir. \"Going to\" — qərar əvvəlcədən verilib, plan artıq var (16-cı gündə ətraflı). Başlanğıc üçün sadə qayda: plan → going to, ani qərar və söz → will.",
-                ru: "«Will» — решение принимается сейчас или это общее намерение. «Going to» — решение принято заранее, план уже есть (подробнее на 16-й день). Простое правило для начала: план → going to, мгновенное решение и обещание → will.",
+                az: "\"Will\" — qərar indi verilir və ya ümumi niyyətdir. \"Going to\" — qərar əvvəlcədən verilib, plan artıq var (18-ci gündə ətraflı). Başlanğıc üçün sadə qayda: plan → going to, ani qərar və söz → will.",
+                ru: "«Will» — решение принимается сейчас или это общее намерение. «Going to» — решение принято заранее, план уже есть (подробнее на 18-й день). Простое правило для начала: план → going to, мгновенное решение и обещание → will.",
               },
             },
           ],

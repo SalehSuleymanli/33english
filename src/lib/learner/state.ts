@@ -4,8 +4,9 @@
  */
 import type { FrameId, Skill } from "@/content/types";
 import { schedule, type ReviewItem, type ReviewKind } from "@/engine/srs";
+import { reorderState } from "./reorder";
 
-export const STATE_VERSION = 1;
+export const STATE_VERSION = 2; // 2 = days follow the syllabus order (see ./reorder)
 
 export type PlacementResult = {
   takenAt: string;
@@ -370,7 +371,7 @@ export function parseState(raw: string | null): LearnerState {
     const data = JSON.parse(raw) as Partial<LearnerState>;
     const base = emptyState();
     if (typeof data !== "object" || data === null) return base;
-    return {
+    const parsed: LearnerState = {
       ...base,
       ...data,
       profile: { ...base.profile, ...(data.profile ?? {}) },
@@ -378,6 +379,8 @@ export function parseState(raw: string | null): LearnerState {
       attempts: Array.isArray(data.attempts) ? data.attempts : [],
       version: STATE_VERSION,
     };
+    // saved before the course followed the syllabus order: move progress to the new day numbers
+    return (data.version ?? 1) < 2 ? reorderState(parsed) : parsed;
   } catch {
     return emptyState();
   }

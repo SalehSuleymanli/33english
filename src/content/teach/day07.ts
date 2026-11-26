@@ -64,7 +64,7 @@ export const TEACH_07: Teach = {
             ["right now, at this moment", "I'm cooking. Can I call you back?"],
             ["around now, these days (temporary)", "She's studying for her exams this month."],
             ["changing situations", "Prices are going up. Your English is getting better."],
-            ["fixed future arrangements", "We're meeting them on Saturday. (Day 16)"],
+            ["fixed future arrangements", "We're meeting them on Saturday. (Day 18)"],
           ],
         },
         {

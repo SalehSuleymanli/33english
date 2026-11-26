@@ -3,144 +3,138 @@ import type { Teach } from "./types";
 export const TEACH_21: Teach = {
   day: 21,
   summary: {
-    az: "Bu, birləşmə mərhələsinin yoxlama günüdür. 13–20-ci günlərdə öyrəndiyiniz bütün strukturları — suallar, want someone to, Perfect zamanlar, going to, it + sifət + to, used to, modal + have + V3 və mürəkkəb passive — bir sistemdə birləşdiririk və cümlələri bir formadan digərinə çevirməyi məşq edirik.",
-    ru: "Это контрольный день этапа «Сочетание». Мы объединяем в одну систему всё, что изучили в дни 13–20: вопросы, want someone to, времена Perfect, going to, it + прилагательное + to, used to, модальный + have + V3 и сложный пассив, — и тренируемся переводить предложения из одной формы в другую.",
+    az: "Bu dərs qeydlərinizdəki 17-ci mövzudur: \"to be about to\" (üzrə olmaq, az qala …-acaq) və \"out of\" ilə \"off\" fərqi (içindən və üzərindən). Həmçinin into / onto və nəqliyyatla işlənən get in / get on. Bu kiçik sözlər səyahətdə, evdə və işdə hər gün lazım olur.",
+    ru: "Это тема 17 из ваших заметок: «to be about to» (вот-вот, собираться прямо сейчас) и разница между «out of» и «off» (изнутри и с поверхности). Также into / onto и get in / get on с транспортом. Эти маленькие слова нужны каждый день — в поездке, дома и на работе.",
   },
   sections: [
     {
-      id: "overview",
-      title: { az: "1. Mərhələnin xülasəsi", ru: "1. Обзор этапа" },
+      id: "about-to",
+      title: { az: "1. Be about to: az qala, indicə …-acaq", ru: "1. Be about to: вот-вот, прямо сейчас" },
       blocks: [
         {
-          kind: "table",
-          head: [{ az: "Gün", ru: "День" }, { az: "Struktur", ru: "Структура" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["13", "Wh- questions: object vs subject", "What did you buy? / Who bought it?"],
-            ["14", "verb + person + to + verb", "I want you to call him."],
-            ["15", "Present Perfect", "Have you ever been to Shusha?"],
-            ["16", "Perfect Continuous; going to", "I've been waiting for an hour. I'm going to complain."],
-            ["17", "it + adjective + to; enough / too; how to", "It's hard to decide. It's too late to go."],
-            ["18", "used to / be used to / get used to", "I used to live here. I'm used to the noise."],
-            ["19", "modal + have + V3", "You should have told me. He must have left."],
-            ["20", "complex passive", "It has been done. It should have been done."],
+          kind: "formula",
+          label: { az: "Be about to + V1", ru: "Be about to + V1" },
+          parts: [
+            { text: "The train", role: "subject", note: { az: "Subyekt.", ru: "Подлежащее." } },
+            { text: "is about to", role: "be", note: { az: "Çox yaxın gələcək: elə indi.", ru: "Очень близкое будущее: прямо сейчас." } },
+            { text: "leave", role: "verb", note: { az: "Feilin sadə forması.", ru: "Начальная форма глагола." } },
           ],
+          example: "Hurry up! The train is about to leave.",
+        },
+        {
+          kind: "p",
+          text: {
+            az: "\"Be about to\" bir şeyin bir neçə saniyə və ya dəqiqə sonra baş verəcəyini bildirir. Qeydlərinizdəki cümlə: \"I'm about to do the thing you mentioned\" — dediyin işi görmək üzrəyəm. Bu quruluşla \"tomorrow\", \"next week\" kimi zaman ifadələri işlənmir — uzaq plan üçün going to (18-ci gün) lazımdır.",
+            ru: "«Be about to» говорит, что что-то случится через несколько секунд или минут. Предложение из ваших заметок: «I'm about to do the thing you mentioned» — я как раз собираюсь сделать то, о чём ты говорил. С выражениями вроде «tomorrow», «next week» эта структура не используется — для дальних планов нужен going to (18-й день).",
+          },
         },
       ],
     },
     {
-      id: "transform",
-      title: { az: "2. Çevirmə: bir fikir — müxtəlif formalar", ru: "2. Трансформации: одна мысль — разные формы" },
+      id: "was-about",
+      title: { az: "2. Was about to … when …", ru: "2. Was about to … when …" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "Bu mərhələnin əsas bacarığı eyni fikri müxtəlif strukturlarla deməkdir. Bu, həm danışıqda çevikliyi, həm də imtahanlarda \"sentence transformation\" tapşırıqlarını həll etməyi öyrədir.",
-            ru: "Главный навык этого этапа — сказать одну мысль разными структурами. Это развивает гибкость речи и помогает в экзаменационных заданиях «sentence transformation».",
+            az: "Keçmişdə \"was / were about to … when …\" — \"tam … edəcəkdim ki, …\" deməkdir: bir şey etmək üzrə idiniz, amma başqa hadisə mane oldu. \"I was about to call you when you called me\" — sənə zəng etmək üzrəydim ki, sən zəng etdin.",
+            ru: "В прошлом «was / were about to … when …» значит «я как раз собирался …, когда …»: вы были готовы что-то сделать, но помешало другое событие. «I was about to call you when you called me» — я как раз собирался тебе позвонить, когда ты позвонил.",
           },
         },
         {
           kind: "table",
-          head: [{ az: "Başlanğıc", ru: "Исходное" }, { az: "Çevrilmiş", ru: "Преобразованное" }],
+          head: [{ az: "Forma", ru: "Форма" }, { az: "Nümunə", ru: "Пример" }],
           rows: [
-            ["I started working here in 2020.", "I have worked here since 2020."],
-            ["She said, 'Please wait.'", "She asked me to wait."],
-            ["Someone has stolen my bike.", "My bike has been stolen."],
-            ["I smoked before, but I don't now.", "I used to smoke."],
-            ["It was a mistake not to call you.", "I should have called you."],
-            ["Learning Chinese is difficult.", "It's difficult to learn Chinese."],
-            ["I'm sure he forgot.", "He must have forgotten."],
-            ["They are building a new bridge.", "A new bridge is being built."],
-            ["The room is very small. Ten people can't fit.", "The room isn't big enough for ten people."],
+            ["+", "We're about to start."],
+            ["−", "I'm not about to give up."],
+            ["?", "Is the film about to start?"],
+            ["past", "She was about to leave when it started to rain."],
           ],
         },
       ],
     },
     {
-      id: "aux",
-      title: { az: "3. Köməkçi feillərin xəritəsi", ru: "3. Карта вспомогательных глаголов" },
+      id: "out-off",
+      title: { az: "3. Out of və off: içindən və üzərindən", ru: "3. Out of и off: изнутри и с поверхности" },
       blocks: [
         {
-          kind: "formula",
-          label: { az: "Hər zamanın \"motoru\"", ru: "«Двигатель» каждого времени" },
-          parts: [
-            { text: "do/does/did", role: "aux", note: { az: "Simple zamanların sual və inkarı.", ru: "Вопрос и отрицание в простых временах." } },
-            { text: "be + -ing", role: "be", note: { az: "Continuous.", ru: "Continuous." } },
-            { text: "have + V3", role: "aux", note: { az: "Perfect.", ru: "Perfect." } },
-            { text: "be + V3", role: "be", note: { az: "Passive.", ru: "Passive." } },
-            { text: "modal + V1", role: "modal", note: { az: "Modal; keçmiş üçün modal + have + V3.", ru: "Модальный; для прошлого — модальный + have + V3." } },
+          kind: "compare",
+          items: [
+            { en: "Take the phone out of the bag.", text: { az: "Telefonu çantanın içindən götür — çanta qabdır, telefon içindədir.", ru: "Достань телефон из сумки — сумка это ёмкость, телефон внутри." } },
+            { en: "Take the phone off the bag.", text: { az: "Telefonu çantanın üzərindən götür — telefon çantanın üstündədir.", ru: "Сними телефон с сумки — телефон лежит сверху." } },
           ],
-          example: "It has been being… → It has been built. (simple is better)",
+        },
+        {
+          kind: "p",
+          text: {
+            az: "Bu, qeydlərinizdəki iki nümunədir. Qayda sadədir: içindədirsə — out of, üstündədirsə — off. Əks istiqamət: into (içinə) və onto (üstünə): \"Put the milk into the fridge\", \"Put the box onto the shelf\". \"Out of\"-un ikinci mənası da var — qurtarmaq: \"We've run out of milk\" (südümüz qurtarıb).",
+            ru: "Это два примера из ваших заметок. Правило простое: внутри — out of, сверху — off. Обратное направление: into (внутрь) и onto (на поверхность): «Put the milk into the fridge», «Put the box onto the shelf». У «out of» есть и второе значение — закончиться: «We've run out of milk» (у нас закончилось молоко).",
+          },
+        },
+      ],
+    },
+    {
+      id: "transport",
+      title: { az: "4. Get in / out of və get on / off", ru: "4. Get in / out of и get on / off" },
+      blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Nəqliyyat", ru: "Транспорт" }, { az: "Minmək", ru: "Сесть" }, { az: "Düşmək", ru: "Выйти" }],
+          rows: [
+            ["car, taxi", "get in (the car)", "get out of (the car)"],
+            ["bus, train, plane, ship, bike", "get on (the bus)", "get off (the bus)"],
+          ],
         },
         {
           kind: "tip",
           text: {
-            az: "Sual qurarkən həmişə BİRİNCİ köməkçi feil önə keçir: \"She has been working\" → \"Has she been working?\"; \"It should have been done\" → \"Should it have been done?\" İnkarda \"not\" birinci köməkçidən sonra gəlir: \"She hasn't been working.\"",
-            ru: "В вопросе вперёд всегда выходит ПЕРВЫЙ вспомогательный глагол: «She has been working» → «Has she been working?»; «It should have been done» → «Should it have been done?» В отрицании «not» ставится после первого вспомогательного: «She hasn't been working.»",
+            az: "Yadda saxlamaq üçün: avtobusda ayağa qalxıb gəzə bilirsiniz — sanki onun \"üstündəsiniz\" (on / off). Maşında isə əyilib içinə girirsiniz (in / out of).",
+            ru: "Чтобы запомнить: в автобусе можно встать и пройти — вы как бы «на» нём (on / off). А в машину вы забираетесь внутрь (in / out of).",
           },
-        },
-      ],
-    },
-    {
-      id: "choose",
-      title: { az: "4. Hansı zaman? Qərar sualları", ru: "4. Какое время? Вопросы для выбора" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Sual", ru: "Вопрос" }, { az: "Cavab", ru: "Ответ" }],
-          rows: [
-            ["Is there an exact past time (yesterday, in 2019)?", "Past Simple"],
-            ["Does it connect past and now (ever, already, for, since)?", "Present Perfect"],
-            ["Is the focus on how long an activity has continued?", "Present Perfect Continuous"],
-            ["Is it a plan decided before?", "going to / Present Continuous"],
-            ["Was it a habit in the past, not now?", "used to"],
-            ["Is it about what happened to the object, not who did it?", "Passive"],
-            ["Is it regret or deduction about the past?", "modal + have + V3"],
-          ],
         },
       ],
     },
     {
       id: "examples",
-      title: { az: "5. Qarışıq nümunələr", ru: "5. Смешанные примеры" },
+      title: { az: "5. Nümunələr və tərcümələr", ru: "5. Примеры с переводом" },
       blocks: [
         {
           kind: "examples",
           items: [
-            { en: "Who has taken my charger?", az: "Kim mənim adapterimi götürüb?", ru: "Кто взял мою зарядку?" },
-            { en: "What have you been doing all day?", az: "Bütün günü nə edirdin?", ru: "Что ты делал весь день?" },
-            { en: "My boss wants me to finish this by Friday.", az: "Rəhbərim bunu cüməyə qədər bitirməyimi istəyir.", ru: "Начальник хочет, чтобы я закончил это к пятнице." },
-            { en: "It's not easy to get used to a new country.", az: "Yeni ölkəyə öyrəşmək asan deyil.", ru: "Привыкнуть к новой стране нелегко." },
-            { en: "I used to think English was impossible.", az: "Əvvəllər ingilis dilinin mümkünsüz olduğunu düşünürdüm.", ru: "Раньше я думал, что английский — это невозможно." },
-            { en: "The keys must have been left in the office.", az: "Açarlar yəqin ofisdə qalıb.", ru: "Ключи, наверное, остались в офисе." },
-            { en: "We're going to be told the results tomorrow.", az: "Nəticələri bizə sabah deyəcəklər.", ru: "Результаты нам сообщат завтра." },
-            { en: "Have you been asked to give a speech?", az: "Səndən çıxış etməyi xahiş ediblər?", ru: "Тебя попросили выступить с речью?" },
-            { en: "I've never been able to understand him.", az: "Onu heç vaxt başa düşə bilməmişəm.", ru: "Я никогда не мог его понять." },
-            { en: "You shouldn't have been worried. Everything is fine.", az: "Narahat olmamalı idin. Hər şey qaydasındadır.", ru: "Зря ты волновался. Всё в порядке." },
+            { en: "I'm about to do the thing you mentioned.", az: "Dediyin işi görmək üzrəyəm.", ru: "Я как раз собираюсь сделать то, о чём ты говорил." },
+            { en: "I'm about to go into a meeting. Can I call you later?", az: "İndicə iclasa girirəm. Sonra zəng edə bilərəm?", ru: "Я как раз иду на совещание. Можно перезвоню позже?" },
+            { en: "The film is about to start — turn off your phone.", az: "Film indicə başlayır — telefonunu söndür.", ru: "Фильм вот-вот начнётся — выключи телефон." },
+            { en: "I was about to leave when my boss called.", az: "Çıxmaq üzrəydim ki, müdirim zəng etdi.", ru: "Я уже собирался уходить, когда позвонил начальник." },
+            { en: "Take the phone out of the bag.", az: "Telefonu çantanın içindən götür.", ru: "Достань телефон из сумки." },
+            { en: "Take the phone off the bag.", az: "Telefonu çantanın üzərindən götür.", ru: "Убери телефон с сумки." },
+            { en: "Take your coat off and sit down.", az: "Paltonu çıxar və otur.", ru: "Снимай пальто и садись." },
+            { en: "He got out of the taxi and ran inside.", az: "Taksidən düşüb içəri qaçdı.", ru: "Он вышел из такси и побежал внутрь." },
+            { en: "Get off the bus at the next stop.", az: "Növbəti dayanacaqda avtobusdan düş.", ru: "Выйди из автобуса на следующей остановке." },
+            { en: "We've run out of coffee.", az: "Qəhvəmiz qurtarıb.", ru: "У нас закончился кофе." },
           ],
         },
       ],
     },
     {
       id: "mistakes",
-      title: { az: "6. Bu mərhələdə ən çox edilən səhvlər", ru: "6. Самые частые ошибки этапа" },
+      title: { az: "6. Tipik səhvlər", ru: "6. Типичные ошибки" },
       blocks: [
         {
           kind: "mistakes",
           items: [
-            { wrong: "I am here since Monday.", right: "I have been here since Monday.", why: { az: "Since → Present Perfect.", ru: "Since → Present Perfect." } },
-            { wrong: "He told me that I wait.", right: "He told me to wait.", why: { az: "Tell + şəxs + to + feil.", ru: "Tell + человек + to + глагол." } },
-            { wrong: "Who did break the window?", right: "Who broke the window?", why: { az: "Mübtəda sualında köməkçi yoxdur.", ru: "В вопросе к подлежащему вспомогательного нет." } },
-            { wrong: "I'm used to wake up early.", right: "I'm used to waking up early.", why: { az: "Be used to + -ing.", ru: "Be used to + -ing." } },
-            { wrong: "You should told me.", right: "You should have told me.", why: { az: "Modal + have + V3.", ru: "Модальный + have + V3." } },
-            { wrong: "The email has sent.", right: "The email has been sent.", why: { az: "Passive Perfect: has been + V3.", ru: "Пассив Perfect: has been + V3." } },
+            { wrong: "I'm about to leaving.", right: "I'm about to leave.", why: { az: "About to + V1.", ru: "About to + V1." } },
+            { wrong: "The train is about to leave tomorrow.", right: "The train leaves tomorrow.", why: { az: "About to — indicə, sabah üçün yox.", ru: "About to — сейчас, не на завтра." } },
+            { wrong: "Take the keys off the box.", right: "Take the keys out of the box.", why: { az: "Qutunun içindən — out of.", ru: "Изнутри коробки — out of." } },
+            { wrong: "Get off the car.", right: "Get out of the car.", why: { az: "Maşından düşəndə out of; avtobusdan off.", ru: "Из машины — out of; из автобуса — off." } },
+            { wrong: "I got out of the bus.", right: "I got off the bus.", why: { az: "Avtobus, qatar, təyyarə — get off.", ru: "Автобус, поезд, самолёт — get off." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Birinci köməkçi feil sualda önə keçir və inkarda \"not\" alır.", ru: "Первый вспомогательный выходит вперёд в вопросе и принимает «not» в отрицании." },
-    { az: "Dəqiq keçmiş vaxt → Past Simple; keçmiş + indi → Present Perfect.", ru: "Точное время в прошлом → Past Simple; прошлое + настоящее → Present Perfect." },
-    { az: "Eyni fikri müxtəlif strukturlarla deyə bilmək — sərbəst danışığın açarıdır.", ru: "Умение сказать одно и то же разными структурами — ключ к свободной речи." },
+    { az: "Be about to + V1 = elə indi …-acaq. Keçmiş: was about to … when …", ru: "Be about to + V1 = вот-вот. Прошлое: was about to … when …" },
+    { az: "Out of — içindən, off — üzərindən. Əksi: into, onto.", ru: "Out of — изнутри, off — с поверхности. Обратное: into, onto." },
+    { az: "Maşın, taksi — get in / out of. Avtobus, qatar, təyyarə — get on / off.", ru: "Машина, такси — get in / out of. Автобус, поезд, самолёт — get on / off." },
   ],
 };

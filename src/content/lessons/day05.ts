@@ -4,7 +4,7 @@ const day05: Lesson = {
   day: 5,
   stage: "foundation",
   frame: "actions",
-  title: "I work, she works",
+  title: "Present Simple: I work, she works",
   objective: "Talk about habits and facts with the present simple, including do and does.",
   builds_on: "Frames 1 and 2 used be. Frame 3 is about actions — so we need real verbs, and a helper (do / does) for questions and negatives.",
   outcome: "Describe your daily routine and ask about others'.",

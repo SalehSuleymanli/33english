@@ -4,7 +4,7 @@ const day06: Lesson = {
   day: 6,
   stage: "foundation",
   frame: "actions",
-  title: "I worked, I will work",
+  title: "Past and Future Simple: I worked, I will work",
   objective: "Use the past simple (regular and irregular) and the future with will.",
   builds_on: "On Day 5 do / does carried the present. Today did carries the past and will carries the future — the structure stays the same.",
   outcome: "Tell a short story about a trip and make plans.",

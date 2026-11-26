@@ -3,179 +3,135 @@ import type { Teach } from "./types";
 export const TEACH_25: Teach = {
   day: 25,
   summary: {
-    az: "Bu dərsdə şərt cümlələrini öyrənirsiniz: real şərt (If it rains, I'll stay home), xəyali şərt (If I had money, I would travel), keçmişə aid şərt (If I had known, I would have come), həmçinin \"What if…?\" və \"My dream is to…\" ifadələri. Bu strukturlar plan, xəyal və peşmanlıq haqqında danışmaq üçün vacibdir.",
-    ru: "В этом уроке вы изучаете условные предложения: реальное условие (If it rains, I'll stay home), воображаемое (If I had money, I would travel), условие о прошлом (If I had known, I would have come), а также выражения «What if…?» и «My dream is to…». Они нужны, чтобы говорить о планах, мечтах и сожалениях.",
+    az: "Dünən \"used to + feil\" (keçmiş vərdiş) öyrəndiniz. Bu gün ona çox oxşayan iki quruluş: \"be used to\" — bir şeyə öyrəşmiş olmaq (vəziyyət, hərəkət yoxdur) və \"get used to\" — bir şeyə öyrəşmək (proses, hərəkət var). Hər ikisindən sonra isim və ya feil + -ing gəlir. Bu, qeydlərinizdəki 21-ci mövzudur: \"to be used to\" və \"to get used to\".",
+    ru: "Вчера вы изучили «used to + глагол» (привычка в прошлом). Сегодня — две очень похожие структуры: «be used to» — быть привыкшим (состояние, без действия) и «get used to» — привыкать (процесс, есть действие). После обеих идёт существительное или глагол + -ing. Это тема 21 из ваших заметок: «to be used to» и «to get used to».",
   },
   sections: [
     {
-      id: "overview",
-      title: { az: "1. Şərt cümlələrinin növləri", ru: "1. Типы условных предложений" },
-      blocks: [
-        {
-          kind: "table",
-          head: [{ az: "Növ", ru: "Тип" }, { az: "If hissəsi", ru: "Часть с if" }, { az: "Nəticə hissəsi", ru: "Часть-результат" }, { az: "Məna", ru: "Значение" }],
-          rows: [
-            ["Zero", "Present Simple", "Present Simple", "always true: If you heat ice, it melts."],
-            ["First (real)", "Present Simple", "will + V1", "possible future: If it rains, I'll stay home."],
-            ["Second (unreal)", "Past Simple", "would + V1", "imaginary now/future: If I had time, I'd learn Chinese."],
-            ["Third (past)", "had + V3", "would have + V3", "imaginary past: If I had known, I would have helped."],
-          ],
-        },
-      ],
-    },
-    {
-      id: "first",
-      title: { az: "2. Birinci şərt: real gələcək", ru: "2. Первый тип: реальное будущее" },
-      blocks: [
-        {
-          kind: "formula",
-          label: { az: "If + Present Simple, will + V1", ru: "If + Present Simple, will + V1" },
-          parts: [
-            { text: "If", role: "connector", note: { az: "Şərt sözü.", ru: "Союз условия." } },
-            { text: "you hurry", role: "verb", note: { az: "Present Simple — gələcək mənasında olsa belə!", ru: "Present Simple — даже если речь о будущем!" } },
-            { text: "you'll catch", role: "modal", note: { az: "Nəticə: will + V1 (və ya can, may, might, imperative).", ru: "Результат: will + V1 (или can, may, might, повелительное)." } },
-            { text: "the bus", role: "object", note: { az: "Tamamlıq.", ru: "Дополнение." } },
-          ],
-          example: "If you hurry, you'll catch the bus.",
-        },
-        {
-          kind: "p",
-          text: {
-            az: "Ən vacib qayda: \"if\" hissəsində \"will\" işlənmir, hətta söhbət gələcəkdən gedirsə belə. Azərbaycan dilində \"Yağış yağsa, evdə qalacağam\", rus dilində «Если пойдёт дождь» deyirik — rus dilində \"if\" hissəsində gələcək zaman var, ona görə ruslar \"If it will rain\" deyə səhv edirlər. Doğrusu: \"If it rains, I'll stay home.\" Eyni qayda when, as soon as, before, after, until üçün də keçərlidir: \"I'll call you when I arrive.\"",
-            ru: "Главное правило: в части с «if» «will» не используется, даже если речь о будущем. По-русски мы говорим «Если пойдёт дождь» — с будущим временем, поэтому русскоговорящие часто ошибаются: «If it will rain». Правильно: «If it rains, I'll stay home.» То же правило для when, as soon as, before, after, until: «I'll call you when I arrive.»",
-          },
-        },
-        {
-          kind: "p",
-          text: {
-            az: "Hissələrin sırası dəyişə bilər: \"I'll stay home if it rains.\" \"If\" əvvəldə olanda hissələr vergüllə ayrılır, sonda olanda vergül lazım deyil. \"Unless\" = \"if … not\": \"You'll be late unless you leave now\" (indi çıxmasan, gecikəcəksən).",
-            ru: "Части можно менять местами: «I'll stay home if it rains.» Когда «if» в начале, части разделяются запятой; когда в конце — запятая не нужна. «Unless» = «if … not»: «You'll be late unless you leave now» (если не выйдешь сейчас, опоздаешь).",
-          },
-        },
-      ],
-    },
-    {
-      id: "second",
-      title: { az: "3. İkinci şərt: xəyali vəziyyət", ru: "3. Второй тип: воображаемая ситуация" },
+      id: "be-used",
+      title: { az: "1. Be used to + -ing / isim: öyrəşmiş olmaq", ru: "1. Be used to + -ing / существительное: быть привыкшим" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "İkinci şərt indi və ya gələcəkdə real olmayan, xəyali vəziyyət üçündür: \"If I had a lot of money, I would buy a house by the sea\" — çoxlu pulum olsaydı, dəniz kənarında ev alardım (amma yoxdur). Burada \"had\" keçmiş zaman deyil, real olmamağın işarəsidir. Azərbaycan dilində \"-sa idi, -ardı\", rus dilində «если бы …, то бы» qarşılığıdır.",
-            ru: "Второй тип — для нереальной, воображаемой ситуации сейчас или в будущем: «If I had a lot of money, I would buy a house by the sea» — если бы у меня было много денег, я бы купил дом у моря (но их нет). Здесь «had» — не прошедшее время, а знак нереальности. Русский аналог — «если бы …, то бы».",
+            az: "\"Be used to\" vəziyyətdir: bir şey sizin üçün artıq normal, tanışdır. Qeydlərinizdəki nümunə: \"I am used to playing football\" — mən futbol oynamağa öyrəşikliyəm (bu, ikinci tip cümlədir, yəni Frame 2: subyekt + be + …). Burada \"to\" ön sözdür, \"to + feil\" deyil, ona görə ondan sonra isim və ya -ing gəlir: \"used to the noise\", \"used to working\".",
+            ru: "«Be used to» — состояние: что-то для вас уже привычно, нормально. Пример из ваших заметок: «I am used to playing football» — я привык играть в футбол (это предложение второго типа, то есть Frame 2: подлежащее + be + …). Здесь «to» — предлог, а не часть «to + глагол», поэтому после него идёт существительное или -ing: «used to the noise», «used to working».",
           },
         },
         {
           kind: "formula",
-          label: { az: "If + Past Simple, would + V1", ru: "If + Past Simple, would + V1" },
+          label: { az: "Subyekt + be + used to + isim / V-ing", ru: "Подлежащее + be + used to + сущ. / V-ing" },
           parts: [
-            { text: "If", role: "connector", note: { az: "Şərt.", ru: "Условие." } },
-            { text: "I were you", role: "verb", note: { az: "Past Simple; \"be\" bütün şəxslərdə were ola bilər.", ru: "Past Simple; у «be» для всех лиц может быть were." } },
-            { text: "I would accept", role: "modal", note: { az: "would ('d) + V1; həmçinin could, might.", ru: "would ('d) + V1; также could, might." } },
-            { text: "the offer", role: "object", note: { az: "Tamamlıq.", ru: "Дополнение." } },
+            { text: "She", role: "subject", note: { az: "Subyekt.", ru: "Подлежащее." } },
+            { text: "is", role: "be", note: { az: "\"Be\" istənilən zamanda: is / was / will be.", ru: "«Be» в любом времени: is / was / will be." } },
+            { text: "used to", role: "complement", note: { az: "Öyrəşmiş.", ru: "Привыкший." } },
+            { text: "working at night", role: "verb", note: { az: "-ing və ya isim.", ru: "-ing или существительное." } },
           ],
-          example: "If I were you, I would accept the offer.",
+          example: "She is used to working at night.",
+        },
+      ],
+    },
+    {
+      id: "get-used",
+      title: { az: "2. Get used to: öyrəşmək prosesi", ru: "2. Get used to: процесс привыкания" },
+      blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "\"Get used to\" dəyişikliyi, öyrəşmə prosesini bildirir: əvvəl qəribə idi, tədricən normal olur. Qeydlərinizdə iki forma var: \"I get used to playing football\" — öyrəşirəm (sadə zaman, ümumiyyətlə) və \"I am getting used to playing football\" — indi öyrəşməkdəyəm (davamedici zaman). Keçmişdə: \"I got used to the cold\" — soyuğa öyrəşdim.",
+            ru: "«Get used to» выражает изменение, процесс привыкания: сначала было непривычно, постепенно становится нормальным. В ваших заметках две формы: «I get used to playing football» — привыкаю (простое время, вообще) и «I am getting used to playing football» — привыкаю сейчас (длительное время). В прошлом: «I got used to the cold» — я привык к холоду.",
+          },
         },
         {
           kind: "tip",
           text: {
-            az: "\"If I were you, I would…\" — ingilis dilində məsləhət verməyin ən klassik yoludur: \"Sənin yerində olsaydım…\"",
-            ru: "«If I were you, I would…» — классический способ дать совет по-английски: «На твоём месте я бы…»",
+            az: "\"You'll get used to it\" — \"öyrəşəcəksən\". Yeni işə, şəhərə və ya məktəbə başlayan birinə deyilən ən tipik təsəlli ifadəsidir.",
+            ru: "«You'll get used to it» — «привыкнешь». Самая типичная фраза поддержки для того, кто начал новую работу, переехал или пошёл в новую школу.",
           },
         },
       ],
     },
     {
-      id: "third",
-      title: { az: "4. Üçüncü şərt: keçmiş haqqında xəyal və peşmanlıq", ru: "4. Третий тип: воображаемое прошлое и сожаление" },
+      id: "compare",
+      title: { az: "3. Üç oxşar quruluş yan-yana", ru: "3. Три похожие структуры рядом" },
       blocks: [
+        {
+          kind: "table",
+          head: [{ az: "Quruluş", ru: "Структура" }, { az: "Məna", ru: "Значение" }, { az: "Nümunə", ru: "Пример" }],
+          rows: [
+            ["used to + V1", "past habit, not now (Day 24)", "I used to drive to work."],
+            ["be used to + V-ing / noun", "it's normal for me (state)", "I'm used to driving in Baku."],
+            ["get used to + V-ing / noun", "becoming normal (process)", "I'm getting used to driving on the left."],
+          ],
+        },
         {
           kind: "p",
           text: {
-            az: "Üçüncü şərt keçmişdə baş verməmiş şeyi təsəvvür edir: \"If I had left earlier, I wouldn't have missed the train\" — daha tez çıxsaydım, qatara gecikməzdim (amma tez çıxmadım və gecikdim). Peşmanlıq və tənqid üçün işlənir. 19-cu gündəki \"should have\" ilə əlaqəlidir.",
-            ru: "Третий тип представляет то, чего не было в прошлом: «If I had left earlier, I wouldn't have missed the train» — если бы я вышел раньше, я бы не опоздал на поезд (но не вышел и опоздал). Используется для сожаления и упрёка. Связан с «should have» из 19-го дня.",
+            az: "Ən asan yoxlama: cümlədə \"be\" və ya \"get\" varsa, sonra -ing gəlir. \"Be\" və \"get\" yoxdursa, söhbət keçmiş vərdişdən gedir və sonra feilin sadə forması gəlir.",
+            ru: "Самая простая проверка: если в предложении есть «be» или «get», дальше идёт -ing. Если «be» и «get» нет — речь о привычке в прошлом, и дальше идёт начальная форма глагола.",
           },
-        },
-        {
-          kind: "table",
-          head: [{ az: "Forma", ru: "Форма" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["+", "If you had told me, I would have helped."],
-            ["−", "If it hadn't rained, we would have gone to the beach."],
-            ["?", "What would you have done if you had lost the job?"],
-          ],
         },
       ],
     },
     {
-      id: "what-if",
-      title: { az: "5. What if…? və My dream is to…", ru: "5. What if…? и My dream is to…" },
+      id: "tenses",
+      title: { az: "4. Bütün zamanlarda", ru: "4. Во всех временах" },
       blocks: [
         {
           kind: "table",
-          head: [{ az: "İfadə", ru: "Выражение" }, { az: "Nümunə", ru: "Пример" }],
+          head: [{ az: "Zaman", ru: "Время" }, { az: "Nümunə", ru: "Пример" }],
           rows: [
-            ["What if + Present (real worry)", "What if the shop is closed?"],
-            ["What if + Past (imagination / suggestion)", "What if we moved to another city?"],
-            ["My dream is to + V1", "My dream is to open my own café."],
-            ["I wish + Past Simple", "I wish I spoke English fluently."],
-            ["I wish + had + V3 (past regret)", "I wish I had studied harder."],
+            ["Present", "I'm used to the noise. / I get used to new places quickly."],
+            ["Continuous", "I'm getting used to my new job."],
+            ["Past", "I was used to the cold. / I got used to it."],
+            ["Future", "You'll get used to it."],
+            ["Perfect", "Have you got used to the new office yet?"],
+            ["Negative", "I'm not used to it. / I can't get used to it."],
           ],
-        },
-        {
-          kind: "p",
-          text: {
-            az: "\"What if…?\" həm narahatlıq (\"bəs … olsa?\"), həm də xəyal və təklif (\"bəs … etsək?\") üçün işlənir. \"My dream is to…\" xəyallar haqqında danışmağın sadə və güclü yoludur; IELTS danışıq imtahanında çox lazım olur.",
-            ru: "«What if…?» выражает и беспокойство («а вдруг…?»), и мечту или предложение («а что если…?»). «My dream is to…» — простой и сильный способ говорить о мечтах; очень пригодится на устной части IELTS.",
-          },
         },
       ],
     },
     {
       id: "examples",
-      title: { az: "6. Nümunələr və tərcümələr", ru: "6. Примеры с переводом" },
+      title: { az: "5. Nümunələr və tərcümələr", ru: "5. Примеры с переводом" },
       blocks: [
         {
           kind: "examples",
           items: [
-            { en: "If you mix red and white, you get pink.", az: "Qırmızı ilə ağı qarışdırsan, çəhrayı alınır.", ru: "Если смешать красный и белый, получится розовый." },
-            { en: "If I finish early, I'll call you.", az: "Tez qurtarsam, sənə zəng edəcəyəm.", ru: "Если закончу рано, позвоню тебе." },
-            { en: "We won't go if the weather is bad.", az: "Hava pis olsa, getməyəcəyik.", ru: "Мы не поедем, если будет плохая погода." },
-            { en: "I'll tell her as soon as she arrives.", az: "Gələn kimi ona deyəcəyəm.", ru: "Я скажу ей, как только она придёт." },
-            { en: "If I lived near the sea, I would swim every day.", az: "Dəniz kənarında yaşasaydım, hər gün üzərdim.", ru: "Если бы я жил у моря, я бы плавал каждый день." },
-            { en: "What would you do if you won the lottery?", az: "Lotereya udsaydın, nə edərdin?", ru: "Что бы ты сделал, если бы выиграл в лотерею?" },
-            { en: "If I were you, I'd talk to him.", az: "Sənin yerində olsaydım, onunla danışardım.", ru: "На твоём месте я бы с ним поговорил." },
-            { en: "If we had booked earlier, it would have been cheaper.", az: "Daha tez bron etsəydik, ucuz olardı.", ru: "Если бы мы забронировали раньше, было бы дешевле." },
-            { en: "What if we miss the flight?", az: "Bəs uçuşa gecikəsək?", ru: "А вдруг мы опоздаем на рейс?" },
-            { en: "My dream is to travel around the world.", az: "Xəyalım bütün dünyanı gəzməkdir.", ru: "Моя мечта — путешествовать по миру." },
-            { en: "I wish I had more free time.", az: "Kaş daha çox boş vaxtım olaydı.", ru: "Жаль, что у меня мало свободного времени." },
-            { en: "Unless you practise, you won't improve.", az: "Məşq etməsən, irəliləməyəcəksən.", ru: "Если не будешь практиковаться, не будет прогресса." },
+            { en: "I am used to playing football.", az: "Mən futbol oynamağa öyrəşikliyəm.", ru: "Я привык играть в футбол." },
+            { en: "I get used to new places quickly.", az: "Yeni yerlərə tez öyrəşirəm.", ru: "Я быстро привыкаю к новым местам." },
+            { en: "I am getting used to playing football.", az: "Futbol oynamağa öyrəşirəm (indi).", ru: "Я привыкаю играть в футбол (сейчас)." },
+            { en: "I'm used to the noise of the city.", az: "Şəhərin səs-küyünə öyrəşmişəm.", ru: "Я привык к шуму города." },
+            { en: "He isn't used to working in a team.", az: "O, komandada işləməyə öyrəşməyib.", ru: "Он не привык работать в команде." },
+            { en: "It took me a month to get used to the new schedule.", az: "Yeni qrafikə öyrəşməyim bir ay çəkdi.", ru: "Мне понадобился месяц, чтобы привыкнуть к новому графику." },
+            { en: "Don't worry, you'll get used to it.", az: "Narahat olma, öyrəşəcəksən.", ru: "Не волнуйся, привыкнешь." },
+            { en: "Are you getting used to life in London?", az: "Londondakı həyata öyrəşirsən?", ru: "Ты привыкаешь к жизни в Лондоне?" },
+            { en: "I'll never get used to waking up at five.", az: "Saat beşdə oyanmağa heç vaxt öyrəşməyəcəyəm.", ru: "Я никогда не привыкну вставать в пять." },
+            { en: "She was used to hot weather, so Moscow was a shock.", az: "O, isti havaya öyrəşmişdi, ona görə Moskva onun üçün şok oldu.", ru: "Она привыкла к жаркой погоде, поэтому Москва стала для неё шоком." },
           ],
         },
       ],
     },
     {
       id: "mistakes",
-      title: { az: "7. Tipik səhvlər", ru: "7. Типичные ошибки" },
+      title: { az: "6. Tipik səhvlər", ru: "6. Типичные ошибки" },
       blocks: [
         {
           kind: "mistakes",
           items: [
-            { wrong: "If it will rain, I'll stay home.", right: "If it rains, I'll stay home.", why: { az: "If hissəsində will işlənmir.", ru: "В части с if «will» не используется." } },
-            { wrong: "I'll call you when I will arrive.", right: "I'll call you when I arrive.", why: { az: "When, as soon as, before-dən sonra da Present Simple.", ru: "После when, as soon as, before — тоже Present Simple." } },
-            { wrong: "If I would have money, I would buy it.", right: "If I had money, I would buy it.", why: { az: "If hissəsində would yox, Past Simple.", ru: "В части с if — не would, а Past Simple." } },
-            { wrong: "If I knew, I would have told you.", right: "If I had known, I would have told you.", why: { az: "Keçmiş xəyali şərt: had + V3.", ru: "Нереальное прошлое: had + V3." } },
-            { wrong: "If I am you, I would go.", right: "If I were you, I would go.", why: { az: "Xəyali vəziyyət — were.", ru: "Воображаемая ситуация — were." } },
-            { wrong: "My dream is open a café.", right: "My dream is to open a café.", why: { az: "My dream is + to + V1.", ru: "My dream is + to + V1." } },
+            { wrong: "I'm used to get up early.", right: "I'm used to getting up early.", why: { az: "Be used to-dan sonra -ing.", ru: "После be used to — форма -ing." } },
+            { wrong: "I used to living here.", right: "I'm used to living here.", why: { az: "İndiki vəziyyət üçün be lazımdır: I'm used to.", ru: "Для состояния сейчас нужен be: I'm used to." } },
+            { wrong: "I can't used to the food.", right: "I can't get used to the food.", why: { az: "Proses üçün get used to.", ru: "Для процесса — get used to." } },
+            { wrong: "She is getting used to wake up early.", right: "She is getting used to waking up early.", why: { az: "Get used to-dan sonra da -ing.", ru: "После get used to тоже -ing." } },
+            { wrong: "I didn't used to the cold.", right: "I wasn't used to the cold.", why: { az: "Be used to-nun inkarı be ilə: wasn't.", ru: "Отрицание be used to — через be: wasn't." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Real: If + Present, will + V1. If hissəsində will yoxdur.", ru: "Реальное: If + Present, will + V1. В части с if нет will." },
-    { az: "Xəyali indi: If + Past, would + V1 (If I were you…).", ru: "Нереальное сейчас: If + Past, would + V1 (If I were you…)." },
-    { az: "Xəyali keçmiş: If + had + V3, would have + V3.", ru: "Нереальное прошлое: If + had + V3, would have + V3." },
-    { az: "What if…? — narahatlıq və ya təklif. My dream is to… — xəyal.", ru: "What if…? — беспокойство или предложение. My dream is to… — мечта." },
+    { az: "Be used to + -ing/isim: öyrəşmişəm (vəziyyət).", ru: "Be used to + -ing/сущ.: я привык (состояние)." },
+    { az: "Get used to + -ing/isim: öyrəşirəm, öyrəşdim (proses).", ru: "Get used to + -ing/сущ.: привыкаю, привык (процесс)." },
+    { az: "Be və ya get varsa → -ing. Yoxdursa → used to + V1 (keçmiş vərdiş).", ru: "Есть be или get → -ing. Нет → used to + V1 (привычка в прошлом)." },
   ],
 };

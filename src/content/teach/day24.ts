@@ -3,85 +3,102 @@ import type { Teach } from "./types";
 export const TEACH_24: Teach = {
   day: 24,
   summary: {
-    az: "Bu dərsdə iki fikri birləşdirib insanları və əşyaları dəqiq təsvir etməyi öyrənirsiniz: who, which, that, whose, where ilə nisbi budaq cümlələri. \"The man who lives next door\", \"the phone that I bought\". Azərbaycan dilində bu, \"-an/-ən, -dığı\" kimi feili sifətlərlə verilir, ona görə quruluş tamamilə fərqlidir.",
-    ru: "В этом уроке вы научитесь соединять две мысли и точно описывать людей и предметы с помощью относительных придаточных: who, which, that, whose, where. «The man who lives next door», «the phone that I bought». По-русски это «который», и порядок здесь похож, но есть важные отличия.",
+    az: "Bu dərsdə \"used to + feil\" quruluşunu öyrənirsiniz: keçmişdə adət halını almış, amma indi olmayan hərəkət və vəziyyətlər. \"I used to play tennis\" — əvvəllər tennis oynayırdım. Həmçinin sual və inkar (did … use to), \"there used to be\" və xatirələrdə işlənən \"would\". Sabah (25-ci gün) buna çox oxşayan \"be used to\" və \"get used to\"-nu öyrənəcəksiniz.",
+    ru: "В этом уроке вы изучаете структуру «used to + глагол»: привычки и состояния в прошлом, которых сейчас уже нет. «I used to play tennis» — раньше я играл в теннис. Также вопрос и отрицание (did … use to), «there used to be» и «would» в воспоминаниях. Завтра (25-й день) — очень похожие «be used to» и «get used to».",
   },
   sections: [
     {
-      id: "idea",
-      title: { az: "1. Nisbi budaq cümləsi nədir?", ru: "1. Что такое относительное придаточное?" },
+      id: "used-to",
+      title: { az: "1. Used to + feil: keçmişdə idi, indi yoxdur", ru: "1. Used to + глагол: раньше было, теперь нет" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "İki cümləni götürək: \"I have a friend. He lives in London.\" Onları birləşdirmək üçün ikinci cümlədəki \"he\" əvəzinə \"who\" qoyuruq və onu birbaşa isimdən sonra yerləşdiririk: \"I have a friend who lives in London.\" Azərbaycan dilində təsvir isimdən ƏVVƏL gəlir (\"Londonda yaşayan dostum\"), ingilis dilində isə isimdən SONRA. Bu, ən vacib fərqdir.",
-            ru: "Возьмём два предложения: «I have a friend. He lives in London.» Чтобы соединить их, заменяем «he» во втором на «who» и ставим его сразу после существительного: «I have a friend who lives in London.» По-русски так же: «друг, который живёт в Лондоне» — описание идёт после существительного, поэтому эта тема русскоговорящим обычно даётся легче.",
+            az: "\"Used to\" keçmişdəki vərdiş və ya vəziyyəti bildirir, və o, artıq davam etmir. \"I used to smoke\" — əvvəllər siqaret çəkirdim (indi çəkmirəm). Azərbaycan dilində \"əvvəllər ...-ırdım\", rus dilində «раньше я …» deyirik. Bu quruluş yalnız keçmişdə işlənir; indiki vərdiş üçün Present Simple və \"usually\" lazımdır.",
+            ru: "«Used to» выражает привычку или состояние в прошлом, которых уже нет. «I used to smoke» — раньше я курил (теперь нет). По-русски — «раньше я …». Эта структура бывает только в прошлом; для привычки в настоящем нужен Present Simple и «usually».",
           },
         },
         {
           kind: "formula",
-          label: { az: "İsim + nisbi əvəzlik + budaq cümlə", ru: "Существительное + относительное местоимение + придаточное" },
+          label: { az: "Used to + feil", ru: "Used to + глагол" },
           parts: [
-            { text: "The woman", role: "subject", note: { az: "Təsvir olunan isim.", ru: "Описываемое существительное." } },
-            { text: "who", role: "connector", note: { az: "Nisbi əvəzlik: insan üçün who/that.", ru: "Относительное местоимение: для людей who/that." } },
-            { text: "works with me", role: "verb", note: { az: "Budaq cümlə: isim haqqında məlumat.", ru: "Придаточное: информация о существительном." } },
-            { text: "is from Ganja", role: "complement", note: { az: "Əsas cümlənin davamı.", ru: "Продолжение главного предложения." } },
+            { text: "We", role: "subject", note: { az: "Mübtəda.", ru: "Подлежащее." } },
+            { text: "used to", role: "aux", note: { az: "Bütün şəxslər üçün eyni. Keçmiş mənası daşıyır.", ru: "Одинаково для всех лиц. Несёт значение прошлого." } },
+            { text: "live", role: "verb", note: { az: "Feilin sadə forması.", ru: "Начальная форма глагола." } },
+            { text: "in Sheki", role: "place", note: { az: "Yer / tamamlıq.", ru: "Место / дополнение." } },
           ],
-          example: "The woman who works with me is from Ganja.",
+          example: "We used to live in Sheki.",
         },
-      ],
-    },
-    {
-      id: "words",
-      title: { az: "2. Who, which, that, whose, where", ru: "2. Who, which, that, whose, where" },
-      blocks: [
         {
           kind: "table",
-          head: [{ az: "Söz", ru: "Слово" }, { az: "Nə üçün", ru: "Для чего" }, { az: "Nümunə", ru: "Пример" }],
+          head: [{ az: "Forma", ru: "Форма" }, { az: "Nümunə", ru: "Пример" }],
           rows: [
-            ["who", "people", "The doctor who helped me was very kind."],
-            ["which", "things, animals", "The car which I bought is red."],
-            ["that", "people and things (informal, common)", "The man that called you. The book that I read."],
-            ["whose", "possession (kimin / чей)", "That's the girl whose brother is a pilot."],
-            ["where", "places", "This is the café where we first met."],
-            ["when", "times", "I remember the day when I got my first job."],
-            ["whom", "people as object (formal)", "The person whom I contacted…"],
+            ["+", "I used to play football every day."],
+            ["−", "I didn't use to like vegetables."],
+            ["?", "Did you use to have long hair?"],
+            ["also", "There used to be a cinema here."],
           ],
+        },
+        {
+          kind: "tip",
+          text: {
+            az: "Sual və inkarda \"did\" olduğu üçün \"used\" → \"use\" olur: didn't use to, did you use to. Bu, \"did\"-dən sonra feilin sadə forma qaydasının eynisidir.",
+            ru: "В вопросе и отрицании есть «did», поэтому «used» → «use»: didn't use to, did you use to. Это то же правило: после «did» глагол в начальной форме.",
+          },
         },
       ],
     },
     {
-      id: "subject-object",
-      title: { az: "3. Mübtəda və obyekt: \"that\"-i nə vaxt atmaq olar", ru: "3. Подлежащее и дополнение: когда можно опустить «that»" },
+      id: "there-used",
+      title: { az: "2. There used to be: əvvəllər burada … var idi", ru: "2. There used to be: раньше здесь был …" },
       blocks: [
         {
           kind: "p",
           text: {
-            az: "Nisbi əvəzlik budaq cümlədə mübtəda ola bilər (\"the man who CALLED\" — kişi zəng etdi) və ya obyekt (\"the man who I CALLED\" — mən kişiyə zəng etdim). Əgər o, obyektdirsə (ondan sonra başqa mübtəda gəlirsə), danışıqda onu atmaq olar və çox vaxt atılır: \"the phone (that) I bought\", \"the people (who) we met\". Mübtəda olanda isə atmaq olmaz: \"the man who called\" — \"the man called\" başqa məna verir.",
-            ru: "Относительное местоимение в придаточном может быть подлежащим («the man who CALLED» — мужчина позвонил) или дополнением («the man who I CALLED» — я позвонил мужчине). Если оно дополнение (после него идёт другое подлежащее), в речи его можно опустить, и так обычно и делают: «the phone (that) I bought», «the people (who) we met». Если же оно подлежащее, опускать нельзя: «the man who called» — без who смысл другой.",
+            az: "Used to 1-ci gündəki \"there is / there are\" ilə birləşir: \"There used to be a cinema here\" — burada əvvəllər kinoteatr var idi (indi yoxdur). Şəhərin, evin, məktəbin necə dəyişdiyini danışmaq üçün çox rahatdır. Sual: \"Was there a cinema here?\" və ya \"Did there use to be a cinema here?\"",
+            ru: "Used to сочетается с «there is / there are» из 1-го дня: «There used to be a cinema here» — раньше здесь был кинотеатр (сейчас нет). Очень удобно, чтобы рассказать, как изменился город, дом или школа. Вопрос: «Was there a cinema here?» или «Did there use to be a cinema here?»",
           },
         },
         {
-          kind: "table",
-          head: [{ az: "Rol", ru: "Роль" }, { az: "Atmaq olar?", ru: "Можно опустить?" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["subject (verb follows)", "No", "The bus that goes to the airport leaves at 6."],
-            ["object (subject + verb follow)", "Yes", "The film (that) we watched was boring."],
+          kind: "compare",
+          items: [
+            { en: "There was a cinema here in 1990.", text: { az: "Sadə fakt: 1990-cı ildə var idi.", ru: "Простой факт: в 1990 году был." } },
+            { en: "There used to be a cinema here.", text: { az: "Uzun müddət var idi, indi yoxdur — dəyişiklik vurğulanır.", ru: "Долго был, а теперь нет — подчёркивается перемена." } },
           ],
         },
       ],
     },
     {
-      id: "commas",
-      title: { az: "4. Vergüllü və vergülsüz budaq cümlələr", ru: "4. Придаточные с запятыми и без" },
+      id: "now",
+      title: { az: "3. İndi üçün used to işlənmir", ru: "3. Для настоящего used to не используется" },
       blocks: [
         {
-          kind: "compare",
-          items: [
-            { en: "My brother who lives in Moscow is a doctor.", text: { az: "Vergülsüz: məlumat lazımdır — deməli bir neçə qardaşım var, Moskvada yaşayanı həkimdir.", ru: "Без запятых: информация нужна для определения — значит, у меня несколько братьев, и врач тот, что живёт в Москве." } },
-            { en: "My brother, who lives in Moscow, is a doctor.", text: { az: "Vergüllə: əlavə məlumatdır — bir qardaşım var, o həkimdir, yeri gəlmişkən Moskvada yaşayır. Vergüllə \"that\" işlənmir və əvəzliyi atmaq olmaz.", ru: "С запятыми: дополнительная информация — брат у меня один, он врач, кстати живёт в Москве. С запятыми «that» не используется, и местоимение опускать нельзя." } },
-            { en: "She passed the exam, which surprised everyone.", text: { az: "\"Which\" bütün əvvəlki fikrə aid ola bilər: imtahandan keçməsi hamını təəccübləndirdi.", ru: "«Which» может относиться ко всей предыдущей мысли: то, что она сдала экзамен, всех удивило." } },
-          ],
+          kind: "p",
+          text: {
+            az: "Used to yalnız keçmişdir. İndiki vərdiş üçün Present Simple və \"usually\" lazımdır: \"I usually get up at 7\", \"I use to get up at 7\" yox. Azərbaycan dilində \"adətən\", rus dilində «обычно» desəniz — Present Simple seçin; \"əvvəllər\", «раньше» desəniz — used to.",
+            ru: "Used to — только прошлое. Для привычки в настоящем нужен Present Simple и «usually»: «I usually get up at 7», а не «I use to get up at 7». Если по-русски вы говорите «обычно» — выбирайте Present Simple; если «раньше» — used to.",
+          },
+        },
+        {
+          kind: "signals",
+          words: ["not anymore", "no longer", "these days", "now", "back then", "as a child", "when I was young"],
+          text: {
+            az: "Bu sözlər \"əvvəl\" ilə \"indi\" arasındakı fərqi göstərir və used to ilə tez-tez işlənir: \"I used to smoke, but not anymore.\"",
+            ru: "Эти слова показывают разницу между «тогда» и «сейчас» и часто идут с used to: «I used to smoke, but not anymore.»",
+          },
+        },
+      ],
+    },
+    {
+      id: "would",
+      title: { az: "4. Would: xatirələrdə təkrarlanan hərəkət", ru: "4. Would: повторяющиеся действия в воспоминаниях" },
+      blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "Xatirələr danışanda keçmişdə təkrarlanan hərəkətlər üçün \"would\" da işlənir: \"Every summer we would go to the village.\" Amma vəziyyət feilləri ilə (be, have, live, like) yalnız \"used to\" olar: \"I used to have a dog\", \"I would have a dog\" yox.",
+            ru: "В воспоминаниях для повторявшихся действий в прошлом используется и «would»: «Every summer we would go to the village.» Но с глаголами состояния (be, have, live, like) — только «used to»: «I used to have a dog», а не «I would have a dog».",
+          },
         },
       ],
     },
@@ -92,17 +109,17 @@ export const TEACH_24: Teach = {
         {
           kind: "examples",
           items: [
-            { en: "The people who live upstairs are very noisy.", az: "Yuxarıda yaşayan adamlar çox səs-küylüdür.", ru: "Люди, которые живут наверху, очень шумные." },
-            { en: "Is this the bus that goes to the centre?", az: "Mərkəzə gedən avtobus budur?", ru: "Это автобус, который идёт в центр?" },
-            { en: "The phone I bought last week has stopped working.", az: "Keçən həftə aldığım telefon işləmir.", ru: "Телефон, который я купил на прошлой неделе, перестал работать." },
-            { en: "I met a man whose son studies with you.", az: "Oğlu səninlə oxuyan bir kişi ilə tanış oldum.", ru: "Я познакомился с мужчиной, чей сын учится с тобой." },
-            { en: "That's the restaurant where we had our wedding.", az: "Toyumuzu etdiyimiz restoran odur.", ru: "Это ресторан, где была наша свадьба." },
-            { en: "Do you remember the year when we met?", az: "Tanış olduğumuz ili xatırlayırsan?", ru: "Помнишь год, когда мы познакомились?" },
-            { en: "The teacher who taught me English was from Ireland.", az: "Mənə ingilis dili öyrədən müəllim İrlandiyadan idi.", ru: "Учитель, который учил меня английскому, был из Ирландии." },
-            { en: "Everything (that) he said was true.", az: "Onun dediyi hər şey doğru idi.", ru: "Всё, что он сказал, было правдой." },
-            { en: "My grandmother, who is 85, still cooks every day.", az: "85 yaşlı nənəm hələ də hər gün yemək bişirir.", ru: "Моя бабушка, которой 85 лет, до сих пор каждый день готовит." },
-            { en: "He didn't call me, which made me angry.", az: "Mənə zəng etmədi və bu, məni əsəbiləşdirdi.", ru: "Он мне не позвонил, что меня разозлило." },
-            { en: "The job she applied for was in Dubai.", az: "Onun müraciət etdiyi iş Dubayda idi.", ru: "Работа, на которую она подала заявку, была в Дубае." },
+            { en: "I used to be afraid of dogs.", az: "Əvvəllər itlərdən qorxurdum.", ru: "Раньше я боялся собак." },
+            { en: "My grandfather used to tell us stories.", az: "Babam bizə nağıllar danışardı.", ru: "Дедушка раньше рассказывал нам истории." },
+            { en: "Did you use to play any sport?", az: "Əvvəllər idmanla məşğul olurdun?", ru: "Ты раньше занимался каким-нибудь спортом?" },
+            { en: "There used to be a market here.", az: "Burada əvvəllər bazar var idi.", ru: "Раньше здесь был рынок." },
+            { en: "She didn't use to drink coffee.", az: "O, əvvəllər qəhvə içmirdi.", ru: "Раньше она не пила кофе." },
+            { en: "I used to play tennis.", az: "Mən əvvəllər tennis oynayırdım.", ru: "Раньше я играл в теннис." },
+            { en: "I used to speak Spanish.", az: "Mən əvvəllər ispanca danışırdım.", ru: "Раньше я говорил по-испански." },
+            { en: "I used to have blonde hair.", az: "Əvvəllər saçlarım sarı idi.", ru: "Раньше у меня были светлые волосы." },
+            { en: "We didn't use to have a car.", az: "Əvvəllər maşınımız yox idi.", ru: "Раньше у нас не было машины." },
+            { en: "He no longer lives here.", az: "O, artıq burada yaşamır.", ru: "Он здесь больше не живёт." },
+            { en: "When I was a child, we would spend every summer by the sea.", az: "Uşaq olanda hər yayı dəniz kənarında keçirərdik.", ru: "В детстве мы каждое лето проводили у моря." },
           ],
         },
       ],
@@ -114,22 +131,20 @@ export const TEACH_24: Teach = {
         {
           kind: "mistakes",
           items: [
-            { wrong: "The man which called you.", right: "The man who called you.", why: { az: "İnsan üçün who/that, which yox.", ru: "Для людей — who/that, не which." } },
-            { wrong: "The book that I read it was great.", right: "The book that I read was great.", why: { az: "Əvəzlik təkrarlanmır: \"that\" artıq \"it\"-in yerini tutur.", ru: "Местоимение не повторяется: «that» уже заменяет «it»." } },
-            { wrong: "In London living my friend.", right: "My friend who lives in London…", why: { az: "Təsvir isimdən sonra gəlir.", ru: "Описание ставится после существительного." } },
-            { wrong: "The girl who her father is a pilot.", right: "The girl whose father is a pilot.", why: { az: "Sahiblik üçün whose.", ru: "Для принадлежности — whose." } },
-            { wrong: "My mother, that is a teacher, …", right: "My mother, who is a teacher, …", why: { az: "Vergüllə \"that\" işlənmir.", ru: "С запятыми «that» не используется." } },
-            { wrong: "The man called me is my uncle.", right: "The man who called me is my uncle.", why: { az: "Mübtəda rolunda olan əvəzliyi atmaq olmaz.", ru: "Местоимение в роли подлежащего опускать нельзя." } },
-            { wrong: "The city which I was born.", right: "The city where I was born. / … which I was born in.", why: { az: "Yer üçün where (və ya which + ön söz).", ru: "Для места — where (или which + предлог)." } },
+            { wrong: "I use to get up at 7 every day.", right: "I usually get up at 7.", why: { az: "İndiki vərdiş üçün used to işlənmir; Present Simple + usually.", ru: "Для привычки в настоящем used to не используется; Present Simple + usually." } },
+            { wrong: "I didn't used to like it.", right: "I didn't use to like it.", why: { az: "Did-dən sonra use (sadə forma).", ru: "После did — use (начальная форма)." } },
+            { wrong: "I used to living here.", right: "I used to live here.", why: { az: "Used to + V1 (sadə forma), -ing yox.", ru: "Used to + V1 (начальная форма), не -ing." } },
+            { wrong: "I use to play tennis when I was young.", right: "I used to play tennis when I was young.", why: { az: "Təsdiq cümləsində used (d ilə).", ru: "В утверждении — used (с d)." } },
+            { wrong: "I would have long hair.", right: "I used to have long hair.", why: { az: "Vəziyyət (have) üçün would yox, used to.", ru: "Для состояния (have) — не would, а used to." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Who — insan, which — əşya, that — hər ikisi, whose — sahiblik, where — yer.", ru: "Who — люди, which — предметы, that — оба, whose — принадлежность, where — место." },
-    { az: "Təsvir isimdən sonra gəlir: the man who lives next door.", ru: "Описание ставится после существительного: the man who lives next door." },
-    { az: "Obyekt rolunda olan who/that atıla bilər: the film (that) we watched.", ru: "Who/that в роли дополнения можно опустить: the film (that) we watched." },
-    { az: "Vergüllü budaq cümlə — əlavə məlumat; \"that\" işlənmir.", ru: "Придаточное с запятыми — доп. информация; «that» не используется." },
+    { az: "Used to + V1: keçmişdə idi, indi yoxdur. Sual/inkar: did … use to.", ru: "Used to + V1: раньше было, сейчас нет. Вопрос/отрицание: did … use to." },
+    { az: "There used to be — əvvəllər var idi, indi yoxdur.", ru: "There used to be — раньше был, теперь нет." },
+    { az: "İndiki vərdiş üçün used to yox, Present Simple + usually.", ru: "Для привычки сейчас — не used to, а Present Simple + usually." },
+    { az: "Would — keçmişdə təkrarlanan hərəkət, vəziyyət üçün yox.", ru: "Would — повторяющееся действие в прошлом, не для состояний." },
   ],
 };

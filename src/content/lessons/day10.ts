@@ -6,7 +6,7 @@ const day10: Lesson = {
   frame: "possession",
   title: "Have and has",
   objective: "Talk about what people have, and tell possession 'have' from helper 'have'.",
-  builds_on: "Possession uses do / does / did exactly like the action verbs from Days 5–6. And you'll meet have again on Day 15 — as a helper.",
+  builds_on: "Possession uses do / does / did exactly like the action verbs from Days 5–6. And you'll meet have again on Day 16 — as a helper (present perfect).",
   outcome: "Order food and ask what a place has.",
   minutes: 20,
   explanation: [

@@ -25,7 +25,7 @@ function greeting() {
 }
 
 /** Lessons where each frame is introduced; a frame counts as learned when its lessons are done. */
-const FRAME_DAYS: Record<string, number[]> = { existence: [1, 2], states: [3, 4], actions: [5, 6, 7], modals: [8, 9], possession: [10], passive: [11] };
+const FRAME_DAYS: Record<string, number[]> = { existence: [1, 2], states: [3, 4], actions: [5, 6, 7], modals: [8, 9], possession: [10], passive: [19] };
 
 export function TodayView() {
   const { state, hydrated, user } = useLearner();

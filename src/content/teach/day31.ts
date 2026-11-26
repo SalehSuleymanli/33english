@@ -3,139 +3,172 @@ import type { Teach } from "./types";
 export const TEACH_31: Teach = {
   day: 31,
   summary: {
-    az: "Bu dərsdə hekayə danışmağı öyrənirsiniz: hadisələri ardıcıllıqla vermək üçün bağlayıcılar (first, then, after that, meanwhile, eventually) və hekayə zamanları — Past Simple, Past Continuous və Past Perfect birlikdə. Yaxşı hekayə danışmaq həm gündəlik söhbətdə, həm də IELTS-in ikinci hissəsində ən vacib bacarıqlardan biridir.",
-    ru: "В этом уроке вы учитесь рассказывать истории: связки для последовательности событий (first, then, after that, meanwhile, eventually) и времена рассказа — Past Simple, Past Continuous и Past Perfect вместе. Умение хорошо рассказать историю — один из главных навыков и в разговоре, и во второй части IELTS.",
+    az: "Bu dərsdə dolayı nitqi öyrənirsiniz: başqasının sözlərini, suallarını və xahişlərini çatdırmaq. \"She said that she was tired\", \"He asked where I lived\", \"They told us to wait\". Zamanların bir addım geri çəkilməsi, söz sırası və say / tell fərqi əsas mövzulardır.",
+    ru: "В этом уроке вы изучаете косвенную речь: как передать чужие слова, вопросы и просьбы. «She said that she was tired», «He asked where I lived», «They told us to wait». Главные темы — сдвиг времён на шаг назад, порядок слов и разница между say и tell.",
   },
   sections: [
     {
-      id: "tenses",
-      title: { az: "1. Hekayə zamanları: üç keçmiş zaman birlikdə", ru: "1. Времена рассказа: три прошедших времени вместе" },
+      id: "statements",
+      title: { az: "1. Təsdiq cümlələri: said / told", ru: "1. Утверждения: said / told" },
       blocks: [
         {
-          kind: "table",
-          head: [{ az: "Zaman", ru: "Время" }, { az: "Hekayədəki rolu", ru: "Роль в рассказе" }, { az: "Nümunə", ru: "Пример" }],
-          rows: [
-            ["Past Continuous", "background: what was happening", "It was raining and people were hurrying home."],
-            ["Past Simple", "main events, one after another", "I opened the door, saw a strange man and screamed."],
-            ["Past Perfect", "something that happened earlier", "I realised I had left my keys at work."],
-          ],
-        },
-        {
           kind: "formula",
-          label: { az: "Past Perfect: had + V3", ru: "Past Perfect: had + V3" },
+          label: { az: "Dolayı nitq", ru: "Косвенная речь" },
           parts: [
-            { text: "When I arrived,", role: "time", note: { az: "Keçmişdəki bir an (Past Simple).", ru: "Момент в прошлом (Past Simple)." } },
-            { text: "the film", role: "subject", note: { az: "Mübtəda.", ru: "Подлежащее." } },
-            { text: "had already started", role: "verb", note: { az: "Ondan da ƏVVƏL olan hadisə: had + V3.", ru: "Событие ещё РАНЬШЕ: had + V3." } },
+            { text: "She", role: "subject", note: { az: "Kim dedi.", ru: "Кто сказал." } },
+            { text: "said (that)", role: "verb", note: { az: "said (kimə olduğu deyilmir) və ya told + şəxs. \"That\" atıla bilər.", ru: "said (без указания кому) или told + человек. «That» можно опустить." } },
+            { text: "she was", role: "subject", note: { az: "Əvəzlik və zaman dəyişir: I am → she was.", ru: "Местоимение и время меняются: I am → she was." } },
+            { text: "tired", role: "complement", note: { az: "Məlumat.", ru: "Информация." } },
           ],
-          example: "When I arrived, the film had already started.",
+          example: "\"I'm tired.\" → She said (that) she was tired.",
         },
         {
           kind: "p",
           text: {
-            az: "Past Perfect keçmişin keçmişidir. Hekayədə artıq keçmişdəyik, və ondan da əvvəl baş verən şeyi göstərmək lazımdır: \"When I got to the station, the train had left\" — stansiyaya çatanda qatar artıq getmişdi (əvvəl qatar getdi, sonra mən çatdım). Müqayisə edin: \"When I got to the station, the train left\" — mən çatanda qatar yola düşdü (eyni anda).",
-            ru: "Past Perfect — это «прошлое в прошлом». В рассказе мы уже в прошлом, и нужно показать то, что было ещё раньше: «When I got to the station, the train had left» — когда я добрался до вокзала, поезд уже ушёл (сначала ушёл поезд, потом пришёл я). Сравните: «When I got to the station, the train left» — когда я пришёл, поезд отправился (в тот же момент).",
+            az: "Rus dilində dolayı nitqdə zaman dəyişmir: «Она сказала, что устала». İngilis dilində isə əsas feil keçmişdədirsə (said), deyilən sözlərin zamanı adətən bir addım geri çəkilir: am → was, will → would, can → could. Azərbaycan dilində də \"dedi ki, yorğundur\" deyirik, ona görə bu qayda ana dilimizə yaddır və diqqət tələb edir.",
+            ru: "В русском время в косвенной речи не меняется: «Она сказала, что устала». В английском же, если главный глагол в прошедшем (said), время передаваемых слов обычно сдвигается на шаг назад: am → was, will → would, can → could. Это правило непривычно для русскоговорящих и требует внимания.",
           },
         },
       ],
     },
     {
-      id: "sequence",
-      title: { az: "2. Ardıcıllıq bildirən sözlər", ru: "2. Слова последовательности" },
+      id: "backshift",
+      title: { az: "2. Zamanların geri çəkilməsi", ru: "2. Сдвиг времён" },
       blocks: [
         {
           kind: "table",
-          head: [{ az: "Mərhələ", ru: "Этап" }, { az: "Sözlər", ru: "Слова" }],
+          head: [{ az: "Birbaşa nitq", ru: "Прямая речь" }, { az: "Dolayı nitq", ru: "Косвенная речь" }],
           rows: [
-            ["beginning", "First, / At first, / In the beginning, / One day, / It all started when…"],
-            ["next events", "Then, / After that, / Next, / Later, / A few minutes later,"],
-            ["at the same time", "Meanwhile, / While …, / As …,"],
-            ["sudden events", "Suddenly, / All of a sudden, / Just then,"],
-            ["end", "Finally, / In the end, / Eventually, / At last,"],
-            ["comment", "Luckily, / Unfortunately, / Surprisingly, / To my surprise,"],
+            ["\"I work here.\" (Present Simple)", "He said he worked there. (Past Simple)"],
+            ["\"I'm working.\" (Present Continuous)", "He said he was working. (Past Continuous)"],
+            ["\"I worked.\" / \"I have worked.\"", "He said he had worked. (Past Perfect)"],
+            ["\"I will call.\"", "He said he would call."],
+            ["\"I can help.\"", "He said he could help."],
+            ["\"I must go.\"", "He said he had to go."],
+            ["\"I may come.\"", "He said he might come."],
           ],
         },
+        {
+          kind: "table",
+          head: [{ az: "Zaman və yer sözləri", ru: "Слова времени и места" }, { az: "Dəyişir", ru: "Меняются на" }],
+          rows: [
+            ["now", "then"], ["today", "that day"], ["tomorrow", "the next day / the following day"], ["yesterday", "the day before / the previous day"],
+            ["next week", "the following week"], ["here", "there"], ["this", "that"],
+          ],
+        },
+        {
+          kind: "tip",
+          text: {
+            az: "İstisna: əgər deyilən şey hələ də doğrudursa və ya \"says\" (indiki zaman) işlənirsə, zaman dəyişməyə bilər: \"He says he is busy\", \"She said Baku is beautiful\" (hələ də gözəldir).",
+            ru: "Исключение: если сказанное по-прежнему верно или используется «says» (настоящее), время можно не менять: «He says he is busy», «She said Baku is beautiful» (он и сейчас красивый).",
+          },
+        },
+      ],
+    },
+    {
+      id: "say-tell",
+      title: { az: "3. Say və tell", ru: "3. Say и tell" },
+      blocks: [
         {
           kind: "compare",
           items: [
-            { en: "Finally / At last / In the end / Eventually", text: { az: "Finally — siyahıda sonuncu və ya uzun gözləmədən sonra. At last — nəhayət (səbirsizliklə gözlənilən). In the end — bütün hadisələrdən sonra nəticə. Eventually — uzun prosesdən sonra, sonda.", ru: "Finally — последнее в списке или после долгого ожидания. At last — наконец-то (долгожданное). In the end — итог после всех событий. Eventually — в конце концов, после долгого процесса." } },
-            { en: "At first / First", text: { az: "First — birincisi (siyahı). At first — əvvəlcə (sonra vəziyyət dəyişdi): \"At first I hated it, but now I love it.\"", ru: "First — во-первых (список). At first — сначала (потом всё изменилось): «At first I hated it, but now I love it.»" } },
+            { en: "She said (that) she was late. / She said to me that…", text: { az: "Say-dən sonra şəxs birbaşa gəlmir; lazım olsa \"to me\".", ru: "После say человек напрямую не ставится; если нужно — «to me»." } },
+            { en: "She told me (that) she was late.", text: { az: "Tell-dən sonra mütləq şəxs gəlir: told me, told him. \"She told that…\" səhvdir.", ru: "После tell обязательно человек: told me, told him. «She told that…» — ошибка." } },
           ],
         },
       ],
     },
     {
-      id: "structure",
-      title: { az: "3. Yaxşı hekayənin quruluşu", ru: "3. Структура хорошей истории" },
+      id: "questions",
+      title: { az: "4. Sualları çatdırmaq", ru: "4. Передача вопросов" },
+      blocks: [
+        {
+          kind: "p",
+          text: {
+            az: "Dolayı sualda söz sırası təsdiq cümləsindəki kimidir və köməkçi do/does/did işlənmir. Sual sözü varsa, o qalır; yoxdursa (\"Yes/No\" sualı), \"if\" və ya \"whether\" əlavə olunur. Sonda sual işarəsi qoyulmur.",
+            ru: "В косвенном вопросе порядок слов как в утверждении, вспомогательные do/does/did не используются. Если есть вопросительное слово, оно остаётся; если нет (вопрос «да/нет»), добавляется «if» или «whether». Вопросительный знак в конце не ставится.",
+          },
+        },
+        {
+          kind: "table",
+          head: [{ az: "Birbaşa", ru: "Прямая" }, { az: "Dolayı", ru: "Косвенная" }],
+          rows: [
+            ["\"Where do you live?\"", "She asked me where I lived."],
+            ["\"What time is it?\"", "He asked what time it was."],
+            ["\"Are you married?\"", "She asked if / whether I was married."],
+            ["\"Did you see the film?\"", "He asked if I had seen the film."],
+            ["\"Can you help me?\"", "She asked if I could help her."],
+          ],
+        },
+      ],
+    },
+    {
+      id: "requests",
+      title: { az: "5. Xahiş və əmrləri çatdırmaq", ru: "5. Передача просьб и приказов" },
       blocks: [
         {
           kind: "table",
-          head: [{ az: "Hissə", ru: "Часть" }, { az: "Nə deyilir", ru: "Что говорится" }, { az: "Nümunə", ru: "Пример" }],
+          head: [{ az: "Birbaşa", ru: "Прямая" }, { az: "Dolayı", ru: "Косвенная" }],
           rows: [
-            ["1. Set the scene", "when, where, who, background (Past Continuous)", "It was a cold evening last December. I was walking home from work."],
-            ["2. The problem", "what happened (Past Simple, Suddenly)", "Suddenly, I realised I had lost my wallet."],
-            ["3. Actions", "what you did next (Then, After that)", "I went back to the office, but it was closed."],
-            ["4. Ending", "how it ended (Eventually, In the end)", "In the end, a taxi driver found it and called me."],
-            ["5. Feeling / lesson", "how you felt (Day 26)", "I was so relieved. Now I always check my pockets."],
+            ["\"Please wait here.\"", "She asked me to wait there."],
+            ["\"Close the door.\"", "He told me to close the door."],
+            ["\"Don't be late.\"", "My boss told me not to be late."],
+            ["\"You should rest.\"", "The doctor advised me to rest."],
           ],
         },
-      ],
-    },
-    {
-      id: "model",
-      title: { az: "4. Nümunə hekayə", ru: "4. Пример истории" },
-      blocks: [
         {
-          kind: "examples",
-          items: [
-            { en: "Last summer my friends and I decided to go to Gabala for the weekend.", az: "Keçən yay dostlarımla həftə sonu Qəbələyə getməyə qərar verdik.", ru: "Прошлым летом мы с друзьями решили поехать на выходные в Габалу." },
-            { en: "We had booked a small hotel near the mountains.", az: "Dağların yanında kiçik bir otel bron etmişdik.", ru: "Мы забронировали небольшой отель у гор." },
-            { en: "We were driving along the road when suddenly the car stopped.", az: "Yolda gedirdik ki, birdən maşın dayandı.", ru: "Мы ехали по дороге, как вдруг машина заглохла." },
-            { en: "At first we didn't know what to do.", az: "Əvvəlcə nə edəcəyimizi bilmədik.", ru: "Сначала мы не знали, что делать." },
-            { en: "Then a farmer who was passing by stopped and helped us.", az: "Sonra yoldan keçən bir fermer dayanıb bizə kömək etdi.", ru: "Потом мимо проезжал фермер, он остановился и помог нам." },
-            { en: "Meanwhile, it had started to get dark.", az: "Bu vaxt hava qaralmağa başlamışdı.", ru: "Тем временем начало темнеть." },
-            { en: "Eventually, we arrived at the hotel at midnight.", az: "Nəhayət, gecə yarısı otelə çatdıq.", ru: "В конце концов, мы добрались до отеля в полночь." },
-            { en: "It was a stressful day, but in the end it became our favourite story.", az: "Gərgin gün idi, amma sonda ən sevimli hekayəmizə çevrildi.", ru: "День был напряжённым, но в итоге стал нашей любимой историей." },
-          ],
+          kind: "p",
+          text: {
+            az: "Bu, 11-ci gündəki modelin eynisidir: ask / tell / advise + şəxs + (not) to + V1. Zaman geri çəkilməsi burada lazım deyil, çünki \"to + V1\" dəyişmir.",
+            ru: "Это та же модель, что на 11-й день: ask / tell / advise + человек + (not) to + V1. Сдвиг времён здесь не нужен, потому что «to + V1» не меняется.",
+          },
         },
       ],
     },
     {
       id: "examples",
-      title: { az: "5. Əlavə nümunələr", ru: "5. Дополнительные примеры" },
+      title: { az: "6. Nümunələr və tərcümələr", ru: "6. Примеры с переводом" },
       blocks: [
         {
           kind: "examples",
           items: [
-            { en: "I had never seen snow before I went to Moscow.", az: "Moskvaya getməzdən əvvəl heç vaxt qar görməmişdim.", ru: "До поездки в Москву я никогда не видел снега." },
-            { en: "While I was cooking, the lights went out.", az: "Yemək bişirərkən işıqlar söndü.", ru: "Пока я готовил, погас свет." },
-            { en: "By the time the police arrived, the thief had escaped.", az: "Polis gələndə oğru artıq qaçmışdı.", ru: "К тому времени, как приехала полиция, вор уже сбежал." },
-            { en: "Luckily, nobody was hurt.", az: "Xoşbəxtlikdən, heç kim xəsarət almadı.", ru: "К счастью, никто не пострадал." },
-            { en: "After we had eaten, we went for a walk.", az: "Yemək yedikdən sonra gəzməyə getdik.", ru: "После того как мы поели, мы пошли гулять." },
+            { en: "He said he was busy.", az: "Dedi ki, məşğuldur.", ru: "Он сказал, что занят." },
+            { en: "She told me she had finished the report.", az: "Mənə hesabatı bitirdiyini dedi.", ru: "Она сказала мне, что закончила отчёт." },
+            { en: "They said they would come at 7.", az: "Saat 7-də gələcəklərini dedilər.", ru: "Они сказали, что придут в 7." },
+            { en: "My mum said she couldn't find her glasses.", az: "Anam eynəyini tapa bilmədiyini dedi.", ru: "Мама сказала, что не может найти очки." },
+            { en: "He asked me where I worked.", az: "Məndən harada işlədiyimi soruşdu.", ru: "Он спросил, где я работаю." },
+            { en: "She asked if I wanted some tea.", az: "Çay istəyib-istəmədiyimi soruşdu.", ru: "Она спросила, хочу ли я чаю." },
+            { en: "The teacher told us to open our books.", az: "Müəllim kitablarımızı açmağı dedi.", ru: "Учитель велел нам открыть книги." },
+            { en: "He asked me not to tell anyone.", az: "Heç kimə deməməyimi xahiş etdi.", ru: "Он попросил меня никому не говорить." },
+            { en: "She said she would call me the next day.", az: "Ertəsi gün mənə zəng edəcəyini dedi.", ru: "Она сказала, что позвонит мне на следующий день." },
+            { en: "I asked him what time the shop opened.", az: "Ondan mağazanın saat neçədə açıldığını soruşdum.", ru: "Я спросил его, во сколько открывается магазин." },
+            { en: "The doctor advised me to drink more water.", az: "Həkim mənə daha çox su içməyi məsləhət gördü.", ru: "Врач посоветовал мне пить больше воды." },
           ],
         },
       ],
     },
     {
       id: "mistakes",
-      title: { az: "6. Tipik səhvlər", ru: "6. Типичные ошибки" },
+      title: { az: "7. Tipik səhvlər", ru: "7. Типичные ошибки" },
       blocks: [
         {
           kind: "mistakes",
           items: [
-            { wrong: "When I arrived, the film already started.", right: "When I arrived, the film had already started.", why: { az: "Daha əvvəlki hadisə üçün Past Perfect.", ru: "Для более раннего события — Past Perfect." } },
-            { wrong: "I was walking home when I was seeing an accident.", right: "I was walking home when I saw an accident.", why: { az: "Qısa hadisə — Past Simple; uzun fon — Past Continuous.", ru: "Короткое событие — Past Simple; длинный фон — Past Continuous." } },
-            { wrong: "In the end of the film…", right: "At the end of the film… / In the end, …", why: { az: "At the end of + isim (sonunda); In the end = nəticədə.", ru: "At the end of + существительное (в конце); In the end = в итоге." } },
-            { wrong: "After I have eaten, I went out.", right: "After I had eaten, I went out. / After eating, I went out.", why: { az: "Hekayədə Present Perfect yox, Past Perfect.", ru: "В рассказе не Present Perfect, а Past Perfect." } },
-            { wrong: "Yesterday I go to the market and I see my teacher.", right: "Yesterday I went to the market and saw my teacher.", why: { az: "Keçmiş hekayədə bütün əsas hadisələr Past Simple-da.", ru: "В рассказе о прошлом все основные события — в Past Simple." } },
+            { wrong: "She said me that she was tired.", right: "She told me that she was tired. / She said that…", why: { az: "Say-dən sonra şəxs gəlmir; tell + şəxs.", ru: "После say не ставится человек; tell + человек." } },
+            { wrong: "He told that he was busy.", right: "He said that he was busy. / He told me…", why: { az: "Tell-dən sonra şəxs mütləqdir.", ru: "После tell обязательно человек." } },
+            { wrong: "She asked me where do I live.", right: "She asked me where I lived.", why: { az: "Dolayı sualda düz söz sırası, do yoxdur.", ru: "В косвенном вопросе прямой порядок, без do." } },
+            { wrong: "He asked me are you hungry.", right: "He asked me if I was hungry.", why: { az: "Yes/No sualı → if / whether + düz sıra.", ru: "Вопрос да/нет → if / whether + прямой порядок." } },
+            { wrong: "She said she will come.", right: "She said she would come.", why: { az: "Said-dən sonra will → would.", ru: "После said: will → would." } },
+            { wrong: "He told me don't worry.", right: "He told me not to worry.", why: { az: "Əmrin inkarı: not to + V1.", ru: "Отрицательный приказ: not to + V1." } },
           ],
         },
       ],
     },
   ],
   recap: [
-    { az: "Fon — Past Continuous; əsas hadisələr — Past Simple; daha əvvəl olan — Past Perfect (had + V3).", ru: "Фон — Past Continuous; основные события — Past Simple; что было раньше — Past Perfect (had + V3)." },
-    { az: "Ardıcıllıq: First, Then, After that, Meanwhile, Suddenly, Eventually, In the end.", ru: "Последовательность: First, Then, After that, Meanwhile, Suddenly, Eventually, In the end." },
-    { az: "Quruluş: səhnə → problem → hərəkətlər → son → hiss.", ru: "Структура: обстановка → проблема → действия → финал → чувства." },
+    { az: "Said (kimə yox) / told + şəxs. Zaman bir addım geri: am→was, will→would, can→could.", ru: "Said (без кому) / told + человек. Время на шаг назад: am→was, will→would, can→could." },
+    { az: "Dolayı sual: asked + sual sözü / if + düz söz sırası.", ru: "Косвенный вопрос: asked + вопросительное слово / if + прямой порядок." },
+    { az: "Xahiş və əmr: asked / told + şəxs + (not) to + V1.", ru: "Просьба и приказ: asked / told + человек + (not) to + V1." },
+    { az: "Today → that day, tomorrow → the next day, here → there.", ru: "Today → that day, tomorrow → the next day, here → there." },
   ],
 };
