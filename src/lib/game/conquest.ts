@@ -4,12 +4,14 @@
  * Expansion: everyone picks an empty region next to their land, then answers
  * the same question; right answers claim their picks (fastest wins a clash).
  * Battle: players take turns attacking a neighbouring region; attacker and
- * defender answer the same question and the better answer wins the region.
+ * defender answer the same question. The attacker wins only with a right
+ * answer while the defender misses: if both are right the defender holds
+ * (speed never steals land from someone who answered correctly).
  * Capitals have towers; knock them all down to take the whole empire.
- * The war goes on until ONE empire rules the world. To make sure it ends, it
- * escalates: from battle round 4 capitals are weaker, from round 6 any region
- * can be attacked and capitals fall in one hit, and if more than one empire is
- * still standing after that, a final invasion settles it duel by duel.
+ * The war escalates: from battle round 4 capitals have at most 2 towers, from
+ * round 6 any region can be attacked, and a final invasion lets the biggest
+ * empire march on the smallest capital. A failed invasion changes nothing.
+ * If several empires survive, the biggest one wins.
  *
  * Everything here is deterministic: the server replays the match from the
  * stored picks and answers, so nobody can fake a conquest.
@@ -21,14 +23,14 @@ import { hashString, rng, shuffle } from "./rng";
 export const SEATS = 4;
 export const LOBBY_MS = 15_000;
 export const COUNTDOWN_MS = 4_000;
-export const PICK_MS = 7_000;
-export const QUESTION_MS = 10_000;
+export const PICK_MS = 10_000;
+export const QUESTION_MS = 20_000;
 export const REVEAL_MS = 4_000;
 export const STEP_MS = PICK_MS + QUESTION_MS + REVEAL_MS;
 export const EXPAND_ROUNDS = 3;
 export const BATTLE_ROUNDS = 7;
 export const ESCALATION_ROUND = 4; // capitals drop to 2 towers; a won attack breaks 2
-export const FINAL_WAR_ROUND = 6; // attack any region; capitals fall in one hit
+export const FINAL_WAR_ROUND = 6; // attack any region
 export const FINAL_INVASIONS = SEATS - 1; // enough duels to leave one empire
 export const CAPITAL_TOWERS = 3;
 export const REGION_POINTS = 200;
@@ -183,7 +185,7 @@ export function matchBots(seed: number, humanSeats: number[]): Bot[] {
 function botAnswer(seed: number, bot: Bot, step: number, q: Question) {
   const r = rng(hashString(`conquest-bot:${seed}:${bot.seat}:${step}`));
   const correct = r() < bot.skill;
-  const ms = Math.round((correct ? 2200 : 3500) + r() * 6000);
+  const ms = Math.round((correct ? 3000 : 5000) + r() * 12000);
   const wrong = q.options.map((_, i) => i).filter((i) => i !== q.answer);
   return { choice: correct ? q.answer : wrong[Math.floor(r() * wrong.length)], ms };
 }
@@ -296,6 +298,19 @@ function absorb(next: Board, winner: number, loser: number, step: number, outcom
   outcome.eliminated = loser;
 }
 
+/** A won attack on a capital breaks towers; only when the last one falls does the whole empire change hands. */
+function hitCapital(next: Board, attacker: number, defender: number, damage: number, step: number, outcome: Outcome, name: (s: number) => string) {
+  const broken = Math.min(damage, next.towers[defender]);
+  next.towers[defender] -= broken;
+  outcome.towerHit = { seat: defender, left: next.towers[defender], broken };
+  if (next.towers[defender] > 0) {
+    outcome.text = `${name(attacker)} broke ${broken === 1 ? "a tower" : `${broken} towers`} of ${name(defender)}'s capital! ${next.towers[defender]} left.`;
+    return;
+  }
+  absorb(next, attacker, defender, step, outcome);
+  outcome.text = `${name(attacker)} captured ${name(defender)}'s capital and the whole empire!`;
+}
+
 function answerFor(a: ReplayArgs, bots: Bot[], seat: number, step: number, q: Question): AnswerResult {
   const bot = bots.find((x) => x.seat === seat);
   if (bot) {
@@ -307,7 +322,8 @@ function answerFor(a: ReplayArgs, bots: Bot[], seat: number, step: number, q: Qu
   return { seat, choice: act.value, correct: act.value === q.answer, ms: act.ms };
 }
 
-const better = (x: AnswerResult, y: AnswerResult) => x.correct && (!y.correct || x.ms < y.ms);
+/** The attacker wins only when right while the defender is not: a correct defence always holds. */
+const attackWins = (atk: AnswerResult, def: AnswerResult) => atk.correct && !def.correct;
 
 function resolve(a: ReplayArgs, bots: Bot[], b: Board, step: StepDef, q: Question): { board: Board; outcome: Outcome } {
   const next = cloneBoard(b);
@@ -334,17 +350,18 @@ function resolve(a: ReplayArgs, bots: Bot[], b: Board, step: StepDef, q: Questio
   }
 
   if (step.kind === "final") {
-    // winner takes all: a right answer beats a wrong one, faster beats slower, and if both miss the bigger empire wins
+    // the biggest empire attacks the smallest one's capital; a correct defence holds, a failed attack changes nothing
     const pair = finalPairing(b)!;
     const atk = answerFor(a, bots, pair.attacker, step.index, q);
     const def = answerFor(a, bots, pair.defender, step.index, q);
     for (const r of [atk, def]) if (r.correct) next.correct[r.seat]++;
-    const atkWins = atk.correct ? !def.correct || atk.ms <= def.ms : !def.correct;
-    const [w, l] = atkWins ? [pair.attacker, pair.defender] : [pair.defender, pair.attacker];
     const target = CAPITALS[pair.defender];
     const outcome: Outcome = { step: step.index, kind: "final", picks: { [pair.attacker]: target }, target, defender: pair.defender, results: [atk, def], captured: [], towerHit: null, eliminated: null, text: "" };
-    absorb(next, w, l, step.index, outcome);
-    outcome.text = atkWins ? `${name(w)} conquered ${name(l)}'s whole empire!` : `${name(w)} held the line and took ${name(l)}'s whole empire!`;
+    if (!attackWins(atk, def)) {
+      outcome.text = `${name(pair.defender)} defended the capital!`;
+      return { board: next, outcome };
+    }
+    hitCapital(next, pair.attacker, pair.defender, 2, step.index, outcome, name);
     return { board: next, outcome };
   }
 
@@ -356,7 +373,7 @@ function resolve(a: ReplayArgs, bots: Bot[], b: Board, step: StepDef, q: Questio
   const def = defender !== null ? answerFor(a, bots, defender, step.index, q) : null;
   const results = def ? [atk, def] : [atk];
   for (const r of results) if (r.correct) next.correct[r.seat]++;
-  const wins = def ? better(atk, def) : atk.correct;
+  const wins = def ? attackWins(atk, def) : atk.correct;
   const outcome: Outcome = { step: step.index, kind: "duel", picks: { [attacker]: target }, target, defender, results, captured: [], towerHit: null, eliminated: null, text: "" };
   const where = REGIONS[target].name;
   if (!wins) {
@@ -364,17 +381,7 @@ function resolve(a: ReplayArgs, bots: Bot[], b: Board, step: StepDef, q: Questio
     return { board: next, outcome };
   }
   if (defender !== null && isCapital(target) && CAPITALS[defender] === target) {
-    const damage = step.round >= FINAL_WAR_ROUND ? next.towers[defender] : step.round >= ESCALATION_ROUND ? 2 : 1;
-    const broken = Math.min(damage, next.towers[defender]);
-    next.towers[defender] -= broken;
-    outcome.towerHit = { seat: defender, left: next.towers[defender], broken };
-    if (next.towers[defender] > 0) {
-      outcome.text = `${name(attacker)} broke ${broken === 1 ? "a tower" : `${broken} towers`} of ${name(defender)}'s capital! ${next.towers[defender]} left.`;
-      return { board: next, outcome };
-    }
-    // the capital falls: the whole empire changes hands
-    absorb(next, attacker, defender, step.index, outcome);
-    outcome.text = `${name(attacker)} captured ${name(defender)}'s capital and the whole empire!`;
+    hitCapital(next, attacker, defender, step.round >= ESCALATION_ROUND ? 2 : 1, step.index, outcome, name);
     return { board: next, outcome };
   }
   next.owner[target] = attacker;
