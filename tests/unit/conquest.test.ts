@@ -56,18 +56,42 @@ describe("map and rules", () => {
 });
 
 describe("replay", () => {
-  test("every war ends with ONE empire owning the whole world; the rest are ranked by survival", () => {
+  test("every war ends; standing empires rank by size, the fallen by survival", () => {
     for (let seed = 1; seed <= 300; seed++) {
       const r = replay({ seed, names: NAMES, humanSeats: [], actions: [], start: 0, now: 10 ** 9 });
       expect(r.live.phase).toBe("done");
       const alive = [0, 1, 2, 3].filter((s) => r.board.alive[s]);
-      expect(alive, `seed ${seed}`).toHaveLength(1);
-      expect(r.board.owner.every((o) => o === alive[0])).toBe(true);
+      expect(alive.length, `seed ${seed}`).toBeGreaterThanOrEqual(1);
+      if (alive.length === 1) expect(r.board.owner.every((o) => o === alive[0])).toBe(true);
       const ranks = standings(r.board);
-      expect(ranks[0].seat).toBe(alive[0]);
+      const top = ranks.slice(0, alive.length).map((x) => scoreOf(r.board, x.seat));
+      for (let i = 1; i < top.length; i++) expect(top[i - 1]).toBeGreaterThanOrEqual(top[i]);
       // later eliminations rank higher
-      const outs = ranks.slice(1).map((x) => r.board.outAt[x.seat]!);
+      const outs = ranks.slice(alive.length).map((x) => r.board.outAt[x.seat]!);
       for (let i = 1; i < outs.length; i++) expect(outs[i - 1]).toBeGreaterThan(outs[i]);
+    }
+  });
+  test("a right answer always defends: speed never steals land from a correct defender", () => {
+    for (let seed = 1; seed <= 200; seed++) {
+      const r = replay({ seed, names: NAMES, humanSeats: [], actions: [], start: 0, now: 10 ** 9 });
+      for (const h of r.history) {
+        if (h.defender === null || h.kind === "expand") continue;
+        const def = h.results.find((x) => x.seat === h.defender)!;
+        if (def.correct) {
+          expect(h.captured).toHaveLength(0);
+          expect(h.towerHit).toBeNull();
+          expect(h.eliminated).toBeNull();
+        }
+      }
+    }
+  });
+  test("a perfect player never loses a single region", () => {
+    for (let seed = 1; seed <= 60; seed++) {
+      const qs = matchQuestions(seed);
+      const actions: Action[] = STEPS.map((s) => ({ seat: 0, step: s.index, kind: "answer", value: qs[s.index].answer, ms: 19_000 }));
+      const r = replay({ seed, names: NAMES, humanSeats: [0], actions, start: 0, now: 10 ** 9 });
+      expect(r.board.alive[0]).toBe(true);
+      for (const h of r.history) if (h.defender === 0) expect(h.captured.filter((c) => c.seat !== 0)).toHaveLength(0);
     }
   });
   test("the war escalates: capitals weaken from round 4, any region can be hit from round 6", () => {
@@ -75,11 +99,11 @@ describe("replay", () => {
       const r = replay({ seed, names: NAMES, humanSeats: [], actions: [], start: 0, now: 10 ** 9 });
       for (const h of r.history) {
         const step = matchSteps(seed).find((s) => s.index === h.step)!;
-        if (h.towerHit && step.round >= ESCALATION_ROUND && step.round < FINAL_WAR_ROUND) expect(h.towerHit.broken === 2 || h.towerHit.left === 0).toBe(true);
-        if (h.towerHit && step.round >= FINAL_WAR_ROUND) expect(h.towerHit.left).toBe(0);
-        if (h.kind === "final") expect(h.eliminated).not.toBeNull();
+        if (h.towerHit && step.round >= ESCALATION_ROUND) expect(h.towerHit.broken === 2 || h.towerHit.left === 0).toBe(true);
+        if (h.towerHit) expect(h.towerHit.broken).toBeLessThanOrEqual(2);
       }
     }
+    expect(FINAL_WAR_ROUND).toBeGreaterThan(ESCALATION_ROUND);
     const b = initialBoard();
     expect(legalTargets(b, 0, "duel", true).length).toBeGreaterThan(legalTargets(b, 0, "duel").length);
   });

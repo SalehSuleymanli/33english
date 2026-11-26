@@ -16,8 +16,8 @@ const STAGE: Record<Stage, { title: (round: number) => string; rule: string | nu
   expansion: { title: (r) => `Expansion · Round ${r} of ${EXPAND_ROUNDS}`, rule: null },
   battle: { title: (r) => `Battle · Round ${r}`, rule: null },
   escalation: { title: (r) => `⚠️ War escalation · Round ${r}`, rule: "War escalation: capitals now have at most 2 towers, and every won attack on a capital breaks 2." },
-  "final-war": { title: (r) => `🔥 Final war · Round ${r}`, rule: "Final war: attack any region on the map. Win an attack on a capital and you take the whole empire." },
-  "final-invasion": { title: () => "👑 Final invasion", rule: "Final invasion: the biggest empire marches on the smallest. The winner of the duel takes everything." },
+  "final-war": { title: (r) => `🔥 Final war · Round ${r}`, rule: "Final war: attack any region on the map. A right answer always defends: you only lose land if you miss." },
+  "final-invasion": { title: () => "👑 Final invasion", rule: "Final invasion: the biggest empire attacks the smallest capital. Answer right and you hold it." },
 };
 const outLabel = (round: number | null) => (round === null ? "" : round > BATTLE_ROUNDS ? "fell in the final invasion" : `fell in round ${round}`);
 
@@ -80,8 +80,8 @@ export function ConquestGame() {
         </section>
         <ol className="mt-6 grid gap-3 text-sm text-ink-2 sm:grid-cols-3">
           <Rule n={1} title="Expand" body={`${EXPAND_ROUNDS} rounds: pick empty land next to your empire, then answer. Right answers claim it — the fastest wins a clash.`} />
-          <Rule n={2} title="Attack" body="On your turn, attack a neighbour. You and the defender answer the same question; the better answer wins the region." />
-          <Rule n={3} title="Conquer the world" body="Knock down a capital's 3 towers to take the whole empire. The war escalates until only one empire is left: the last one standing rules the world." />
+          <Rule n={2} title="Attack" body="On your turn, attack a neighbour. You and the defender answer the same question; you win the region only if you are right and the defender is wrong. A right answer always defends." />
+          <Rule n={3} title="Conquer the world" body="Knock down a capital's 3 towers to take the whole empire. The war escalates round by round; at the end the biggest empire wins." />
         </ol>
         <p className="mt-4 text-sm text-muted">A war lasts about 8–12 minutes. If fewer than 4 people are online, friendly bots join so every match is full.</p>
       </main>
@@ -105,7 +105,9 @@ function Rule({ n, title, body }: { n: number; title: string; body: string }) {
 
 function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => void; onAgain: () => void }) {
   const { claim } = useRewards();
-  const [st, setSt] = useState<ConquestState | null>(null);
+  const [raw, setSt] = useState<ConquestState | null>(null);
+  // what I clicked, kept until the server confirms it, so a poll that was already on its way cannot wipe it
+  const [pending, setPending] = useState<{ step: number; pick?: number; choice?: number } | null>(null);
   const [offset, setOffset] = useState(0);
   const [now, setNow] = useState(() => Date.now());
   const [busy, setBusy] = useState(false);
@@ -153,6 +155,15 @@ function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => vo
     };
   }, [poll]);
 
+  const st: ConquestState | null =
+    raw && pending && raw.step?.index === pending.step
+      ? {
+          ...raw,
+          myPick: raw.myPick ?? pending.pick ?? null,
+          myChoice: raw.myChoice ?? pending.choice ?? null,
+          canAnswer: pending.choice !== undefined ? false : raw.canAnswer,
+        }
+      : raw;
   const serverNow = now + offset;
   const endsAt = st?.endsAt ?? null;
 
@@ -174,19 +185,21 @@ function Match({ matchId, onExit, onAgain }: { matchId: string; onExit: () => vo
     });
   }, [st?.phase, fallen, matchId, claim]);
 
-  const act = async (body: Record<string, unknown>, patch: Partial<ConquestState>) => {
+  const act = async (body: Record<string, unknown>, patch: { pick?: number; choice?: number }) => {
     if (busy || !st?.step) return;
+    const step = st.step.index;
     setBusy(true);
-    setSt((s) => (s ? { ...s, ...patch } : s));
-    const { status, data } = await post({ matchId, step: st.step.index, ...body });
+    setPending((p) => (p && p.step === step ? { ...p, ...patch } : { step, ...patch }));
+    const { status, data } = await post({ matchId, step, ...body });
     if (status !== 200) {
       setError(data.error ?? "Not saved");
+      setPending(null);
       void poll();
     }
     setBusy(false);
   };
-  const pick = (region: number) => st?.legal.includes(region) && st.myPick === null && act({ action: "pick", region }, { myPick: region });
-  const answer = (choice: number) => st?.canAnswer && st.myChoice === null && act({ action: "answer", choice }, { myChoice: choice, canAnswer: false });
+  const pick = (region: number) => st?.legal.includes(region) && st.myPick === null && act({ action: "pick", region }, { pick: region });
+  const answer = (choice: number) => st?.canAnswer && st.myChoice === null && act({ action: "answer", choice }, { choice });
 
   const leave = async () => {
     if (st?.phase === "lobby") await post({ action: "leave", matchId });
@@ -335,7 +348,7 @@ function PickPanel({ st, secs, remaining, attacker, onPick }: { st: ConquestStat
         <p className="mt-2 text-lg font-black">
           👑 {attacker?.me ? "You march" : `${attacker?.name ?? "The biggest empire"} marches`} on {def?.me ? "your" : `${def?.name ?? "the smallest empire"}'s`} capital!
         </p>
-        <p className="mt-1 text-sm text-muted">One duel. The winner takes the whole empire. {secs}s</p>
+        <p className="mt-1 text-sm text-muted">Answer right to hold your capital. {secs}s</p>
         <Bar remaining={remaining} total={PICK_MS} />
       </div>
     );
@@ -382,7 +395,7 @@ function DuelHeader({ st, attacker, defender }: { st: ConquestState; attacker: P
   const step = st.step!;
   if (step.kind === "expand")
     return <p className="mb-3 text-center text-xs font-black uppercase tracking-[0.16em] text-muted">Everyone answers · right answers claim their land</p>;
-  const target = step.kind === "final" ? "Winner takes all" : step.target !== null ? REGIONS[step.target].name : "";
+  const target = step.kind === "final" ? "Capital" : step.target !== null ? REGIONS[step.target].name : "";
   return (
     <div className="mb-3 flex items-center justify-center gap-3 text-center">
       {attacker && (
