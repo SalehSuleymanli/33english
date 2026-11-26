@@ -5,7 +5,6 @@ import { useLearner } from "@/lib/learner/store";
 import { completedDays, dayKey, inProgressLesson, nextDay, streak } from "@/lib/learner/state";
 import { buildQueue, nextDue } from "@/engine/srs";
 import { summaryByDay, TOTAL_DAYS, isFreeDay } from "@/content/curriculum";
-import { frameById, frameClass } from "@/content/frames";
 import { button, card } from "@/components/ui/styles";
 import { isSupabaseConfigured } from "@/lib/env";
 import { useRewards } from "@/lib/rewards/client";
@@ -17,6 +16,7 @@ import { SPEAKING } from "@/content/speaking";
 import { FRAMES } from "@/content/frames";
 import { STAGES } from "@/content/curriculum";
 import { hashString } from "@/lib/game/rng";
+import { Rings } from "@/components/ui/Rings";
 import { IconGrid, IconMic, IconPractice, IconSword } from "@/components/app/icons";
 
 function greeting() {
@@ -67,13 +67,82 @@ export function TodayView() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-[2rem] font-bold leading-tight tracking-[-0.02em]">
+        <h1 className="text-[2.5rem] leading-[1.02] sm:text-[3.5rem]">
           {greeting()}
           {state.profile.displayName ? `, ${state.profile.displayName}` : ""}
         </h1>
-        <p className="mt-1 text-ink-2">
+        <p className="mt-2 text-lg text-muted">
           {fresh ? "Welcome to 33English. Let's find your starting point." : `${done.length} of ${TOTAL_DAYS} days complete.`}
         </p>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+        <section aria-labelledby="rings" className="flex items-center gap-5 rounded-[2rem] bg-black p-5 text-[#f5f5f7] dark:border dark:border-line sm:gap-6 sm:p-8">
+          <Rings
+            size={180}
+            className="size-32 sm:size-44"
+            rings={[
+              { label: "Daily goal", value: today.items / goal, text: `${Math.min(today.items, goal)} of ${goal} answers`, from: "#ff375f", to: "#ff8fb1", track: "#3a0f1a" },
+              { label: "Course", value: done.length / TOTAL_DAYS, text: `${done.length} of ${TOTAL_DAYS} days`, from: "#4f7bff", to: "#b57bff", track: "#141a3a" },
+              { label: "This week", value: st.daysThisWeek / 7, text: `${st.daysThisWeek} of 7 days`, from: "#1ed6b4", to: "#5bd6e0", track: "#0b2a27" },
+            ]}
+          />
+          <div className="flex min-w-0 flex-col gap-2 sm:gap-3">
+            <h2 id="rings" className="text-lg font-bold sm:text-xl">
+              Today&apos;s rings
+            </h2>
+            <p>
+              <span className="block text-sm font-semibold text-[#ff6b8a]">Daily goal</span>
+              <span className="text-xl font-bold tabular-nums sm:text-2xl">
+                {Math.min(today.items, goal)}
+                <span className="text-[#86868b]">/{goal}</span>
+              </span>
+            </p>
+            <p>
+              <span className="block text-sm font-semibold text-[#8da6ff]">Course</span>
+              <span className="text-xl font-bold tabular-nums sm:text-2xl">
+                {done.length}
+                <span className="text-[#86868b]">/{TOTAL_DAYS}</span>
+              </span>
+            </p>
+            <p>
+              <span className="block text-sm font-semibold text-[#3ee0c2]">This week</span>
+              <span className="text-xl font-bold tabular-nums sm:text-2xl">
+                {st.daysThisWeek}
+                <span className="text-[#86868b]">/7</span>
+              </span>
+            </p>
+          </div>
+        </section>
+
+        {!finished ? (
+          <Link
+            href={`/learn/${s.day}`}
+            className="glow-card group relative order-first flex min-h-[300px] lg:order-none flex-col justify-between overflow-hidden rounded-[2rem] p-6 transition-transform duration-300 hover:scale-[1.01] sm:p-8"
+          >
+            <span aria-hidden className="pointer-events-none absolute -right-6 -top-14 text-[16rem] font-extrabold leading-none tracking-[-0.08em] text-white/15">
+              {String(s.day).padStart(2, "0")}
+            </span>
+            <span className="relative text-sm font-semibold text-white/90">
+              {resume ? "Continue where you left off" : "Your next lesson"} · Day {s.day} of {TOTAL_DAYS} · {s.minutes} min
+              {!isFreeDay(s.day) ? " · Premium" : ""}
+            </span>
+            <div className="relative flex flex-col gap-4">
+              <h2 id="continue" className="text-[2.25rem] font-extrabold leading-[1.02] tracking-[-0.04em] sm:text-[2.75rem]">
+                {s.title}
+              </h2>
+              <span className="max-w-md text-white/90">{s.objective}</span>
+              <span className="self-start rounded-full border border-white/40 bg-white/20 px-6 py-3 font-semibold backdrop-blur-xl">
+                {resume ? "Resume lesson" : `Start Day ${s.day}`}
+              </span>
+            </div>
+          </Link>
+        ) : (
+          <section className={`${card} p-8`}>
+            <h2 className="text-2xl font-bold">You&apos;ve completed all 33 days.</h2>
+            <p className="mt-1 text-ink-2">Keep your English active with daily review, the Sentence Lab and conversations.</p>
+          </section>
+        )}
       </div>
 
       <StatusCard />
@@ -93,37 +162,11 @@ export function TodayView() {
         </section>
       )}
 
-      {/* continue */}
-      {!finished ? (
-        <section aria-labelledby="continue" className={`${frameClass(s.frame)} relative overflow-hidden rounded-[1.5rem] border border-line bg-surface p-6 sm:p-8`}>
-          <div className="bg-f absolute inset-y-0 left-0 w-1.5" aria-hidden />
-          <p className="text-f text-sm font-bold">
-            {resume ? "Continue where you left off" : "Your next lesson"} · Day {s.day}
-          </p>
-          <h2 id="continue" className="mt-1 text-[1.75rem] font-bold leading-tight tracking-[-0.02em]">
-            {s.title}
-          </h2>
-          <p className="mt-2 max-w-xl text-ink-2">{s.objective}</p>
-          <p className="mt-2 text-sm text-muted">
-            {s.frame ? `${frameById(s.frame).name} · ` : ""}
-            {s.minutes} min{!isFreeDay(s.day) ? " · Premium" : ""}
-          </p>
-          <Link href={`/learn/${s.day}`} className={`${button("frame", "lg")} mt-6`}>
-            {resume ? "Resume lesson" : `Start Day ${s.day}`}
-          </Link>
-        </section>
-      ) : (
-        <section className={`${card} p-6`}>
-          <h2 className="text-xl font-bold">You&apos;ve completed all 33 days.</h2>
-          <p className="mt-1 text-ink-2">Keep your English active with daily review, the Sentence Lab and conversations.</p>
-        </section>
-      )}
-
       <Challenges kind="daily" />
 
       {/* play & practise */}
       <section aria-labelledby="play">
-        <h2 id="play" className="mb-3 font-bold">
+        <h2 id="play" className="mb-3 text-2xl font-bold">
           Play and practise
         </h2>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -149,7 +192,7 @@ export function TodayView() {
         </p>
         <p className="text-sm text-muted">{finished ? "You've built all six frames and combined them." : stage.summary}</p>
         <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-surface-2" role="progressbar" aria-label="Course progress" aria-valuenow={done.length} aria-valuemin={0} aria-valuemax={TOTAL_DAYS}>
-          <div className="h-full rounded-full bg-ink transition-[width]" style={{ width: `${(done.length / TOTAL_DAYS) * 100}%` }} />
+          <div className="h-full rounded-full bg-accent transition-[width]" style={{ width: `${(done.length / TOTAL_DAYS) * 100}%` }} />
         </div>
         <p className="mt-1 text-xs text-muted">
           {done.length} of {TOTAL_DAYS} lessons · {framesLearned.length} of 6 frames learned
@@ -279,9 +322,9 @@ export function TodayView() {
 
 function Tile({ href, title, sub, Icon, tone, pick }: { href: string; title: string; sub: string; Icon: () => React.JSX.Element; tone: string; pick?: boolean }) {
   return (
-    <Link href={href} className={`${tone} group relative flex min-h-32 flex-col justify-between overflow-hidden rounded-[1.25rem] border p-4 transition-transform hover:-translate-y-0.5 ${pick ? "border-f bg-f-tint" : "border-line bg-surface hover:border-line-strong"}`}>
+    <Link href={href} className={`${tone} group relative flex min-h-36 flex-col justify-between overflow-hidden rounded-[1.75rem] border p-5 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-transform duration-300 hover:scale-[1.02] ${pick ? "border-f bg-f-tint" : "border-transparent bg-surface dark:border-line"}`}>
       {pick && <span className="bg-f absolute right-3 top-3 rounded-full px-2 py-0.5 text-[0.68rem] font-black uppercase tracking-wide text-white dark:text-paper">Next</span>}
-      <span className="bg-f-tint text-f grid size-10 place-items-center rounded-xl">
+      <span className="bg-f-tint text-f grid size-11 place-items-center rounded-2xl">
         <Icon />
       </span>
       <span>
@@ -296,7 +339,7 @@ function TodaySkeleton() {
   return (
     <div className="flex flex-col gap-6" aria-busy="true">
       <div className="h-9 w-64 animate-pulse rounded-lg bg-surface-2" />
-      <div className="h-56 animate-pulse rounded-[1.5rem] bg-surface-2" />
+      <div className="h-72 animate-pulse rounded-[2rem] bg-surface-2" />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="h-40 animate-pulse rounded-2xl bg-surface-2" />
         <div className="h-40 animate-pulse rounded-2xl bg-surface-2" />

@@ -25,33 +25,35 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-12 sm:px-6 md:pt-20 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
-        <div>
-          <h1 className="text-[2.6rem] font-bold leading-[1.05] tracking-[-0.025em] sm:text-[3.6rem]">
-            Six frames build almost every English sentence.
-          </h1>
-          <p className="mt-5 max-w-xl text-lg text-ink-2">
+      <section className="relative overflow-hidden px-4 pb-20 pt-16 text-center sm:px-6 md:pt-24">
+        <div className="aurora top-[38%]" aria-hidden />
+        <div className="anim-rise relative mx-auto max-w-5xl">
+          <p className="text-lg font-semibold text-muted sm:text-xl">33 days. Six frames. Real English.</p>
+          <h1 className="mx-auto mt-3 max-w-4xl text-[3rem] leading-[0.98] sm:text-[4.75rem] lg:text-[6rem]">Six frames build almost every English sentence.</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-ink-2 sm:text-xl">
             33English teaches you to construct sentences instead of memorizing rules. Learn six core frames, then change them — negative, question,
             past, future, perfect — in 33 short daily lessons.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link href="/learn/1" className={button("primary", "lg")}>
               Start Day 1 free
             </Link>
-            <Link href="/method" className={button("secondary", "lg")}>
+            <Link href="/method" className={`${button("ghost", "lg")} text-accent`}>
               How the method works
             </Link>
           </div>
           <p className="mt-4 text-sm text-muted">No account needed to start. The first {FREE_DAYS} days are free.</p>
         </div>
-        <HeroTransformer />
+        <div className="relative mx-auto mt-16 max-w-2xl rounded-[2.25rem] bg-surface/80 p-3 text-left shadow-[0_50px_100px_-30px_rgba(30,40,90,0.35)] backdrop-blur-xl">
+          <HeroTransformer />
+        </div>
       </section>
 
       {/* The six frames */}
-      <section aria-labelledby="frames" className="border-y border-line bg-surface">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
+      <section aria-labelledby="frames" className="bg-surface">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-28">
           <div className="max-w-2xl">
-            <h2 id="frames" className="text-[2rem] font-bold leading-tight tracking-[-0.02em]">
+            <h2 id="frames" className="text-[2.5rem] font-extrabold leading-[1.02] sm:text-[3.5rem]">
               The six frames
             </h2>
             <p className="mt-3 text-ink-2">
@@ -88,7 +90,7 @@ export default function Home() {
       <section aria-labelledby="day" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
           <div>
-            <h2 id="day" className="text-[2rem] font-bold leading-tight tracking-[-0.02em]">
+            <h2 id="day" className="text-[2.5rem] font-extrabold leading-[1.02] sm:text-[3.5rem]">
               One frame at a time, twenty minutes a day
             </h2>
             <p className="mt-3 text-ink-2">
@@ -111,12 +113,12 @@ export default function Home() {
 
       {/* Outcomes, honestly */}
       <section aria-labelledby="outcomes" className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-8 rounded-[1.5rem] bg-ink p-7 text-paper sm:p-10 md:grid-cols-2">
+        <div className="relative grid gap-8 overflow-hidden rounded-[2.25rem] bg-black p-8 text-[#f5f5f7] sm:p-14 md:grid-cols-2">
           <div>
-            <h2 id="outcomes" className="text-[1.75rem] font-bold leading-tight tracking-[-0.02em]">
+            <h2 id="outcomes" className="text-[2.25rem] font-extrabold leading-[1.02] sm:text-[3rem]">
               What you can do after 33 days
             </h2>
-            <ul className="mt-5 flex flex-col gap-3 text-paper/90">
+            <ul className="mt-5 flex flex-col gap-3 text-white/85">
               <li>Build and change sentences in all six frames, in past, present and future.</li>
               <li>Ask any question — and understand the answer.</li>
               <li>Use perfect, continuous and passive forms with confidence.</li>
@@ -124,9 +126,9 @@ export default function Home() {
               <li>Handle everyday conversations: introductions, travel, food, work.</li>
             </ul>
           </div>
-          <div className="md:border-l md:border-paper/15 md:pl-8">
+          <div className="md:border-l md:border-white/15 md:pl-8">
             <h3 className="text-lg font-bold">What we don&apos;t promise</h3>
-            <p className="mt-3 text-paper/80">
+            <p className="mt-3 text-white/70">
               Nobody becomes fluent in 33 days, and we won&apos;t tell you otherwise. What you get is a solid, usable structure for English — and a
               record of skills you have actually shown, not a guess. Fluency comes from using it; the course gets you ready to.
             </p>
@@ -136,7 +138,7 @@ export default function Home() {
 
       {/* Retention */}
       <section aria-labelledby="stick" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <h2 id="stick" className="max-w-2xl text-[2rem] font-bold leading-tight tracking-[-0.02em]">
+        <h2 id="stick" className="max-w-2xl text-[2.5rem] font-extrabold leading-[1.02] sm:text-[3.5rem]">
           Built so it stays with you
         </h2>
         <dl className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
@@ -151,12 +153,12 @@ export default function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex flex-col items-start gap-5 border-t border-line pt-12 md:flex-row md:items-center md:justify-between">
+        <div className="glow-card flex flex-col items-start gap-6 rounded-[2.25rem] p-8 sm:p-12 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-[1.75rem] font-bold tracking-[-0.02em]">Start with There is / There are.</h2>
-            <p className="mt-1 text-ink-2">Day 1 takes about 20 minutes. No account needed.</p>
+            <h2 className="text-[2.25rem] font-extrabold leading-[1.05] sm:text-[3rem]">Start with There is / There are.</h2>
+            <p className="mt-2 text-white/90">Day 1 takes about 20 minutes. No account needed.</p>
           </div>
-          <Link href="/learn/1" className={button("primary", "lg")}>
+          <Link href="/learn/1" className="inline-flex h-14 items-center rounded-full bg-white px-8 text-lg font-semibold text-[#1d1d1f] transition hover:bg-white/90">
             Start Day 1
           </Link>
         </div>
